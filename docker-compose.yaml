@@ -4,7 +4,7 @@ services:
   exekube:
     build: .
     environment:
-      - GOOGLE_CLOUD_KEYFILE_JSON=/exekube/kube-admin-credentials.json
+      - GOOGLE_CREDENTIALS=/exekube/kube-admin-credentials.json
     volumes:
       - .:/exekube
       - ./config/gcloud:/root/.config/gcloud
