@@ -2,7 +2,9 @@ version: "3.5"
 
 services:
   exekube:
-    build: .
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
     environment:
       - GOOGLE_CREDENTIALS=/exekube/kube-admin-credentials.json
     volumes:
