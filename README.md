@@ -4,23 +4,23 @@
 
 ## Introduction
 
-Exekube is an experimental framework for administering and using Kubernetes clusters.
-
-## Principles
-
-- [x] Everything is expressed as code, using Terraform / HCL
-- [x] Git-based workflow (no GUI or large CLI)
-- [x] Client side is fully containerized
-- [ ] No vendor lock-in, choose any cloud provider you want (only GCP for now)
-- [ ] Test-driven
+Exekube is an experimental declarative framework for administering and using Kubernetes clusters.
 
 ## Technology stack
 
 - Docker
-- Google Cloud SDK
-- Kubernetes
 - Terraform
+- Google Cloud SDK (support for AWS and Azure in the future?)
+- Kubernetes
 - Helm
+
+## Principles
+
+- [x] Everything on client side is dockerized and contained in repo root directory
+- [x] Everything is expressed as code, using Terraform and HCL (HashiCorp Language)
+- [ ] Git-based workflow (no GUI or CLI) with a CI pipeline
+- [ ] No vendor lock-in, choose any cloud provider you want (only GCP for now)
+- [ ] Test-driven
 
 ## What I did
 
