@@ -24,8 +24,8 @@ Exekube is an experimental framework for administering and using Kubernetes clus
 
 ## What I did
 
-1. Set up a Google Account, create project <my-project-id>, etc.
-2. Created a service account in Google Cloud Console GUI `kube-admin`, granted it Kubernetes admin role (permissions), downloaded `.json` credentials to repo root directory and renamed the file to `kube-admin-credentials.json`
+1. Set up a Google Account, created a project named "ethereal-argon-186217", etc.
+2. Created a service account named "kube-admin" in Google Cloud Console GUI, granted it Kubernetes admin role (permissions), downloaded `.json` credentials to repo root directory and renamed the file to `kube-admin-credentials.json`
 
 ## Directory structure
 
