@@ -50,22 +50,3 @@ Exekube is an experimental framework for administering and using Kubernetes clus
 2. Created a service account named "kube-admin" in Google Cloud Console GUI, granted it Kubernetes admin role (permissions), downloaded `.json` credentials to repo root directory and renamed the file to `kube-admin-credentials.json`
 3. `gcloud auth activate-service-account --key-file kube-admin-credentials.json`
 4. `terraform init live/gke-prod`
-
-## Directory structure
-
-```
-.
-├── Dockerfile
-├── README.md
-├── bin
-│   └── terraform
-├── config
-│   ├── kube
-│   └── gcloud
-├── docker-compose.yaml
-├── clusters
-│   ├── live
-│   └── modules
-└── kube-admin-credentials.json
-
-```
