@@ -61,7 +61,7 @@ Exekube is an experimental framework for administering and using Kubernetes clus
 │   ├── kube
 │   └── gcloud
 ├── docker-compose.yaml
-├── gke
+├── clusters
 │   ├── live
 │   └── modules
 └── kube-admin-credentials.json
