@@ -1,0 +1,12 @@
+version: "3.5"
+
+services:
+  exekube:
+    build: .
+    environment:
+      - GOOGLE_CLOUD_KEYFILE_JSON=/exekube/kube-admin-credentials.json
+    volumes:
+      - .:/exekube
+      - ./config/gcloud:/root/.config/gcloud
+      - ./config/kube:/root/.kube
+    working_dir: /exekube

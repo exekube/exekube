@@ -1,0 +1,8 @@
+*credentials.json
+config
+bin
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
