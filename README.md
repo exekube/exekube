@@ -6,28 +6,6 @@
 
 Exekube is an experimental framework for administering and using Kubernetes clusters.
 
-## Input sources and tasks to be completed
-
-| Input source | Task |
-| --- | --- |
-| GCP Console (GUI) | Create cloud provider (GCP) account, enable billing |
-| Docker(file) | Download cloud provider SDK (Google Cloud SDK), add binary path to `$PATH` |
-| GCP Console (GUI) (.json) | Get credentials for GCP |
-| Terraform | Authenticate to GCP |
-| Terraform | Create cluster |
-| Terraform | Add cloud roles and users (for GCP) |
-| Terraform | Get credentials for cluster |
-| ? | Add cluster namespaces (virtual clusters) |
-| ? | Add cluster roles and role bindings |
-| ? | Add network policies |
-| Terraform (local-exec) | Initiaize Helm |
-| Helm | Launch ingress controller (`ingress-nginx`) |
-| Helm | Launch TLS certificates controller (`kube-lego`) |
-| Helm | Add monitoring and alerting tools (Prometheus, Grafana) |
-| Helm | Add CI tools (Jenkins, Gogs) |
-| Helm | Install nginx-webpage chart |
-| Helm | Install rails app chart |
-
 ## Principles
 
 - [x] Everything is expressed as code, using Terraform / HCL
@@ -43,6 +21,28 @@ Exekube is an experimental framework for administering and using Kubernetes clus
 - Kubernetes
 - Terraform
 - Helm
+
+## Input sources and tasks to be completed
+
+| Input source | Task |
+| --- | --- |
+| GCP Console (GUI) | Create cloud provider (GCP) account, enable billing |
+| Dockerfile | Download cloud provider SDK (Google Cloud SDK), add binary path to `$PATH` |
+| GCP Console (GUI) | Get credentials for GCP |
+| `.json` file + `GOOGLE_CLOUD_KEYFILE_JSON` reference + Terraform (.tf) | Authenticate to GCP |
+|  Terraform (.tf) | Create cluster |
+|  Terraform (.tf) | Add cloud roles and users (for GCP) |
+|  Terraform (.tf) | Get credentials for cluster |
+| ? | Add cluster namespaces (virtual clusters) |
+| ? | Add cluster roles and role bindings |
+| ? | Add network policies |
+|  Terraform (.tf) local-exec provisioner | Initiaize Helm |
+| Helm | Launch ingress controller (`ingress-nginx`) |
+| Helm | Launch TLS certificates controller (`kube-lego`) |
+| Helm | Add monitoring and alerting tools (Prometheus, Grafana) |
+| Helm | Add CI tools (Jenkins, Gogs) |
+| Helm | Install nginx-webpage chart |
+| Helm | Install rails app chart |
 
 ## What I did
 
