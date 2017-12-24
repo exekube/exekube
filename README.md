@@ -42,6 +42,7 @@ You only need Docker and docker-compose installed on your local machine.
 - [ ] Create GCP Folder structure
 - [ ] Create GCP Projects
 - [ ] Create GCP Organization, Folder, Project policies
+- [ ] Create GCP IAM Service Accounts, Roles, and Bindings
 - [x] Create GKE cluster
 - [ ] (RBAC) Add cluster namespaces (virtual clusters)
 - [ ] (RBAC) Add cluster roles and role bindings
