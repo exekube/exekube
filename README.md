@@ -37,10 +37,12 @@ You only need Docker and docker-compose installed on your local machine.
 
 - [x] Create GCP account, enable billing
 - [x] Get credentials for GCP
-- [x] Download cloud provider SDK (Google Cloud SDK)
+- [x] Download Google Cloud SDK
 - [x] Authenticate to GCP (to create a cluster)
-- [x] Create cluster
-- [ ] (RBAC) Add cloud roles and users (for GCP)
+- [ ] Create GCP Folder structure
+- [ ] Create GCP Projects
+- [ ] Create GCP Organization, Folder, Project policies
+- [x] Create GKE cluster
 - [ ] (RBAC) Add cluster namespaces (virtual clusters)
 - [ ] (RBAC) Add cluster roles and role bindings
 - [ ] (RBAC) Add cluster network policies
