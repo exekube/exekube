@@ -33,24 +33,21 @@ You only need Docker and docker-compose installed on your local machine.
 3. `gcloud auth activate-service-account --key-file credentials.json`
 4. `terraform init live/gke-devel`
 
-## Input sources and tasks to be completed
+## Features and tasks
 
-| Input source | Task |
-| --- | --- |
-| GCP Console (GUI) | Create cloud provider (GCP) account, enable billing |
-| Dockerfile | Download cloud provider SDK (Google Cloud SDK), add binary path to `$PATH` |
-| GCP Console (GUI) | Get credentials for GCP |
-| `.json` file + Terraform (.tf) | Authenticate to GCP |
-|  Terraform (.tf) | Create cluster |
-|  Terraform (.tf) | Add cloud roles and users (for GCP) |
-|  Terraform (.tf) | Get credentials for cluster |
-| ? | Add cluster namespaces (virtual clusters) |
-| ? | Add cluster roles and role bindings |
-| ? | Add network policies |
-|  Terraform (.tf) local-exec provisioner | Initiaize Helm |
-| Helm | Launch ingress controller (`ingress-nginx`) |
-| Helm | Launch TLS certificates controller (`kube-lego`) |
-| Helm | Add monitoring and alerting tools (Prometheus, Grafana) |
-| Helm | Add CI tools (Jenkins, Gogs) |
-| Helm | Install nginx-webpage chart |
-| Helm | Install rails app chart |
+- [x] Create GCP account, enable billing
+- [x] Get credentials for GCP
+- [x] Download cloud provider SDK (Google Cloud SDK)
+- [x] Authenticate to GCP (to create a cluster)
+- [x] Create cluster
+- [ ] (RBAC) Add cloud roles and users (for GCP)
+- [ ] (RBAC) Add cluster namespaces (virtual clusters)
+- [ ] (RBAC) Add cluster roles and role bindings
+- [ ] (RBAC) Add cluster network policies
+- [x] Get credentials (token) for kubectl
+- [ ] Install Tiller on cluster (`helm init`)
+- [ ] Install cluster ingress controller (cloud load balancer)
+- [ ] Install TLS certificates controller (kube-lego)
+- [ ] Install monitoring tools (Prometheus, Grafana)
+- [ ] Install continuous integration tools (Gitlab / Gogs, Jenkins / Drone)
+- [ ] Install "hello-world" user apps
