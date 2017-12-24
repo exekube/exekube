@@ -30,7 +30,7 @@ You only need Docker and docker-compose installed on your local machine.
 
 1. Set up a Google Account, created a project named "ethereal-argon-186217", etc.
 2. Created a service account named "kube-admin" in Google Cloud Console GUI, granted it Kubernetes admin role (permissions), downloaded `.json` credentials to repo root directory and renamed the file to `credentials.json`
-3. `gcloud auth activate-service-account --key-file credentials.json`
+3. `gcloud auth activate-service-account --key-file /run/secrets/credentials.json`
 4. `terraform init live/gke-devel`
 
 ## Features and tasks

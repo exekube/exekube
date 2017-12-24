@@ -1,12 +1,20 @@
 version: "3.5"
 
+secrets:
+  credentials.json:
+    file: ./credentials.json
+
 services:
   exekube:
     build:
       context: .
       dockerfile: ./build/Dockerfile
+    working_dir: /exekube
+    secrets:
+      - credentials.json
     volumes:
-      - .:/exekube
+      - ./live:/exekube/live
+      - ./modules:/exekube/modules
+      - ./.terraform:/exekube/.terraform
       - ./config/gcloud:/root/.config/gcloud
       - ./config/kube:/root/.kube
-    working_dir: /exekube
