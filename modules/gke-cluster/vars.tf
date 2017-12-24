@@ -6,20 +6,18 @@ variable "cluster_name" {
   default = "k8s-cluster"
 }
 
+variable "gcp_project" {}
+
 variable "gcp_zone" {
   default = "europe-west1-d"
-}
-
-variable "node_version" {
-  default = "1.8.4-gke.0"
 }
 
 variable "node_type" {
   default = "n1-standard-2"
 }
 
-variable "master_version" {
-  default = "1.8.4-gke.0"
+variable "gke_version" {
+  default = "1.8.4-gke.1"
 }
 
 variable "enable_legacy_auth" {

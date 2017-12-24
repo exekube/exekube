@@ -4,13 +4,18 @@ resource "google_container_cluster" "gke_cluster" {
   initial_node_count = 1
 
   cluster_ipv4_cidr  = "10.20.0.0/14"
-  node_version       = "${var.node_version}"
-  min_master_version = "${var.master_version}"
+  node_version       = "${var.gke_version}"
+  min_master_version = "${var.gke_version}"
   enable_legacy_abac = "${var.enable_legacy_auth}"
   subnetwork         = "default"
 
   node_config {
     machine_type = "${var.node_type}"
+  }
+
+  provisioner "local-exec" {
+    # configure "kubectl" credentials
+    command = "gcloud container clusters get-credentials ${var.cluster_name} --zone ${var.gcp_zone} --project ${var.gcp_project}"
   }
 }
 
