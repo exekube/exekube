@@ -6,3 +6,4 @@ bin
 # .tfstate files
 *.tfstate
 *.tfstate.*
+*.tfvars
