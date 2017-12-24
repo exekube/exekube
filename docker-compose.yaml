@@ -8,7 +8,7 @@ services:
   exekube:
     build:
       context: .
-      dockerfile: ./build/Dockerfile
+      dockerfile: ./image/Dockerfile
     working_dir: /exekube
     secrets:
       - credentials.json
