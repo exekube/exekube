@@ -40,7 +40,7 @@ You only need Docker and docker-compose installed on your local machine.
 | GCP Console (GUI) | Create cloud provider (GCP) account, enable billing |
 | Dockerfile | Download cloud provider SDK (Google Cloud SDK), add binary path to `$PATH` |
 | GCP Console (GUI) | Get credentials for GCP |
-| `.json` file + `GOOGLE_CLOUD_KEYFILE_JSON` reference + Terraform (.tf) | Authenticate to GCP |
+| `.json` file + Terraform (.tf) | Authenticate to GCP |
 |  Terraform (.tf) | Create cluster |
 |  Terraform (.tf) | Add cloud roles and users (for GCP) |
 |  Terraform (.tf) | Get credentials for cluster |

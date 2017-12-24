@@ -5,8 +5,6 @@ services:
     build:
       context: .
       dockerfile: ./build/Dockerfile
-    environment:
-      - GOOGLE_CREDENTIALS=/exekube/credentials.json
     volumes:
       - .:/exekube
       - ./config/gcloud:/root/.config/gcloud
