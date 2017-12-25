@@ -38,16 +38,15 @@ You only need Docker and docker-compose installed on your local machine.
 - [x] Create GCP account, enable billing
 - [x] Get credentials for GCP
 - [x] Download Google Cloud SDK
-- [x] Authenticate to GCP (to create a cluster)
-- [ ] Create GCP Folders and Projects
-- [ ] [Access control] Create GCP Organization, Folder, Project policies
-- [x] [Access control] Create GCP IAM Service Accounts, Roles, and Bindings
-- [x] Create a cluster
+- [x] Authenticate to GCP (for `gcloud` and `terraform` use)
+- [ ] Create GCP Folders and Projects and associated policies
+- [x] [Access control] Create GCP IAM Service Accounts and IAM Policies for the Project
+- [x] Create the GKE cluster
+- [x] Get cluster credentials (`root/.kube/config` file)
+- [x] [System releases] Install Tiller on cluster (`helm init`)
 - [ ] [Access control] Add cluster namespaces (virtual clusters)
 - [ ] [Access control] Add cluster roles and role bindings
 - [ ] [Access control] Add cluster network policies
-- [x] Get credentials for `kubectl` to access cluster resources
-- [ ] [System releases] Install Tiller on cluster (`helm init`)
 - [ ] [System releases] Install cluster ingress controller (cloud load balancer)
 - [ ] [System releases] Install TLS certificates controller (kube-lego)
 - [ ] [System releases] Install monitoring tools (Prometheus, Grafana)
