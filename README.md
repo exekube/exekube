@@ -39,7 +39,7 @@ You only need Docker and docker-compose installed on your local machine.
 
 - [x] Create GCP account, enable billing
 - [x] Get credentials for GCP (`credentials.json`)
-- [x] Authenticate to GCP (for `gcloud` and `terraform` use)
+- [x] Authenticate to GCP using `credentials.json` (for `gcloud` and `terraform` use)
 - [ ] Enable terraform remote state in a Cloud Storage bucket
 
 ### Cloud provider config
@@ -50,7 +50,7 @@ You only need Docker and docker-compose installed on your local machine.
 ### Cluster creation
 
 - [x] Create the GKE cluster
-- [x] Get cluster credentials (`root/.kube/config` file)
+- [x] Get cluster credentials (`/root/.kube/config` file)
 - [x] Initialize Helm
 
 ### Cluster access control
@@ -69,3 +69,8 @@ You only need Docker and docker-compose installed on your local machine.
 ### User apps and services
 
 - [ ] Install "hello-world" apps like static sites, Ruby on Rails apps, etc.
+
+## Known issues
+
+- [ ] If IAM API is not enabled, trying to enable it via Terraform and then creating a service account will not work since enabling an API might take longer
+- [ ] A LoadBalancer created via installing an ingress controller chart will not be destroyed when we run `terraform destroy`
