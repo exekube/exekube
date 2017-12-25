@@ -40,12 +40,12 @@ You only need Docker and docker-compose installed on your local machine.
 - [x] Create GCP account, enable billing
 - [x] Get credentials for GCP (`credentials.json`)
 - [x] Authenticate to GCP (for `gcloud` and `terraform` use)
-- [ ] Enable terraform remote state in a Google Storage bucket
+- [ ] Enable terraform remote state in a Cloud Storage bucket
 
 ### Cloud provider config
 
 - [ ] Create GCP Folders and Projects and associated policies
-- [x] [Access control] Create GCP IAM Service Accounts and IAM Policies for the Project
+- [x] Create GCP IAM Service Accounts and IAM Policies for the Project
 
 ### Cluster creation
 
