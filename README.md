@@ -24,9 +24,9 @@ Exekube is an experimental declarative framework for administering and using Kub
 
 ### Requirements
 
-You only need Docker and docker-compose installed on your local machine.
+You only need Docker and Docker Compose installed on your local machine. I use [Docker for Mac](https://docs.docker.com/docker-for-mac/install/) (Edge).
 
-## What I did
+## Steps for setting everything up
 
 1. Set up a Google Account, created a project named "ethereal-argon-186217", etc.
 2. Created a service account in Google Cloud Console GUI, gave it project owner permissions, downloaded `.json` credentials ("key") to repo root directory and renamed the file to `credentials.json`
