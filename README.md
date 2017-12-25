@@ -39,18 +39,17 @@ You only need Docker and docker-compose installed on your local machine.
 - [x] Get credentials for GCP
 - [x] Download Google Cloud SDK
 - [x] Authenticate to GCP (to create a cluster)
-- [ ] Create GCP Folder structure
-- [ ] Create GCP Projects
-- [ ] Create GCP Organization, Folder, Project policies
-- [ ] Create GCP IAM Service Accounts, Roles, and Bindings
-- [x] Create GKE cluster
-- [ ] (RBAC) Add cluster namespaces (virtual clusters)
-- [ ] (RBAC) Add cluster roles and role bindings
-- [ ] (RBAC) Add cluster network policies
-- [x] Get credentials (token) for kubectl
-- [ ] Install Tiller on cluster (`helm init`)
-- [ ] Install cluster ingress controller (cloud load balancer)
-- [ ] Install TLS certificates controller (kube-lego)
-- [ ] Install monitoring tools (Prometheus, Grafana)
-- [ ] Install continuous integration tools (Gitlab / Gogs, Jenkins / Drone)
-- [ ] Install "hello-world" user apps
+- [ ] Create GCP Folders and Projects
+- [ ] [Access control] Create GCP Organization, Folder, Project policies
+- [x] [Access control] Create GCP IAM Service Accounts, Roles, and Bindings
+- [x] Create a cluster
+- [ ] [Access control] Add cluster namespaces (virtual clusters)
+- [ ] [Access control] Add cluster roles and role bindings
+- [ ] [Access control] Add cluster network policies
+- [x] Get credentials for `kubectl` to access cluster resources
+- [ ] [System releases] Install Tiller on cluster (`helm init`)
+- [ ] [System releases] Install cluster ingress controller (cloud load balancer)
+- [ ] [System releases] Install TLS certificates controller (kube-lego)
+- [ ] [System releases] Install monitoring tools (Prometheus, Grafana)
+- [ ] [System releases] Install continuous integration tools (Gitlab / Gogs, Jenkins / Drone)
+- [ ] [User releases] Install "hello-world" apps like static sites, Ruby on Rails apps, etc.
