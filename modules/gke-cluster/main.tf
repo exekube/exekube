@@ -15,7 +15,17 @@ resource "google_container_cluster" "gke_cluster" {
 
   provisioner "local-exec" {
     # configure "kubectl" credentials
-    command = "gcloud container clusters get-credentials ${var.cluster_name} --zone ${var.gcp_zone} --project ${var.gcp_project}"
+    command = <<EOF
+gcloud container clusters get-credentials ${var.cluster_name} \
+--zone ${var.gcp_zone} \
+--project ${var.gcp_project} \
+&& kubectl -n kube-system create sa tiller \
+&& kubectl create clusterrolebinding tiller \
+--clusterrole cluster-admin \
+--serviceaccount=kube-system:tiller \
+&& helm init --service-account tiller \
+&& helm init --upgrade --service-account tiller
+EOF
   }
 }
 
