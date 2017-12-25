@@ -1,20 +1,12 @@
 version: "3.5"
 
-secrets:
-  credentials.json:
-    file: ./credentials.json
-
 services:
   xk: # "xk" stands for "exekube"
     build:
       context: .
       dockerfile: ./image/Dockerfile
     working_dir: /exekube
-    secrets:
-      - credentials.json
     volumes:
-      - ./live:/exekube/live
-      - ./modules:/exekube/modules # modules should probably be a git / terraform repo
-      - ./.terraform:/exekube/.terraform # use a named volume?
+      - .:/exekube
       - ./config/gcloud:/root/.config/gcloud # this too
       - ./config/kube:/root/.kube # and this
