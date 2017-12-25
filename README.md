@@ -30,8 +30,8 @@ You only need Docker and docker-compose installed on your local machine.
 
 1. Set up a Google Account, created a project named "ethereal-argon-186217", etc.
 2. Created a service account in Google Cloud Console GUI, gave it project owner permissions, downloaded `.json` credentials ("key") to repo root directory and renamed the file to `credentials.json`
-3. `gcloud auth activate-service-account --key-file /run/secrets/credentials.json`
-4. `terraform init live/gke-devel`
+3. `gcloud auth activate-service-account --key-file credentials.json`
+4. `terraform init live/gcp-ethereal-argon`
 
 ## Features / tasks
 
