@@ -1,3 +1,12 @@
+/*
+resource "google_service_account" {}
+resource "google_service_account_key" {}
+resource "google_project_iam_custom_role" {}
+resource "google_project_iam_policy" {}
+resource "google_project_services" {}
+data "google_iam_policy" {}
+*/
+
 // enable IAM API for project
 resource "google_project_service" "iam" {
   project = "ethereal-argon-186217"
@@ -35,12 +44,3 @@ data "google_iam_policy" "main" {
     ]
   }
 }
-
-/*
-resource "google_service_account" {}
-resource "google_service_account_key" {}
-resource "google_project_iam_custom_role" {}
-resource "google_project_iam_policy" {}
-resource "google_project_services" {}
-data "google_iam_policy" {}
-*/
