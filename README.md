@@ -2,6 +2,20 @@
 
 ⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
 
+- [Introduction](#introduction)
+	- [Principles](#principles)
+	- [Technology stack](#technology-stack)
+	- [Requirements](#requirements)
+- [Imperative steps for set up](#imperative-steps-for-set-up)
+- [Features / tasks](#features-tasks)
+	- [Preparation](#preparation)
+	- [Cloud provider config](#cloud-provider-config)
+	- [Cluster creation](#cluster-creation)
+	- [Cluster access control](#cluster-access-control)
+	- [Supporting tools](#supporting-tools)
+	- [User apps and services](#user-apps-and-services)
+- [Known issues](#known-issues)
+
 ## Introduction
 
 **Feature request**: I want a Rails-like experience **but for deploying generic workloads and storage resources onto Kubernetes clusters**.
