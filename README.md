@@ -34,11 +34,11 @@ Read the companion guide about how to learn declarative Kubernetes with Exekube:
 
 ### Technology stack
 
-- Docker and Docker Compose on the client side
-- Terraform and HCL (HashiCorp Language)
-- Google Cloud SDK (support for AWS and Azure in the future?)
-- Kubernetes
-- Helm
+- Latest version of `docker-compose` on the local machine
+- HCL (HashiCorp Language) declarative configuration code (`*.tf` files) using `terraform`
+- Three tools for Google Cloud Platform: `gcloud`, [GCP Console](/), and [terraform-provider-google](/) (support for AWS and Azure in the future?)
+- Kubernetes using `kubectl` and [terraform-kubernetes-provider](/)
+- Helm using `helm` and [terraform-helm-provider](/)
 
 ### Requirements
 
