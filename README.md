@@ -54,7 +54,7 @@ You only need Docker and Docker Compose installed on your local machine. I use [
 - [x] Create GCP account, enable billing
 - [x] Get credentials for GCP (`credentials.json`)
 - [x] Authenticate to GCP using `credentials.json` (for `gcloud` and `terraform` use)
-- [ ] Enable terraform remote state in a Cloud Storage bucket
+- [x] Enable terraform remote state in a Cloud Storage bucket
 
 ### Cloud provider config
 
