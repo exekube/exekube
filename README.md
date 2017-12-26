@@ -4,15 +4,11 @@
 
 ## Introduction
 
-Exekube is an experimental declarative framework for administering and using Kubernetes clusters. Read about the motivations behind this project: <https://github.com/ilyasotkov/learning-kubernetes/blob/develop/labs/intro/goals-and-principles.md>
+**Feature request**: I want a Rails-like experience **but for deploying generic workloads and storage resources onto Kubernetes clusters**.
 
-### Technology stack
+Exekube is an experimental declarative framework for administering and using Kubernetes clusters.
 
-- Docker and Docker Compose on the client side
-- Terraform and HCL (HashiCorp Language)
-- Google Cloud SDK (support for AWS and Azure in the future?)
-- Kubernetes
-- Helm
+Read a guide about how to learn declarative Kubernetes with Exekube: <https://github.com/ilyasotkov/learning-kubernetes/>
 
 ### Principles
 
@@ -21,6 +17,14 @@ Exekube is an experimental declarative framework for administering and using Kub
 - [ ] Git-based workflow (no GUI or CLI) with a CI pipeline
 - [ ] No vendor lock-in, choose any cloud provider you want (only GCP for now)
 - [ ] Test-driven
+
+### Technology stack
+
+- Docker and Docker Compose on the client side
+- Terraform and HCL (HashiCorp Language)
+- Google Cloud SDK (support for AWS and Azure in the future?)
+- Kubernetes
+- Helm
 
 ### Requirements
 
