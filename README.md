@@ -10,7 +10,7 @@ Exekube is an experimental declarative framework for administering and using Kub
 
 - Docker and Docker Compose
 - Terraform
-- Google Cloud SDK (support for AWS and Azure in the future?)
+- Google Cloud SDK (support for AWS-EKS and Azure-AKS in the future?)
 - Kubernetes
 - Helm
 
@@ -26,12 +26,26 @@ Exekube is an experimental declarative framework for administering and using Kub
 
 You only need Docker and Docker Compose installed on your local machine. I use [Docker for Mac](https://docs.docker.com/docker-for-mac/install/) (Edge).
 
-## Steps for setting everything up
+## Imperative steps for set up
 
-1. Set up a Google Account, created a project named "ethereal-argon-186217", etc.
-2. Created a service account in Google Cloud Console GUI, gave it project owner permissions, downloaded `.json` credentials ("key") to repo root directory and renamed the file to `credentials.json`
-3. `gcloud auth activate-service-account --key-file credentials.json`
-4. `terraform init live/gcp-ethereal-argon`
+1. Set up a Google Account, create a project named "ethereal-argon-186217", enable billing.
+2. Create a service account in Google Cloud Console GUI, give it project owner permissions, download `.json` credentials ("key") to repo root directory and rename the file to `credentials.json`
+3. Use `.json` credentials to activate service account:
+    ```sh
+    docker-compose run --rm xk gcloud auth activate-service-account --key-file credentials.json
+    ```
+4. Create a Google Cloud Storage bucket for Terraform remote state:
+    ```sh
+    docker-compose run --rm xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state
+    ```
+5. Enable versioning for the bucket:
+    ```sh
+    docker-compose run --rm xk gsutil versioning set on gs://ethereal-argon-terraform-state
+    ```
+6. Initialize terraform:
+    ```sh
+    docker-compose run --rm xk terraform init live/gcp-ethereal-argon
+    ```
 
 ## Features / tasks
 
