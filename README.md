@@ -5,9 +5,10 @@
 - [Introduction](#introduction)
 	- [Principles](#principles)
 	- [Technology stack](#technology-stack)
-	- [Requirements](#requirements)
-- [Imperative steps for set up](#imperative-steps-for-set-up)
-- [Core feature tracker](#features-tasks)
+- [Set up local containerized tools](#set-up-local-containerized-tools)
+	- [Requirements starting from zero](#requirements-starting-from-zero)
+	- [Local setup step-by-step](#local-setup-step-by-step)
+- [Core feature tracker](#core-feature-tracker)
 	- [Preparation](#preparation)
 	- [Cloud provider config](#cloud-provider-config)
 	- [Cluster creation](#cluster-creation)
@@ -40,13 +41,13 @@ Read the companion guide about how to learn declarative Kubernetes with Exekube:
 - Kubernetes using `kubectl` and [terraform-kubernetes-provider](/)
 - Helm using `helm` and [terraform-helm-provider](/)
 
-### Requirements
-
-You only need Docker and Docker Compose installed on your local machine. I use [Docker for Mac](https://docs.docker.com/docker-for-mac/install/) (Edge).
-
 ## Set up local containerized tools
 
-Everything on your workstation runs in a container using Docker Compose.
+### Requirements starting from zero
+
+Everything on your workstation runs in a container using Docker Compose. [Docker for Mac](/), [Docker for Windows](/) or [`docker` and `docker-compose` for Linux](/) is the only initial requirement.
+
+### Local setup step-by-step
 
 0. Create `xk` alias in shell session ⬇️
     ```bash
