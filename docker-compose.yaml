@@ -10,5 +10,5 @@ services:
       GOOGLE_CREDENTIALS: /exekube/credentials.json
     volumes:
       - .:/exekube
-      - ./config/gcloud:/root/.config/gcloud # this too
-      - ./config/kube:/root/.kube # and this
+      - ./config/gcloud:/root/.config/gcloud
+      - ./config/kube:/root/.kube
