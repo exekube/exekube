@@ -7,7 +7,7 @@
 	- [Technology stack](#technology-stack)
 	- [Requirements](#requirements)
 - [Imperative steps for set up](#imperative-steps-for-set-up)
-- [Features / tasks](#features-tasks)
+- [Core feature tracker](#features-tasks)
 	- [Preparation](#preparation)
 	- [Cloud provider config](#cloud-provider-config)
 	- [Cluster creation](#cluster-creation)
@@ -27,7 +27,7 @@ Read the companion guide about how to learn declarative Kubernetes with Exekube:
 ### Principles
 
 - [x] Everything on client side is dockerized and contained in repo root directory
-- [x] Everything is expressed as code, using Terraform and HCL (HashiCorp Language)
+- [x] Everything is expressed as declarative code, using Terraform and HCL (HashiCorp Language)
 - [ ] Git-based workflow (no GUI or CLI) with a CI pipeline
 - [ ] No vendor lock-in, choose any cloud provider you want (only GCP for now)
 - [ ] Test-driven
@@ -44,7 +44,9 @@ Read the companion guide about how to learn declarative Kubernetes with Exekube:
 
 You only need Docker and Docker Compose installed on your local machine. I use [Docker for Mac](https://docs.docker.com/docker-for-mac/install/) (Edge).
 
-## Imperative steps for set up
+## Set up local containerized tools
+
+Everything on your workstation runs in a container using Docker Compose.
 
 0. Create `xk` alias in shell session:
     ```bash
@@ -69,7 +71,7 @@ You only need Docker and Docker Compose installed on your local machine. I use [
     xk terraform init live/gcp-ethereal-argon
     ```
 
-## Features / tasks
+## Core feature tracker
 
 ### Preparation
 
