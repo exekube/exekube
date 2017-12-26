@@ -30,7 +30,7 @@ Read the companion guide about how to learn declarative Kubernetes with Exekube:
 - [x] Everything is expressed as declarative code, using Terraform and HCL (HashiCorp Language)
 - [ ] Git-based workflow (no GUI or CLI) with a CI pipeline
 - [ ] No vendor lock-in, choose any cloud provider you want (only GCP for now)
-- [ ] Test-driven
+- [ ] Test-driven (TDD) or behavior-driven (BDD) model of development
 
 ### Technology stack
 
