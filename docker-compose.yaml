@@ -1,7 +1,7 @@
 version: "3.5"
 
 services:
-  xk: # "xk" stands for "exekube"
+  exekube:
     build:
       context: .
       dockerfile: ./image/Dockerfile

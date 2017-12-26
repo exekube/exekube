@@ -46,6 +46,10 @@ You only need Docker and Docker Compose installed on your local machine. I use [
     ```sh
     docker-compose run --rm xk terraform init live/gcp-ethereal-argon
     ```
+7. Create `xk` alias in shell session:
+    ```bash
+    alias xk="docker-compose run --rm exekube"
+    ```
 
 ## Features / tasks
 
