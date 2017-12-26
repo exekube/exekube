@@ -52,21 +52,22 @@ Everything on your workstation runs in a container using Docker Compose.
     ```bash
     alias xk="docker-compose run --rm exekube"
     ```
-1. Set up a Google Account, create a project named "ethereal-argon-186217", enable billing.
-2. Create a service account in Google Cloud Console GUI, give it project owner permissions, download `.json` credentials ("key") to repo root directory and rename the file to `credentials.json`
-3. Use `.json` credentials to activate service account:
+1. [Set up a Google Account for CGP (Google Cloud Platform)](https://console.cloud.google.com/), create a project named "ethereal-argon-186217", enable billing.
+2. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
+3. [Download `.json` credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
+4. Use `.json` credentials to activate service account:
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
-4. Create a Google Cloud Storage bucket for Terraform remote state:
+5. Create a Google Cloud Storage bucket for Terraform remote state:
     ```sh
     xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state
     ```
-5. Enable versioning for the bucket:
+6. Enable versioning for the bucket:
     ```sh
     xk gsutil versioning set on gs://ethereal-argon-terraform-state
     ```
-6. Initialize terraform:
+7. Initialize terraform:
     ```sh
     xk terraform init live/gcp-ethereal-argon
     ```
@@ -75,7 +76,7 @@ Everything on your workstation runs in a container using Docker Compose.
 
 ### Preparation
 
-- [x] Create GCP account, enable billing
+- [x] Create GCP account, enable billing in GCP Console (web GUI)
 - [x] Get credentials for GCP (`credentials.json`)
 - [x] Authenticate to GCP using `credentials.json` (for `gcloud` and `terraform` use)
 - [x] Enable terraform remote state in a Cloud Storage bucket
