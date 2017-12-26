@@ -7,8 +7,10 @@ services:
       dockerfile: ./image/Dockerfile
     working_dir: /exekube
     environment:
+      TF_LOG: debug
       GOOGLE_CREDENTIALS: /exekube/credentials.json
     volumes:
+      - ./vendor/terraform-provider-helm_linux_amd64:/root/.terraform.d/plugins/terraform-provider-helm_v0.5.0
       - .:/exekube
       - ./config/gcloud:/root/.config/gcloud
       - ./config/kube:/root/.kube
