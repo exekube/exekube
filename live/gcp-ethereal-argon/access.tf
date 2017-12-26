@@ -15,7 +15,7 @@ resource "google_project_service" "iam" {
 
 // create a service_account
 resource "google_service_account" "alice" {
-  account_id = "alice-doe"
+  account_id   = "alice-doe"
   display_name = "Alice"
 }
 
@@ -31,7 +31,7 @@ output "alice_public_key" {
 
 // create IAM policy for the whole project
 resource "google_project_iam_policy" "main" {
-  project = "ethereal-argon-186217"
+  project     = "ethereal-argon-186217"
   policy_data = "${data.google_iam_policy.main.policy_data}"
 }
 
@@ -39,6 +39,7 @@ resource "google_project_iam_policy" "main" {
 data "google_iam_policy" "main" {
   binding {
     role = "roles/owner"
+
     members = [
       "serviceAccount:${google_service_account.alice.email}",
     ]

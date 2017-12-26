@@ -30,9 +30,9 @@ EOF
 }
 
 resource "google_container_node_pool" "nodepool" {
-  name               = "${var.nodepool_name}"
-  zone               = "${var.gcp_zone}"
-  cluster            = "${google_container_cluster.gke_cluster.name}"
+  name       = "${var.nodepool_name}"
+  zone       = "${var.gcp_zone}"
+  cluster    = "${google_container_cluster.gke_cluster.name}"
   node_count = 1
 
   autoscaling {
