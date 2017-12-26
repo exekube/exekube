@@ -1,5 +1,6 @@
 *credentials.json
 config
+vendor
 bin
 **/.terraform/*
 
