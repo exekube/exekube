@@ -48,26 +48,26 @@ You only need Docker and Docker Compose installed on your local machine. I use [
 
 Everything on your workstation runs in a container using Docker Compose.
 
-0. Create `xk` alias in shell session:
+0. Create `xk` alias in shell session ⬇️
     ```bash
     alias xk="docker-compose run --rm exekube"
     ```
 1. [Set up a Google Account for CGP (Google Cloud Platform)](https://console.cloud.google.com/), create a project named "ethereal-argon-186217", enable billing.
 2. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
 3. [Download `.json` credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
-4. Use `.json` credentials to activate service account:
+4. Use `.json` credentials to activate service account ⬇️
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
-5. Create a Google Cloud Storage bucket for Terraform remote state:
+5. Create a Google Cloud Storage bucket for Terraform remote state ⬇️
     ```sh
     xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state
     ```
-6. Enable versioning for the bucket:
+6. Enable versioning for the bucket ⬇️
     ```sh
     xk gsutil versioning set on gs://ethereal-argon-terraform-state
     ```
-7. Initialize terraform:
+7. Initialize terraform ⬇️
     ```sh
     xk terraform init live/gcp-ethereal-argon
     ```
