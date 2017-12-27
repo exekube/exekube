@@ -102,6 +102,8 @@ The only requirements, depending on your local OS:
 
 ## Core feature tracker
 
+Features are marked with ✔️ when they enter the alpha stage, meaning there's a declarative *proof-of-concept* solution implemented
+
 ### Preparation
 
 - [x] Create GCP account, enable billing in GCP Console (web GUI)
