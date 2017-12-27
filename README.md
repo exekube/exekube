@@ -79,15 +79,12 @@ Everything on your workstation runs in a container using Docker Compose. [Docker
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
-5. Create a Google Cloud Storage bucket for Terraform remote state ⬇️
+5. Create a Google Cloud Storage bucket (with versioning) for Terraform remote state ⬇️
     ```sh
-    xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state
+    xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state \
+        && xk gsutil versioning set on gs://ethereal-argon-terraform-state
     ```
-6. Enable versioning for the bucket ⬇️
-    ```sh
-    xk gsutil versioning set on gs://ethereal-argon-terraform-state
-    ```
-7. Initialize terraform ⬇️
+6. Initialize terraform ⬇️
     ```sh
     xk terraform init live/gcp-ethereal-argon
     ```
