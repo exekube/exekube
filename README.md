@@ -1,8 +1,8 @@
-> ⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
+⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
 
 # Exekube
 
-You can define Ruby on Rails as a framework for building web apps. Exekube is a framework for **deploying any workload or storage resource to a cloud** (like Google Cloud, AWS, or Azure). Exekube is a thin automation layer on top of modern open-source tools like Docker, Kubernetes, and HashiCorp Terraform.
+If you think of *Ruby on Rails* as a framework for building web apps, *Exekube* is a **framework for deploying any type of containerized workload or storage resource to a cloud** (like Google Cloud, AWS, or Azure). Exekube is a thin automation layer on top of modern open-source tools like Docker, Kubernetes, and HashiCorp Terraform.
 
 We can also define Exekube as an experimental declarative framework for administering and using Kubernetes clusters.
 
