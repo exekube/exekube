@@ -18,7 +18,7 @@ The ultimate goal of this project is to enable DevOps engineers and developers t
 - [Introduction](#introduction)
 	- [Principles](#principles)
 	- [Technology stack](#technology-stack)
-- [Set up local development environment](#set-up-local-containerized-tools)
+- [Setup and usage](#set-up-local-containerized-tools)
 	- [Requirements starting from zero](#requirements-starting-from-zero)
 	- [Local setup step-by-step](#local-setup-step-by-step)
 - [Core feature tracker](#core-feature-tracker)
@@ -63,7 +63,7 @@ The ultimate goal of this project is to enable DevOps engineers and developers t
 - Imperative CLI client: `helm`
 - Declarative code client: [terraform-helm-provider](/)
 
-## Setup and Usage
+## Setup and usage
 
 ### Requirements starting from zero
 
