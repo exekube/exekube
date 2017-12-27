@@ -60,7 +60,7 @@ The ultimate goal of this project is to be able to control your cloud infrastruc
 - Imperative CLI client: `helm`
 - Declarative code client: [terraform-helm-provider](/)
 
-## Set up local development environment
+## Setup and Usage
 
 ### Requirements starting from zero
 
@@ -103,6 +103,28 @@ The only requirements, depending on your local OS:
     ```sh
     xk terraform init live/gcp-ethereal-argon
     ```
+
+### Usage / workflow
+
+#### exekube (xk) toolset
+
+TODO convert to declarative .tf (HCL) code
+
+- `xk terraform`
+- `xk gcloud`
+- `xk kubectl`
+- `xk helm`
+
+```sh
+xk helm install --name kube-lego \
+        helm/charts/kube-lego/
+xk helm install --name my-nginx-page \
+        -f helm/releases/nginx-webpage-devel.yaml \
+        helm/charts/nginx-webpage/
+xk helm install --name my-rails-app \
+        -f helm/releases/rails-app-devel.yaml \
+        helm/charts/rails-app/
+```
 
 ## Core feature tracker
 
