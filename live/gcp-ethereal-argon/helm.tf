@@ -1,6 +1,7 @@
 resource "helm_repository" "stable" {
   name = "stable"
   url  = "https://kubernetes-charts.storage.googleapis.com"
+  depends_on = ["module.gke_cluster"]
 }
 
 resource "helm_release" "ingress_controller" {

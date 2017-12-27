@@ -10,4 +10,5 @@ resource "kubernetes_namespace" "example" {
 
     name = "terraform-example-namespace"
   }
+  depends_on = ["module.gke_cluster"]
 }
