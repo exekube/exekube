@@ -18,7 +18,7 @@ xk terraform apply live/${MY_PROJECT_NAME}
 - [Introduction](#introduction)
 	- [Principles](#principles)
 	- [Technology stack](#technology-stack)
-- [Set up local containerized tools](#set-up-local-containerized-tools)
+- [Set up local development environment](#set-up-local-containerized-tools)
 	- [Requirements starting from zero](#requirements-starting-from-zero)
 	- [Local setup step-by-step](#local-setup-step-by-step)
 - [Core feature tracker](#core-feature-tracker)
