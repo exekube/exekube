@@ -2,7 +2,7 @@
 
 # Exekube
 
-*Exekube* is a **declarative framework for administering Kubernetes clusters and deploying containerized software onto them**.
+*Exekube* is a declarative framework for administering Kubernetes clusters and deploying containerized software onto them.
 
 Exekube command line tool `xkt` is a thin automation layer on top of modern open-source DevOps tools such as [Terraform](/), [Docker](/), and [Kubernetes](/). The only requirement to begin is a workstation with, depending on your OS, Docker for Mac, Docker for Windows, or Docker-CE + Docker Compose for Linux.
 
