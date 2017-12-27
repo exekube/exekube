@@ -7,7 +7,7 @@ services:
       dockerfile: ./image/Dockerfile
     working_dir: /exekube
     environment:
-      TF_LOG: error
+      TF_LOG: debug
       GOOGLE_CREDENTIALS: /exekube/credentials.json
     ports:
       - 8003:8001
