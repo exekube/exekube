@@ -131,7 +131,7 @@ xk helm install --name my-rails-app \
 - `xkt apply live/infra/gcp-ethereal-argon/`
 - `xkt apply live/helm-releases/`
 
-Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xkt apply live/helm-releases/<release-name>`.
+Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xkt apply live/helm-releases/`.
 
 ## Feature tracker
 
