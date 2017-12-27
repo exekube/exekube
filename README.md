@@ -66,7 +66,8 @@ The only requirements, depending on your local OS:
 
 #### Linux
 
-- [Docker and Docker Compose for Linux](/)
+- [Docker](/)
+- [Docker Compose](/)
 
 #### macOS
 
