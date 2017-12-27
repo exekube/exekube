@@ -4,14 +4,14 @@
 
 *Exekube* is a declarative framework for administering Kubernetes clusters and deploying containerized software onto them.
 
-You only need [Docker Community Edition](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer around several open-source DevOps tools:
+You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer around several open-source DevOps tools:
 
 - Docker Compose
 - HashiCorp Terraform
 - Kubernetes
 - Helm for Kubernetes
 
-The ultimate goal of this project is to enable DevOps engineers and developers to control cloud infrastructure and Kubernetes API objects using nothing more than a git repository and a Continuous Delivery pipeline.
+The goal of this project is to make it straightforward for DevOps engineers to manage cloud infrastructure and Kubernetes API objects using a git-based workflow and a Continuous Delivery (Continuous Integration) pipeline.
 
 📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
@@ -36,7 +36,6 @@ The ultimate goal of this project is to enable DevOps engineers and developers t
 		- [Cluster access control](#cluster-access-control)
 		- [Supporting tools](#supporting-tools)
 		- [User apps and services](#user-apps-and-services)
-	- [Known issues](#known-issues)
 
 <!-- /TOC -->
 
@@ -75,10 +74,10 @@ The only requirements, depending on your local OS:
 
 0. ⬇️ Create `xkt` and `xk` aliases for shell session (or save to ~/.bashrc):
     ```bash
-    # `xkt` is a wrapper around `terraform`
+    # `xkt` is a wrapper around `terraform` ("exekube terraform")
     alias xkt="docker-compose run --rm exekube terraform"
 
-    # `xk` is used mostly for legacy imperative tools like `xk gcloud`, `xk kubectl`, `xk helm`, etc.
+    # `xk` is used mostly for legacy imperative tools like `xk gcloud`, `xk kubectl`, `xk helm`
     alias xk="docker-compose run --rm exekube"
     ```
 1. [Set up](https://console.cloud.google.com/) a Google Account for CGP (Google Cloud Platform), create a project named "ethereal-argon-186217", enable billing.
@@ -102,7 +101,7 @@ The only requirements, depending on your local OS:
 
 #### Legacy imperative workflow (CLI)
 
-Command line tools like `gcloud`, `kubectl`, and `helm` will be familiar to engineers already familiar with Google Cloud Platform and Kubernetes. These tools are battle-tested and work well, but are considered "legacy" here since this framework aims to be **declarative**. Most CLI and GUI tools will be eventually deprecated in favor of using a declarative tool -- Terraform.
+Command line tools `kubectl` and `helm` are known to those who are familiar with Kubernetes. Google Cloud SDK (with `gcloud`) is used for managing infrastructure on the Google Cloud Platform.
 
 - `xk gcloud`
 - `xk kubectl`
@@ -125,15 +124,18 @@ xk helm install --name my-rails-app \
         modules/helm-charts/rails-app/
 ```
 
+⚠️ These tools are relatively mature and work well, but are considered *legacy* here since this framework aims to be [declarative](/)
+
 #### Declarative workflow (HCL `*.tf` files)
 
-- `xkt`
+- `xkt apply live/infra/gcp-ethereal-argon/`
+- `xkt apply live/helm-releases/`
 
-Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a Terraform provider plugin and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xkt apply live/helm-releases`.
+Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xkt apply live/helm-releases/<release-name>`.
 
 ## Feature tracker
 
-Features are marked with ✔️ when they enter the alpha stage, meaning there's a declarative (except for the Preparation step) *proof-of-concept* solution implemented
+Features are marked with ✔️ when they enter the *alpha stage*, meaning a minimum viable solution has been implemented
 
 ### Preparation
 
@@ -171,9 +173,3 @@ Features are marked with ✔️ when they enter the alpha stage, meaning there's
 ### User apps and services
 
 - [ ] Install "hello-world" apps like static sites, Ruby on Rails apps, etc.
-
-## Known issues
-
-- [ ] If IAM API is not enabled, trying to enable it via Terraform and then creating a service account will not work since enabling an API might take longer
-- [x] A LoadBalancer created via installing an ingress controller chart will not be destroyed when we run `terraform destroy`
-- [ ] https://github.com/ilyasotkov/exekube/issues/4
