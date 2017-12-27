@@ -35,7 +35,7 @@ Read the companion guide (work in progress): <https://github.com/ilyasotkov/lear
 
 ### Technology stack
 
-⚠️ Most CLI and GUI tools will eventually be deprecated in favor of a declarative tool, most likely [Terraform](/)
+⚠️ Most CLI and GUI tools will be eventually deprecated in favor of a declarative tool, most likely [Terraform](/)
 
 #### Docker local environment
 
@@ -126,13 +126,13 @@ Features are marked with ✔️ when they enter the alpha stage, meaning there's
 
 ### Cluster access control
 
-- [ ] Add cluster namespaces (virtual clusters)
+- [x] Add cluster namespaces (virtual clusters)
 - [ ] Add cluster roles and role bindings
 - [ ] Add cluster network policies
 
 ### Supporting tools
 
-- [ ] Install cluster ingress controller (cloud load balancer)
+- [x] Install cluster ingress controller (cloud load balancer)
 - [ ] Install TLS certificates controller (kube-lego)
 - [ ] Install monitoring tools (Prometheus, Grafana)
 - [ ] Install continuous integration tools (Gitlab / Gogs, Jenkins / Drone)
