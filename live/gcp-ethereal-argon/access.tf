@@ -11,6 +11,9 @@ data "google_iam_policy" {}
 resource "google_project_service" "iam" {
   project = "ethereal-argon-186217"
   service = "iam.googleapis.com"
+  provisioner "local-exec" {
+    command = "sleep 15"
+  }
 }
 
 // create a service_account
