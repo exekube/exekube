@@ -5,6 +5,6 @@ resource "helm_release" "kube_lego" {
   values = "${file("/exekube/live/helm-releases/kube-lego.yaml")}"
   depends_on = ["helm_release.ingress_controller"]
   provisioner "local-exec" {
-    command = "sleep 120"
+    command = "sleep 60"
   }
 }
