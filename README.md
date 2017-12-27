@@ -116,7 +116,10 @@ TODO convert to declarative .tf (HCL) code
 - `xk helm`
 
 ```sh
-xk helm install --name kube-lego \
+xk helm install --name ingress-controller \
+        -f helm/releases/nginx-ingress.yaml \
+        helm/charts/kube-lego/
+xk helm install --name letsencrypt-controller \
         helm/charts/kube-lego/
 xk helm install --name my-nginx-page \
         -f helm/releases/nginx-webpage-devel.yaml \
