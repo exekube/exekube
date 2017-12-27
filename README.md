@@ -4,9 +4,14 @@
 
 *Exekube* is a declarative framework for administering Kubernetes clusters and deploying containerized software onto them.
 
-Exekube command line tool `xkt` is a thin automation layer on top of modern open-source DevOps tools such as [Terraform](/), [Docker](/), and [Kubernetes](/). The only requirement to begin is a workstation with, depending on your OS, Docker for Mac, Docker for Windows, or Docker-CE + Docker Compose for Linux.
+You only need [Docker Community Edition](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer around several open-source DevOps tools:
 
-The ultimate goal of this project is to enable DevOps engineers and developers to control cloud infrastructure and Kubernetes API objects (workload, networking, storage objects) using nothing more than a git repository with a Continuous Delivery pipeline.
+- Docker Compose
+- HashiCorp Terraform
+- Kubernetes
+- Helm for Kubernetes
+
+The ultimate goal of this project is to enable DevOps engineers and developers to control cloud infrastructure and Kubernetes API objects using nothing more than a git repository and a Continuous Delivery pipeline.
 
 📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
