@@ -12,7 +12,7 @@ resource "google_project_service" "iam" {
   project = "ethereal-argon-186217"
   service = "iam.googleapis.com"
   provisioner "local-exec" {
-    command = "sleep 15"
+    command = "sleep 20"
   }
 }
 
@@ -20,11 +20,13 @@ resource "google_project_service" "iam" {
 resource "google_service_account" "alice" {
   account_id   = "alice-doe"
   display_name = "Alice"
+  depends_on = ["google_project_service.iam"]
 }
 
 // create a key pair for alice sa
 resource "google_service_account_key" "alice" {
   service_account_id = "${google_service_account.alice.id}"
+  depends_on = ["google_project_service.iam"]
 }
 
 // output public key to make sure it works
