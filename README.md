@@ -35,23 +35,25 @@ Read the companion guide about declarative Kubernetes with Exekube: <https://git
 
 ### Technology stack
 
-#### **Docker** local environment
+⚠️ Most CLI and GUI tools will eventually be deprecated in favor of a declarative tool, most likely [Terraform](/)
+
+#### Docker local environment
 
 - Docker container runtime
 - Docker Compose declarative client
 
-#### Cloud provider toolkit (only Google Cloud Platform for now)
+#### Cloud provider client (only Google Cloud Platform for now)
 
 - Imperative CLI client: `gcloud`
 - Imperative GUI client: [GCP Console](/)
-- Declarative code client: [terraform-provider-google](/) (support for AWS and Azure in the future?)
+- ‍Declarative code client: [terraform-provider-google](/) (support for AWS and Azure in the future?)
 
-#### Kubernetes (workload, storage, networking objects)
+#### Kubernetes client (Kubernetes workload, storage, networking objects)
 
 - Imperative CLI client: `kubectl`
 - Declarative code client: [terraform-kubernetes-provider](/)
 
-#### Helm (Repositories, Charts, Releases)
+#### Helm client (Repositories, Charts, Releases)
 
 - Imperative CLI client: `helm`
 - Declarative code client: [terraform-helm-provider](/)
@@ -102,7 +104,7 @@ The only requirements, depending on your local OS:
 
 ## Core feature tracker
 
-Features are marked with ✔️ when they enter the alpha stage, meaning there's a declarative *proof-of-concept* solution implemented
+Features are marked with ✔️ when they enter the alpha stage, meaning there's a declarative (except for the Preparation step) *proof-of-concept* solution implemented
 
 ### Preparation
 
