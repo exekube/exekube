@@ -37,8 +37,6 @@ The ultimate goal of this project is to be able to control your cloud infrastruc
 
 ### Technology stack
 
-⚠️ Most CLI and GUI tools will be eventually deprecated in favor of a declarative tool, most likely [Terraform](/)
-
 #### Docker local environment
 
 - Docker container runtime
@@ -106,7 +104,9 @@ The only requirements, depending on your local OS:
 
 ### Usage / workflow
 
-#### Imperative (CLI commands) Exekube toolset
+#### Legacy imperative (CLI commands) Exekube toolset
+
+Command line tools like `gcloud`, `kubectl`, and `helm` will be familiar to engineers already familiar with Google Cloud Platform and Kubernetes. These tools are battle-tested and work well, but are considered "legacy" here since this framework aims to be **declarative**. Most CLI and GUI tools will be eventually deprecated in favor of using a declarative tool -- Terraform.
 
 - `xk gcloud`
 - `xk kubectl`
