@@ -64,7 +64,21 @@ Read the companion guide about declarative Kubernetes with Exekube: <https://git
 
 ### Requirements starting from zero
 
-Everything on your workstation runs in a container using Docker Compose. [Docker for Mac](/), [Docker for Windows](/) or [`docker` and `docker-compose` for Linux](/) is the only initial requirement.
+Everything on your workstation runs in a container using Docker Compose.
+
+The only requirements, depending on your local OS:
+
+#### Linux
+
+- [Docker and Docker Compose for Linux](/)
+
+#### macOS
+
+- [Docker for Mac](/)
+
+#### Windows
+
+- [Docker for Windows](/)
 
 ### Local setup step-by-step
 
@@ -72,9 +86,9 @@ Everything on your workstation runs in a container using Docker Compose. [Docker
     ```bash
     alias xk="docker-compose run --rm exekube"
     ```
-1. [Set up a Google Account for CGP (Google Cloud Platform)](https://console.cloud.google.com/), create a project named "ethereal-argon-186217", enable billing.
-2. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
-3. [Download `.json` credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
+1. [Set up](https://console.cloud.google.com/) a Google Account for CGP (Google Cloud Platform), create a project named "ethereal-argon-186217", enable billing.
+2. [Create](/) a service account in GCP Console GUI, give it project owner permissions.
+3. [Download](/) `.json` credentials ("key") to repo root directory and rename the file to `credentials.json`.
 4. Use `.json` credentials to activate service account ⬇️
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
