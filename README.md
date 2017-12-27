@@ -30,7 +30,7 @@ The goal of this project is to make it straightforward for DevOps engineers to m
 			- [Legacy imperative workflow (CLI)](#legacy-imperative-workflow-cli)
 			- [Declarative workflow (HCL `*.tf` files)](#declarative-workflow-hcl-tf-files)
 	- [Feature tracker](#feature-tracker)
-		- [Preparation](#preparation)
+		- [Cloud provider and local environment setup](#preparation)
 		- [Cloud provider config](#cloud-provider-config)
 		- [Cluster creation](#cluster-creation)
 		- [Cluster access control](#cluster-access-control)
@@ -137,7 +137,7 @@ Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, 
 
 Features are marked with ✔️ when they enter the *alpha stage*, meaning a minimum viable solution has been implemented
 
-### Preparation
+### Cloud provider and local environment setup
 
 - [x] Create GCP account, enable billing in GCP Console (web GUI)
 - [x] Get credentials for GCP (`credentials.json`)
