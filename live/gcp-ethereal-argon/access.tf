@@ -33,6 +33,7 @@ output "alice_public_key" {
 resource "google_project_iam_policy" "main" {
   project     = "ethereal-argon-186217"
   policy_data = "${data.google_iam_policy.main.policy_data}"
+  depends_on = ["google_project_service.iam"]
 }
 
 // create a policy (a collection of bindings)

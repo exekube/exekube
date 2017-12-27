@@ -1,18 +1,19 @@
-```
-⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
-```
+> ⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
 
 # Exekube
 
-**Core motivation for the project**: I want a Rails-like experience but for deploying generic workloads and storage resources onto Kubernetes clusters.
+**Core motivation for the project**: I want a Rails-like experience but for deploying workloads and storage resources onto Kubernetes clusters.
 
-Exekube is an experimental declarative framework for administering and using Kubernetes clusters.
+Exekube is an experimental *declarative framework* for administering and using Kubernetes clusters.
 
-The goal is to be able to manage your cloud infrastructure and and all Kubernetes objects using just one command (that will be part of a CI pipeline):
+The ultimate goal of this project is to be able to manage your cloud infrastructure and and all Kubernetes objects using mostly just one command (that will be part of a CI pipeline):
 
 ```bash
+# "xk" stands for "exekube"
 xk terraform apply live/${MY_PROJECT_NAME}
 ```
+
+📘 Read the companion guide (work in progress): <https://github.com/ilyasotkov/learning-kubernetes/>
 
 - [Introduction](#introduction)
 	- [Principles](#principles)
@@ -30,12 +31,6 @@ xk terraform apply live/${MY_PROJECT_NAME}
 - [Known issues](#known-issues)
 
 ## Introduction
-
-**Core motivation for the project**: I want a Rails-like experience but for deploying generic workloads and storage resources onto Kubernetes clusters.
-
-Exekube is an experimental declarative framework for administering and using Kubernetes clusters.
-
-Read the companion guide (work in progress): <https://github.com/ilyasotkov/learning-kubernetes/>
 
 ### Principles
 
