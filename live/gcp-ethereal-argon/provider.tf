@@ -3,3 +3,7 @@ provider "google" {
   project     = "ethereal-argon-186217"
   region      = "europe-west1-d"
 }
+
+provider "kubernetes" {}
+
+provider "helm" {}
