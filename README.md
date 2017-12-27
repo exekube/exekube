@@ -65,7 +65,7 @@ xk terraform apply live/${MY_PROJECT_NAME}
 - Imperative CLI client: `helm`
 - Declarative code client: [terraform-helm-provider](/)
 
-## Set up local containerized tools
+## Set up local development environment
 
 ### Requirements starting from zero
 
