@@ -106,7 +106,7 @@ The only requirements, depending on your local OS:
 
 ### Usage / workflow
 
-#### Imperative (CLI) Exekube toolset
+#### Imperative (CLI commands) Exekube toolset
 
 - `xk gcloud`
 - `xk kubectl`
@@ -115,6 +115,7 @@ The only requirements, depending on your local OS:
 ```sh
 # This is an example of how you can deploy an static nginx webpage and a rails application to the cluster
 
+# Ingress controller is already implemented using Helm terraform provider plugin
 xk helm install --name ingress-controller \
         -f helm/releases/nginx-ingress.yaml \
         helm/charts/kube-lego/
@@ -131,7 +132,7 @@ xk helm install --name my-rails-app \
         helm/charts/rails-app/
 ```
 
-#### Declarative Exekube toolset
+#### Declarative (HCL files) Exekube toolset
 
 - `xk terraform`
 
