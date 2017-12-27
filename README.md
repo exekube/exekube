@@ -23,7 +23,7 @@
 
 Exekube is an experimental declarative framework for administering and using Kubernetes clusters.
 
-Read the companion guide about declarative Kubernetes with Exekube: <https://github.com/ilyasotkov/learning-kubernetes/>
+Read the companion guide (work in progress): <https://github.com/ilyasotkov/learning-kubernetes/>
 
 ### Principles
 
