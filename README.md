@@ -2,18 +2,13 @@
 
 # Exekube
 
-**Core motivation for the project**: I want a Rails-like experience but for deploying workloads and storage resources onto Kubernetes clusters.
+You can define Ruby on Rails as a framework for building web apps. Exekube is a framework for **deploying any workload or storage resource to a cloud** (like Google Cloud, AWS, or Azure). Exekube is a thin automation layer on top of modern open-source tools like Docker, Kubernetes, and HashiCorp Terraform.
 
-Exekube is an experimental *declarative framework* for administering and using Kubernetes clusters.
+We can also define Exekube as an experimental declarative framework for administering and using Kubernetes clusters.
 
-The ultimate goal of this project is to be able to manage your cloud infrastructure and and all Kubernetes objects using mostly just one command (that will be part of a CI pipeline):
+The ultimate goal of this project is to be able to control your cloud infrastructure and all Kubernetes objects using nothing more than a git-managed codebase (git repository) with a Continuous Delivery pipeline.
 
-```bash
-# "xk" stands for "exekube"
-xk terraform apply live/${MY_PROJECT_NAME}
-```
-
-📘 Read the companion guide (work in progress): <https://github.com/ilyasotkov/learning-kubernetes/>
+📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
 - [Introduction](#introduction)
 	- [Principles](#principles)
