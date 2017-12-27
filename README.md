@@ -106,9 +106,7 @@ The only requirements, depending on your local OS:
 
 ### Usage / workflow
 
-#### exekube (xk) toolset
-
-TODO convert to declarative .tf (HCL) code
+#### Imperative (CLI) Exekube toolset
 
 - `xk terraform`
 - `xk gcloud`
@@ -116,18 +114,27 @@ TODO convert to declarative .tf (HCL) code
 - `xk helm`
 
 ```sh
+# This is an example of how you can deploy an static nginx webpage and a rails application to the cluster
+
 xk helm install --name ingress-controller \
         -f helm/releases/nginx-ingress.yaml \
         helm/charts/kube-lego/
+
 xk helm install --name letsencrypt-controller \
         helm/charts/kube-lego/
+
 xk helm install --name my-nginx-page \
         -f helm/releases/nginx-webpage-devel.yaml \
         helm/charts/nginx-webpage/
+
 xk helm install --name my-rails-app \
         -f helm/releases/rails-app-devel.yaml \
         helm/charts/rails-app/
 ```
+
+#### Declarative Exekube toolset
+
+Declarative tools are exact equivalents of using the imperative (CLI) toolset, except everything is implemented as a Terraform provider plugin. Instead of writing script that use `xk helm install --name <release-name> -f <values> <chart>` commands to deploy workloads to the cloud, we use `xk terraform apply`.
 
 ## Core feature tracker
 
