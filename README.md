@@ -81,8 +81,12 @@ The only requirements, depending on your local OS:
 
 ### Local setup step-by-step
 
-0. ⬇️ Create `xk` alias in shell session:
+0. ⬇️ Create `xkt` and `xk` aliases for shell session (or save to ~/.bashrc):
     ```bash
+    # `xkt` is a wrapper around `terraform`
+    alias xkt="docker-compose run --rm exekube terraform"
+
+    # `xk` is used mostly for legacy imperative tools like `xk gcloud`, `xk kubectl`, `xk helm`, etc.
     alias xk="docker-compose run --rm exekube"
     ```
 1. [Set up](https://console.cloud.google.com/) a Google Account for CGP (Google Cloud Platform), create a project named "ethereal-argon-186217", enable billing.
@@ -99,7 +103,7 @@ The only requirements, depending on your local OS:
     ```
 6. ⬇️ Initialize terraform:
     ```sh
-    xk terraform init live/gcp-ethereal-argon
+    xkt init live/gcp-ethereal-argon
     ```
 
 ### Usage / workflow
@@ -134,7 +138,7 @@ xk helm install --name my-rails-app \
 
 #### Declarative (HCL files) Exekube toolset
 
-- `xk terraform`
+- `xkt` (`xk terraform`)
 
 Declarative tools are exact equivalents of using the imperative (CLI) toolset, except everything is implemented as a Terraform provider plugin. Instead of writing CLI scripts that use `xk helm install --name <release-name> -f <values> <chart>` commands to deploy workloads to the cloud, we use `xk terraform apply`.
 
