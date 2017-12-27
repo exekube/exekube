@@ -2,6 +2,7 @@
 config
 vendor
 bin
+.archive
 **/.terraform/*
 
 # .tfstate files

@@ -1,0 +1,7 @@
+resource "helm_release" "kube_lego" {
+  name = "kube-lego"
+  repository = "${helm_repository.stable.metadata.0.name}"
+  chart = "kube-lego"
+  values = "${file("/exekube/live/helm-releases/kube-lego.yaml")}"
+  depends_on = ["module.gke_cluster"]
+}
