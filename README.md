@@ -40,22 +40,18 @@ Read the companion guide about declarative Kubernetes with Exekube: <https://git
 - Docker container runtime
 - Docker Compose declarative client
 
-#### Codebase
-
-- HCL (HashiCorp Language) declarative configuration code using Terraform (`*.tf` files)
-
-#### Google Cloud Platform toolkit
+#### Cloud provider toolkit (only Google Cloud Platform for now)
 
 - Imperative CLI client: `gcloud`
 - Imperative GUI client: [GCP Console](/)
 - Declarative code client: [terraform-provider-google](/) (support for AWS and Azure in the future?)
 
-#### Kubernetes
+#### Kubernetes (workload, storage, networking objects)
 
 - Imperative CLI client: `kubectl`
 - Declarative code client: [terraform-kubernetes-provider](/)
 
-#### Helm
+#### Helm (Repositories, Charts, Releases)
 
 - Imperative CLI client: `helm`
 - Declarative code client: [terraform-helm-provider](/)
