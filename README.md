@@ -29,7 +29,7 @@ The ultimate goal of this project is to enable DevOps engineers and developers t
 		- [Usage / workflow](#usage-workflow)
 			- [Legacy imperative (CLI commands) Exekube toolset](#legacy-imperative-cli-commands-exekube-toolset)
 			- [Declarative (HCL files) Exekube toolset](#declarative-hcl-files-exekube-toolset)
-	- [Core feature tracker](#core-feature-tracker)
+	- [Feature tracker](#feature-tracker)
 		- [Preparation](#preparation)
 		- [Cloud provider config](#cloud-provider-config)
 		- [Cluster creation](#cluster-creation)
@@ -131,7 +131,7 @@ xk helm install --name my-rails-app \
 
 Declarative tools are exact equivalents of using the imperative (CLI) toolset, except everything is implemented as a Terraform provider plugin. Instead of writing CLI scripts that use `xk helm install --name <release-name> -f <values> <chart>` commands to deploy workloads to the cloud, we use `xk terraform apply`.
 
-## Core feature tracker
+## Feature tracker
 
 Features are marked with ✔️ when they enter the alpha stage, meaning there's a declarative (except for the Preparation step) *proof-of-concept* solution implemented
 
@@ -163,11 +163,10 @@ Features are marked with ✔️ when they enter the alpha stage, meaning there's
 
 - [x] Install cluster ingress controller (cloud load balancer)
 - [x] Install TLS certificates controller (kube-lego)
-- [ ] Install monitoring tools (Prometheus, Grafana)
 - [ ] Install Continuous Delivery tools
     - [x] Continuous Delivery service (Drone / Jenkins)
-    - [ ] Git service (Gitlab, Gogs)
-- [ ] Monitoring and alerting tools (Prometheus, Grafana)
+    - [ ] Git service (Gitlab / Gogs)
+- [ ] Monitoring and alerting tools (Prometheus / Grafana)
 
 ### User apps and services
 
