@@ -145,24 +145,4 @@ Features are marked with ✔️ when they enter the alpha stage, meaning there's
 
 - [ ] If IAM API is not enabled, trying to enable it via Terraform and then creating a service account will not work since enabling an API might take longer
 - [ ] A LoadBalancer created via installing an ingress controller chart will not be destroyed when we run `terraform destroy`
-- [ ] Problem with Kubernetes and Helm providers:
-    ```
-    3 error(s) occurred:
-
-    * helm_release.ingress_controller: 1 error(s) occurred:
-
-    * helm_release.ingress_controller: error installing: Post http://localhost:8080/apis/extensions/v1beta1/namespaces/kube-system/deployments: dial tcp 127.0.0.1:8080: getsockopt: connection refused
-    * google_service_account.alice: 1 error(s) occurred:
-
-    * google_service_account.alice: Error creating service account: googleapi: Error 403: Google Identity and Access Management (IAM) API has not been used in project ethereal-argon-186217 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/iam.googleapis.com/overview?project=ethereal-argon-186217 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., accessNotConfigured
-    * kubernetes_namespace.example: 1 error(s) occurred:
-
-    * kubernetes_namespace.example: Post http://localhost/api/v1/namespaces: dial tcp 127.0.0.1:80: getsockopt: connection refused
-
-    Terraform does not automatically rollback in the face of errors.
-    Instead, your Terraform state file has been partially updated with
-    any resources that successfully completed. Please address the error
-    above and apply again to incrementally change your infrastructure.
-    ```
-
-    This is likely due to cluster not existing when providers kubernetes and helm are initialized. Workaround is running `terraform apply` again.
+- [ ] https://github.com/ilyasotkov/exekube/issues/4
