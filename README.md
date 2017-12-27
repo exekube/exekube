@@ -108,7 +108,6 @@ The only requirements, depending on your local OS:
 
 #### Imperative (CLI) Exekube toolset
 
-- `xk terraform`
 - `xk gcloud`
 - `xk kubectl`
 - `xk helm`
@@ -133,6 +132,8 @@ xk helm install --name my-rails-app \
 ```
 
 #### Declarative Exekube toolset
+
+- `xk terraform`
 
 Declarative tools are exact equivalents of using the imperative (CLI) toolset, except everything is implemented as a Terraform provider plugin. Instead of writing script that use `xk helm install --name <release-name> -f <values> <chart>` commands to deploy workloads to the cloud, we use `xk terraform apply`.
 
