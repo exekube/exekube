@@ -15,53 +15,40 @@ The ultimate goal of this project is to enable DevOps engineers and developers t
 
 📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
-- [Introduction](#introduction)
-	- [Principles](#principles)
-	- [Technology stack](#technology-stack)
-- [Setup and usage](#set-up-local-containerized-tools)
-	- [Requirements starting from zero](#requirements-starting-from-zero)
-	- [Local setup step-by-step](#local-setup-step-by-step)
-- [Core feature tracker](#core-feature-tracker)
-	- [Preparation](#preparation)
-	- [Cloud provider config](#cloud-provider-config)
-	- [Cluster creation](#cluster-creation)
-	- [Cluster access control](#cluster-access-control)
-	- [Supporting tools](#supporting-tools)
-	- [User apps and services](#user-apps-and-services)
-- [Known issues](#known-issues)
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Exekube](#exekube)
+	- [Introduction](#introduction)
+		- [Design Principles](#design-principles)
+	- [Setup and usage](#setup-and-usage)
+		- [Requirements starting from zero](#requirements-starting-from-zero)
+			- [Linux](#linux)
+			- [macOS](#macos)
+			- [Windows](#windows)
+		- [Local setup step-by-step](#local-setup-step-by-step)
+		- [Usage / workflow](#usage-workflow)
+			- [Legacy imperative (CLI commands) Exekube toolset](#legacy-imperative-cli-commands-exekube-toolset)
+			- [Declarative (HCL files) Exekube toolset](#declarative-hcl-files-exekube-toolset)
+	- [Core feature tracker](#core-feature-tracker)
+		- [Preparation](#preparation)
+		- [Cloud provider config](#cloud-provider-config)
+		- [Cluster creation](#cluster-creation)
+		- [Cluster access control](#cluster-access-control)
+		- [Supporting tools](#supporting-tools)
+		- [User apps and services](#user-apps-and-services)
+	- [Known issues](#known-issues)
+
+<!-- /TOC -->
 
 ## Introduction
 
-### Principles
+### Design Principles
 
-- [x] Everything on client side is dockerized and contained in repo root directory
-- [x] Everything is expressed as declarative code, using Terraform and HCL (HashiCorp Language)
-- [ ] Git-based workflow (no GUI or CLI) with a CI pipeline
-- [ ] No vendor lock-in, choose any cloud provider you want (only GCP for now)
+- [x] Everything on client side is dockerized, you can read your `kubectl`, `gcloud`, and `helm` configuration locally
+- [x] Infrastructure (cloud provider) and Kubernetes API objects expressed as declarative code, using Terraform HCL (HashiCorp Language) and Helm packages
+- [ ] Git-based workflow with a CI pipeline
+- [ ] No vendor lock-in, choose any cloud provider you want [only GCP for now]
 - [ ] Test-driven (TDD) or behavior-driven (BDD) model of development
-
-### Technology stack
-
-#### Docker local environment
-
-- Docker container runtime
-- Docker Compose declarative client
-
-#### Cloud provider client (only Google Cloud Platform for now)
-
-- Imperative CLI client: `gcloud`
-- Imperative GUI client: [GCP Console](/)
-- ‍Declarative code client: [terraform-provider-google](/) (support for AWS and Azure in the future?)
-
-#### Kubernetes client (Kubernetes workload, storage, networking objects)
-
-- Imperative CLI client: `kubectl`
-- Declarative code client: [terraform-kubernetes-provider](/)
-
-#### Helm client (Repositories, Charts, Releases)
-
-- Imperative CLI client: `helm`
-- Declarative code client: [terraform-helm-provider](/)
 
 ## Setup and usage
 
@@ -122,9 +109,6 @@ Command line tools like `gcloud`, `kubectl`, and `helm` will be familiar to engi
 - `xk helm`
 
 ```sh
-# This is an example of how you can deploy an static nginx webpage and a rails application to the cluster
-
-# Ingress controller is already implemented using Helm terraform provider plugin
 xk helm install --name ingress-controller \
         -f live/helm-releases/nginx-ingress.yaml \
         modules/helm-charts/kube-lego/
@@ -178,9 +162,12 @@ Features are marked with ✔️ when they enter the alpha stage, meaning there's
 ### Supporting tools
 
 - [x] Install cluster ingress controller (cloud load balancer)
-- [ ] Install TLS certificates controller (kube-lego)
+- [x] Install TLS certificates controller (kube-lego)
 - [ ] Install monitoring tools (Prometheus, Grafana)
-- [ ] Install continuous integration tools (Gitlab / Gogs, Jenkins / Drone)
+- [ ] Install Continuous Delivery tools
+    - [x] Continuous Delivery service (Drone / Jenkins)
+    - [ ] Git service (Gitlab, Gogs)
+- [ ] Monitoring and alerting tools (Prometheus, Grafana)
 
 ### User apps and services
 
