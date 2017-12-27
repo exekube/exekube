@@ -144,5 +144,5 @@ Features are marked with ✔️ when they enter the alpha stage, meaning there's
 ## Known issues
 
 - [ ] If IAM API is not enabled, trying to enable it via Terraform and then creating a service account will not work since enabling an API might take longer
-- [ ] A LoadBalancer created via installing an ingress controller chart will not be destroyed when we run `terraform destroy`
+- [x] A LoadBalancer created via installing an ingress controller chart will not be destroyed when we run `terraform destroy`
 - [ ] https://github.com/ilyasotkov/exekube/issues/4
