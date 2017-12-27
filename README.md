@@ -19,11 +19,11 @@
 
 ## Introduction
 
-**Feature request**: I want a Rails-like experience **but for deploying generic workloads and storage resources onto Kubernetes clusters**.
+**Core motivation for the project**: I want a Rails-like experience but for deploying generic workloads and storage resources onto Kubernetes clusters.
 
 Exekube is an experimental declarative framework for administering and using Kubernetes clusters.
 
-Read the companion guide about how to learn declarative Kubernetes with Exekube: <https://github.com/ilyasotkov/learning-kubernetes/>
+Read the companion guide about declarative Kubernetes with Exekube: <https://github.com/ilyasotkov/learning-kubernetes/>
 
 ### Principles
 
