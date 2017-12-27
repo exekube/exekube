@@ -117,19 +117,19 @@ The only requirements, depending on your local OS:
 
 # Ingress controller is already implemented using Helm terraform provider plugin
 xk helm install --name ingress-controller \
-        -f helm/releases/nginx-ingress.yaml \
-        helm/charts/kube-lego/
+        -f live/helm-releases/nginx-ingress.yaml \
+        modules/helm-charts/kube-lego/
 
 xk helm install --name letsencrypt-controller \
         helm/charts/kube-lego/
 
 xk helm install --name my-nginx-page \
-        -f helm/releases/nginx-webpage-devel.yaml \
-        helm/charts/nginx-webpage/
+        -f live/helm-releases/nginx-webpage-devel.yaml \
+        modules/helm-charts/nginx-webpage/
 
 xk helm install --name my-rails-app \
-        -f helm/releases/rails-app-devel.yaml \
-        helm/charts/rails-app/
+        -f live/helm-releases/rails-app-devel.yaml \
+        modules/helm-charts/rails-app/
 ```
 
 #### Declarative (HCL files) Exekube toolset
