@@ -27,8 +27,8 @@ The ultimate goal of this project is to enable DevOps engineers and developers t
 			- [Windows](#windows)
 		- [Local setup step-by-step](#local-setup-step-by-step)
 		- [Usage / workflow](#usage-workflow)
-			- [Legacy imperative (CLI commands) Exekube toolset](#legacy-imperative-cli-commands-exekube-toolset)
-			- [Declarative (HCL files) Exekube toolset](#declarative-hcl-files-exekube-toolset)
+			- [Legacy imperative workflow (CLI)](#legacy-imperative-workflow-cli)
+			- [Declarative workflow (HCL `*.tf` files)](#declarative-workflow-hcl-tf-files)
 	- [Feature tracker](#feature-tracker)
 		- [Preparation](#preparation)
 		- [Cloud provider config](#cloud-provider-config)
@@ -100,7 +100,7 @@ The only requirements, depending on your local OS:
 
 ### Usage / workflow
 
-#### Legacy imperative (CLI commands) Exekube toolset
+#### Legacy imperative workflow (CLI)
 
 Command line tools like `gcloud`, `kubectl`, and `helm` will be familiar to engineers already familiar with Google Cloud Platform and Kubernetes. These tools are battle-tested and work well, but are considered "legacy" here since this framework aims to be **declarative**. Most CLI and GUI tools will be eventually deprecated in favor of using a declarative tool -- Terraform.
 
@@ -125,11 +125,11 @@ xk helm install --name my-rails-app \
         modules/helm-charts/rails-app/
 ```
 
-#### Declarative (HCL files) Exekube toolset
+#### Declarative workflow (HCL `*.tf` files)
 
-- `xkt` (`xk terraform`)
+- `xkt` (`xk` terraform)
 
-Declarative tools are exact equivalents of using the imperative (CLI) toolset, except everything is implemented as a Terraform provider plugin. Instead of writing CLI scripts that use `xk helm install --name <release-name> -f <values> <chart>` commands to deploy workloads to the cloud, we use `xk terraform apply`.
+Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a Terraform provider plugin and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xkt apply live/helm-releases`.
 
 ## Feature tracker
 
