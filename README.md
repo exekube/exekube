@@ -2,11 +2,11 @@
 
 # Exekube
 
-If you think of *Ruby on Rails* as a framework for building web apps, *Exekube* is a **framework for deploying any type of containerized workload or storage resource to a cloud** (like Google Cloud, AWS, or Azure). Exekube is a thin automation layer on top of modern open-source tools like Docker, Kubernetes, and HashiCorp Terraform.
+*Exekube* is a **framework for deploying containerized software to cloud infrastructure platforms** like Google Cloud, AWS, or Azure.
 
-We can also define Exekube as an experimental declarative framework for administering and using Kubernetes clusters.
+Exekube is a thin automation layer on top of modern open-source tools like [Docker](/), [Kubernetes](/), and [Terraform](/). We can also define Exekube as an experimental declarative framework for administering and using Kubernetes clusters.
 
-The ultimate goal of this project is to be able to control your cloud infrastructure and all Kubernetes objects using nothing more than a git-managed codebase (git repository) with a Continuous Delivery pipeline.
+The ultimate goal of this project is to be able to control cloud infrastructure and Kubernetes objects (workload, networking, storage objects) using nothing more than a git-managed codebase (git repository) with a Continuous Delivery pipeline.
 
 📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
