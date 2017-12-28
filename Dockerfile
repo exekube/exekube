@@ -10,3 +10,5 @@ RUN apk add --no-cache \
         && curl -o ./terraform.zip https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip \
         && unzip terraform.zip \
         && mv terraform /usr/bin
+
+COPY vendor/terraform-provider-helm_linux_amd64 /root/.terraform.d/plugins/terraform-provider-helm_v0.5.0

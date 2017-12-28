@@ -13,7 +13,6 @@ services:
     ports:
       - 8003:8001
     volumes:
-      - ./vendor/terraform-provider-helm_linux_amd64:/root/.terraform.d/plugins/terraform-provider-helm_v0.5.0
       - .:/exekube
       - ./config/helm:/root/.helm
       - ./config/gcloud:/root/.config/gcloud
