@@ -6,10 +6,9 @@
 
 You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer around several open-source DevOps tools:
 
-- Docker Compose
+- Docker Compose (for our local deveopment environment)
 - HashiCorp Terraform
-- Kubernetes
-- Helm for Kubernetes
+- Kubernetes and Helm
 
 The goal of this project is to make it straightforward for DevOps engineers to manage cloud infrastructure and Kubernetes API objects using a git-based workflow and a Continuous Delivery (Continuous Integration) pipeline.
 
@@ -74,11 +73,11 @@ The only requirements, depending on your local OS:
 
 0. ⬇️ Create `xkt` and `xk` aliases for shell session (or save to ~/.bashrc):
     ```bash
-    # `xkt` is a wrapper around `terraform` ("exekube terraform")
-    alias xkt="docker-compose run --rm exekube terraform"
-
     # `xk` is used mostly for legacy imperative tools like `xk gcloud`, `xk kubectl`, `xk helm`
     alias xk="docker-compose run --rm exekube"
+
+    # `xkt` is a wrapper around `terraform` ("exekube terraform")
+    alias xkt="docker-compose run --rm exekube terraform"
     ```
 1. [Set up](https://console.cloud.google.com/) a Google Account for CGP (Google Cloud Platform), create a project named "ethereal-argon-186217", enable billing.
 2. [Create](/) a service account in GCP Console GUI, give it project owner permissions.
@@ -94,12 +93,25 @@ The only requirements, depending on your local OS:
     ```
 6. ⬇️ Initialize terraform:
     ```sh
-    xkt init live/gcp-ethereal-argon
+    export TF_WORKDIR=/exekube/live/infra/gcp-ethereal-argon
+    xkt init
+    xkt apply
+    ```
+7. ⬇️ Deploy cluster resources:
+    ```sh
+    export CLOUDFLARE_EMAIL=<your-cloudflare-account-email>
+    export CLOUDFLARE_TOKEN=<your-secret-token>
+
+    export TF_WORKDIR=/exekube/live/kube
+    xkt init
+    xkt apply
     ```
 
 ### Usage / workflow
 
 #### Legacy imperative workflow (CLI)
+
+⚠️ These tools are relatively mature and work well, but are considered *legacy* here since this framework aims to be [declarative](/)
 
 Command line tools `kubectl` and `helm` are known to those who are familiar with Kubernetes. Google Cloud SDK (with `gcloud`) is used for managing infrastructure on the Google Cloud Platform.
 
@@ -109,29 +121,26 @@ Command line tools `kubectl` and `helm` are known to those who are familiar with
 
 ```sh
 xk helm install --name ingress-controller \
-        -f live/helm-releases/nginx-ingress.yaml \
+        -f live/kube/nginx-ingress.yaml \
         modules/helm-charts/kube-lego/
 
 xk helm install --name letsencrypt-controller \
         helm/charts/kube-lego/
 
 xk helm install --name my-nginx-page \
-        -f live/helm-releases/nginx-webpage-devel.yaml \
+        -f live/kube/nginx-webpage-devel.yaml \
         modules/helm-charts/nginx-webpage/
 
 xk helm install --name my-rails-app \
-        -f live/helm-releases/rails-app-devel.yaml \
+        -f live/kube/rails-app-devel.yaml \
         modules/helm-charts/rails-app/
 ```
 
-⚠️ These tools are relatively mature and work well, but are considered *legacy* here since this framework aims to be [declarative](/)
-
 #### Declarative workflow (HCL `*.tf` files)
 
-- `xkt apply live/infra/gcp-ethereal-argon/`
-- `xkt apply live/helm-releases/`
+- `xkt apply`
 
-Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xkt apply live/helm-releases/`.
+Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xkt apply`.
 
 ## Feature tracker
 

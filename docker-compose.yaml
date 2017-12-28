@@ -3,10 +3,13 @@ version: "3.5"
 services:
   exekube:
     build: .
-    working_dir: /exekube
+    working_dir: ${TF_WORKDIR}
     environment:
-      TF_LOG: error
       GOOGLE_CREDENTIALS: /exekube/credentials.json
+      TF_LOG:
+      CLOUDFLARE_EMAIL:
+      CLOUDFLARE_TOKEN:
+      CLOUDFLARE_DOMAIN:
     ports:
       - 8003:8001
     volumes:
