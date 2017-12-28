@@ -42,8 +42,8 @@ The goal of this project is to make it straightforward for DevOps engineers to m
 
 ### Design Principles
 
-- [x] Everything on client side is dockerized, you can read your `kubectl`, `gcloud`, and `helm` configuration locally
-- [x] Infrastructure (cloud provider) and Kubernetes API objects expressed as declarative code, using Terraform HCL (HashiCorp Language) and Helm packages
+- [x] Everything on client side is dockerized
+- [x] Infrastructure (cloud provider) and Kubernetes API objects are expressed as declarative code, using Terraform HCL (HashiCorp Language) and Helm packages
 - [ ] Git-based workflow with a CI pipeline
 - [ ] No vendor lock-in, choose any cloud provider you want [only GCP for now]
 - [ ] Test-driven (TDD) or behavior-driven (BDD) model of development
@@ -91,7 +91,7 @@ The only requirements, depending on your local OS:
     xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state \
         && xk gsutil versioning set on gs://ethereal-argon-terraform-state
     ```
-6. ⬇️ Initialize terraform:
+6. ⬇️ Initialize terraform and create the cluster:
     ```sh
     export TF_WORKDIR=/exekube/live/infra/gcp-ethereal-argon
     xkt init
