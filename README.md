@@ -72,7 +72,7 @@ The only requirements, depending on your local OS:
 
 ### Local setup step-by-step
 
-0. ⬇️ Create `xkt` and `xk` aliases for shell session (or save to ~/.bashrc):
+0. Create `xkt` and `xk` aliases for shell session (or save to ~/.bashrc):
     ```bash
     # `xk` is used mostly for legacy imperative tools like `xk gcloud`, `xk kubectl`, `xk helm`
     alias xk="docker-compose run --rm exekube"
@@ -80,25 +80,25 @@ The only requirements, depending on your local OS:
     # `xkt` is a wrapper around `terraform` ("exekube terraform")
     alias xkt="docker-compose run --rm exekube terraform"
     ```
-1. ➡️ [Set up a Google Account](https://console.cloud.google.com/) for CGP (Google Cloud Platform), create a project named "ethereal-argon-186217", enable billing.
-2. ➡️ [Create a service account](/) in GCP Console GUI, give it project owner permissions.
-3. ➡️ [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
-4. ⬇️ Use JSON credentials to activate service account:
+1. [Set up a Google Account](https://console.cloud.google.com/) for CGP (Google Cloud Platform), create a project named "ethereal-argon-186217", enable billing.
+2. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
+3. [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
+4. Use JSON credentials to activate service account:
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
-5. ⬇️ Create a Google Cloud Storage bucket (with versioning) for Terraform remote state:
+5. Create a Google Cloud Storage bucket (with versioning) for Terraform remote state:
     ```sh
     xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state \
         && xk gsutil versioning set on gs://ethereal-argon-terraform-state
     ```
-6. ⬇️ Initialize terraform and create the cluster:
+6. Initialize terraform and create the cluster:
     ```sh
     export XK_WORKDIR=/exekube/live/infra/gcp-ethereal-argon
     xkt init
     xkt apply
     ```
-7. ⬇️ Deploy cluster resources:
+7. Deploy cluster resources:
     ```sh
     export CLOUDFLARE_EMAIL=<your-cloudflare-account-email>
     export CLOUDFLARE_TOKEN=<your-secret-token>
