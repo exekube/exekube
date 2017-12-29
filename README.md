@@ -7,10 +7,11 @@
 You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer around several open-source DevOps tools:
 
 - Docker Compose (for our local deveopment environment)
-- HashiCorp Terraform
-- Kubernetes and Helm
+- Terraform by HashiCorp
+- Kubernetes
+- Helm
 
-The goal of this project is to make it straightforward for DevOps engineers to manage cloud infrastructure and Kubernetes API objects using a git-based workflow and a Continuous Delivery (Continuous Integration) pipeline.
+The goal of this project is to make it easy and straightforward for DevOps engineers to manage cloud resources and Kubernetes API resources using a git-based workflow and a Continuous Delivery (Continuous Integration) pipeline.
 
 📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
