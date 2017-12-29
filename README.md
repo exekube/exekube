@@ -99,8 +99,9 @@ The only requirements, depending on your local OS:
     ```
 7. Deploy cluster resources:
     ```sh
-    export CLOUDFLARE_EMAIL=<your-cloudflare-account-email>
-    export CLOUDFLARE_TOKEN=<your-secret-token>
+    export TF_VAR_cloudflare_email=<your-cloudflare-account-email>
+    export TF_VAR_cloudflare_token=<your-secret-token>
+    export TF_VAR_cloudflare_domain=<your-dns-zone>
 
     xk init
     xk apply

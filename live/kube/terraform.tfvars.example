@@ -1,0 +1,7 @@
+#################################
+# Cloudflare variables
+#################################
+
+cloudflare_token = "foo@example.com"
+cloudflare_token = "1234567893feefc5f0q5000bfo0c38d90bbeb"
+cloudflare_domain = "example.com"

@@ -1,7 +1,10 @@
-provider "cloudflare" {}
+provider "cloudflare" {
+  email = "${var.cloudflare_email}"
+  toke = "${var.cloudflare_token}"
+}
 
 resource "cloudflare_record" "c6ns_pw" {
-  domain     = "c6ns.pw"
+  domain     = "${var.cloudflare_domain}"
   name       = "*"
   value      = "${data.kubernetes_service.ingress_controller.load_balancer_ingress.0.ip}"
   type       = "A"
