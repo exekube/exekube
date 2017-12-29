@@ -4,10 +4,10 @@
 
 *Exekube* is a declarative framework for administering Kubernetes clusters and deploying containerized software onto them.
 
-You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer around several open-source DevOps tools:
+You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
 
 - Docker Compose (for our local deveopment environment)
-- Terraform by HashiCorp
+- Terraform and HCL (HashiCorp Language)
 - Kubernetes
 - Helm
 
@@ -72,7 +72,7 @@ The only requirements, depending on your local OS:
 
 ### Local setup step-by-step
 
-0. Create `xk` (stands for "exekube") aliase for shell session (or save to ~/.bashrc):
+0. Create `xk` (stands for "exekube") alias for your shell session (or save to ~/.bashrc):
     ```bash
     alias xk="docker-compose run --rm exekube"
     ```
@@ -83,7 +83,7 @@ The only requirements, depending on your local OS:
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
-5. Create a Google Cloud Storage bucket (with versioning) for Terraform remote state:
+5. Create Google Cloud Storage buckets (with versioning) for Terraform remote state (a storage bucket for each directory in `live`):
     ```sh
     xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state \
         && xk gsutil versioning set on gs://ethereal-argon-terraform-state
