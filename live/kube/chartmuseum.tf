@@ -1,7 +1,8 @@
-resource "helm_release" "ghost" {
-  name       = "ghost"
+resource "helm_release" "chartmuseum" {
+  count = 0
+  name       = "chartmuseum"
   repository = "${helm_repository.stable.metadata.0.name}"
-  chart      = "ghost"
-  values     = "${file("/exekube/live/kube/ghost.yaml")}"
+  chart      = "chartmuseum"
+  values     = "${file("/exekube/live/kube/chartmuseum.yaml")}"
   depends_on = ["cloudflare_record.c6ns_pw"]
 }
