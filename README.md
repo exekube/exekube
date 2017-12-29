@@ -11,7 +11,7 @@ You only need [Docker CE](/) and [Docker Compose](/) on your local machine to be
 - Kubernetes
 - Helm
 
-The goal of this project is to make it easy and straightforward for DevOps engineers to manage cloud resources and Kubernetes API resources using a git-based workflow and a Continuous Delivery (Continuous Integration) pipeline.
+Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
 
 📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
@@ -76,7 +76,7 @@ The only requirements, depending on your local OS:
     ```bash
     alias xk="docker-compose run --rm exekube"
     ```
-1. [Set up a Google Account](https://console.cloud.google.com/) for CGP (Google Cloud Platform), create a project named "ethereal-argon-186217", enable billing.
+1. [Set up a Google Account](https://console.cloud.google.com/) for GCP (Google Cloud Platform), create a project named "ethereal-argon-186217", and enable billing.
 2. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
 3. [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
 4. Use JSON credentials to activate service account:
@@ -97,7 +97,7 @@ The only requirements, depending on your local OS:
     xk init live/infra/gcp-ethereal-argon/
     xk apply live/infra/gcp-ethereal-argon/
     ```
-7. Deploy cluster resources:
+7. Deploy Kubernetes resources onto the cluster:
     ```sh
     export TF_VAR_cloudflare_email=<your-cloudflare-account-email>
     export TF_VAR_cloudflare_token=<your-secret-token>
