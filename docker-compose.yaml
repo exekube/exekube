@@ -3,7 +3,7 @@ version: "3.5"
 services:
   exekube:
     build: .
-    working_dir: ${TF_WORKDIR}
+    working_dir: ${XK_WORKDIR}
     environment:
       GOOGLE_CREDENTIALS: /exekube/credentials.json
       TF_LOG:

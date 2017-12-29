@@ -93,7 +93,7 @@ The only requirements, depending on your local OS:
     ```
 6. ⬇️ Initialize terraform and create the cluster:
     ```sh
-    export TF_WORKDIR=/exekube/live/infra/gcp-ethereal-argon
+    export XK_WORKDIR=/exekube/live/infra/gcp-ethereal-argon
     xkt init
     xkt apply
     ```
@@ -102,7 +102,7 @@ The only requirements, depending on your local OS:
     export CLOUDFLARE_EMAIL=<your-cloudflare-account-email>
     export CLOUDFLARE_TOKEN=<your-secret-token>
 
-    export TF_WORKDIR=/exekube/live/kube
+    export XK_WORKDIR=/exekube/live/kube
     xkt init
     xkt apply
     ```
