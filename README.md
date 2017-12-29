@@ -72,13 +72,9 @@ The only requirements, depending on your local OS:
 
 ### Local setup step-by-step
 
-0. Create `xkt` and `xk` aliases for shell session (or save to ~/.bashrc):
+0. Create `xk` (stands for "exekube") aliases for shell session (or save to ~/.bashrc):
     ```bash
-    # `xk` is used mostly for legacy imperative tools like `xk gcloud`, `xk kubectl`, `xk helm`
     alias xk="docker-compose run --rm exekube"
-
-    # `xkt` is a wrapper around `terraform` ("exekube terraform")
-    alias xkt="docker-compose run --rm exekube terraform"
     ```
 1. [Set up a Google Account](https://console.cloud.google.com/) for CGP (Google Cloud Platform), create a project named "ethereal-argon-186217", enable billing.
 2. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
@@ -94,18 +90,16 @@ The only requirements, depending on your local OS:
     ```
 6. Initialize terraform and create the cluster:
     ```sh
-    export XK_WORKDIR=/exekube/live/infra/gcp-ethereal-argon
-    xkt init
-    xkt apply
+    xk init live/infra/gcp-ethereal-argon/
+    xk apply live/infra/gcp-ethereal-argon/
     ```
 7. Deploy cluster resources:
     ```sh
     export CLOUDFLARE_EMAIL=<your-cloudflare-account-email>
     export CLOUDFLARE_TOKEN=<your-secret-token>
 
-    export XK_WORKDIR=/exekube/live/kube
-    xkt init
-    xkt apply
+    xk init
+    xk apply
     ```
 
 ### Usage / workflow
@@ -139,9 +133,9 @@ xk helm install --name my-rails-app \
 
 #### Declarative workflow (HCL `*.tf` files)
 
-- `xkt apply`
+- `xk apply`
 
-Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xkt apply`.
+Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xk apply`.
 
 ## Feature tracker
 
