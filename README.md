@@ -72,7 +72,7 @@ The only requirements, depending on your local OS:
 
 ### Local setup step-by-step
 
-0. Create `xk` (stands for "exekube") aliases for shell session (or save to ~/.bashrc):
+0. Create `xk` (stands for "exekube") aliase for shell session (or save to ~/.bashrc):
     ```bash
     alias xk="docker-compose run --rm exekube"
     ```
@@ -87,6 +87,10 @@ The only requirements, depending on your local OS:
     ```sh
     xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state \
         && xk gsutil versioning set on gs://ethereal-argon-terraform-state
+    ```
+    ```sh
+    xk gsutil mb -p ethereal-argon-186217 gs://helm-releases-terraform-state \
+        && xk gsutil versioning set on gs://helm-releases-terraform-state
     ```
 6. Initialize terraform and create the cluster:
     ```sh
