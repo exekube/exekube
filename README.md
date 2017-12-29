@@ -6,7 +6,7 @@
 
 You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
 
-- Docker Compose (for our local deveopment environment)
+- Docker Compose (for our local development environment)
 - Terraform and HCL (HashiCorp Language)
 - Kubernetes
 - Helm
