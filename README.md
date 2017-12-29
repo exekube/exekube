@@ -80,10 +80,10 @@ The only requirements, depending on your local OS:
     # `xkt` is a wrapper around `terraform` ("exekube terraform")
     alias xkt="docker-compose run --rm exekube terraform"
     ```
-1. [Set up](https://console.cloud.google.com/) a Google Account for CGP (Google Cloud Platform), create a project named "ethereal-argon-186217", enable billing.
-2. [Create](/) a service account in GCP Console GUI, give it project owner permissions.
-3. [Download](/) `.json` credentials ("key") to repo root directory and rename the file to `credentials.json`.
-4. ⬇️ Use `.json` credentials to activate service account:
+1. ➡️ [Set up a Google Account](https://console.cloud.google.com/) for CGP (Google Cloud Platform), create a project named "ethereal-argon-186217", enable billing.
+2. ➡️ [Create a service account](/) in GCP Console GUI, give it project owner permissions.
+3. ➡️ [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
+4. ⬇️ Use JSON credentials to activate service account:
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
