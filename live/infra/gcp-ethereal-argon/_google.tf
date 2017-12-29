@@ -1,5 +1,7 @@
+variable "gcp_project" {}
+
 provider "google" {
   credentials = "${file("/exekube/credentials.json")}"
-  project     = "ethereal-argon-186217"
+  project     = "${var.gcp_project}"
   region      = "europe-west1-d"
 }

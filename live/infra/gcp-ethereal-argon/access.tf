@@ -9,7 +9,7 @@ data "google_iam_policy" {}
 
 // enable IAM API for project
 resource "google_project_service" "iam" {
-  project = "ethereal-argon-186217"
+  project = "${var.gcp_project}"
   service = "iam.googleapis.com"
 
   provisioner "local-exec" {
@@ -37,7 +37,7 @@ output "alice_public_key" {
 
 // create IAM policy for the whole project
 resource "google_project_iam_policy" "main" {
-  project     = "ethereal-argon-186217"
+  project     = "${var.gcp_project}"
   policy_data = "${data.google_iam_policy.main.policy_data}"
   depends_on  = ["google_project_service.iam"]
 }
