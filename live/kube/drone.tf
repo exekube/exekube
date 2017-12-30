@@ -1,5 +1,4 @@
 resource "helm_release" "drone" {
-  count      = 0
   depends_on = ["cloudflare_record.c6ns_pw"]
 
   name       = "drone"
