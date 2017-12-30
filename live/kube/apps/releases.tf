@@ -4,5 +4,5 @@ resource "helm_release" "jenkins_dev" {
   name       = "jenkins-dev"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "jenkins"
-  values     = "${file("/exekube/live/kube/apps/jenkins-dev.yaml")}"
+  values     = "${file("/exekube/live/kube/apps/values/jenkins-dev.yaml")}"
 }

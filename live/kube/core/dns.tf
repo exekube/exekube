@@ -1,12 +1,3 @@
-variable "cloudflare_email" {}
-variable "cloudflare_token" {}
-variable "cloudflare_domain_zone" {}
-
-provider "cloudflare" {
-  email = "${var.cloudflare_email}"
-  token = "${var.cloudflare_token}"
-}
-
 resource "cloudflare_record" "web" {
   depends_on = ["helm_release.ingress_controller"]
 

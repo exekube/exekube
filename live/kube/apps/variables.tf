@@ -10,5 +10,3 @@ variable "helm_incubator_repo_url" {
 variable "helm_private_repo_url" {
   default = ""
 }
-
-provider "helm" {}
