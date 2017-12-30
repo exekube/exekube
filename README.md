@@ -89,10 +89,10 @@ The only requirements, depending on your local OS:
     xk init live/infra/gcp-ethereal-argon/
     xk apply live/infra/gcp-ethereal-argon/
     ```
-8. Deploy essential (system) charts:
+8. Deploy core releases:
     ```sh
-    xk init live/kube
-    xk apply/kube
+    xk init live/kube/core
+    xk apply live/kube/core
     ```
 
 ### Usage / workflow
