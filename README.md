@@ -15,29 +15,24 @@ Exekube allows you to manage both cloud infrastructure resources and Kubernetes 
 
 📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
-
-- [Exekube](#exekube)
-	- [Introduction](#introduction)
-		- [Design Principles](#design-principles)
-	- [Setup and usage](#setup-and-usage)
-		- [Requirements starting from zero](#requirements-starting-from-zero)
-			- [Linux](#linux)
-			- [macOS](#macos)
-			- [Windows](#windows)
-		- [Local setup step-by-step](#local-setup-step-by-step)
-		- [Usage / workflow](#usage-workflow)
-			- [Legacy imperative workflow (CLI)](#legacy-imperative-workflow-cli)
-			- [Declarative workflow (HCL *.tf files)](#declarative-workflow-hcl-tf-files)
-	- [Feature tracker](#feature-tracker)
-		- [Cloud provider and local environment setup](#preparation)
-		- [Cloud provider config](#cloud-provider-config)
-		- [Cluster creation](#cluster-creation)
-		- [Cluster access control](#cluster-access-control)
-		- [Supporting tools](#supporting-tools)
-		- [User apps and services](#user-apps-and-services)
-
-<!-- /TOC -->
+- [Introduction](#introduction)
+	- [Design Principles](#design-principles)
+- [Setup and usage](#setup-and-usage)
+	- [Requirements starting from zero](#requirements-starting-from-zero)
+		- [Linux](#linux)
+		- [macOS](#macos)
+		- [Windows](#windows)
+	- [Local setup step-by-step](#local-setup-step-by-step)
+	- [Usage / workflow](#usage-workflow)
+		- [Legacy imperative workflow (CLI)](#legacy-imperative-workflow-cli)
+		- [Declarative workflow (HCL *.tf files)](#declarative-workflow-hcl-tf-files)
+- [Feature tracker](#feature-tracker)
+	- [Cloud provider and local environment setup](#preparation)
+	- [Cloud provider config](#cloud-provider-config)
+	- [Cluster creation](#cluster-creation)
+	- [Cluster access control](#cluster-access-control)
+	- [Supporting tools](#supporting-tools)
+	- [User apps and services](#user-apps-and-services)
 
 ## Introduction
 
