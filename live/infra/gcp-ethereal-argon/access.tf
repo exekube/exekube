@@ -6,8 +6,8 @@ resource "google_project_iam_policy" {}
 resource "google_project_services" {}
 data "google_iam_policy" {}
 */
-
 // enable IAM API for project
+/*
 resource "google_project_service" "iam" {
   project = "${var.gcp_project}"
   service = "iam.googleapis.com"
@@ -52,3 +52,5 @@ data "google_iam_policy" "main" {
     ]
   }
 }
+*/
+

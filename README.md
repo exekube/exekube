@@ -83,14 +83,10 @@ The only requirements, depending on your local OS:
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
-5. Create Google Cloud Storage buckets (with versioning) for Terraform remote state (a storage bucket for each directory in `live`):
+5. Create Google Cloud Storage bucket (with versioning) for our Terraform remote state:
     ```sh
     xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state \
         && xk gsutil versioning set on gs://ethereal-argon-terraform-state
-    ```
-    ```sh
-    xk gsutil mb -p ethereal-argon-186217 gs://helm-releases-terraform-state \
-        && xk gsutil versioning set on gs://helm-releases-terraform-state
     ```
 6. Initialize terraform and create the cluster:
     ```sh

@@ -11,7 +11,7 @@ resource "helm_release" "drone" {
   count      = 0
 
   name       = "drone"
-  repository = "https://kubernetes-charts-incubator.storage.googleapis.com"
+  repository = "${var.helm_incubator_repo_url}"
   chart      = "drone"
   values     = "${data.template_file.drone.rendered}"
 }
