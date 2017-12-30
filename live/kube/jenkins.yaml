@@ -27,7 +27,7 @@ Master:
   ServiceAnnotations: {}
   #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: https
   # Used to create Ingress record (should used with ServiceType: ClusterIP)
-  HostName: jenkins.c6ns.pw
+  HostName: jenkins.${domain_zone}
   # NodePort: <to set explicitly, choose port between 30000-32767
   ContainerPort: 8080
   SlaveListenerPort: 50000
@@ -71,9 +71,9 @@ Master:
       kubernetes.io/tls-acme: "true"
 
     TLS:
-      - secretName: jenkins-c6ns-pw
+      - secretName: jenkins-tls
         hosts:
-          - jenkins.c6ns.pw
+          - jenkins.${domain_zone}
 
 Agent:
   Enabled: true

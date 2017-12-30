@@ -1,7 +1,18 @@
+data "template_file" "jenkins" {
+  template = "${file("/exekube/live/kube/jenkins.yaml")}"
+
+  vars {
+    domain_zone = "${var.cloudflare_domain_zone}"
+  }
+}
+
 resource "helm_release" "jenkins" {
+  depends_on = ["cloudflare_record.web"]
+  count = 1
+
   name       = "jenkins"
   repository = "${helm_repository.stable.metadata.0.name}"
   chart      = "jenkins"
-  values     = "${file("/exekube/live/kube/jenkins.yaml")}"
-  depends_on = ["cloudflare_record.c6ns_pw"]
+  values     = "${data.template_file.jenkins.rendered}"
+
 }

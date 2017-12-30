@@ -6,6 +6,6 @@ resource "helm_release" "kube_lego" {
   depends_on = ["helm_release.ingress_controller"]
 
   provisioner "local-exec" {
-    command = "sleep 15"
+    command = "sleep 30"
   }
 }
