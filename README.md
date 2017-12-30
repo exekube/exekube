@@ -4,6 +4,8 @@
 
 *Exekube* is a declarative framework for administering Kubernetes clusters and deploying containerized software onto them.
 
+## Introduction
+
 You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
 
 - Docker Compose (for our local development environment)
@@ -16,7 +18,7 @@ Exekube allows you to manage both cloud infrastructure resources and Kubernetes 
 📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
 - [Introduction](#introduction)
-	- [Design Principles](#design-principles)
+- [Design Principles](#design-principles)
 - [Setup and usage](#setup-and-usage)
 	- [Requirements starting from zero](#requirements-starting-from-zero)
 		- [Linux](#linux)
@@ -25,21 +27,20 @@ Exekube allows you to manage both cloud infrastructure resources and Kubernetes 
 	- [Local setup step-by-step](#local-setup-step-by-step)
 	- [Usage / workflow](#usage-workflow)
 		- [Legacy imperative workflow (CLI)](#legacy-imperative-workflow-cli)
-		- [Declarative workflow (HCL *.tf files)](#declarative-workflow-hcl-tf-files)
+		- [Declarative workflow (HCL .tf files)](#declarative-workflow-hcl-tf-files)
 - [Feature tracker](#feature-tracker)
-	- [Cloud provider and local environment setup](#preparation)
+	- [Cloud provider and local environment setup](#cloud-provider-and-local-environment-setup)
 	- [Cloud provider config](#cloud-provider-config)
 	- [Cluster creation](#cluster-creation)
 	- [Cluster access control](#cluster-access-control)
 	- [Supporting tools](#supporting-tools)
 	- [User apps and services](#user-apps-and-services)
 
-## Introduction
+## Design principles
 
-### Design Principles
-
-- Everything on client side is dockerized
-- Infrastructure (cloud provider) and Kubernetes API objects are expressed as declarative code, using Terraform HCL (HashiCorp Language) and Helm packages
+- Everything on client side runs in a Docker container
+- Infrastructure (cloud provider) objects and Kubernetes API objects are expressed as declarative code, using HCL (HashiCorp Language) and Helm packages (YAML + Go templates)
+- Modular design
 - Git-based workflow with a CI pipeline [TBD]
 - No vendor lock-in, choose any cloud provider you want [only GCP for now]
 - Test-driven (TDD) or behavior-driven (BDD) model of development [TBD]
@@ -91,8 +92,13 @@ The only requirements, depending on your local OS:
     ```
 8. Deploy core releases:
     ```sh
-    xk init live/kube/core
-    xk apply live/kube/core
+    xk init live/kube/core/
+    xk apply live/kube/core/
+    ```
+9. Deploy user apps:
+    ```sh
+    xk init
+    xk apply
     ```
 
 ### Usage / workflow
