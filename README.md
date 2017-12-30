@@ -43,11 +43,11 @@ Exekube allows you to manage both cloud infrastructure resources and Kubernetes 
 
 ### Design Principles
 
-- [x] Everything on client side is dockerized
-- [x] Infrastructure (cloud provider) and Kubernetes API objects are expressed as declarative code, using Terraform HCL (HashiCorp Language) and Helm packages
-- [ ] Git-based workflow with a CI pipeline
-- [ ] No vendor lock-in, choose any cloud provider you want [only GCP for now]
-- [ ] Test-driven (TDD) or behavior-driven (BDD) model of development
+- Everything on client side is dockerized
+- Infrastructure (cloud provider) and Kubernetes API objects are expressed as declarative code, using Terraform HCL (HashiCorp Language) and Helm packages
+- Git-based workflow with a CI pipeline [TBD]
+- No vendor lock-in, choose any cloud provider you want [only GCP for now]
+- Test-driven (TDD) or behavior-driven (BDD) model of development [TBD]
 
 ## Setup and usage
 
