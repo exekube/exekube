@@ -1,7 +1,7 @@
 resource "google_container_cluster" "gke_cluster" {
   name               = "${var.cluster_name}"
   zone               = "${var.gcp_zone}"
-  initial_node_count = 1
+  initial_node_count = 2
 
   cluster_ipv4_cidr  = "10.20.0.0/14"
   node_version       = "${var.gke_version}"
@@ -31,6 +31,8 @@ EOF
 }
 
 resource "google_container_node_pool" "nodepool" {
+  count = 0
+
   name       = "${var.nodepool_name}"
   zone       = "${var.gcp_zone}"
   cluster    = "${google_container_cluster.gke_cluster.name}"

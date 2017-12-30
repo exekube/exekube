@@ -8,7 +8,7 @@ data "template_file" "drone" {
 
 resource "helm_release" "drone" {
   depends_on = ["cloudflare_record.web"]
-  count = 0
+  count      = 0
 
   name       = "drone"
   repository = "https://kubernetes-charts-incubator.storage.googleapis.com"

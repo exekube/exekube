@@ -8,7 +8,7 @@ data "template_file" "jenkins" {
 
 resource "helm_release" "jenkins" {
   depends_on = ["cloudflare_record.web"]
-  count = 1
+  count      = 1
 
   name       = "jenkins"
   repository = "https://kubernetes-charts.storage.googleapis.com"
