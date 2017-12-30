@@ -15,7 +15,7 @@ resource "cloudflare_record" "web" {
   value    = "${data.kubernetes_service.ingress_controller.load_balancer_ingress.0.ip}"
   type     = "A"
   proxied  = false
-  priority = 1
+  priority = 0
 }
 
 data "kubernetes_service" "ingress_controller" {

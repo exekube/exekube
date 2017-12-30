@@ -3,6 +3,6 @@ terraform {
   backend "gcs" {
     bucket  = "ethereal-argon-terraform-state"
     project = "ethereal-argon-186217"
-    prefix  = "terraform/state"
+    prefix  = "terraform/state/gcp-ethereal-argon"
   }
 }

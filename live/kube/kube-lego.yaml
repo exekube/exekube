@@ -5,13 +5,13 @@ config:
   ## Email address to use for registration with Let's Encrypt
   ##
   # LEGO_EMAIL: my@email.tld
-  LEGO_EMAIL: ilya@sotkov.com
+  LEGO_EMAIL: rotator73@gmail.com
 
   ## Let's Encrypt API endpoint
   ## Production: https://acme-v01.api.letsencrypt.org/directory
   ## Staging: https://acme-staging.api.letsencrypt.org/directory
   ##
-  LEGO_URL: https://acme-staging.api.letsencrypt.org/directory
+  LEGO_URL: https://acme-v01.api.letsencrypt.org/directory
 
   ## kube-lego port
   ##
@@ -19,7 +19,7 @@ config:
 
   ## Specify which ingress class to watch
   ##
-  # LEGO_SUPPORTED_INGRESS_CLASS: nginx
+  LEGO_SUPPORTED_INGRESS_CLASS: nginx
 
   ## Specify which ingress provider should be watched
   ## nginx and gce are the only two options presently

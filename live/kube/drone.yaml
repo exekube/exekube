@@ -20,11 +20,11 @@ ingress:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: 'true'
   hosts:
-    - drone.c6ns.pw
+    - drone.${domain_zone}
   tls:
-    - secretName: drone-c6ns-tls
+    - secretName: drone-tls
       hosts:
-        - drone.c6ns.pw
+        - drone.${domain_zone}
 
 server:
   env:

@@ -11,8 +11,7 @@ resource "helm_release" "jenkins" {
   count = 1
 
   name       = "jenkins"
-  repository = "${helm_repository.stable.metadata.0.name}"
+  repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "jenkins"
   values     = "${data.template_file.jenkins.rendered}"
-
 }
