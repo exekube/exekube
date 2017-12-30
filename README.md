@@ -88,17 +88,14 @@ The only requirements, depending on your local OS:
     xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state \
         && xk gsutil versioning set on gs://ethereal-argon-terraform-state
     ```
-6. Initialize terraform and create the cluster:
+6. Declare the desired state for the cluster and cluster resources. [Guide to modifying the .tf and .tfvars files](/) [TODO]
+7. Initialize terraform and create the cluster:
     ```sh
     xk init live/infra/gcp-ethereal-argon/
     xk apply live/infra/gcp-ethereal-argon/
     ```
-7. Deploy Kubernetes resources onto the cluster:
+8. Deploy Kubernetes resources onto the cluster:
     ```sh
-    export TF_VAR_cloudflare_email=<your-cloudflare-account-email>
-    export TF_VAR_cloudflare_token=<your-secret-token>
-    export TF_VAR_cloudflare_domain=<your-dns-zone>
-
     xk init
     xk apply
     ```
