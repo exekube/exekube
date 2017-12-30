@@ -89,10 +89,10 @@ The only requirements, depending on your local OS:
     xk init live/infra/gcp-ethereal-argon/
     xk apply live/infra/gcp-ethereal-argon/
     ```
-8. Deploy Kubernetes resources onto the cluster:
+8. Deploy essential (system) charts:
     ```sh
-    xk init
-    xk apply
+    xk init live/kube
+    xk apply/kube
     ```
 
 ### Usage / workflow

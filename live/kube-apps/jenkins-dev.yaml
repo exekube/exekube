@@ -6,7 +6,7 @@
 Master:
   Name: jenkins-master
   Image: "jenkins/jenkins"
-  ImageTag: "2.95-alpine"
+  ImageTag: "2.98-alpine"
   ImagePullPolicy: "Always"
 # ImagePullSecret: jenkins
   Component: "jenkins-master"
@@ -27,7 +27,7 @@ Master:
   ServiceAnnotations: {}
   #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: https
   # Used to create Ingress record (should used with ServiceType: ClusterIP)
-  HostName: jenkins.${domain_zone}
+  HostName: jenkins-dev.swarm.pw
   # NodePort: <to set explicitly, choose port between 30000-32767
   ContainerPort: 8080
   SlaveListenerPort: 50000
@@ -71,9 +71,9 @@ Master:
       kubernetes.io/tls-acme: "true"
 
     TLS:
-      - secretName: jenkins-tls
+      - secretName: jenkins-dev-tls
         hosts:
-          - jenkins.${domain_zone}
+          - jenkins-dev.swarm.pw
 
 Agent:
   Enabled: true

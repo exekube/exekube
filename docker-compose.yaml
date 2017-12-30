@@ -5,7 +5,7 @@ services:
     build: .
     working_dir: /exekube
     environment:
-      XK_WORKDIR: /exekube/live/kube # default folder for common terraform commands
+      XK_WORKDIR: /exekube/live/kube-apps # default folder for common terraform commands
       GOOGLE_CREDENTIALS: /exekube/credentials.json
       TF_LOG:
       TF_VAR_cloudflare_email:
