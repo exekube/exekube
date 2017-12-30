@@ -28,7 +28,7 @@ Exekube allows you to manage both cloud infrastructure resources and Kubernetes 
 		- [Local setup step-by-step](#local-setup-step-by-step)
 		- [Usage / workflow](#usage-workflow)
 			- [Legacy imperative workflow (CLI)](#legacy-imperative-workflow-cli)
-			- [Declarative workflow (HCL `*.tf` files)](#declarative-workflow-hcl-tf-files)
+			- [Declarative workflow (HCL *.tf files)](#declarative-workflow-hcl-tf-files)
 	- [Feature tracker](#feature-tracker)
 		- [Cloud provider and local environment setup](#preparation)
 		- [Cloud provider config](#cloud-provider-config)
@@ -113,7 +113,7 @@ The only requirements, depending on your local OS:
 
 ⚠️ These tools are relatively mature and work well, but are considered *legacy* here since this framework aims to be [declarative](/)
 
-Command line tools `kubectl` and `helm` are known to those who are familiar with Kubernetes. Google Cloud SDK (with `gcloud`) is used for managing infrastructure on the Google Cloud Platform.
+Command line tools `kubectl` and `helm` are known to those who are familiar with Kubernetes. `gcloud` (part of Google Cloud SDK) is used for managing the Google Cloud Platform.
 
 - `xk gcloud`
 - `xk kubectl`
@@ -136,7 +136,7 @@ xk helm install --name my-rails-app \
         modules/helm-charts/rails-app/
 ```
 
-#### Declarative workflow (HCL `*.tf` files)
+#### Declarative workflow (HCL .tf files)
 
 - `xk apply`
 
