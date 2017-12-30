@@ -1,1 +1,2 @@
 gcp_project = "my-project-184235"
+gcp_zone = "europe-west1-d"
