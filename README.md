@@ -90,15 +90,15 @@ The only requirements, depending on your local OS:
     xk init live/infra/gcp-ethereal-argon/
     xk apply live/infra/gcp-ethereal-argon/
     ```
-8. Deploy core releases:
+8. Deploy the ingress controller:
     ```sh
-    xk init live/kube/core/
-    xk apply live/kube/core/
+    xk init live/kube/ingress-controller/
+    xk apply live/kube/ingress-controller/
     ```
-9. Deploy user apps:
+9. Deploy continuous integration tools:
     ```sh
-    xk init
-    xk apply
+    xk init live/kube/ci/
+    xk apply live/kube/ci/
     ```
 
 ### Usage / workflow
