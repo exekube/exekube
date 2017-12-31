@@ -2,17 +2,12 @@ version: "3.5"
 
 services:
   exekube:
-    build:
-      context: .
-      dockerfile: ./.docker/Dockerfile
+    build: ./.docker
     working_dir: /exekube
     environment:
+      TF_LOG:
       XK_WORKDIR: /exekube/live/kube/ci # default folder for common terraform commands
       GOOGLE_CREDENTIALS: /exekube/credentials.json
-      TF_LOG:
-      TF_VAR_cloudflare_email:
-      TF_VAR_cloudflare_token:
-      TF_VAR_cloudflare_domain:
     ports:
       - 8003:8001
     volumes:
