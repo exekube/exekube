@@ -114,20 +114,13 @@ Command line tools `kubectl` and `helm` are known to those who are familiar with
 - `xk helm`
 
 ```sh
-xk helm install --name ingress-controller \
-        -f live/kube/nginx-ingress.yaml \
-        modules/helm-charts/kube-lego/
+xk gcloud auth list
 
-xk helm install --name letsencrypt-controller \
-        helm/charts/kube-lego/
+xk kubectl get nodes
 
-xk helm install --name my-nginx-page \
-        -f live/kube/nginx-webpage-devel.yaml \
-        modules/helm-charts/nginx-webpage/
-
-xk helm install --name my-rails-app \
-        -f live/kube/rails-app-devel.yaml \
-        modules/helm-charts/rails-app/
+xk helm install --name cluster-proxy \
+        -f live/kube/ingress-controller/values/ingress-controller.yaml \
+        modules/helm-charts/nginx-ingress/
 ```
 
 #### Declarative workflow (HCL .tf files)
