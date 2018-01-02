@@ -9,7 +9,7 @@ services:
       XK_WORKDIR: /exekube/live/kube/ci # default folder for common terraform commands
       GOOGLE_CREDENTIALS: /exekube/credentials.json
     ports:
-      - 8003:8001
+      - 8001:8001
     volumes:
       - .:/exekube
       - ./config/helm:/root/.helm
