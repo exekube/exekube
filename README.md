@@ -115,9 +115,9 @@ The only requirements, depending on your local OS:
 #### Cleanup
 
 ```sh
-xk destroy live/kube/ci \
-&& xk destroy live/kube/core \
-&& xk destroy live/infra/gcp-ethereal-argon
+xk destroy live/kube/ci/ \
+&& xk destroy live/kube/core/ \
+&& xk destroy live/infra/gcp-ethereal-argon/
 ```
 
 ### Workflows
