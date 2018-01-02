@@ -89,28 +89,36 @@ The only requirements, depending on your local OS:
 
 #### Cluster setup: do it as often as you need
 
-7. Declare the desired state for the cluster and cluster resources. [Guide to modifying the .tf and .tfvars files](/) [TODO]
+7. Edit code in `live` and `modules` directories
+
+    [Guide to HCL, Terraform, and Exekube directory structure](/) [TODO]
 8. Initialize terraform and create the cluster:
     ```sh
     xk init live/infra/gcp-ethereal-argon/
     xk apply live/infra/gcp-ethereal-argon/
-    # xk destroy live/infra/gcp-ethereal-argon/
 
-    docker-compose up -d
     # Make the cluster dashboard available at localhost:8001/ui
+    docker-compose up -d
+    # Disable local dashboard: docker-compose down
     ```
 9. Deploy *core tools* (nginx-ingress-controller, kube-lego):
     ```sh
     xk init live/kube/core/
     xk apply live/kube/core/
-    # xk destroy live/kube/core/
     ```
 10. Deploy *continuous integration tools*:
     ```sh
     xk init live/kube/ci/
     xk apply live/kube/ci/
-    # xk destroy live/kube/ci/
     ```
+
+#### Cleanup
+
+```sh
+xk destroy live/kube/ci \
+&& xk destroy live/kube/core \
+&& xk destroy live/infra/gcp-ethereal-argon
+```
 
 ### Workflows
 
