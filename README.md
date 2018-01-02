@@ -51,8 +51,6 @@ Exekube allows you to manage both cloud infrastructure resources and Kubernetes 
 
 ### Requirements starting from zero
 
-Everything on your workstation runs in a container using Docker Compose.
-
 The only requirements, depending on your local OS:
 
 #### Linux
@@ -97,6 +95,9 @@ The only requirements, depending on your local OS:
     xk init live/infra/gcp-ethereal-argon/
     xk apply live/infra/gcp-ethereal-argon/
     # xk destroy live/infra/gcp-ethereal-argon/
+
+    docker-compose up -d
+    # Make the cluster dashboard available at localhost:8001/ui
     ```
 9. Deploy *core tools* (nginx-ingress-controller, kube-lego):
     ```sh
