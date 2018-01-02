@@ -104,7 +104,7 @@ The only requirements, depending on your local OS:
     xk apply live/kube/core/
     # xk destroy live/kube/core/
     ```
-10. Deploy continuous integration tools:
+10. Deploy *continuous integration tools*:
     ```sh
     xk init live/kube/ci/
     xk apply live/kube/ci/
@@ -135,7 +135,7 @@ xk helm install --name cluster-proxy \
 
 #### Declarative workflow (HCL .tf files)
 
-- `xk apply`
+- `xk apply` / `xk destroy` (Terraform wrapper)
 
 Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xk apply`.
 
