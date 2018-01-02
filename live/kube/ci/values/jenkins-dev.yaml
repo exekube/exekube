@@ -27,7 +27,7 @@ Master:
   ServiceAnnotations: {}
   #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: https
   # Used to create Ingress record (should used with ServiceType: ClusterIP)
-  HostName: jenkins-dev.swarm.pw
+  HostName: jenkins-ci.swarm.pw
   # NodePort: <to set explicitly, choose port between 30000-32767
   ContainerPort: 8080
   SlaveListenerPort: 50000
@@ -71,9 +71,9 @@ Master:
       kubernetes.io/tls-acme: "true"
 
     TLS:
-      - secretName: jenkins-dev-tls
+      - secretName: jenkins-dev-ci-tls
         hosts:
-          - jenkins-dev.swarm.pw
+          - jenkins-ci.swarm.pw
 
 Agent:
   Enabled: true
