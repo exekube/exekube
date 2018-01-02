@@ -90,10 +90,10 @@ The only requirements, depending on your local OS:
     xk init live/infra/gcp-ethereal-argon/
     xk apply live/infra/gcp-ethereal-argon/
     ```
-8. Deploy the ingress controller:
+8. Deploy *core tools* (nginx-ingress-controller, kube-lego):
     ```sh
-    xk init live/kube/ingress-controller/
-    xk apply live/kube/ingress-controller/
+    xk init live/kube/core/
+    xk apply live/kube/core/
     ```
 9. Deploy continuous integration tools:
     ```sh
@@ -119,8 +119,8 @@ xk gcloud auth list
 xk kubectl get nodes
 
 xk helm install --name cluster-proxy \
-        -f live/kube/ingress-controller/values/ingress-controller.yaml \
-        modules/helm-charts/nginx-ingress/
+        -f live/kube/core/values/ingress-controller.yaml \
+        stable/nginx-ingress
 ```
 
 #### Declarative workflow (HCL .tf files)
