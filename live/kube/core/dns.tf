@@ -13,6 +13,6 @@ data "kubernetes_service" "ingress_controller" {
   depends_on = ["helm_release.ingress_controller"]
 
   metadata {
-    name = "my-ingress-controller-nginx-ingress-controller"
+    name = "cluster-proxy-nginx-ingress-controller"
   }
 }
