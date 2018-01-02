@@ -1,13 +1,5 @@
-resource "kubernetes_namespace" "example" {
+resource "kubernetes_namespace" "core" {
   metadata {
-    annotations {
-      name = "example-annotation"
-    }
-
-    labels {
-      mylabel = "label-value"
-    }
-
-    name = "terraform-example-namespace"
+    name = "terraform-xk-core-namespace"
   }
 }
