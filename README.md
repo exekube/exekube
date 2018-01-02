@@ -18,14 +18,16 @@ Exekube allows you to manage both cloud infrastructure resources and Kubernetes 
 📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
 - [Introduction](#introduction)
-- [Design Principles](#design-principles)
+- [Design principles](#design-principles)
 - [Setup and usage](#setup-and-usage)
 	- [Requirements starting from zero](#requirements-starting-from-zero)
 		- [Linux](#linux)
 		- [macOS](#macos)
 		- [Windows](#windows)
-	- [Local setup step-by-step](#local-setup-step-by-step)
-	- [Usage / workflow](#usage-workflow)
+	- [Usage step-by-step](#usage-step-by-step)
+		- [Cloud provider setup: do it once](#cloud-provider-setup-do-it-once)
+		- [Cluster setup: do it as often as you need](#cluster-setup-do-it-as-often-as-you-need)
+	- [Workflows](#workflows)
 		- [Legacy imperative workflow (CLI)](#legacy-imperative-workflow-cli)
 		- [Declarative workflow (HCL .tf files)](#declarative-workflow-hcl-tf-files)
 - [Feature tracker](#feature-tracker)
@@ -94,19 +96,19 @@ The only requirements, depending on your local OS:
     ```sh
     xk init live/infra/gcp-ethereal-argon/
     xk apply live/infra/gcp-ethereal-argon/
-    xk destroy live/infra/gcp-ethereal-argon/
+    # xk destroy live/infra/gcp-ethereal-argon/
     ```
 9. Deploy *core tools* (nginx-ingress-controller, kube-lego):
     ```sh
     xk init live/kube/core/
     xk apply live/kube/core/
-    xk destroy live/kube/core/
+    # xk destroy live/kube/core/
     ```
 10. Deploy continuous integration tools:
     ```sh
     xk init live/kube/ci/
     xk apply live/kube/ci/
-    xk destroy live/kube/ci/
+    # xk destroy live/kube/ci/
     ```
 
 ### Workflows
