@@ -66,42 +66,50 @@ The only requirements, depending on your local OS:
 
 - [Docker for Windows](/)
 
-### Local setup step-by-step
+### Usage step-by-step
 
-0. Create `xk` (stands for "exekube") alias for your shell session (or save to ~/.bashrc):
+#### Cloud provider setup: do it once
+
+1. Create `xk` (stands for "exekube") alias for your shell session (or save to ~/.bashrc):
     ```bash
     alias xk="docker-compose run --rm exekube"
     ```
-1. [Set up a Google Account](https://console.cloud.google.com/) for GCP (Google Cloud Platform), create a project named "ethereal-argon-186217", and enable billing.
-2. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
-3. [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
-4. Use JSON credentials to activate service account:
+2. [Set up a Google Account](https://console.cloud.google.com/) for GCP (Google Cloud Platform), create a project named "ethereal-argon-186217", and enable billing.
+3. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
+4. [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
+5. Use JSON credentials to activate service account:
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
-5. Create Google Cloud Storage bucket (with versioning) for our Terraform remote state:
+6. Create Google Cloud Storage bucket (with versioning) for our Terraform remote state:
     ```sh
     xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state \
         && xk gsutil versioning set on gs://ethereal-argon-terraform-state
     ```
-6. Declare the desired state for the cluster and cluster resources. [Guide to modifying the .tf and .tfvars files](/) [TODO]
-7. Initialize terraform and create the cluster:
+
+#### Cluster setup: do it as often as you need
+
+7. Declare the desired state for the cluster and cluster resources. [Guide to modifying the .tf and .tfvars files](/) [TODO]
+8. Initialize terraform and create the cluster:
     ```sh
     xk init live/infra/gcp-ethereal-argon/
     xk apply live/infra/gcp-ethereal-argon/
+    xk destroy live/infra/gcp-ethereal-argon/
     ```
-8. Deploy *core tools* (nginx-ingress-controller, kube-lego):
+9. Deploy *core tools* (nginx-ingress-controller, kube-lego):
     ```sh
     xk init live/kube/core/
     xk apply live/kube/core/
+    xk destroy live/kube/core/
     ```
-9. Deploy continuous integration tools:
+10. Deploy continuous integration tools:
     ```sh
     xk init live/kube/ci/
     xk apply live/kube/ci/
+    xk destroy live/kube/ci/
     ```
 
-### Usage / workflow
+### Workflows
 
 #### Legacy imperative workflow (CLI)
 
