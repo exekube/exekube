@@ -8,7 +8,9 @@ variable "gcp_region" {
 
 variable "gcp_project" {}
 
-# Kubernetes cluster vars
+# ------------------------------------------------------------------------------
+# Cluster vars
+# ------------------------------------------------------------------------------
 
 variable "cluster_name" {
   default = "k8s-cluster"
@@ -26,7 +28,9 @@ variable "enable_legacy_auth" {
   default = "false"
 }
 
-# node pool vars
+# ------------------------------------------------------------------------------
+# Node pool vars
+# ------------------------------------------------------------------------------
 
 variable "nodepool_name" {
   default = "k8s-nodepool"

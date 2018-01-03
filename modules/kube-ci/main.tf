@@ -7,14 +7,14 @@ provider "helm" {}
 
 provider "kubernetes" {}
 
-# ---------------------------------------------------------------------------------------------------------------------
-# INSTALL CONTINOUS INTEGRATION TOOLS VIA HELM CHARTS
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# INSTALL CI HELM CHARTS
+# ------------------------------------------------------------------------------
 
-resource "helm_release" "jenkins_dev" {
+resource "helm_release" "jenkins" {
   # count      = 1
 
-  name       = "jenkins-dev"
+  name       = "jenkins"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "jenkins"
   values     = "${file("${var.helm_values_jenkins}")}"
