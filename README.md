@@ -89,9 +89,9 @@ The only requirements, depending on your local OS:
 
 #### Cluster setup: do it as often as you need
 
-7. Edit code in `live` and `modules` directories.
+7. Edit code in `live` and `modules` directories:
 
-    [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/) [TODO]
+    [TODO] [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/)
 
 8. Deploy all *live modules* (the cluster and all Kubernetes resources):
     ```sh
