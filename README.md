@@ -99,9 +99,9 @@ The only requirements, depending on your local OS:
     xk plan
     xk apply
 
-    # Make the cluster dashboard available at localhost:8001/ui
+    # To make the cluster dashboard available at localhost:8001/ui, run
     docker-compose up -d
-    # Disable local dashboard: docker-compose down
+    # To disable local dashboard, run `docker-compose down`
     ```
 
 #### Cleanup
