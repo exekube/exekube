@@ -9,7 +9,7 @@
 You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
 
 - Docker Compose (for our local development environment)
-- Terraform and HCL (HashiCorp Language)
+- Terraform, Terragrunt, and HCL (HashiCorp Language)
 - Kubernetes
 - Helm
 
@@ -89,35 +89,25 @@ The only requirements, depending on your local OS:
 
 #### Cluster setup: do it as often as you need
 
-7. Edit code in `live` and `modules` directories
+7. Edit code in `live` and `modules` directories.
 
-    [Guide to HCL, Terraform, and Exekube directory structure](/) [TODO]
-8. Initialize terraform and create the cluster:
+    [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/) [TODO]
+
+8. Deploy all *live modules* (the cluster and all Kubernetes resources):
     ```sh
-    xk init live/infra/gcp-ethereal-argon/
-    xk apply live/infra/gcp-ethereal-argon/
+    # Edit $XK_LIVE_DIR environmental variable in docker-compose.yaml to change the what the `apply` command deploys
+    xk plan
+    xk apply
 
     # Make the cluster dashboard available at localhost:8001/ui
     docker-compose up -d
     # Disable local dashboard: docker-compose down
     ```
-9. Deploy *core tools* (nginx-ingress-controller, kube-lego):
-    ```sh
-    xk init live/kube/core/
-    xk apply live/kube/core/
-    ```
-10. Deploy *continuous integration tools*:
-    ```sh
-    xk init live/kube/ci/
-    xk apply live/kube/ci/
-    ```
 
 #### Cleanup
 
 ```sh
-xk destroy live/kube/ci/ \
-&& xk destroy live/kube/core/ \
-&& xk destroy live/infra/gcp-ethereal-argon/
+xk destroy
 ```
 
 ### Workflows
@@ -144,7 +134,7 @@ xk helm install --name cluster-proxy \
 
 #### Declarative workflow (HCL .tf files)
 
-- `xk apply` / `xk destroy` (Terraform wrapper)
+- `xk apply` / `xk destroy` (Terragrunt / Terraform wrapper)
 
 Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xk apply`.
 
