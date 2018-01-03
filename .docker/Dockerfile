@@ -9,7 +9,10 @@ RUN apk add --no-cache \
         && curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash \
         && curl -o ./terraform.zip https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip \
         && unzip terraform.zip \
-        && mv terraform /usr/bin
+        && mv terraform /usr/bin \
+        && curl -L -o ./terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v0.13.23/terragrunt_linux_amd64 \
+        && chmod 0700 terragrunt \
+        && mv terragrunt /usr/bin
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT [ "docker-entrypoint.sh" ]
