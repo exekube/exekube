@@ -2,9 +2,10 @@
 config
 bin
 .archive
+.env
 **/.terraform/*
 
 # .tfstate files
 *.tfstate
 *.tfstate.*
-*.tfvars
+# *.tfvars

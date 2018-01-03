@@ -5,14 +5,17 @@ services:
     build: ./.docker
     working_dir: /exekube
     environment:
+      XK_LIVE_DIR: /exekube/live/prod # default folder for common terraform commands
       TF_LOG:
-      XK_WORKDIR: /exekube/live/kube/ci # default folder for common terraform commands
+      TF_INPUT: 0
+      TF_VAR_cloudflare_token:
       GOOGLE_CREDENTIALS: /exekube/credentials.json
     ports:
       - 8001:8001
     volumes:
       - .:/exekube
       - ./config/helm:/root/.helm
+      - ./config/terragrunt:/root/.terragrunt
       - ./config/gcloud:/root/.config/gcloud
       - ./config/kube:/root/.kube
     command: kubectl proxy --address="0.0.0.0" --accept-hosts ".*"
