@@ -19,18 +19,30 @@ resource "helm_release" "jenkins" {
   values     = "${file("${var.jenkins_release_values}")}"
 }
 
-resource "helm_release" "docker_registry" {
-  count      = "${var.docker_registry_enabled}"
-  name       = "${var.docker_registry_release_name}"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
-  chart      = "docker-registry"
-  values     = "${file("${var.docker_registry_release_values}")}"
-}
+# ------------------------------------------------------------------------------
 
 resource "helm_release" "chartmuseum" {
   count      = "${var.chartmuseum_enabled}"
   name       = "${var.chartmuseum_release_name}"
   repository = "https://kubernetes-charts-incubator.storage.googleapis.com"
   chart      = "chartmuseum"
-  values     = "${file("${var.chartmuseum_release_values}")}"
+  values     = "${data.template_file.chartmuseum.rendered}"
+}
+
+data "template_file" "chartmuseum" {
+  template = "${file("${var.chartmuseum_release_values}")}"
+
+  vars {
+    chartmuseum_password = "${var.chartmuseum_password}"
+  }
+}
+
+# ------------------------------------------------------------------------------
+
+resource "helm_release" "docker_registry" {
+  count      = "${var.docker_registry_enabled}"
+  name       = "${var.docker_registry_release_name}"
+  repository = "https://kubernetes-charts.storage.googleapis.com"
+  chart      = "docker-registry"
+  values     = "${file("${var.docker_registry_release_values}")}"
 }

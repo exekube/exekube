@@ -6,7 +6,7 @@ terragrunt = {
   # Terragrunt will copy the Terraform configurations specified by the source parameter, along with any files in the
   # working directory, into a temporary folder, and execute your Terraform commands in that folder.
   terraform {
-    source = "/exekube/modules//kube-ci"
+    source = "/exekube/modules//kube-custom"
   }
 
   # Include all settings from the root terraform.tfvars file
@@ -23,14 +23,6 @@ terragrunt = {
 # Module parameters
 # ------------------------------------------------------------------------------
 
-jenkins_enabled = 1
-jenkins_release_name = "jenkins"
-jenkins_release_values = "/exekube/live/prod/kube-ci/values/jenkins.yaml"
-
-chartmuseum_enabled = 1
-chartmuseum_release_name = "chartmuseum"
-chartmuseum_release_values = "/exekube/live/prod/kube-ci/values/chartmuseum.yaml"
-
-docker_registry_enabled = 0
-docker_registry_release_name = "docker-registry"
-docker_registry_release_values = "/exekube/live/prod/kube-ci/values/docker-registry.yaml"
+rails_app_enabled = 1
+rails_app_release_name = "myapp"
+rails_app_release_values = "/exekube/live/prod/kube-custom/values/rails-app.yaml"
