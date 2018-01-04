@@ -11,5 +11,5 @@ variable "cloudflare_domain_zone" {}
 # Helm vars
 # ------------------------------------------------------------------------------
 
-variable "helm_values_kube_lego" {}
-variable "helm_values_ingress_controller" {}
+variable "kube_lego_release_values" {}
+variable "ingress_controller_release_values" {}

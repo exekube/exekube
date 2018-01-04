@@ -30,7 +30,7 @@ resource "helm_release" "ingress_controller" {
   name       = "cluster-proxy"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "nginx-ingress"
-  values     = "${file("${var.helm_values_ingress_controller}")}"
+  values     = "${file("${var.ingress_controller_release_values}")}"
 
   provisioner "local-exec" {
     command = "sleep 15"
@@ -41,7 +41,7 @@ resource "helm_release" "kube_lego" {
   name       = "cluster-tls"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "kube-lego"
-  values     = "${file("${var.helm_values_kube_lego}")}"
+  values     = "${file("${var.kube_lego_release_values}")}"
   depends_on = ["helm_release.ingress_controller"]
 
   provisioner "local-exec" {

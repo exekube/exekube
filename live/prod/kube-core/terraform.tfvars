@@ -25,7 +25,7 @@ cloudflare_email = "ilya@sotkov.com"
 cloudflare_domain_zone = "swarm.pw"
 # cloudflare_token = <exposed as TF_VAR_cloudflare_token>
 
-helm_values_ingress_controller = "/exekube/live/prod/kube-core/values/ingress-controller.yaml"
-helm_values_kube_lego = "/exekube/live/prod/kube-core/values/kube-lego.yaml"
+ingress_controller_release_values = "/exekube/live/prod/kube-core/values/ingress-controller.yaml"
+kube_lego_release_values = "/exekube/live/prod/kube-core/values/kube-lego.yaml"
 
 # helm_private_repo_url = "https://my-private-chart-repo.storage.googleapis.com"
