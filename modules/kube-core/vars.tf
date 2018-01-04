@@ -6,7 +6,6 @@ variable "cloudflare_email" {}
 variable "cloudflare_token" {}
 variable "cloudflare_domain_zone" {}
 
-
 # ------------------------------------------------------------------------------
 # Helm vars
 # ------------------------------------------------------------------------------

@@ -13,7 +13,7 @@ provider "kubernetes" {}
 
 resource "helm_repository" "chart_repo" {
   name = "chart-repository"
-  url = "https://${var.chartmuseum_username}:${var.chartmuseum_password}@${var.chartmuseum_domain_name}"
+  url  = "https://${var.chartmuseum_username}:${var.chartmuseum_password}@${var.chartmuseum_domain_name}"
 }
 
 # ------------------------------------------------------------------------------
