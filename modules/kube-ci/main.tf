@@ -39,7 +39,7 @@ resource "helm_release" "chartmuseum" {
   values     = "${data.template_file.chartmuseum.rendered}"
 
   provisioner "local-exec" {
-    command = " cd /exekube/charts/rails-app && bash push.sh && helm repo update"
+    command = "sleep 10 && cd /exekube/charts/rails-app && bash push.sh && helm repo update"
   }
 }
 
