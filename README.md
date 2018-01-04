@@ -152,7 +152,7 @@ Features are marked with ✔️ when they enter the *alpha stage*, meaning a min
 ### Cloud provider config
 
 - [ ] Create GCP Folders and Projects and associated policies
-- [x] Create GCP IAM Service Accounts and IAM Policies for the Project
+- [ ] Create GCP IAM Service Accounts and IAM Policies for the Project
 
 ### Cluster creation
 
@@ -177,4 +177,4 @@ Features are marked with ✔️ when they enter the *alpha stage*, meaning a min
 
 ### User apps and services
 
-- [ ] Install "hello-world" apps like static sites, Ruby on Rails apps, etc.
+- [x] Install "hello-world" apps like static sites, Ruby on Rails apps, etc.
