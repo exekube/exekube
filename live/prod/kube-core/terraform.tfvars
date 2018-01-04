@@ -22,7 +22,6 @@ terragrunt = {
 # ------------------------------------------------------------------------------
 
 cloudflare_email = "ilya@sotkov.com"
-cloudflare_domain_zone = "swarm.pw"
 # cloudflare_token = <exposed as TF_VAR_cloudflare_token>
 
 ingress_controller_release_values = "/exekube/live/prod/kube-core/values/ingress-controller.yaml"

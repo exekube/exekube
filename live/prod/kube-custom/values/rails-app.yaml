@@ -18,11 +18,11 @@ ingress:
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/tls-acme: "true"
   hosts:
-    - app.swarm.pw
+    - ${rails_app_domain_name}
   tls:
-    - secretName: app-swarm-pw-tls
+    - secretName: rails-app-tls
       hosts:
-        - app.swarm.pw
+        - ${rails_app_domain_name}
 
 resources:
   limits:

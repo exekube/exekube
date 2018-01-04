@@ -9,8 +9,12 @@ services:
       TF_LOG:
       TF_INPUT: 0
       TF_VAR_cloudflare_token:
+      TF_VAR_cloudflare_domain_zone:
       TF_VAR_chartmuseum_username:
       TF_VAR_chartmuseum_password:
+      TF_VAR_jenkins_domain_name:
+      TF_VAR_rails_app_domain_name:
+      TF_VAR_chartmuseum_domain_name:
       GOOGLE_CREDENTIALS: /exekube/credentials.json
     ports:
       - 8001:8001
