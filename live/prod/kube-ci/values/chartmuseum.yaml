@@ -37,7 +37,7 @@ env:
     CHART_URL:
   secret:
     # username for basic http authentication
-    BASIC_AUTH_USER: ${chartmuseus_username}
+    BASIC_AUTH_USER: ${chartmuseum_username}
     # password for basic http authentication
     BASIC_AUTH_PASS: ${chartmuseum_password}
 deployment:

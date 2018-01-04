@@ -3,6 +3,7 @@ variable "jenkins_release_name" {}
 variable "jenkins_release_values" {}
 
 variable "chartmuseum_enabled" {}
+variable "chartmuseum_username" {}
 variable "chartmuseum_password" {}
 variable "chartmuseum_release_name" {}
 variable "chartmuseum_release_values" {}

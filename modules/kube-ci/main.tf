@@ -33,6 +33,7 @@ data "template_file" "chartmuseum" {
   template = "${file("${var.chartmuseum_release_values}")}"
 
   vars {
+    chartmuseum_username = "${var.chartmuseum_username}"
     chartmuseum_password = "${var.chartmuseum_password}"
   }
 }
