@@ -16,7 +16,15 @@ resource "helm_release" "jenkins" {
   name       = "${var.jenkins_release_name}"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "jenkins"
-  values     = "${file("${var.jenkins_release_values}")}"
+  values     = "${data.template_file.jenkins.rendered}"
+}
+
+data "template_file" "jenkins" {
+  template = "${file("${var.jenkins_release_values}")}"
+
+  vars {
+    jenkins_domain_name = "${var.jenkins_domain_name}"
+  }
 }
 
 # ------------------------------------------------------------------------------

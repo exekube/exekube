@@ -1,6 +1,7 @@
 variable "jenkins_enabled" {}
 variable "jenkins_release_name" {}
 variable "jenkins_release_values" {}
+variable "jenkins_domain_name" {}
 
 variable "chartmuseum_enabled" {}
 variable "chartmuseum_username" {}
