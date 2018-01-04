@@ -22,7 +22,7 @@ resource "helm_release" "jenkins" {
 resource "helm_release" "docker_registry" {
   count      = "${var.docker_registry_enabled}"
   name       = "${var.docker_registry_release_name}"
-  repository = "https://kubernetes-charts.storage.googleapis.com/ "
+  repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "docker-registry"
   values     = "${file("${var.docker_registry_release_values}")}"
 }
@@ -30,7 +30,7 @@ resource "helm_release" "docker_registry" {
 resource "helm_release" "chartmuseum" {
   count      = "${var.chartmuseum_enabled}"
   name       = "${var.chartmuseum_release_name}"
-  repository = "https://kubernetes-charts-incubator.storage.googleapis.com/ "
+  repository = "https://kubernetes-charts-incubator.storage.googleapis.com"
   chart      = "chartmuseum"
   values     = "${file("${var.chartmuseum_release_values}")}"
 }
