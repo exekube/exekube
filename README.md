@@ -132,7 +132,7 @@ xk helm install --name cluster-proxy \
         stable/nginx-ingress
 ```
 
-#### Declarative workflow (HCL .tf files)
+#### Declarative workflow (.tf and .tfvars files)
 
 - `xk apply` / `xk destroy` (Terragrunt / Terraform wrapper)
 
