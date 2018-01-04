@@ -8,7 +8,7 @@ provider "helm" {}
 provider "kubernetes" {}
 
 # ------------------------------------------------------------------------------
-# INSTALL CI HELM CHARTS
+# Install CI Helm charts
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "jenkins" {
@@ -22,11 +22,17 @@ resource "helm_release" "jenkins" {
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "chartmuseum" {
+  depends_on = [ "helm_release.jenkins" ]
   count      = "${var.chartmuseum_enabled}"
+
   name       = "${var.chartmuseum_release_name}"
   repository = "https://kubernetes-charts-incubator.storage.googleapis.com"
   chart      = "chartmuseum"
   values     = "${data.template_file.chartmuseum.rendered}"
+
+  provisioner "local-exec" {
+    command = "cd /exekube/charts/rails-app && bash push.sh"
+  }
 }
 
 data "template_file" "chartmuseum" {
@@ -35,6 +41,7 @@ data "template_file" "chartmuseum" {
   vars {
     chartmuseum_username = "${var.chartmuseum_username}"
     chartmuseum_password = "${var.chartmuseum_password}"
+    chartmuseum_domain_name = "${var.chartmuseum_domain_name}"
   }
 }
 

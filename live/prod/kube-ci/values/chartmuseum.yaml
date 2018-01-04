@@ -74,7 +74,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
   hosts:
-    charts.swarm.pw:
+    "${chartmuseum_domain_name}":
       - /api/charts
       - /api/prov
       - /charts
@@ -82,7 +82,7 @@ ingress:
   tls:
     - secretName: chartmuseum-tls
       hosts:
-        - charts.swarm.pw
+        - ${chartmuseum_domain_name}
 
 ## Chartmuseum Ingress labels
 ##
