@@ -7,5 +7,9 @@ if [ "$1" = 'apply' ] || [ "$1" = 'destroy' ] || [ "$1" = 'plan' ] || [ "$1" = '
                 cd $2 && terragrunt $1
         fi
 else
-        $@
+        if [ "$1" = 'init' ]; then
+                cd $2 && terragrunt $1
+        else
+                $@
+        fi
 fi
