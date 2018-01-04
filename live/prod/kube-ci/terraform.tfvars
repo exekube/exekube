@@ -23,4 +23,14 @@ terragrunt = {
 # Module parameters
 # ------------------------------------------------------------------------------
 
-helm_values_jenkins = "/exekube/live/prod/kube-ci/values/jenkins-dev.yaml"
+jenkins_enabled = 1
+jenkins_release_name = "jenkins"
+jenkins_release_values = "/exekube/live/prod/kube-ci/values/jenkins.yaml"
+
+chartmuseum_enabled = 0
+chartmuseum_release_name = "chartmuseum"
+chartmuseum_release_values = "/exekube/live/prod/kube-ci/values/chartmuseum.yaml"
+
+docker_registry_enabled = 0
+docker_registry_release_name = "docker-registry"
+docker_registry_release_values = "/exekube/live/prod/kube-ci/values/docker-registry.yaml"

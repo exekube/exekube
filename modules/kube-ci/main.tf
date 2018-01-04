@@ -12,10 +12,25 @@ provider "kubernetes" {}
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "jenkins" {
-  # count      = 1
-
-  name       = "jenkins"
+  count      = "${var.jenkins_enabled}"
+  name       = "${var.jenkins_release_name}"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "jenkins"
-  values     = "${file("${var.helm_values_jenkins}")}"
+  values     = "${file("${var.jenkins_release_values}")}"
+}
+
+resource "helm_release" "docker_registry" {
+  count      = "${var.docker_registry_enabled}"
+  name       = "${var.docker_registry_release_name}"
+  repository = "https://kubernetes-charts.storage.googleapis.com/ "
+  chart      = "docker-registry"
+  values     = "${file("${var.docker_registry_release_values}")}"
+}
+
+resource "helm_release" "chartmuseum" {
+  count      = "${var.chartmuseum_enabled}"
+  name       = "${var.chartmuseum_release_name}"
+  repository = "https://kubernetes-charts-incubator.storage.googleapis.com/ "
+  chart      = "chartmuseum"
+  values     = "${file("${var.chartmuseum_release_values}")}"
 }
