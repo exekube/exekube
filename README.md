@@ -134,7 +134,8 @@ xk helm install --name cluster-proxy \
 
 #### Declarative workflow (.tf and .tfvars files)
 
-- `xk apply` / `xk destroy` (Terragrunt / Terraform wrapper)
+- `xk apply`
+- `xk destroy`
 
 Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xk apply`.
 
