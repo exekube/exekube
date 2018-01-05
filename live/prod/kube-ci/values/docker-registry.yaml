@@ -11,18 +11,21 @@ service:
   type: ClusterIP
   port: 5000
 ingress:
-  enabled: false
+  enabled: true
   # Used to create an Ingress record.
   hosts:
-    - chart-example.local
+    - ${docker_registry_domain_name}
   annotations:
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: docker-registry-auth
+    nginx.ingress.kubernetes.io/auth-realm: "Authentication required to access the registry"
   tls:
-    # Secrets must be manually created in the namespace.
-    # - secretName: chart-example-tls
-    #   hosts:
-    #     - chart-example.local
+    - secretName: docker-registry-tls
+      hosts:
+        - ${docker_registry_domain_name}
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -36,7 +39,7 @@ resources: {}
   #  memory: 128Mi
 persistence:
   accessMode: 'ReadWriteOnce'
-  enabled: false
+  enabled: true
   size: 10Gi
   # storageClass: '-'
 

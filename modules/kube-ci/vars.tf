@@ -11,5 +11,8 @@ variable "chartmuseum_release_values" {}
 variable "chartmuseum_domain_name" {}
 
 variable "docker_registry_enabled" {}
+variable "docker_registry_username" {}
+variable "docker_registry_password" {}
 variable "docker_registry_release_name" {}
 variable "docker_registry_release_values" {}
+variable "docker_registry_domain_name" {}

@@ -18,6 +18,9 @@ services:
       TF_VAR_jenkins_domain_name:
       TF_VAR_rails_app_domain_name:
       TF_VAR_chartmuseum_domain_name:
+      TF_VAR_docker_registry_username:
+      TF_VAR_docker_registry_password:
+      TF_VAR_docker_registry_domain_name:
     ports:
       - 8001:8001
     volumes:

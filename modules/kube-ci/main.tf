@@ -56,9 +56,30 @@ data "template_file" "chartmuseum" {
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "docker_registry" {
+  depends_on = [ "kubernetes_secret.registry_auth" ]
+
   count      = "${var.docker_registry_enabled}"
   name       = "${var.docker_registry_release_name}"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "docker-registry"
-  values     = "${file("${var.docker_registry_release_values}")}"
+  values     = "${data.template_file.docker_registry_values.rendered}"
+}
+
+data "template_file" "docker_registry_values" {
+  template = "${file("${var.docker_registry_release_values}")}"
+
+  vars {
+    docker_registry_domain_name = "${var.docker_registry_domain_name}"
+  }
+}
+
+resource "kubernetes_secret" "registry_auth" {
+  metadata {
+    name = "docker-registry-auth"
+  }
+  data {
+    username = "${var.docker_registry_username}"
+    password = "${var.docker_registry_password}"
+  }
+  type = "kubernetes.io/basic-auth"
 }
