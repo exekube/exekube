@@ -177,7 +177,9 @@ Features are marked with ✔️ when they enter the *alpha stage*, meaning a min
 - [x] Install cluster ingress controller (cloud load balancer)
 - [x] Install TLS certificates controller (kube-lego)
 - [ ] Install Continuous Delivery tools
-    - [x] Continuous Delivery service (Drone / Jenkins)
+    - [x] Continuous delivery service (Drone / Jenkins)
+    - [x] Helm chart repository (ChartMuseum)
+    - [x] Private Docker registry
     - [ ] Git service (Gitlab / Gogs)
 - [ ] Monitoring and alerting tools (Prometheus / Grafana)
 
