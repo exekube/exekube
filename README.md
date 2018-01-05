@@ -72,7 +72,7 @@ The only requirements, depending on your local OS:
 
 1. Create `xk` (stands for "exekube") alias for your shell session (or save to ~/.bashrc):
     ```bash
-    alias xk="docker-compose run --rm exekube"
+    alias xk=". .env && docker-compose run --rm exekube"
     ```
 2. [Set up a Google Account](https://console.cloud.google.com/) for GCP (Google Cloud Platform), create a project named `${TF_VAR_gcp_project}`, and enable billing.
 3. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
