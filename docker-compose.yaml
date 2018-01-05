@@ -5,7 +5,7 @@ services:
     build: ./.docker
     working_dir: /exekube
     environment:
-      XK_LIVE_DIR: /exekube/live/prod # default folder for common terraform commands
+      XK_LIVE_DIR:
       TF_LOG:
       TF_INPUT: 0
       TF_VAR_gcp_project:
