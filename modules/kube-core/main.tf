@@ -17,6 +17,8 @@ provider "kubernetes" {}
 # ------------------------------------------------------------------------------
 
 resource "kubernetes_namespace" "core" {
+  count = 0
+
   metadata {
     name = "terraform-xk-core-namespace"
   }
