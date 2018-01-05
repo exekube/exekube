@@ -56,7 +56,10 @@ data "template_file" "chartmuseum" {
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "docker_registry" {
-  depends_on = [ "kubernetes_secret.registry_auth" ]
+  depends_on = [
+    "kubernetes_secret.registry_auth",
+    "helm_release.chartmuseum",
+  ]
 
   count      = "${var.docker_registry_enabled}"
   name       = "${var.docker_registry_release_name}"
