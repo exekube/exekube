@@ -29,7 +29,7 @@ Exekube allows you to manage both cloud infrastructure resources and Kubernetes 
 		- [Cluster setup: do it as often as you need](#cluster-setup-do-it-as-often-as-you-need)
 	- [Workflows](#workflows)
 		- [Legacy imperative workflow (CLI)](#legacy-imperative-workflow-cli)
-		- [Declarative workflow (HCL .tf files)](#declarative-workflow-hcl-tf-files)
+		- [Declarative workflow (.tf and .tfvars files)](#declarative-workflow-hcl-tf-files)
 - [Feature tracker](#feature-tracker)
 	- [Cloud provider and local environment setup](#cloud-provider-and-local-environment-setup)
 	- [Cloud provider config](#cloud-provider-config)
@@ -86,7 +86,7 @@ The only requirements, depending on your local OS:
     xk gsutil mb \
             -p ${TF_VAR_gcp_project} \
             gs://${TF_VAR_gcp_remote_state_bucket} \
-            && xk gsutil versioning set on \
+    && xk gsutil versioning set on \
             gs://${TF_VAR_gcp_remote_state_bucket}
     ```
 

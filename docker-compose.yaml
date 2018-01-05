@@ -5,9 +5,10 @@ services:
     build: ./.docker
     working_dir: /exekube
     environment:
-      XK_LIVE_DIR:
+      GOOGLE_CREDENTIALS: /exekube/credentials.json
       TF_LOG:
       TF_INPUT: 0
+      XK_LIVE_DIR:
       TF_VAR_gcp_project:
       TF_VAR_gcp_remote_state_bucket:
       TF_VAR_cloudflare_token:
@@ -17,7 +18,6 @@ services:
       TF_VAR_jenkins_domain_name:
       TF_VAR_rails_app_domain_name:
       TF_VAR_chartmuseum_domain_name:
-      GOOGLE_CREDENTIALS: /exekube/credentials.json
     ports:
       - 8001:8001
     volumes:
