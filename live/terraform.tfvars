@@ -3,8 +3,8 @@ terragrunt = {
   remote_state {
     backend = "gcs"
     config {
-      bucket  = "ethereal-argon-terraform-state"
-      project = "ethereal-argon-186217"
+      bucket  = "${get_env("TF_VAR_gcp_remote_state_bucket", "")}"
+      project = "${get_env("TF_VAR_gcp_project", "")}"
       prefix  = "${path_relative_to_include()}"
     }
   }

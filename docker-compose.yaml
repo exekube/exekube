@@ -8,6 +8,8 @@ services:
       XK_LIVE_DIR: /exekube/live/prod # default folder for common terraform commands
       TF_LOG:
       TF_INPUT: 0
+      TF_VAR_gcp_project:
+      TF_VAR_gcp_remote_state_bucket:
       TF_VAR_cloudflare_token:
       TF_VAR_cloudflare_domain_zone:
       TF_VAR_chartmuseum_username:

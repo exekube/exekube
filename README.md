@@ -74,17 +74,20 @@ The only requirements, depending on your local OS:
     ```bash
     alias xk="docker-compose run --rm exekube"
     ```
-2. [Set up a Google Account](https://console.cloud.google.com/) for GCP (Google Cloud Platform), create a project named "ethereal-argon-186217", and enable billing.
+2. [Set up a Google Account](https://console.cloud.google.com/) for GCP (Google Cloud Platform), create a project named `${TF_VAR_gcp_project}`, and enable billing.
 3. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
 4. [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
-5. Use JSON credentials to activate service account:
+5. Use JSON credentials to authenticate our `gcloud` client tool:
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
 6. Create Google Cloud Storage bucket (with versioning) for our Terraform remote state:
     ```sh
-    xk gsutil mb -p ethereal-argon-186217 gs://ethereal-argon-terraform-state \
-        && xk gsutil versioning set on gs://ethereal-argon-terraform-state
+    xk gsutil mb \
+            -p ${TF_VAR_gcp_project} \
+            gs://${TF_VAR_gcp_remote_state_bucket} \
+            && xk gsutil versioning set on \
+            gs://${TF_VAR_gcp_remote_state_bucket}
     ```
 
 #### Cluster setup: do it as often as you need
@@ -121,6 +124,8 @@ Command line tools `kubectl` and `helm` are known to those who are familiar with
 - `xk gcloud`
 - `xk kubectl`
 - `xk helm`
+
+Examples:
 
 ```sh
 xk gcloud auth list

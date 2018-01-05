@@ -19,7 +19,6 @@ terragrunt = {
 # Module parameters
 # ------------------------------------------------------------------------------
 
-gcp_project = "ethereal-argon-186217"
 gcp_zone = "europe-west1-d"
 cluster_name       = "k8s-cluster"
 nodepool_name      = "k8s-np"
