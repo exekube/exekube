@@ -132,9 +132,9 @@ xk gcloud auth list
 
 xk kubectl get nodes
 
-xk helm install --name cluster-proxy \
-        -f live/kube/core/values/ingress-controller.yaml \
-        stable/nginx-ingress
+xk helm install --name custom-rails-app \
+        -f live/prod/kube-custom/values/rails-app.yaml \
+        charts/rails-app
 ```
 
 #### Declarative workflow (.tf and .tfvars files)
