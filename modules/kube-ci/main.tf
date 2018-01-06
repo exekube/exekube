@@ -25,7 +25,7 @@ data "template_file" "jenkins" {
   template = "${file("${format("%s/%s", path.module, var.jenkins["values_file"])}")}"
 
   vars {
-    domain_name = "${format("%s.%s", var.jenkins["domain_name"], local.jenkins["domain_zone"])}"
+    domain_name = "${format("%s.%s", var.jenkins["domain_name"], var.cloudflare_dns_zones[0])}"
   }
 }
 
@@ -47,9 +47,9 @@ resource "helm_release" "chartmuseum" {
 sleep 10 \
 && cd /exekube/charts/rails-app \
 && curl \
-        -u ${var.chartmuseum["username"]}:${var.chartmuseum["password"]} \
-        --data-binary "@rails-app-0.1.0.tgz" \
-        https://${local.chartmuseum["full_domain_name"]}/api/charts \
+-u ${var.chartmuseum["username"]}:${var.chartmuseum["password"]} \
+--data-binary "@rails-app-0.1.0.tgz" \
+https://${var.chartmuseum["domain_name"]}.${var.cloudflare_dns_zones[0]}/api/charts \
 && helm repo update
 EOF
   }
@@ -60,9 +60,9 @@ data "template_file" "chartmuseum" {
   template = "${file("${format("%s/%s", path.module, var.chartmuseum["values_file"])}")}"
 
   vars {
-    domain_name = "${local.chartmuseum["full_domain_name"]}"
     username    = "${var.chartmuseum["username"]}"
     password    = "${var.chartmuseum["password"]}"
+    domain_name = "${format("%s.%s", var.chartmuseum["domain_name"], var.cloudflare_dns_zones[0])}"
   }
 }
 
@@ -89,7 +89,7 @@ data "template_file" "docker_registry" {
   template = "${file("${format("%s/%s", path.module, var.docker_registry["values_file"])}")}"
 
   vars {
-    domain_name = "${format("%s.%s", var.docker_registry["domain_name"], local.docker_registry["domain_zone"])}"
+    domain_name = "${format("%s.%s", var.docker_registry["domain_name"], var.cloudflare_dns_zones[0])}"
   }
 }
 
