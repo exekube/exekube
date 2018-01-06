@@ -1,18 +1,36 @@
-variable "jenkins_enabled" {}
+# ------------------------------------------------------------------------------
+# Jenkins resources
+# ------------------------------------------------------------------------------
+
+variable "jenkins_enabled" {
+  default = 1
+}
 variable "jenkins_release_name" {}
 variable "jenkins_release_values" {}
 variable "jenkins_domain_name" {}
 
-variable "chartmuseum_enabled" {}
-variable "chartmuseum_username" {}
-variable "chartmuseum_password" {}
+# ------------------------------------------------------------------------------
+# ChartMuseum resources
+# ------------------------------------------------------------------------------
+
+variable "chartmuseum_enabled" {
+  default = 1
+}
 variable "chartmuseum_release_name" {}
 variable "chartmuseum_release_values" {}
 variable "chartmuseum_domain_name" {}
+variable "chartmuseum_username" {}
+variable "chartmuseum_password" {}
 
-variable "docker_registry_enabled" {}
-variable "docker_registry_username" {}
-variable "docker_registry_password" {}
+# ------------------------------------------------------------------------------
+# Docker Registry resources
+# ------------------------------------------------------------------------------
+
+variable "docker_registry_enabled" {
+  default = 1
+}
 variable "docker_registry_release_name" {}
 variable "docker_registry_release_values" {}
 variable "docker_registry_domain_name" {}
+variable "docker_registry_username" {}
+variable "docker_registry_password" {}

@@ -8,7 +8,7 @@ provider "helm" {}
 provider "kubernetes" {}
 
 # ------------------------------------------------------------------------------
-# Install CI Helm charts
+# Jenkins resources
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "jenkins" {
@@ -27,6 +27,8 @@ data "template_file" "jenkins" {
   }
 }
 
+# ------------------------------------------------------------------------------
+# ChartMuseum resources
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "chartmuseum" {
@@ -54,6 +56,8 @@ data "template_file" "chartmuseum" {
 }
 
 # ------------------------------------------------------------------------------
+# Docker Registry resources
+# ------------------------------------------------------------------------------
 
 resource "helm_release" "docker_registry" {
   depends_on = [
@@ -80,9 +84,11 @@ resource "kubernetes_secret" "registry_auth" {
   metadata {
     name = "docker-registry-auth"
   }
+
   data {
     username = "${var.docker_registry_username}"
     password = "${var.docker_registry_password}"
   }
+
   type = "kubernetes.io/basic-auth"
 }
