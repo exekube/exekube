@@ -168,7 +168,7 @@ Features are marked with ✔️ when they enter the *alpha stage*, meaning a min
 
 ### Cluster access control
 
-- [x] Add cluster namespaces (virtual clusters)
+- [ ] Add cluster namespaces (virtual clusters)
 - [ ] Add cluster roles and role bindings
 - [ ] Add cluster network policies
 
