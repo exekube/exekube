@@ -8,22 +8,23 @@ provider "helm" {}
 provider "kubernetes" {}
 
 # ------------------------------------------------------------------------------
-# Jenkins resources
+# Jenkins release
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "jenkins" {
-  count      = "${var.jenkins_enabled}"
-  name       = "${var.jenkins_release_name}"
+  count      = "${local.jenkins["enabled"]}"
+  name       = "${var.jenkins["release_name"]}"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "jenkins"
   values     = "${data.template_file.jenkins.rendered}"
 }
 
+# Parsed (interpolated) YAML values file
 data "template_file" "jenkins" {
-  template = "${file("${var.jenkins_release_values}")}"
+  template = "${file("${var.jenkins["release_values"]}")}"
 
   vars {
-    jenkins_domain_name = "${var.jenkins_domain_name}"
+    domain_name = "${format("%s.%s", var.jenkins["domain_name"], local.jenkins["domain_zone"] )}"
   }
 }
 
@@ -39,6 +40,11 @@ resource "helm_release" "chartmuseum" {
   repository = "https://kubernetes-charts-incubator.storage.googleapis.com"
   chart      = "chartmuseum"
   values     = "${data.template_file.chartmuseum.rendered}"
+
+  set {
+    name  = ""
+    value = ""
+  }
 
   provisioner "local-exec" {
     command = "sleep 10 && cd /exekube/charts/rails-app && bash push.sh && helm repo update"

@@ -24,12 +24,15 @@ terragrunt = {
 # Module parameters
 # ------------------------------------------------------------------------------
 
-# jenkins_enabled = 0
-jenkins_release_name = "jenkins"
-jenkins_release_values = "/exekube/live/prod/kube-ci/values/jenkins.yaml"
-# jenkins_domain_name = ""
+jenkins = {
+  # enabled = false
+  # domain_zone = "example.com"
+  domain_name = "jenkins.ci"
+  release_name = "jenkins"
+  release_values = "/exekube/live/prod/kube-ci/values/jenkins.yaml"
+}
 
-# jenkins_enabled = 0
+# chartmuseum_enabled = 0
 chartmuseum_release_name = "chartmuseum"
 chartmuseum_release_values = "/exekube/live/prod/kube-ci/values/chartmuseum.yaml"
 # chartmuseum_username = ""

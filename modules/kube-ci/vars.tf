@@ -1,13 +1,36 @@
 # ------------------------------------------------------------------------------
-# Jenkins variables
+# Shared inputs and locals
 # ------------------------------------------------------------------------------
 
-variable "jenkins_enabled" {
-  default = 1
+variable "cloudflare_domain_zone" {}
+
+locals {
+  domain_zone = "${var.cloudflare_domain_zone}"
 }
-variable "jenkins_release_name" {}
-variable "jenkins_release_values" {}
-variable "jenkins_domain_name" {}
+
+# ------------------------------------------------------------------------------
+# Jenkins inputs and locals
+# ------------------------------------------------------------------------------
+
+variable "jenkins" {
+  type = "map"
+
+  default = {
+    enabled        = true
+    release_name   = "jenkins"
+    release_values = ""
+    domain_name    = "jenkins"
+    domain_zone    = ""
+  }
+}
+
+# Parsed input variables for internal module use
+locals {
+  jenkins = {
+    enabled     = "${var.jenkins["enabled"] ? 1 : 0}"
+    domain_zone = "${var.jenkins["domain_zone"] == "" ? local.domain_zone : var.jenkins["domain_zone"]}"
+  }
+}
 
 # ------------------------------------------------------------------------------
 # ChartMuseum variables
@@ -16,6 +39,7 @@ variable "jenkins_domain_name" {}
 variable "chartmuseum_enabled" {
   default = 1
 }
+
 variable "chartmuseum_release_name" {}
 variable "chartmuseum_release_values" {}
 variable "chartmuseum_domain_name" {}
@@ -29,6 +53,7 @@ variable "chartmuseum_password" {}
 variable "docker_registry_enabled" {
   default = 1
 }
+
 variable "docker_registry_release_name" {}
 variable "docker_registry_release_values" {}
 variable "docker_registry_domain_name" {}
