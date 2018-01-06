@@ -15,7 +15,6 @@ chartmuseum = {
   values_file = "values/chartmuseum.yaml"
   domain_name = "charts.c6ns.pw"
 
-  # domain_zone = "example.com"
   # release_name = "chartmuseum"
   # username = ""
   # password = ""
