@@ -16,19 +16,3 @@ terragrunt = {
     paths = ["../gke-cluster"]
   }
 }
-
-# ------------------------------------------------------------------------------
-# Module parameters
-# ------------------------------------------------------------------------------
-
-# cloudflare_dns_zones = []
-
-kube_lego {
-  enabled = true
-  # values_file = ""
-}
-
-ingress_controller {
-  enabled = true
-  # values_file = ""
-}

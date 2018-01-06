@@ -1,12 +1,3 @@
-terraform {
-  # The configuration for this backend will be filled in by Terragrunt
-  backend "gcs" {}
-}
-
-provider "helm" {}
-
-provider "kubernetes" {}
-
 # ------------------------------------------------------------------------------
 # Jenkins release
 # ------------------------------------------------------------------------------
@@ -25,7 +16,7 @@ data "template_file" "jenkins" {
   template = "${file("${format("%s/%s", path.module, var.jenkins["values_file"])}")}"
 
   vars {
-    domain_name = "${format("%s.%s", var.jenkins["domain_name"], var.cloudflare_dns_zones[0])}"
+    domain_name = "${var.jenkins["domain_name"]}"
   }
 }
 
@@ -49,7 +40,7 @@ sleep 10 \
 && curl \
 -u ${var.chartmuseum["username"]}:${var.chartmuseum["password"]} \
 --data-binary "@rails-app-0.1.0.tgz" \
-https://${var.chartmuseum["domain_name"]}.${var.cloudflare_dns_zones[0]}/api/charts \
+https://${var.chartmuseum["domain_name"]}/api/charts \
 && helm repo update
 EOF
   }
@@ -62,7 +53,7 @@ data "template_file" "chartmuseum" {
   vars {
     username    = "${var.chartmuseum["username"]}"
     password    = "${var.chartmuseum["password"]}"
-    domain_name = "${format("%s.%s", var.chartmuseum["domain_name"], var.cloudflare_dns_zones[0])}"
+    domain_name = "${var.chartmuseum["domain_name"]}"
   }
 }
 
@@ -89,7 +80,7 @@ data "template_file" "docker_registry" {
   template = "${file("${format("%s/%s", path.module, var.docker_registry["values_file"])}")}"
 
   vars {
-    domain_name = "${format("%s.%s", var.docker_registry["domain_name"], var.cloudflare_dns_zones[0])}"
+    domain_name = "${var.docker_registry["domain_name"]}"
   }
 }
 

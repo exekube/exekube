@@ -1,17 +1,3 @@
-terraform {
-  # The configuration for this backend will be filled in by Terragrunt
-  backend "gcs" {}
-}
-
-provider "cloudflare" {
-  email = "${var.cloudflare["email"]}"
-  token = "${var.cloudflare["token"]}"
-}
-
-provider "helm" {}
-
-provider "kubernetes" {}
-
 # ------------------------------------------------------------------------------
 # Create a Kubernetes namespace [TBD]
 # ------------------------------------------------------------------------------
@@ -21,6 +7,30 @@ resource "kubernetes_namespace" "core" {
 
   metadata {
     name = "terraform-xk-core-namespace"
+  }
+}
+
+# ------------------------------------------------------------------------------
+# Use LoadBalancer IP to create a CloudFlare DNS record
+# ------------------------------------------------------------------------------
+
+resource "cloudflare_record" "web" {
+  depends_on = ["helm_release.ingress_controller"]
+  count = "${length(var.cluster_dns_zones)}"
+
+  domain   = "${element(var.cluster_dns_zones, count.index)}"
+  name     = "*"
+  value    = "${data.kubernetes_service.ingress_controller.load_balancer_ingress.0.ip}"
+  type     = "A"
+  proxied  = false
+  priority = 0
+}
+
+data "kubernetes_service" "ingress_controller" {
+  depends_on = ["helm_release.ingress_controller"]
+
+  metadata {
+    name = "cluster-proxy-nginx-ingress-controller"
   }
 }
 
@@ -44,7 +54,7 @@ resource "helm_release" "ingress_controller" {
 resource "helm_release" "kube_lego" {
   count = "${var.kube_lego["enabled"]}"
 
-  name       = "cluster-tls"
+  name       = "kube-lego"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "kube-lego"
   values     = "${file("${format("%s/%s", path.module, var.kube_lego["values_file"])}")}"
@@ -52,29 +62,5 @@ resource "helm_release" "kube_lego" {
 
   provisioner "local-exec" {
     command = "sleep 30"
-  }
-}
-
-# ------------------------------------------------------------------------------
-# Use LoadBalancer IP to create a CloudFlare DNS record
-# ------------------------------------------------------------------------------
-
-resource "cloudflare_record" "web" {
-  depends_on = ["helm_release.ingress_controller"]
-  count = "${length(var.cloudflare_dns_zones)}"
-
-  domain   = "${element(var.cloudflare_dns_zones, count.index)}"
-  name     = "*"
-  value    = "${data.kubernetes_service.ingress_controller.load_balancer_ingress.0.ip}"
-  type     = "A"
-  proxied  = false
-  priority = 0
-}
-
-data "kubernetes_service" "ingress_controller" {
-  depends_on = ["helm_release.ingress_controller"]
-
-  metadata {
-    name = "cluster-proxy-nginx-ingress-controller"
   }
 }

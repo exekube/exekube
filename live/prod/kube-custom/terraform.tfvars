@@ -18,15 +18,3 @@ terragrunt = {
     paths = ["../gke-cluster", "../kube-core", "../kube-ci"]
   }
 }
-
-# ------------------------------------------------------------------------------
-# Module parameters
-# ------------------------------------------------------------------------------
-chartmuseum = {
-  domain_name = "chartsss"
-}
-
-rails_app = {
-  enabled = true
-  domain_name = "apprail"
-}

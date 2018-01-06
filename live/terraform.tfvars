@@ -13,5 +13,19 @@ terragrunt = {
       commands = [ "apply" ]
       arguments = [ "-auto-approve" ]
     }
+    extra_arguments "custom_vars" {
+      commands = [
+        "apply",
+        "plan",
+        "import",
+        "push",
+        "refresh"
+      ]
+
+      # With the get_tfvars_dir() function, you can use relative paths!
+      arguments = [
+        "-var-file=${get_tfvars_dir()}/inputs.tfvars"
+      ]
+    }
   }
 }

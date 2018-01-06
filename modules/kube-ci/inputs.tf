@@ -2,7 +2,7 @@
 # Shared inputs and locals
 # ------------------------------------------------------------------------------
 
-variable "cloudflare_dns_zones" {
+variable "cluster_dns_zones" {
   default = []
 }
 
@@ -18,8 +18,7 @@ variable "jenkins" {
     enabled             = false
     release_name        = "jenkins"
     values_file = "values/jenkins.yaml"
-    domain_name         = "ci"
-    domain_zone         = ""
+    domain_name         = ""
   }
 }
 
@@ -33,9 +32,8 @@ variable "chartmuseum" {
   default = {
     enabled             = false
     release_name        = "chartmuseum"
-    values_file = "values/chartmuseum.yaml"  
-    domain_name = "charts"
-    domain_zone = ""
+    values_file = "values/chartmuseum.yaml"
+    domain_name = ""
     username = ""
     password = ""
   }
@@ -52,7 +50,6 @@ variable "docker_registry" {
     enabled             = false
     release_name        = "docker-registry"
     values_file = "values/docker-registry.yaml"
-    domain_name         = "registry"
-    domain_zone         = ""
+    domain_name         = ""
   }
 }

@@ -14,7 +14,7 @@ services:
       TF_VAR_gcp_remote_state_bucket:
 
       TF_VAR_cloudflare:
-      TF_VAR_cloudflare_dns_zones:
+      TF_VAR_cluster_dns_zones:
       TF_VAR_chartmuseum:
       TF_VAR_jenkins:
       TF_VAR_docker_registry:

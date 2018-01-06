@@ -11,7 +11,7 @@ variable "cloudflare" {
   }
 }
 
-variable "cloudflare_dns_zones" {
+variable "cluster_dns_zones" {
   type = "list"
   default = []
 }
@@ -24,7 +24,7 @@ variable "kube_lego" {
   type = "map"
 
   default = {
-    enabled = false
+    enabled = true
     values_file = "values/kube-lego.yaml"
   }
 }
@@ -33,7 +33,7 @@ variable "ingress_controller" {
   type = "map"
 
   default = {
-    enabled = false
+    enabled = true
     values_file = "values/ingress-controller.yaml"
   }
 }
