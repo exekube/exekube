@@ -2,7 +2,10 @@
 # Module parameters
 # ------------------------------------------------------------------------------
 
-# cloudflare_dns_zones = []
+cluster_dns_zones = [
+  "c6ns.pw",
+  "flexeption.pw",
+]
 
 ingress_controller {
   enabled = true
