@@ -15,14 +15,6 @@ terragrunt = {
   }
 
   dependencies {
-    paths = ["../gke-cluster", "../kube-core", "../kube-ci"]
+    paths = ["../gcp-project", "../kube-core", "../kube-ci"]
   }
 }
-
-# ------------------------------------------------------------------------------
-# Module parameters
-# ------------------------------------------------------------------------------
-
-rails_app_enabled = 1
-rails_app_release_name = "myapp"
-rails_app_release_values = "/exekube/live/prod/kube-custom/values/rails-app.yaml"

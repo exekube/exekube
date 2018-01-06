@@ -6,7 +6,7 @@ terragrunt = {
   # Terragrunt will copy the Terraform configurations specified by the source parameter, along with any files in the
   # working directory, into a temporary folder, and execute your Terraform commands in that folder.
   terraform {
-    source = "/exekube/modules//gke-cluster"
+    source = "/exekube/modules//gcp-project"
   }
 
   # Include all settings from the root terraform.tfvars file
@@ -14,13 +14,3 @@ terragrunt = {
     path = "${find_in_parent_folders()}"
   }
 }
-
-# ------------------------------------------------------------------------------
-# Module parameters
-# ------------------------------------------------------------------------------
-
-gcp_zone = "europe-west1-d"
-cluster_name       = "k8s-cluster"
-nodepool_name      = "k8s-np"
-gke_version        = "1.8.4-gke.1"
-enable_legacy_auth = "true"
