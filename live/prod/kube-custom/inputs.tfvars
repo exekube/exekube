@@ -3,7 +3,9 @@
 # ------------------------------------------------------------------------------
 
 chartmuseum = {
-  domain_name = "chartsss"
+  domain_name = "charts.c6ns.pw"
+  # username = ""
+  # password = ""
 }
 
 rails_app = {
