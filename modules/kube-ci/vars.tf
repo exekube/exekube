@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# Jenkins resources
+# Jenkins variables
 # ------------------------------------------------------------------------------
 
 variable "jenkins_enabled" {
@@ -10,7 +10,7 @@ variable "jenkins_release_values" {}
 variable "jenkins_domain_name" {}
 
 # ------------------------------------------------------------------------------
-# ChartMuseum resources
+# ChartMuseum variables
 # ------------------------------------------------------------------------------
 
 variable "chartmuseum_enabled" {
@@ -23,7 +23,7 @@ variable "chartmuseum_username" {}
 variable "chartmuseum_password" {}
 
 # ------------------------------------------------------------------------------
-# Docker Registry resources
+# Docker Registry variables
 # ------------------------------------------------------------------------------
 
 variable "docker_registry_enabled" {
