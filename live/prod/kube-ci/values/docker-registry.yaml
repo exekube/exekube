@@ -14,7 +14,7 @@ ingress:
   enabled: true
   # Used to create an Ingress record.
   hosts:
-    - ${docker_registry_domain_name}
+    - ${domain_name}
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
@@ -24,7 +24,7 @@ ingress:
   tls:
     - secretName: docker-registry-tls
       hosts:
-        - ${docker_registry_domain_name}
+        - ${domain_name}
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

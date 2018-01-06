@@ -4,8 +4,8 @@ terraform {
 }
 
 provider "cloudflare" {
-  email = "${var.cloudflare_email}"
-  token = "${var.cloudflare_token}"
+  email = "${var.cloudflare["email"]}"
+  token = "${var.cloudflare["token"]}"
 }
 
 provider "helm" {}
@@ -29,10 +29,12 @@ resource "kubernetes_namespace" "core" {
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "ingress_controller" {
+  count = "${var.ingress_controller["enabled"]}"
+
   name       = "cluster-proxy"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "nginx-ingress"
-  values     = "${file("${var.ingress_controller_release_values}")}"
+  values     = "${file("${format("%s/%s", path.module, var.ingress_controller["values_file"])}")}"
 
   provisioner "local-exec" {
     command = "sleep 15"
@@ -40,10 +42,12 @@ resource "helm_release" "ingress_controller" {
 }
 
 resource "helm_release" "kube_lego" {
+  count = "${var.kube_lego["enabled"]}"
+
   name       = "cluster-tls"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "kube-lego"
-  values     = "${file("${var.kube_lego_release_values}")}"
+  values     = "${file("${format("%s/%s", path.module, var.kube_lego["values_file"])}")}"
   depends_on = ["helm_release.ingress_controller"]
 
   provisioner "local-exec" {
@@ -57,8 +61,9 @@ resource "helm_release" "kube_lego" {
 
 resource "cloudflare_record" "web" {
   depends_on = ["helm_release.ingress_controller"]
+  count = "${length(var.cloudflare_dns_zones)}"
 
-  domain   = "${var.cloudflare_domain_zone}"
+  domain   = "${element(var.cloudflare_dns_zones, count.index)}"
   name     = "*"
   value    = "${data.kubernetes_service.ingress_controller.load_balancer_ingress.0.ip}"
   type     = "A"

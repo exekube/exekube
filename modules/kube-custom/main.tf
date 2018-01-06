@@ -13,7 +13,7 @@ provider "kubernetes" {}
 
 resource "helm_repository" "chart_repo" {
   name = "chart-repository"
-  url  = "https://${var.chartmuseum_username}:${var.chartmuseum_password}@${var.chartmuseum_domain_name}"
+  url  = "https://${var.chartmuseum["username"]}:${var.chartmuseum["password"]}@${var.chartmuseum["domain_name"]}"
 }
 
 # ------------------------------------------------------------------------------
@@ -21,17 +21,17 @@ resource "helm_repository" "chart_repo" {
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "rails_app" {
-  count      = "${var.rails_app_enabled}"
-  name       = "${var.rails_app_release_name}"
+  count      = "${var.rails_app["enabled"]}"
+  name       = "${var.rails_app["release_name"]}"
   repository = "${helm_repository.chart_repo.metadata.0.name}"
   chart      = "rails-app"
   values     = "${data.template_file.rails_app.rendered}"
 }
 
 data "template_file" "rails_app" {
-  template = "${file("${var.rails_app_release_values}")}"
+  template = "${file("${format("%s/%s", path.module, var.rails_app["values_file"])}")}"
 
   vars {
-    rails_app_domain_name = "${var.rails_app_domain_name}"
+    domain_name = "${var.rails_app["domain_name"]}"
   }
 }

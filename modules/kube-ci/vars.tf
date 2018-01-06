@@ -2,10 +2,24 @@
 # Shared inputs and locals
 # ------------------------------------------------------------------------------
 
-variable "cloudflare_domain_zone" {}
+variable "cloudflare_dns_zones" {
+  type = "list"
+}
 
 locals {
-  domain_zone = "${var.cloudflare_domain_zone}"
+  domain_zone = "${var.cloudflare_dns_zones[0]}"
+  chartmuseum = {
+    domain_zone = "${var.chartmuseum["domain_zone"] == "" ? local.domain_zone : var.chartmuseum["domain_zone"]}"
+    full_domain_name = "${format("%s.%s", var.chartmuseum["domain_name"], local.chartmuseum["domain_zone"])}"
+  }
+
+  jenkins = {
+    domain_zone = "${var.jenkins["domain_zone"] == "" ? local.domain_zone : var.jenkins["domain_zone"]}"
+  }
+
+  docker_registry = {
+    domain_zone = "${var.docker_registry["domain_zone"] == "" ? local.domain_zone : var.docker_registry["domain_zone"]}"
+  }
 }
 
 # ------------------------------------------------------------------------------
@@ -16,46 +30,42 @@ variable "jenkins" {
   type = "map"
 
   default = {
-    enabled        = true
-    release_name   = "jenkins"
-    release_values = ""
-    domain_name    = "jenkins"
-    domain_zone    = ""
-  }
-}
-
-# Parsed input variables for internal module use
-locals {
-  jenkins = {
-    enabled     = "${var.jenkins["enabled"] ? 1 : 0}"
-    domain_zone = "${var.jenkins["domain_zone"] == "" ? local.domain_zone : var.jenkins["domain_zone"]}"
+    enabled             = false
+    release_name        = "jenkins"
+    values_file = "values/jenkins.yaml"
+    domain_name         = "ci"
+    domain_zone         = ""
   }
 }
 
 # ------------------------------------------------------------------------------
-# ChartMuseum variables
+# ChartMuseum inputs and locals
 # ------------------------------------------------------------------------------
 
-variable "chartmuseum_enabled" {
-  default = 1
+variable "chartmuseum" {
+  type = "map"
+
+  default = {
+    enabled             = false
+    release_name        = "chartmuseum"
+    values_file = "values/chartmuseum.yaml"
+    domain_name         = "charts"
+    domain_zone         = ""
+  }
 }
 
-variable "chartmuseum_release_name" {}
-variable "chartmuseum_release_values" {}
-variable "chartmuseum_domain_name" {}
-variable "chartmuseum_username" {}
-variable "chartmuseum_password" {}
-
 # ------------------------------------------------------------------------------
-# Docker Registry variables
+# Docker Registry inputs and locals
 # ------------------------------------------------------------------------------
 
-variable "docker_registry_enabled" {
-  default = 1
+variable "docker_registry" {
+  type = "map"
+
+  default = {
+    enabled             = false
+    release_name        = "docker-registry"
+    values_file = "values/docker-registry.yaml"
+    domain_name         = "registry"
+    domain_zone         = ""
+  }
 }
-
-variable "docker_registry_release_name" {}
-variable "docker_registry_release_values" {}
-variable "docker_registry_domain_name" {}
-variable "docker_registry_username" {}
-variable "docker_registry_password" {}

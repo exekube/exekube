@@ -21,11 +21,14 @@ terragrunt = {
 # Module parameters
 # ------------------------------------------------------------------------------
 
-# cloudflare_domain_zone = <exposed as envrironmental variable TF_VAR_cloudflare_domain_zone>
-cloudflare_email = "ilya@sotkov.com"
-# cloudflare_token = <exposed as envrironmental variable TF_VAR_cloudflare_token>
+# cloudflare_dns_zones = []
 
-ingress_controller_release_values = "/exekube/live/prod/kube-core/values/ingress-controller.yaml"
-kube_lego_release_values = "/exekube/live/prod/kube-core/values/kube-lego.yaml"
+kube_lego {
+  enabled = true
+  # values_file = ""
+}
 
-# helm_private_repo_url = "https://my-private-chart-repo.storage.googleapis.com"
+ingress_controller {
+  enabled = true
+  # values_file = ""
+}

@@ -9,18 +9,16 @@ services:
       TF_LOG:
       TF_INPUT: 0
       XK_LIVE_DIR:
+
       TF_VAR_gcp_project:
       TF_VAR_gcp_remote_state_bucket:
-      TF_VAR_cloudflare_token:
-      TF_VAR_cloudflare_domain_zone:
-      TF_VAR_chartmuseum_username:
-      TF_VAR_chartmuseum_password:
-      TF_VAR_jenkins_domain_name:
-      TF_VAR_rails_app_domain_name:
-      TF_VAR_chartmuseum_domain_name:
-      TF_VAR_docker_registry_username:
-      TF_VAR_docker_registry_password:
-      TF_VAR_docker_registry_domain_name:
+
+      TF_VAR_cloudflare:
+      TF_VAR_cloudflare_dns_zones:
+      TF_VAR_chartmuseum:
+      TF_VAR_jenkins:
+      TF_VAR_docker_registry:
+      TF_VAR_rails_app:
     ports:
       - 8001:8001
     volumes:

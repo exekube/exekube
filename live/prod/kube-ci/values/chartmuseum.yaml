@@ -37,9 +37,9 @@ env:
     CHART_URL:
   secret:
     # username for basic http authentication
-    BASIC_AUTH_USER: ${chartmuseum_username}
+    BASIC_AUTH_USER: ${username}
     # password for basic http authentication
-    BASIC_AUTH_PASS: ${chartmuseum_password}
+    BASIC_AUTH_PASS: ${password}
 deployment:
   ## Chartmuseum Deployment annotations
   annotations: {}
@@ -74,7 +74,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
   hosts:
-    "${chartmuseum_domain_name}":
+    "${domain_name}":
       - /api/charts
       - /api/prov
       - /charts
@@ -82,7 +82,7 @@ ingress:
   tls:
     - secretName: chartmuseum-tls
       hosts:
-        - ${chartmuseum_domain_name}
+        - ${domain_name}
 
 ## Chartmuseum Ingress labels
 ##

@@ -25,23 +25,34 @@ terragrunt = {
 # ------------------------------------------------------------------------------
 
 jenkins = {
-  # enabled = false
+  enabled             = true
+  values_file = "values/jenkins.yaml"
+
+  # domain_name = "ci"
   # domain_zone = "example.com"
-  domain_name = "jenkins.ci"
-  release_name = "jenkins"
-  release_values = "/exekube/live/prod/kube-ci/values/jenkins.yaml"
+  # release_name = "jenkins"
 }
 
-# chartmuseum_enabled = 0
-chartmuseum_release_name = "chartmuseum"
-chartmuseum_release_values = "/exekube/live/prod/kube-ci/values/chartmuseum.yaml"
-# chartmuseum_username = ""
-# chartmuseum_password = ""
-# chartmuseum_domain_name = ""
+chartmuseum = {
+  enabled             = true
+  values_file = "values/chartmuseum.yaml"
 
-# jenkins_enabled = 0
-docker_registry_release_name = "docker-registry"
-docker_registry_release_values = "/exekube/live/prod/kube-ci/values/docker-registry.yaml"
-# docker_registry_domain_name = ""
-# docker_registry_username = ""
-# docker_registry_password = ""
+  # enabled = false
+  # domain_name = "charts"
+  # domain_zone = "example.com"
+  # release_name = "chartmuseum"
+  # username = ""
+  # password = ""
+}
+
+docker_registry = {
+  enabled             = true
+  values_file = "values/docker-registry.yaml"
+
+  # enabled = false
+  # domain_zone = "example.com"
+  # domain_name = "registry"
+  # release_name = "docker-registry"
+  # username = ""
+  # password = ""
+}

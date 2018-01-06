@@ -1,8 +1,14 @@
-variable "chartmuseum_username" {}
-variable "chartmuseum_password" {}
-variable "chartmuseum_domain_name" {}
+variable "chartmuseum" {
+  type = "map"
+}
 
-variable "rails_app_enabled" {}
-variable "rails_app_release_name" {}
-variable "rails_app_release_values" {}
-variable "rails_app_domain_name" {}
+variable "rails_app" {
+  type = "map"
+
+  default = {
+    enabled = false
+    values_file = "values/rails-app.yaml"
+    release_name = "app"
+    domain_name = ""
+  }
+}

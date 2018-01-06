@@ -12,7 +12,8 @@ provider "kubernetes" {}
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "jenkins" {
-  count      = "${local.jenkins["enabled"]}"
+  count = "${var.jenkins["enabled"]}"
+
   name       = "${var.jenkins["release_name"]}"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "jenkins"
@@ -21,43 +22,47 @@ resource "helm_release" "jenkins" {
 
 # Parsed (interpolated) YAML values file
 data "template_file" "jenkins" {
-  template = "${file("${var.jenkins["release_values"]}")}"
+  template = "${file("${format("%s/%s", path.module, var.jenkins["values_file"])}")}"
 
   vars {
-    domain_name = "${format("%s.%s", var.jenkins["domain_name"], local.jenkins["domain_zone"] )}"
+    domain_name = "${format("%s.%s", var.jenkins["domain_name"], local.jenkins["domain_zone"])}"
   }
 }
 
 # ------------------------------------------------------------------------------
-# ChartMuseum resources
+# Chartmuseum release
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "chartmuseum" {
   depends_on = ["helm_release.jenkins"]
-  count      = "${var.chartmuseum_enabled}"
+  count      = "${var.chartmuseum["enabled"]}"
 
-  name       = "${var.chartmuseum_release_name}"
-  repository = "https://kubernetes-charts-incubator.storage.googleapis.com"
+  name       = "${var.chartmuseum["release_name"]}"
+  repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "chartmuseum"
   values     = "${data.template_file.chartmuseum.rendered}"
 
-  set {
-    name  = ""
-    value = ""
-  }
-
   provisioner "local-exec" {
-    command = "sleep 10 && cd /exekube/charts/rails-app && bash push.sh && helm repo update"
+    command = <<EOF
+sleep 10 \
+&& cd /exekube/charts/rails-app \
+&& curl \
+        -u ${var.chartmuseum["username"]}:${var.chartmuseum["password"]} \
+        --data-binary "@rails-app-0.1.0.tgz" \
+        https://${local.chartmuseum["full_domain_name"]}/api/charts \
+&& helm repo update
+EOF
   }
 }
 
+# Parsed (interpolated) YAML values file
 data "template_file" "chartmuseum" {
-  template = "${file("${var.chartmuseum_release_values}")}"
+  template = "${file("${format("%s/%s", path.module, var.chartmuseum["values_file"])}")}"
 
   vars {
-    chartmuseum_username    = "${var.chartmuseum_username}"
-    chartmuseum_password    = "${var.chartmuseum_password}"
-    chartmuseum_domain_name = "${var.chartmuseum_domain_name}"
+    domain_name = "${local.chartmuseum["full_domain_name"]}"
+    username    = "${var.chartmuseum["username"]}"
+    password    = "${var.chartmuseum["password"]}"
   }
 }
 
@@ -71,18 +76,20 @@ resource "helm_release" "docker_registry" {
     "helm_release.chartmuseum",
   ]
 
-  count      = "${var.docker_registry_enabled}"
-  name       = "${var.docker_registry_release_name}"
+  count = "${var.docker_registry["enabled"]}"
+
+  name       = "${var.docker_registry["release_name"]}"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "docker-registry"
-  values     = "${data.template_file.docker_registry_values.rendered}"
+  values     = "${data.template_file.docker_registry.rendered}"
 }
 
-data "template_file" "docker_registry_values" {
-  template = "${file("${var.docker_registry_release_values}")}"
+# Parsed (interpolated) YAML values file
+data "template_file" "docker_registry" {
+  template = "${file("${format("%s/%s", path.module, var.docker_registry["values_file"])}")}"
 
   vars {
-    docker_registry_domain_name = "${var.docker_registry_domain_name}"
+    domain_name = "${format("%s.%s", var.docker_registry["domain_name"], local.docker_registry["domain_zone"])}"
   }
 }
 
@@ -92,8 +99,8 @@ resource "kubernetes_secret" "registry_auth" {
   }
 
   data {
-    username = "${var.docker_registry_username}"
-    password = "${var.docker_registry_password}"
+    username = "${var.docker_registry["username"]}"
+    password = "${var.docker_registry["password"]}"
   }
 
   type = "kubernetes.io/basic-auth"
