@@ -3,8 +3,8 @@ variable "chartmuseum" {
   type = "map"
 
   default = {
-    username = ""
-    password = ""
+    username    = ""
+    password    = ""
     domain_name = ""
   }
 }
@@ -14,9 +14,9 @@ variable "rails_app" {
   type = "map"
 
   default = {
-    enabled = false
-    values_file = "values/rails-app.yaml"
+    enabled      = false
+    values_file  = "values/rails-app.yaml"
     release_name = "app"
-    domain_name = ""
+    domain_name  = ""
   }
 }

@@ -16,7 +16,7 @@ resource "kubernetes_namespace" "core" {
 
 resource "cloudflare_record" "web" {
   depends_on = ["helm_release.ingress_controller"]
-  count = "${length(var.cluster_dns_zones)}"
+  count      = "${length(var.cluster_dns_zones)}"
 
   domain   = "${element(var.cluster_dns_zones, count.index)}"
   name     = "*"
