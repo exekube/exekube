@@ -9,16 +9,11 @@ services:
       TF_LOG:
       TF_INPUT: 0
       XK_LIVE_DIR:
-
       TF_VAR_gcp_project:
       TF_VAR_gcp_remote_state_bucket:
-
       TF_VAR_cloudflare:
-      TF_VAR_cluster_dns_zones:
       TF_VAR_chartmuseum:
-      TF_VAR_jenkins:
       TF_VAR_docker_registry:
-      TF_VAR_rails_app:
     ports:
       - 8001:8001
     volumes:
