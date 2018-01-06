@@ -13,6 +13,6 @@ terragrunt = {
   }
 
   dependencies {
-    paths = ["../gke-cluster"]
+    paths = ["../gcp-project"]
   }
 }

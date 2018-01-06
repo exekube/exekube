@@ -14,7 +14,7 @@ terragrunt = {
 
   dependencies {
     paths = [
-      "../gke-cluster",
+      "../gcp-project",
       "../kube-core",
     ]
   }
