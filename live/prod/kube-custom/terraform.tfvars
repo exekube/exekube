@@ -22,7 +22,11 @@ terragrunt = {
 # ------------------------------------------------------------------------------
 # Module parameters
 # ------------------------------------------------------------------------------
+chartmuseum = {
+  domain_name = "chartsss"
+}
 
-rails_app_enabled = 1
-rails_app_release_name = "myapp"
-rails_app_release_values = "/exekube/live/prod/kube-custom/values/rails-app.yaml"
+rails_app = {
+  enabled = true
+  domain_name = "apprail"
+}

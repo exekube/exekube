@@ -28,7 +28,7 @@ jenkins = {
   enabled             = true
   values_file = "values/jenkins.yaml"
 
-  # domain_name = "ci"
+  domain_name = "cd"
   # domain_zone = "example.com"
   # release_name = "jenkins"
 }
@@ -38,7 +38,7 @@ chartmuseum = {
   values_file = "values/chartmuseum.yaml"
 
   # enabled = false
-  # domain_name = "charts"
+  domain_name = "chartsss"
   # domain_zone = "example.com"
   # release_name = "chartmuseum"
   # username = ""
@@ -51,7 +51,7 @@ docker_registry = {
 
   # enabled = false
   # domain_zone = "example.com"
-  # domain_name = "registry"
+  domain_name = "registryyy"
   # release_name = "docker-registry"
   # username = ""
   # password = ""

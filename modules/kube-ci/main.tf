@@ -38,7 +38,7 @@ resource "helm_release" "chartmuseum" {
   count      = "${var.chartmuseum["enabled"]}"
 
   name       = "${var.chartmuseum["release_name"]}"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://kubernetes-charts-incubator.storage.googleapis.com"
   chart      = "chartmuseum"
   values     = "${data.template_file.chartmuseum.rendered}"
 
