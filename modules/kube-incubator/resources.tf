@@ -32,3 +32,24 @@ data "template_file" "istio" {
 
   vars {}
 }
+
+# ------------------------------------------------------------------------------
+
+resource "helm_release" "drupal" {
+  count = "${var.drupal["enabled"]}"
+
+  # depends_on = ["helm_repository.chart_repo"]
+
+  name       = "${var.drupal["release_name"]}"
+  repository = "stable"
+  chart      = "drupal"
+  values     = "${data.template_file.drupal.rendered}"
+}
+
+data "template_file" "drupal" {
+  template = "${file("${format("%s/%s", path.module, var.drupal["values_file"])}")}"
+
+  vars {
+    domain_name = "${var.drupal["domain_name"]}"
+  }
+}

@@ -3,8 +3,10 @@
 # ------------------------------------------------------------------------------
 
 istio = {
-  enabled = true
+  enabled = false
+}
 
-  values_file  = "values/istio.yaml"
-  release_name = "istio"
+drupal = {
+  enabled     = true
+  domain_name = "drupal-app.flexeption.pw"
 }

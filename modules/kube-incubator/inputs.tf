@@ -17,3 +17,14 @@ variable "istio" {
     release_name = "istio"
   }
 }
+
+variable "drupal" {
+  type = "map"
+
+  default = {
+    enabled      = false
+    domain_name  = ""
+    values_file  = "values/drupal.yaml"
+    release_name = "drupal-app"
+  }
+}
