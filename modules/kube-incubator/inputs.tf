@@ -28,3 +28,14 @@ variable "drupal" {
     release_name = "drupal-app"
   }
 }
+
+variable "wordpress" {
+  type = "map"
+
+  default = {
+    enabled      = false
+    domain_name  = ""
+    values_file  = "values/wordpress.yaml"
+    release_name = "wordpress-app"
+  }
+}

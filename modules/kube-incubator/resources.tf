@@ -53,3 +53,24 @@ data "template_file" "drupal" {
     domain_name = "${var.drupal["domain_name"]}"
   }
 }
+
+# ------------------------------------------------------------------------------
+
+resource "helm_release" "wordpress" {
+  count = "${var.wordpress["enabled"]}"
+
+  # depends_on = ["helm_repository.chart_repo"]
+
+  name       = "${var.wordpress["release_name"]}"
+  repository = "stable"
+  chart      = "wordpress"
+  values     = "${data.template_file.wordpress.rendered}"
+}
+
+data "template_file" "wordpress" {
+  template = "${file("${format("%s/%s", path.module, var.wordpress["values_file"])}")}"
+
+  vars {
+    domain_name = "${var.wordpress["domain_name"]}"
+  }
+}
