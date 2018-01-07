@@ -112,7 +112,7 @@ The only requirements, depending on your local OS:
     ```bash
     alias xk=". .env && docker-compose run --rm exekube"
     ```
-1. Rename `.env.example` file in repo root to `.env`. Configure `${TF_VAR_gcp_project}` and `${TF_VAR_gcp_remote_state_bucket}` shell exports. ⚠️ These have to be exported from your local shell to Exekube docker container in `docker-compose.yaml`
+1. Rename `.env.example` file in repo root to `.env`. Configure `${TF_VAR_gcp_project}` and `${TF_VAR_gcp_remote_state_bucket}` shell exports.
 2. [Set up a Google Account](https://console.cloud.google.com/) for GCP (Google Cloud Platform), create a project named `${TF_VAR_gcp_project}`, and enable billing.
 3. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
 4. [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
