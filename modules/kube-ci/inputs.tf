@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# Shared inputs and locals
+# Shared input variables
 # ------------------------------------------------------------------------------
 
 variable "cluster_dns_zones" {
@@ -7,7 +7,7 @@ variable "cluster_dns_zones" {
 }
 
 # ------------------------------------------------------------------------------
-# Jenkins inputs and locals
+# Jenkins input variables
 # ------------------------------------------------------------------------------
 
 variable "jenkins" {
@@ -22,7 +22,7 @@ variable "jenkins" {
 }
 
 # ------------------------------------------------------------------------------
-# ChartMuseum inputs and locals
+# ChartMuseum input variables
 # ------------------------------------------------------------------------------
 
 variable "chartmuseum" {
@@ -39,7 +39,7 @@ variable "chartmuseum" {
 }
 
 # ------------------------------------------------------------------------------
-# Docker Registry inputs and locals
+# Docker Registry input variables
 # ------------------------------------------------------------------------------
 
 variable "docker_registry" {

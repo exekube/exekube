@@ -1,4 +1,7 @@
-# We need to input ChartMuseum credentials to be able to pull the app Helm chart from ChartMuseum
+# ------------------------------------------------------------------------------
+# Shared input variables (credentials)
+# ------------------------------------------------------------------------------
+
 variable "chartmuseum" {
   type = "map"
 
@@ -9,7 +12,10 @@ variable "chartmuseum" {
   }
 }
 
-# App (Helm release) inputs
+# ------------------------------------------------------------------------------
+# Rails App input variables
+# ------------------------------------------------------------------------------
+
 variable "rails_app" {
   type = "map"
 
