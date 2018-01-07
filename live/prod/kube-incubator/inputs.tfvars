@@ -20,7 +20,7 @@ drupal = {
 # ------------------------------------------------------------------------------
 
 wordpress = {
-  enabled     = false
+  enabled     = true
   domain_name = "wordpress-app.flexeption.pw"
 }
 
