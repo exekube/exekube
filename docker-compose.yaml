@@ -13,6 +13,7 @@ services:
       TF_VAR_gcp_remote_state_bucket:
       TF_VAR_cloudflare:
       TF_VAR_chartmuseum:
+      TF_VAR_chartmuseum_repo:
       TF_VAR_docker_registry:
     ports:
       - 8001:8001
