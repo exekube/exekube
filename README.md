@@ -2,7 +2,42 @@
 
 # Exekube
 
-*Exekube* is a declarative framework for administering Kubernetes clusters and deploying containerized software onto them.
+*Exekube* is a declarative framework for administering Kubernetes clusters and deploying containerized software onto them. Here is a quick example of what Exekube modules (the code you will author) look like:
+
+```tf
+# ------------------------------------------------------------------------------
+# Exekube 0.1.0 | live/prod/kube-ci/inputs.tfvars
+# ------------------------------------------------------------------------------
+
+jenkins = {
+  enabled     = true
+  values_file = "values/jenkins.yaml"
+  domain_name = "ci.example.com"
+
+  # release_name = "jenkins"
+}
+
+chartmuseum = {
+  enabled     = true
+  values_file = "values/chartmuseum.yaml"
+  domain_name = "charts.example.com"
+
+  # release_name = "chartmuseum"
+  # username = ""
+  # password = ""
+}
+
+docker_registry = {
+  enabled     = true
+  values_file = "values/docker-registry.yaml"
+  domain_name = "r.example.com"
+  # release_name = "docker-registry"
+
+  # export TF_VAR_docker_registry='{ username = "", password = "" }'
+  # username = ""
+  # password = ""
+}
+```
 
 ## Introduction
 
