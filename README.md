@@ -143,6 +143,10 @@ The only requirements, depending on your local OS:
     xk plan
     xk apply
 
+    # You can also apply or destroy configuration for individual live modules
+    xk apply live/prod/kube-ci/
+    xk destroy live/prod/kube-custom/
+
     # To make the cluster dashboard available at localhost:8001/ui, run
     docker-compose up -d
     # To disable local dashboard, run `docker-compose down`
