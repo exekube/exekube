@@ -1,7 +1,5 @@
 ⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
 
-⚠️ If you cloned / forked this repo, you'll need to own a domain name (DNS zone) like `example.com` and have CloudFlare DNS servers set up for it. You then need to search and replace the domain names I use for testing -- `c6ns.pw` and `flexeption.pw` (also `example.com` in docs) -- with the ones you own, and make sure they're added to `live/prod/kube-core/inputs.tfvars` so that we can later point our domain name to the cluster LoadBalancer.
-
 # Exekube
 
 *Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you full control over your infrastructure and container orchestration while also having a great default state with a *one-click-to-deploy* experience.
@@ -133,9 +131,11 @@ The only requirements, depending on your local OS:
 
 7. Edit code in `live` and `modules` directories:
 
-    You'll need CloudFlare credentials (email + token) to configure DNS. Search and replace `c6ns.pw` and `flexeption.pw` in the repo to one or more of your CloudFlare managed DNS zones.
+    ⚠️ If you cloned / forked this repo, you'll need to have a domain name (DNS zone) like `example.com` and have CloudFlare DNS servers set up for it.
 
-    [TODO] [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/)
+    Then, in your text editor, search and replace `c6ns.pw`, and `flexeption.pw` with your domain zones.
+
+    [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/) [TODO]
 
 8. Deploy all *live modules* (the cluster and all Kubernetes resources):
     ```sh
