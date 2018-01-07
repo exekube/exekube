@@ -4,9 +4,6 @@
 
 chartmuseum_repo = {
   domain_name = "chartmuseum.c6ns.pw"
-
-  # username = ""
-  # password = ""
 }
 
 rails_app = {
