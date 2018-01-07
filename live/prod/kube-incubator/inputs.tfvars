@@ -11,7 +11,7 @@ istio = {
 # ------------------------------------------------------------------------------
 
 drupal = {
-  enabled     = true
+  enabled     = false
   domain_name = "drupal-app.flexeption.pw"
 }
 
@@ -20,6 +20,15 @@ drupal = {
 # ------------------------------------------------------------------------------
 
 wordpress = {
-  enabled     = true
+  enabled     = false
   domain_name = "wordpress-app.flexeption.pw"
+}
+
+# ------------------------------------------------------------------------------
+# A sample Moodle app
+# ------------------------------------------------------------------------------
+
+moodle = {
+  enabled     = false
+  domain_name = "moodle.flexeption.pw"
 }

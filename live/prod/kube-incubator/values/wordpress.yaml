@@ -156,6 +156,7 @@ ingress:
     annotations:
       kubernetes.io/ingress.class: nginx
       kubernetes.io/tls-acme: true
+      ingress.kubernetes.io/proxy-body-size: 50m
 
   secrets:
   ## If you're providing your own certificates, please use this to add the certificates as secrets

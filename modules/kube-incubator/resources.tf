@@ -78,3 +78,27 @@ data "template_file" "wordpress" {
     domain_name = "${var.wordpress["domain_name"]}"
   }
 }
+
+# ------------------------------------------------------------------------------
+# A sample Moodle app
+# ------------------------------------------------------------------------------
+
+resource "helm_release" "moodle" {
+  count      = "${var.moodle["enabled"]}"
+  depends_on = ["helm_release.wordpress"]
+
+  # depends_on = ["helm_repository.chart_repo"]
+
+  name       = "${var.moodle["release_name"]}"
+  repository = "stable"
+  chart      = "moodle"
+  values     = "${data.template_file.moodle.rendered}"
+}
+
+data "template_file" "moodle" {
+  template = "${file("${format("%s/%s", path.module, var.moodle["values_file"])}")}"
+
+  vars {
+    domain_name = "${var.moodle["domain_name"]}"
+  }
+}

@@ -41,3 +41,18 @@ variable "wordpress" {
     release_name = "wordpress-app"
   }
 }
+
+# ------------------------------------------------------------------------------
+# A sample Moodle app
+# ------------------------------------------------------------------------------
+
+variable "moodle" {
+  type = "map"
+
+  default = {
+    enabled      = false
+    domain_name  = ""
+    values_file  = "values/moodle.yaml"
+    release_name = "moodle-app"
+  }
+}
