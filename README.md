@@ -1,6 +1,6 @@
 ⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
 
-⚠️ If you cloned / forked this repo, you'll need a CloudFlare free account and a registered DNS zone. Search and replace the domain names I use for testing -- `c6ns.pw` and `flexeption.pw` -- with the ones you own, and add them to `live/prod/kube-core/inputs.tfvars`.
+⚠️ If you cloned / forked this repo, you'll need a CloudFlare free account and a registered DNS zone. Search and replace the domain names I use for testing -- `c6ns.pw` and `flexeption.pw` (also `example.com` in docs) -- with the ones you own, and add them to `live/prod/kube-core/inputs.tfvars`.
 
 # Exekube
 
