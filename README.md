@@ -4,7 +4,7 @@
 
 # Exekube
 
-*Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you full control over your infrastructure and container orchestration while also having a great default state with a *one-click experience*.
+*Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you full control over your infrastructure and container orchestration while also having a great default state with a *one-click-to-deploy* experience.
 
 Here is a quick example of how you'd deploy CI tools using Exekube:
 
