@@ -20,6 +20,7 @@ ingress:
     kubernetes.io/tls-acme: "true"
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: docker-registry-auth
+    ingress.kubernetes.io/proxy-body-size: 500m
     nginx.ingress.kubernetes.io/auth-realm: "Authentication required to access the registry"
   tls:
     - secretName: docker-registry-tls
