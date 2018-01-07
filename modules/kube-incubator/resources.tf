@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# Add private Helm repository
+# Add a Helm repository
 # ------------------------------------------------------------------------------
 
 resource "helm_repository" "chart_repository" {
@@ -12,7 +12,7 @@ resource "helm_repository" "chart_repository" {
 }
 
 # ------------------------------------------------------------------------------
-# Install incubator Helm charts
+# Istio framework: ingress-controller + monitoring
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "istio" {
@@ -34,6 +34,8 @@ data "template_file" "istio" {
 }
 
 # ------------------------------------------------------------------------------
+# A sample Drupal app
+# ------------------------------------------------------------------------------
 
 resource "helm_release" "drupal" {
   count = "${var.drupal["enabled"]}"
@@ -54,6 +56,8 @@ data "template_file" "drupal" {
   }
 }
 
+# ------------------------------------------------------------------------------
+# A sample Wordpress app
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "wordpress" {
