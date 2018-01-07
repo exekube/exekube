@@ -1,5 +1,7 @@
 ⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
 
+⚠️ If you cloned / forked this repo, you'll need a CloudFlare free account and a registered DNS zone. Replace the domain names I use for testing -- c6ns.pw and flexeption.pw with the ones you own, and add them in `live/prod/kube-core/inputs.tfvars`.
+
 # Exekube
 
 *Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you full control over your infrastructure and container orchestration while also having a great default state with a *one-click experience*.
