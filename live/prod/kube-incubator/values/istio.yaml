@@ -1,23 +1,15 @@
-## Install Default RBAC roles and bindings
 rbac:
   install: false
   apiVersion: v1beta1
-
 istio:
   install: false
   release: 0.2.12
-
-## Enable Istio auth feature
-## This deploys a CA in the namespace and enables mTLS between the services
 auth:
   enabled: true
-
-## Initializer configuration
 initializer:
   customConfigMap: false
   enabled: false
   policy: enabled
-
   deployment:
     name: initializer
     image: docker.io/istio/sidecar_initializer
@@ -27,22 +19,10 @@ initializer:
     replicas: 1
     annotations:
       sidecar.istio.io/inject: "false"
-    ## Node labels for pod assignment
-    ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-    ##
     nodeSelector: {}
     resources: {}
-    #  limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
-
-## Mixer configuration
 mixer:
   customConfigMap: false
-
   service:
     type: ClusterIP
     annotations: {}
@@ -52,7 +32,6 @@ mixer:
     externalStatsdUdpPort: 9125
     externalConfigApiPort: 9094
     externalPrometheusPort: 42422
-
   deployment:
     name: mixer
     image: docker.io/istio/mixer
@@ -60,57 +39,30 @@ mixer:
     replicas: 1
     annotations:
       sidecar.istio.io/inject: "false"
-    ## Node labels for pod assignment
-    ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-    ##
     nodeSelector: {}
     resources: {}
-    #  limits:
-    #    cpu: 100m
-    #    memory: 128Mi
-    #  requests:
-    #    cpu: 100m
-    #    memory: 128Mi
-
-## Pilot configuration
 pilot:
   name: pilot
   customConfigMap: false
-
   service:
     type: ClusterIP
     externalHttpDiscovery: 8080
     externalAdmissionWebhookServer: 443
-
   deployment:
     replicas: 1
     annotations:
       sidecar.istio.io/inject: "false"
-    ## Node labels for pod assignment
-    ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-    ##
     nodeSelector: {}
-
     discovery:
       name: discovery
       image: docker.io/istio/pilot
       imagePullPolicy: IfNotPresent
       resources: {}
-      #  limits:
-      #    cpu: 100m
-      #    memory: 128Mi
-      #  requests:
-      #    cpu: 100m
-      #    memory: 128Mi
-
-## Ingress configuration
 ingress:
-
   service:
     type: ClusterIP
     externalHttpPort: 80
     externalHttpsPort: 443
-
   deployment:
     name: ingress
     annotations:
@@ -118,25 +70,12 @@ ingress:
     image: docker.io/istio/proxy_debug
     imagePullPolicy: IfNotPresent
     replicas: 1
-    ## Node labels for pod assignment
-    ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-    ##
     nodeSelector: {}
     resources:
-    #  limits:
-    #    cpu: 100m
-    #    memory: 128Mi
-    #  requests:
-    #    cpu: 100m
-    #    memory: 128Mi
-
-## Engress configuration
 egress:
-
   service:
     type: ClusterIP
     externalHttpPort: 80
-
   deployment:
     name: egress
     annotations:
@@ -144,22 +83,9 @@ egress:
     image: docker.io/istio/proxy_debug
     imagePullPolicy: IfNotPresent
     replicas: 1
-    ## Node labels for pod assignment
-    ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-    ##
     nodeSelector: {}
     resources: {}
-    #  limits:
-    #    cpu: 100m
-    #    memory: 128Mi
-    #  requests:
-    #    cpu: 100m
-    #    memory: 128Mi
-
-## CA configuration
-## Only installed if auth.enabled
 ca:
-
   deployment:
     name: ca
     annotations:
@@ -167,30 +93,14 @@ ca:
     image: docker.io/istio/istio-ca
     imagePullPolicy: IfNotPresent
     replicas: 1
-    ## Node labels for pod assignment
-    ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-    ##
     nodeSelector: {}
     resources: {}
-    #  limits:
-    #    cpu: 100m
-    #    memory: 128Mi
-    #  requests:
-    #    cpu: 100m
-    #    memory: 128Mi
-
-## Addons configuration
-## Each addon may be disabled
 addons:
-
   zipkin:
-
     enabled: true
-
     service:
       type: NodePort
       externalPort: 9411
-
     deployment:
       name: zipkin
       annotations:
@@ -199,28 +109,15 @@ addons:
       imageTag: latest
       imagePullPolicy: IfNotPresent
       replicas: 1
-      ## Node labels for pod assignment
-      ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-      ##
       nodeSelector: {}
       resources: {}
-      #  limits:
-      #    cpu: 100m
-      #    memory: 128Mi
-      #  requests:
-      #    cpu: 100m
-      #    memory: 128Mi
-
   prometheus:
-
     enabled: false
-
     service:
       type: NodePort
       externalPort: 9090
       annotations:
         prometheus.io/scrape: 'true'
-
     deployment:
       name: prometheus
       annotations:
@@ -229,26 +126,13 @@ addons:
       imageTag: v1.1.1
       imagePullPolicy: IfNotPresent
       replicas: 1
-      ## Node labels for pod assignment
-      ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-      ##
       nodeSelector: {}
       resources: {}
-      #  limits:
-      #    cpu: 100m
-      #    memory: 128Mi
-      #  requests:
-      #    cpu: 100m
-      #    memory: 128Mi
-
   grafana:
-
     enabled: false
-
     service:
       type: NodePort
       externalPort: 3000
-
     deployment:
       name: grafana
       annotations:
@@ -256,26 +140,13 @@ addons:
       image: docker.io/istio/grafana
       imagePullPolicy: IfNotPresent
       replicas: 1
-      ## Node labels for pod assignment
-      ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-      ##
       nodeSelector: {}
       resources: {}
-      #  limits:
-      #    cpu: 100m
-      #    memory: 128Mi
-      #  requests:
-      #    cpu: 100m
-      #    memory: 128Mi
-
   servicegraph:
-
     enabled: false
-
     service:
       type: NodePort
       externalPort: 8088
-
     deployment:
       name: servicegraph
       annotations:
@@ -283,14 +154,5 @@ addons:
       image: docker.io/istio/servicegraph
       imagePullPolicy: IfNotPresent
       replicas: 1
-      ## Node labels for pod assignment
-      ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-      ##
       nodeSelector: {}
       resources: {}
-      #  limits:
-      #    cpu: 100m
-      #    memory: 128Mi
-      #  requests:
-      #    cpu: 100m
-      #    memory: 128Mi

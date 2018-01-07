@@ -11,7 +11,7 @@ istio = {
 # ------------------------------------------------------------------------------
 
 drupal = {
-  enabled     = false
+  enabled     = true
   domain_name = "drupal-app.flexeption.pw"
 }
 
