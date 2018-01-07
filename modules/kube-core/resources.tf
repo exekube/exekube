@@ -53,13 +53,13 @@ resource "helm_release" "ingress_controller" {
 }
 
 resource "helm_release" "kube_lego" {
-  count = "${var.kube_lego["enabled"]}"
+  depends_on = ["helm_release.ingress_controller"]
+  count      = "${var.kube_lego["enabled"]}"
 
   name       = "kube-lego"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "kube-lego"
   values     = "${file("${format("%s/%s", path.module, var.kube_lego["values_file"])}")}"
-  depends_on = ["helm_release.ingress_controller"]
 
   provisioner "local-exec" {
     command = "sleep 30"
