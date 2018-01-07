@@ -2,13 +2,14 @@
 # Module parameters
 # ------------------------------------------------------------------------------
 
-chartmuseum = {
-  domain_name = "charts.c6ns.pw"
+chartmuseum_repo = {
+  domain_name = "chartmuseum.c6ns.pw"
+
   # username = ""
   # password = ""
 }
 
 rails_app = {
-  enabled = true
+  enabled     = true
   domain_name = "rails-app.c6ns.pw"
 }

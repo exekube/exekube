@@ -4,7 +4,7 @@
 
 resource "helm_repository" "chart_repo" {
   name = "chart-repository"
-  url  = "https://${var.chartmuseum["username"]}:${var.chartmuseum["password"]}@${var.chartmuseum["domain_name"]}"
+  url  = "https://${var.chartmuseum_repo["username"]}:${var.chartmuseum_repo["password"]}@${var.chartmuseum_repo["domain_name"]}"
 }
 
 # ------------------------------------------------------------------------------

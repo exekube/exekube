@@ -2,7 +2,7 @@
 # Shared input variables (credentials)
 # ------------------------------------------------------------------------------
 
-variable "chartmuseum" {
+variable "chartmuseum_repo" {
   type = "map"
 
   default = {
