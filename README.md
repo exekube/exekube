@@ -108,10 +108,11 @@ The only requirements, depending on your local OS:
 
 #### Cloud provider setup: do it once
 
-1. Create `xk` (stands for "exekube") alias for your shell session (or save to ~/.bashrc):
+0. Create `xk` (stands for "exekube") alias for your shell session (or save to ~/.bashrc):
     ```bash
     alias xk=". .env && docker-compose run --rm exekube"
     ```
+1. Rename `.env.example` file in repo root to `.env`. Configure `${TF_VAR_gcp_project}` and `${TF_VAR_gcp_remote_state_bucket}` shell exports. ⚠️ These have to be exported from your local shell to Exekube docker container in `docker-compose.yaml`
 2. [Set up a Google Account](https://console.cloud.google.com/) for GCP (Google Cloud Platform), create a project named `${TF_VAR_gcp_project}`, and enable billing.
 3. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
 4. [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
@@ -131,6 +132,8 @@ The only requirements, depending on your local OS:
 #### Cluster setup: do it as often as you need
 
 7. Edit code in `live` and `modules` directories:
+
+    You'll need CloudFlare credentials (email + token) to configure DNS. Search and replace `c6ns.pw` and `flexeption.pw` in the repo to one or more of your CloudFlare managed DNS zones.
 
     [TODO] [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/)
 
