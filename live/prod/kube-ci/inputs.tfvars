@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # live/prod/kube-ci | HCL (HashiCorp Configuration Language)
 #
-# Docs, deafaults, all inputs: modules/kube-ci/inputs.tf
+# Docs, defaults, all inputs: modules/kube-ci/inputs.tf
 # ------------------------------------------------------------------------------
 
 jenkins = {
