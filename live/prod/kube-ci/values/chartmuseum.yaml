@@ -1,3 +1,6 @@
+## Docs (in comments):
+## https://github.com/kubernetes/charts/blob/master/incubator/chartmuseum/values.yaml
+##
 replicaCount: 1
 image:
   repository: chartmuseum/chartmuseum
@@ -5,56 +8,33 @@ image:
   pullPolicy: IfNotPresent
 env:
   open:
-    # storage backend, can be one of: local, amazon, google
     STORAGE: local
-    # s3 bucket to store charts for amazon storage backend
     STORAGE_AMAZON_BUCKET:
-    # prefix to store charts for amazon storage backend
     STORAGE_AMAZON_PREFIX:
-    # region of s3 bucket to store charts
     STORAGE_AMAZON_REGION:
-    # alternative s3 endpoint
     STORAGE_AMAZON_ENDPOINT:
-    # gcs bucket to store charts for google storage backend
     STORAGE_GOOGLE_BUCKET:
-    # prefix to store charts for google storage backend
     STORAGE_GOOGLE_PREFIX:
-    # form field which will be queried for the chart file content
     CHART_POST_FORM_FIELD_NAME: chart
-    # form field which will be queried for the provenance file content
     PROV_POST_FORM_FIELD_NAME: prov
-    # show debug messages
     DEBUG: true
-    # output structured logs as json
     LOG_JSON: true
-    # disable Prometheus metrics
     DISABLE_METRICS: false
-    # disable all routes prefixed with /api
     DISABLE_API: false
-    # allow chart versions to be re-uploaded
     ALLOW_OVERWRITE: false
-    # absolute url for .tgzs in index.yaml
     CHART_URL:
   secret:
-    # username for basic http authentication
     BASIC_AUTH_USER: ${username}
-    # password for basic http authentication
     BASIC_AUTH_PASS: ${password}
 deployment:
-  ## Chartmuseum Deployment annotations
   annotations: {}
-  #   name: value
 replica:
-  ## Chartmuseum Replicas annotations
   annotations: {}
-  ## Read more about kube2iam to provide access to s3 https://github.com/jtblin/kube2iam
-  #   iam.amazonaws.com/role: role-arn
 service:
   type: ClusterIP
   externalPort: 8080
   internalPort: 8080
   annotations: {}
-    # foo.io/bar: "true"
 resources:
   limits:
     cpu: 100m
@@ -66,8 +46,6 @@ persistence:
   Enabled: true
   AccessMode: ReadWriteOnce
   Size: 2Gi
-
-## Ingress for load balancer
 ingress:
   enabled: true
   annotations:
@@ -84,30 +62,3 @@ ingress:
     - secretName: chartmuseum-tls
       hosts:
         - ${domain_name}
-
-## Chartmuseum Ingress labels
-##
-#   labels:
-#     dns: "route53"
-
-## Chartmuseum Ingress annotations
-##
-#   annotations:
-#     kubernetes.io/ingress.class: nginx
-#     kubernetes.io/tls-acme: "true"
-
-## Chartmuseum Ingress hostnames
-## Must be provided if Ingress is enabled
-##
-#   hosts:
-#     chartmuseum.domain.com:
-#         - /charts
-#         - /index.yaml
-
-## Chartmuseum Ingress TLS configuration
-## Secrets must be manually created in the namespace
-##
-#   tls:
-#   - secretName: chartmuseum-server-tls
-#     hosts:
-#     - chartmuseum.domain.com

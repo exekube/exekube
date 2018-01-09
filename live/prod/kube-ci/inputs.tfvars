@@ -1,31 +1,20 @@
 # ------------------------------------------------------------------------------
-# Module parameters
+# live/prod/kube-ci | HCL (HashiCorp Configuration Language)
+#
+# Docs, deafaults, all inputs: modules/kube-ci/inputs.tf
 # ------------------------------------------------------------------------------
 
 jenkins = {
   enabled     = true
-  values_file = "values/jenkins.yaml"
-  domain_name = "jenkins.c6ns.pw"
-
-  # release_name = "jenkins"
+  domain_name = "ci.flexeption.pw"
 }
 
 chartmuseum = {
   enabled     = true
-  values_file = "values/chartmuseum.yaml"
-  domain_name = "chartmuseum.c6ns.pw"
-
-  # release_name = "chartmuseum"
-  # username = ""
-  # password = ""
+  domain_name = "charts.flexeption.pw"
 }
 
 docker_registry = {
   enabled     = true
-  values_file = "values/docker-registry.yaml"
-  domain_name = "docker-registry.c6ns.pw"
-
-  # release_name = "docker-registry"
-  # username = ""
-  # password = ""
+  domain_name = "registry.flexeption.pw"
 }

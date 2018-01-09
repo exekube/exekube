@@ -1,6 +1,6 @@
-# Default values for docker-registry.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+## Docs (in comments):
+## https://github.com/kubernetes/charts/blob/master/stable/docker-registry/values.yaml
+##
 replicaCount: 1
 image:
   repository: registry
@@ -12,7 +12,6 @@ service:
   port: 5000
 ingress:
   enabled: true
-  # Used to create an Ingress record.
   hosts:
     - ${domain_name}
   annotations:
@@ -29,33 +28,15 @@ ingress:
         - ${domain_name}
 
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
 persistence:
   accessMode: 'ReadWriteOnce'
   enabled: true
   size: 10Gi
-  # storageClass: '-'
 
-# set the type of filesystem to use
 storage: filesystem
 
-# Set this to name of secret for tls certs
-# tlsSecretName: registry.docker.example.com
 secrets:
   haSharedSecret: ""
-# Secrets for S3 access and secret keys
-#   s3:
-#     accessKey: ""
-#     secretKey: ""
 configData:
   version: 0.1
   log:

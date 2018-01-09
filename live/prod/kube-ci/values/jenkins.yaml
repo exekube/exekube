@@ -1,3 +1,6 @@
+## Docs (in comments):
+## https://github.com/kubernetes/charts/blob/master/stable/jenkins/values.yaml
+##
 Master:
   Name: jenkins-master
   Image: "jenkins/jenkins"

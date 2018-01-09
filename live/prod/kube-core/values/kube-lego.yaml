@@ -1,3 +1,6 @@
+## Docs (in comments):
+## https://github.com/kubernetes/charts/blob/master/stable/kube-lego/values.yaml
+##
 config:
   LEGO_EMAIL: account@example.com
   LEGO_URL: https://acme-v01.api.letsencrypt.org/directory
