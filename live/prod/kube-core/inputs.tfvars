@@ -7,12 +7,6 @@ cluster_dns_zones = [
   "flexeption.pw",
 ]
 
-ingress_controller {
-  enabled = true
-  # values_file = "values/ingress-controller.yaml"
-}
+ingress_controller = {}
 
-kube_lego {
-  enabled = true
-  # values_file = "values/kube-lego.yaml"
-}
+kube_lego = {}
