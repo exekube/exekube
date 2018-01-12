@@ -1,0 +1,42 @@
+image: bitnami/wordpress:4.9.1-r1
+imagePullPolicy: IfNotPresent
+wordpressUsername: user
+wordpressEmail: user@example.com
+wordpressFirstName: FirstName
+wordpressLastName: LastName
+wordpressBlogName: Ilya's Blog!
+allowEmptyPassword: yes
+externalDatabase:
+  host: localhost
+  user: bn_wordpress
+  database: bitnami_wordpress
+  port: 3306
+mariadb:
+  enabled: true
+  mariadbDatabase: bitnami_wordpress
+  mariadbUser: bn_wordpress
+  persistence:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 8Gi
+serviceType: ClusterIP
+healthcheckHttps: false
+ingress:
+  enabled: true
+  hosts:
+  - name: ${domain_name}
+    tls: true
+    tlsSecret: ${domain_name}-tls
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      kubernetes.io/tls-acme: true
+  secrets:
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 10Gi
+resources:
+  requests:
+    memory: 512Mi
+    cpu: 300m
+nodeSelector: {}
