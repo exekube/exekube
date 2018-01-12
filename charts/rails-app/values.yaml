@@ -7,6 +7,9 @@ image:
   repository: ilyasotkov/rails-react-boilerplate
   tag: latest
   pullPolicy: Always
+  # pullSecrets:
+    # - name: registry-login-secret 
+  #
 
 serviceType: ClusterIP
 servicePort: 3000
