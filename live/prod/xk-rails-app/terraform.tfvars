@@ -8,7 +8,7 @@ terragrunt = {
   }
 
   dependencies {
-    paths = ["../gcp-project"]
+    paths = ["../gcp-project", "../xk-core", "../xk-registry", "../xk-chartmuseum"]
   }
 
   include = {
