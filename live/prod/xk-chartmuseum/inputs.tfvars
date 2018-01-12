@@ -1,6 +1,6 @@
 release = {
   enabled        = true
-  release_name   = "charts"
+  release_name   = "chartmuseum"
   release_values = "values.yaml"
 
   chart_repo    = "https://kubernetes-charts-incubator.storage.googleapis.com"

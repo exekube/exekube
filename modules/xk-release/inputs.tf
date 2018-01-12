@@ -20,6 +20,7 @@ variable "release" {
     chartrepo_password = ""
 
     basic_auth        = ""
+    pull_secret       = ""
     registry_username = ""
     registry_password = ""
   }

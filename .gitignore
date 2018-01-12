@@ -6,6 +6,8 @@ bin
 live/**/docker
 **/*.htpasswd
 **/.terraform/*
+**/docker-config.json
+charts/*/push.sh
 
 # .tfstate files
 *.tfstate

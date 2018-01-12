@@ -22,9 +22,9 @@ spec:
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
     spec:
-      {{- if .Values.image.pullSecrets }}
+      {{- if .Values.image.pullSecret }}
       imagePullSecrets:
-{{ toYaml .Values.image.pullSecrets | indent 8 }}
+        - name: {{ .Values.image.pullSecret}}
       {{- end }}
       containers:
         - name: {{ template "rails-app.fullname" . }}
