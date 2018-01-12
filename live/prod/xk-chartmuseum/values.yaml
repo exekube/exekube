@@ -1,6 +1,3 @@
-## Docs (in comments):
-## https://github.com/kubernetes/charts/blob/master/incubator/chartmuseum/values.yaml
-##
 replicaCount: 1
 image:
   repository: chartmuseum/chartmuseum
@@ -24,8 +21,7 @@ env:
     ALLOW_OVERWRITE: false
     CHART_URL:
   secret:
-    BASIC_AUTH_USER: ${username}
-    BASIC_AUTH_PASS: ${password}
+
 deployment:
   annotations: {}
 replica:
@@ -51,7 +47,9 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
-    ingress.kubernetes.io/proxy-body-size: 5m
+    ingress.kubernetes.io/auth-type: basic
+    ingress.kubernetes.io/auth-secret: chartrepo-htpasswd
+    ingress.kubernetes.io/auth-realm: Authentication required
   hosts:
     "${domain_name}":
       - /api/charts

@@ -1,12 +1,11 @@
 # ------------------------------------------------------------------------------
 # live/prod/kube-core | HCL (HashiCorp Configuration Language)
 #
-# Docs, deafaults, all inputs: modules/kube-core/inputs.tf
+# Docs, defaults, all inputs: modules/kube-core/inputs.tf
 # ------------------------------------------------------------------------------
 
 cluster_dns_zones = [
-  "c6ns.pw",
-  "flexeption.pw",
+  "sotkov.pw",
 ]
 
 ingress_controller = {}

@@ -12,10 +12,15 @@ variable "release" {
     chart_version  = ""
     release_name   = ""
     release_values = "values.yaml"
+    post_hook      = "echo hello world"
 
-    # These are custom Exekube variables
-    # that allow variable interpolation in release values.yaml
-    # You don't have to use them if you prefer clean YAML in Helm release values
     domain_name = ""
+
+    chartrepo_username = ""
+    chartrepo_password = ""
+
+    basic_auth        = ""
+    registry_username = ""
+    registry_password = ""
   }
 }

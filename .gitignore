@@ -3,6 +3,8 @@ config
 bin
 .archive
 .env
+live/**/docker
+**/*.htpasswd
 **/.terraform/*
 
 # .tfstate files
