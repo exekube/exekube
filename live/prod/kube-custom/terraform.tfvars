@@ -7,6 +7,8 @@ terragrunt = {
   # working directory, into a temporary folder, and execute your Terraform commands in that folder.
   terraform {
     source = "/exekube/modules//kube-custom"
+
+    # source = "git::git@github.com/ilyasotkov/modules.git//kube-ci?ref=v0.2.0"
   }
 
   # Include all settings from the root terraform.tfvars file

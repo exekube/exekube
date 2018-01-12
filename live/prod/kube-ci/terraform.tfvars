@@ -4,6 +4,7 @@
 
 terragrunt = {
   terraform {
+    # source = "git::git@github.com/ilyasotkov/modules.git//kube-ci?ref=v0.2.0"
     source = "/exekube/modules//kube-ci"
   }
 
