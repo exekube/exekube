@@ -16,6 +16,11 @@ terragrunt = {
       arguments = ["-auto-approve"]
     }
 
+    extra_arguments "force_destroy" {
+      commands  = ["destroy"]
+      arguments = ["-force"]
+    }
+
     extra_arguments "custom_vars" {
       commands = [
         "apply",
