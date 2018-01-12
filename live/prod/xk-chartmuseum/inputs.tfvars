@@ -12,6 +12,6 @@ release = {
   basic_auth = "chartrepo.htpasswd"
 
   post_hook = <<-EOF
-              echo "sleeping 5 seconds..." && sleep 5 && helm repo update
+              sleep 15 && helm repo update
               EOF
 }
