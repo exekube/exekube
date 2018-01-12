@@ -3,11 +3,6 @@ terraform {
   backend "gcs" {}
 }
 
-provider "cloudflare" {
-  email = "${var.cloudflare["email"]}"
-  token = "${var.cloudflare["token"]}"
-}
-
 provider "helm" {}
 
 provider "kubernetes" {}
