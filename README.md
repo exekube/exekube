@@ -4,39 +4,21 @@
 
 *Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you full control over your infrastructure and container orchestration while also having a great default state with a *one-click-to-deploy* experience.
 
-Here is a quick example of how you'd deploy CI tools using Exekube:
+Here is a quick example of how you'd deploy Jenkins using Exekube (a Terraform module):
 
 ```tf
-# ------------------------------------------------------------------------------
-# live/prod/kube-ci/inputs.tfvars | HCL (HashiCorp Configuration Language)
-#
-# Uses modules//kube-ci v0.1.0 (Exekube built-in Terraform module)
-#
-# This is the "client side" of a Terraform / Terragrunt module.
-# You simply supply release values for a Kubernetes Helm chart and pick a
-# domain name for your app.
-# ------------------------------------------------------------------------------
+# live/prod/ci/jenkins/inputs.tfvars
 
-jenkins = {
-  enabled     = true
-  values_file = "values/jenkins.yaml"
-  domain_name = "ci.example.com"
-}
+release_spec = {
+  enabled        = true
+  release_name   = "ci"
+  release_values = "values.yaml"
 
-chartmuseum = {
-  enabled     = true
-  values_file = "values/chartmuseum.yaml"
-  domain_name = "charts.example.com"
+  chart_repo    = "stable"
+  chart_name    = "jenkins"
+  chart_version = "0.12.0"
 
-  # export TF_VAR_chartmuseum='{ username = "$()", password = "$()" }'
-}
-
-docker_registry = {
-  enabled     = true
-  values_file = "values/docker-registry.yaml"
-  domain_name = "r.example.com"
-
-  # export TF_VAR_docker_registry='{ username = "$()", password = "$()" }'
+  domain_name = "ci.example.pw"
 }
 ```
 
@@ -114,7 +96,7 @@ The only requirements, depending on your local OS:
 2. [Set up a Google Account](https://console.cloud.google.com/) for GCP (Google Cloud Platform), create a project named `${TF_VAR_gcp_project}`, and enable billing.
 3. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
 4. [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
-5. Use JSON credentials to authenticate our `gcloud` client tool:
+5. Use JSON credentials to authenticate us to `gcloud`:
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
@@ -133,7 +115,7 @@ The only requirements, depending on your local OS:
 
     ⚠️ If you cloned / forked this repo, you'll need to have a domain name (DNS zone) like `example.com` and have CloudFlare DNS servers set up for it.
 
-    Then, in your text editor, search and replace `c6ns.pw`, and `flexeption.pw` with your domain zones.
+    Then, in your text editor, search and replace `sotkov.pw` / `flexeption.pw` with your domain zones.
 
     [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/) [TODO]
 
@@ -144,8 +126,9 @@ The only requirements, depending on your local OS:
     xk apply
 
     # You can also apply or destroy configuration for individual live modules
-    xk apply live/prod/kube-ci/
-    xk destroy live/prod/kube-custom/
+    xk apply live/prod/gcp-project/
+    xk destroy live/prod/core/
+    xk apply live/prod/apps/
 
     # To make the cluster dashboard available at localhost:8001/ui, run
     docker-compose up -d

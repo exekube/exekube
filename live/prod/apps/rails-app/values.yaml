@@ -1,0 +1,22 @@
+replicaCount: 1
+image:
+  repository: registry.sotkov.pw/rails-react-boilerplate
+  tag: latest
+  pullPolicy: Always
+  pullSecret: docker-config-json
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - ${domain_name}
+  tls:
+    - secretName: ${domain_name}-tls
+      hosts:
+        - ${domain_name}
+postgresql:
+  persistence:
+    enabled: true
+  postgresUser: postgres
+  postgresPassword: postgres

@@ -1,0 +1,16 @@
+config:
+  LEGO_EMAIL: account@example.com
+  LEGO_URL: https://acme-v01.api.letsencrypt.org/directory
+  LEGO_PORT: 8080
+  LEGO_SUPPORTED_INGRESS_CLASS: nginx
+image:
+  repository: jetstack/kube-lego
+  tag: 0.1.5
+  pullPolicy: IfNotPresent
+nodeSelector: {}
+podAnnotations: {}
+replicaCount: 1
+resources: {}
+rbac:
+  create: false
+  serviceAccountName: default

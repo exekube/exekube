@@ -1,0 +1,62 @@
+replicaCount: 1
+image:
+  repository: chartmuseum/chartmuseum
+  tag: v0.2.7
+  pullPolicy: IfNotPresent
+env:
+  open:
+    STORAGE: local
+    STORAGE_AMAZON_BUCKET:
+    STORAGE_AMAZON_PREFIX:
+    STORAGE_AMAZON_REGION:
+    STORAGE_AMAZON_ENDPOINT:
+    STORAGE_GOOGLE_BUCKET:
+    STORAGE_GOOGLE_PREFIX:
+    CHART_POST_FORM_FIELD_NAME: chart
+    PROV_POST_FORM_FIELD_NAME: prov
+    DEBUG: true
+    LOG_JSON: true
+    DISABLE_METRICS: false
+    DISABLE_API: false
+    ALLOW_OVERWRITE: false
+    CHART_URL:
+  secret:
+
+deployment:
+  annotations: {}
+replica:
+  annotations: {}
+service:
+  type: ClusterIP
+  externalPort: 8080
+  internalPort: 8080
+  annotations: {}
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 80m
+    memory: 64Mi
+persistence:
+  Enabled: true
+  AccessMode: ReadWriteOnce
+  Size: 2Gi
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    ingress.kubernetes.io/auth-type: basic
+    ingress.kubernetes.io/auth-secret: chartrepo-htpasswd
+    ingress.kubernetes.io/auth-realm: Authentication required
+  hosts:
+    "${domain_name}":
+      - /api/charts
+      - /api/prov
+      - /charts
+      - /index.yaml
+  tls:
+    - secretName: chartmuseum-tls
+      hosts:
+        - ${domain_name}

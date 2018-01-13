@@ -4,7 +4,14 @@
 
 terragrunt = {
   terraform {
-    source = "/exekube/modules//gcp-project"
+    source = "/exekube/modules//xk-release"
+  }
+
+  dependencies {
+    paths = [
+      "../../gcp-project",
+      "../ingress-controller",
+    ]
   }
 
   include = {
