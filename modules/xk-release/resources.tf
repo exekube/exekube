@@ -28,7 +28,8 @@ data "kubernetes_service" "ingress_controller" {
 # ------------------------------------------------------------------------------
 
 resource "helm_repository" "private" {
-  count = "${var.release_spec["release_name"] == "chartmuseum" ? 1 : 0}"
+  depends_on = ["helm_release.release"]
+  count      = "${var.release_spec["release_name"] == "chartmuseum" ? 1 : 0}"
 
   name = "private"
   url  = "https://${var.release_spec["chartrepo_username"]}:${var.release_spec["chartrepo_password"]}@${var.release_spec["domain_name"]}"
