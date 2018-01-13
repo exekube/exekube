@@ -22,12 +22,6 @@ release_spec = {
 }
 ```
 
-And here is how you'd deploy a GKE cluster on Google Cloud Platform (GCP):
-
-```tf
-# TODO
-```
-
 ## Introduction
 
 You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
