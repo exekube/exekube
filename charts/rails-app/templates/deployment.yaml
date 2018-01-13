@@ -56,6 +56,20 @@ spec:
                   key: db-password
           ports:
             - containerPort: {{ .Values.servicePort | int }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.servicePort | int }}
+            initialDelaySeconds: 180
+            timeoutSeconds: 5
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.servicePort | int }}
+            initialDelaySeconds: 30
+            timeoutSeconds: 3
+            periodSeconds: 5
           workingDir: /app
           command: ["bash", "-c"]
           args: ["rails db:setup db:migrate && bundle exec puma -C config/puma.rb"]
