@@ -127,13 +127,18 @@ The only requirements, depending on your local OS:
 
 8. Deploy all *live modules* (the cluster and all Kubernetes resources):
     ```sh
-    # Edit $XK_LIVE_DIR environmental variable in docker-compose.yaml to change the what the `apply` command deploys
+    # The .env file (.env.example initially) defines the XK_LIVE_DIR
+    # environmental variable for default commands
     xk plan
     xk apply
 
-    # You can also apply or destroy configuration for individual live modules and groups of live modules
+    # You can also apply or destroy configuration for
+    # individual live modules and groups of live modules
+    #
+    # Trailing slash is optional
+    # Use bash completion!
     xk apply live/prod/gcp-project/
-    xk destroy live/prod/apps/rails-app
+    xk destroy live/prod/apps/rails-app/
     xk apply live/prod/ci/
 
     # To make the cluster dashboard available at localhost:8001/ui, run
