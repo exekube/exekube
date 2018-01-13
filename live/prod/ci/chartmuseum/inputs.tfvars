@@ -11,7 +11,5 @@ release_spec = {
 
   basic_auth = "chartrepo.htpasswd"
 
-  post_hook = <<-EOF
-              sleep 15 && helm repo update
-              EOF
+  post_hook = "sleep 15"
 }

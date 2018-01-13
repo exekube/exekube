@@ -33,6 +33,10 @@ resource "helm_repository" "private" {
 
   name = "private"
   url  = "https://${var.release_spec["chartrepo_username"]}:${var.release_spec["chartrepo_password"]}@${var.release_spec["domain_name"]}"
+
+  provisioner "local-exec" {
+    command = "helm repo update"
+  }
 }
 
 # ------------------------------------------------------------------------------
