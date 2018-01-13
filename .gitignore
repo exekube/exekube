@@ -8,6 +8,7 @@ live/**/docker
 **/.terraform/*
 **/docker-config.json
 charts/*/push.sh
+backup/tls
 
 # .tfstate files
 *.tfstate
