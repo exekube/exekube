@@ -8,6 +8,6 @@ cluster_name = "k8s-cluster"
 
 nodepool_name = "k8s-np"
 
-gke_version = "1.8.4-gke.1"
+gke_version = "1.8.6-gke.0"
 
 enable_legacy_auth = "true"
