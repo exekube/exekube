@@ -54,6 +54,14 @@ resource "helm_release" "release" {
   name   = "${var.release_spec["release_name"]}"
   values = "${data.template_file.release_values.rendered}"
 
+  reuse_values     = false
+  force_update     = false
+  disable_webhooks = false
+  timeout          = 300
+
+  wait          = false
+  recreate_pods = false
+
   provisioner "local-exec" {
     command = "${var.release_spec["post_hook"]}"
   }
