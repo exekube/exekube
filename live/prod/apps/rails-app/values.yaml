@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 2
 image:
   repository: registry.swarm.pw/rails-react-boilerplate
   tag: latest
