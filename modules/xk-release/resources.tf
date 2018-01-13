@@ -59,7 +59,7 @@ resource "helm_release" "release" {
   disable_webhooks = false
   timeout          = 300
 
-  wait          = false
+  wait          = true
   recreate_pods = false
 
   provisioner "local-exec" {
