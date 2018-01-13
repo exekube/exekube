@@ -5,5 +5,5 @@ release_spec = {
 
   chart_repo    = "stable"
   chart_name    = "kube-lego"
-  chart_version = "0.4.3"
+  chart_version = "0.3.0"
 }
