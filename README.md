@@ -131,10 +131,10 @@ The only requirements, depending on your local OS:
     xk plan
     xk apply
 
-    # You can also apply or destroy configuration for individual live modules
+    # You can also apply or destroy configuration for individual live modules and groups of live modules
     xk apply live/prod/gcp-project/
-    xk destroy live/prod/core/
-    xk apply live/prod/apps/
+    xk destroy live/prod/apps/rails-app
+    xk apply live/prod/ci/
 
     # To make the cluster dashboard available at localhost:8001/ui, run
     docker-compose up -d
