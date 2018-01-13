@@ -7,6 +7,8 @@
 Here is a quick example of how you'd deploy Jenkins using Exekube (a Terraform module):
 
 ```tf
+# live/prod/ci/jenkins/inputs.tfvars
+
 release_spec = {
   enabled        = true
   release_name   = "ci"
