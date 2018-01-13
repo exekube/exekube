@@ -17,4 +17,4 @@ RUN apk add --no-cache \
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 
-COPY vendor/terraform-provider-helm_linux_amd64 /root/.terraform.d/plugins/terraform-provider-helm_v0.5.0
+COPY vendor/terraform-provider-helm_linux_amd64 /root/.terraform.d/plugins/terraform-provider-helm_v0.6.0
