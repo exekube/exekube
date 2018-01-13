@@ -5,4 +5,9 @@ terraform {
 
 provider "helm" {}
 
+provider "cloudflare" {
+  email = "${var.cloudflare["email"]}"
+  token = "${var.cloudflare["token"]}"
+}
+
 provider "kubernetes" {}

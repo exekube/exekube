@@ -30,7 +30,6 @@ terragrunt = {
         "refresh",
       ]
 
-      # With the get_tfvars_dir() function, you can use relative paths!
       arguments = [
         "-var-file=${get_tfvars_dir()}/inputs.tfvars",
       ]

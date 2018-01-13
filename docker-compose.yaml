@@ -5,6 +5,7 @@ services:
     build: ./.docker
     working_dir: /exekube
     environment:
+      # TERRAGRUNT_SOURCE_UPDATE: "true"
       GOOGLE_CREDENTIALS: /exekube/credentials.json
       TF_LOG:
       TF_INPUT: 0

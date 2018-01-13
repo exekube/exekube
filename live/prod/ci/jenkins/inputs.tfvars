@@ -1,4 +1,4 @@
-release = {
+release_spec = {
   enabled        = true
   release_name   = "ci"
   release_values = "values.yaml"

@@ -1,8 +1,27 @@
 # ------------------------------------------------------------------------------
+# CloudFlare input variables
+# ------------------------------------------------------------------------------
+
+variable "cloudflare" {
+  type = "map"
+
+  default = {
+    email = ""
+    token = ""
+  }
+}
+
+variable "cluster_dns_zones" {
+  type = "list"
+
+  default = []
+}
+
+# ------------------------------------------------------------------------------
 # Helm release input variables
 # ------------------------------------------------------------------------------
 
-variable "release" {
+variable "release_spec" {
   type = "map"
 
   default = {

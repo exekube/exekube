@@ -1,4 +1,4 @@
-release = {
+release_spec = {
   enabled        = true
   release_name   = "chartmuseum"
   release_values = "values.yaml"

@@ -1,4 +1,4 @@
-release = {
+release_spec = {
   enabled     = true
   domain_name = "registry.sotkov.pw"
 
