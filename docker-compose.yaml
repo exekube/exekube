@@ -13,7 +13,7 @@ services:
       TF_VAR_gcp_project:
       TF_VAR_gcp_remote_state_bucket:
       TF_VAR_cloudflare:
-      TF_VAR_release:
+      TF_VAR_release_spec:
     ports:
       - 8001:8001
     volumes:
