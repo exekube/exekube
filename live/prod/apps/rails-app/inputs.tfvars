@@ -1,5 +1,5 @@
 release_spec = {
-  enabled        = true
+  enabled        = false
   release_name   = "rails-app"
   release_values = "values.yaml"
 
