@@ -18,7 +18,7 @@ release_spec = {
   chart_name    = "jenkins"
   chart_version = "0.12.0"
 
-  domain_name = "ci.example.pw"
+  domain_name = "ci.example.com"
 }
 ```
 
@@ -115,7 +115,7 @@ The only requirements, depending on your local OS:
 
     ⚠️ If you cloned / forked this repo, you'll need to have a domain name (DNS zone) like `example.com` and have CloudFlare DNS servers set up for it.
 
-    Then, in your text editor, search and replace `sotkov.pw` / `flexeption.pw` with your domain zones.
+    Then, in your text editor, search and replace `swarm.pw` / `flexeption.pw` with your domain zones.
 
     [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/) [TODO]
 

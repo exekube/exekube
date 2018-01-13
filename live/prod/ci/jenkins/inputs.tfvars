@@ -7,5 +7,5 @@ release_spec = {
   chart_name    = "jenkins"
   chart_version = "0.12.0"
 
-  domain_name = "ci.sotkov.pw"
+  domain_name = "ci.swarm.pw"
 }

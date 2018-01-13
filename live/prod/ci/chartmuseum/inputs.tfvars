@@ -7,7 +7,7 @@ release_spec = {
   chart_name    = "chartmuseum"
   chart_version = "0.3.1"
 
-  domain_name = "charts.sotkov.pw"
+  domain_name = "charts.swarm.pw"
 
   basic_auth = "chartrepo.htpasswd"
 

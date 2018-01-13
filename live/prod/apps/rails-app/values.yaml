@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: registry.sotkov.pw/rails-react-boilerplate
+  repository: registry.swarm.pw/rails-react-boilerplate
   tag: latest
   pullPolicy: Always
   pullSecret: docker-config-json

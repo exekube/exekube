@@ -1,6 +1,6 @@
 release_spec = {
   enabled     = true
-  domain_name = "registry.sotkov.pw"
+  domain_name = "registry.swarm.pw"
 
   release_name   = "registry"
   release_values = "values.yaml"

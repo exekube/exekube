@@ -1,5 +1,5 @@
 cluster_dns_zones = [
-  "sotkov.pw",
+  "swarm.pw",
 ]
 
 release_spec = {

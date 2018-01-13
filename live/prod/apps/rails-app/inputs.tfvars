@@ -8,5 +8,5 @@ release_spec = {
   chart_version = "0.1.0"
 
   pull_secret = "docker-config.json"
-  domain_name = "react.sotkov.pw"
+  domain_name = "react.swarm.pw"
 }
