@@ -1,5 +1,5 @@
 #!/bin/bash
-source=("jenkins-tls" "wp.swarm.pw-tls" "react.swarm.pw-tls" "docker-registry-tls" "chartmuseum-tls")
+source=("drone.swarm.pw-tls" "ci.swarm.pw-tls" "wp.swarm.pw-tls" "react.swarm.pw-tls" "registry.swarm.pw-tls" "charts.swarm.pw-tls")
 for i in ${source[@]}
 do
   echo "---" >> tls/secret.yaml \

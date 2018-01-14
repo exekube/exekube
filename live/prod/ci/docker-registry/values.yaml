@@ -25,7 +25,7 @@ ingress:
   hosts:
     - ${domain_name}
   tls:
-    - secretName: docker-registry-tls
+    - secretName: ${domain_name}-tls
       hosts:
         - ${domain_name}
 

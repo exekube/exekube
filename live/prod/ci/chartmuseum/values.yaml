@@ -57,6 +57,6 @@ ingress:
       - /charts
       - /index.yaml
   tls:
-    - secretName: chartmuseum-tls
+    - secretName: ${domain_name}-tls
       hosts:
         - ${domain_name}
