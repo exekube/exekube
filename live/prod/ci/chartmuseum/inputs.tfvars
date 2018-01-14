@@ -3,7 +3,7 @@ release_spec = {
   release_name   = "chartmuseum"
   release_values = "values.yaml"
 
-  chart_repo    = "https://kubernetes-charts-incubator.storage.googleapis.com"
+  chart_repo    = "incubator"
   chart_name    = "chartmuseum"
   chart_version = "0.3.1"
 
