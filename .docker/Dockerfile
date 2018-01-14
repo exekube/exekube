@@ -7,7 +7,7 @@ RUN apk add --no-cache \
         openssl \
         && gcloud components install alpha beta kubectl \
         && curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash \
-        && curl -o ./terraform.zip https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip \
+        && curl -o ./terraform.zip https://releases.hashicorp.com/terraform/0.11.2/terraform_0.11.2_linux_amd64.zip \
         && unzip terraform.zip \
         && mv terraform /usr/bin \
         && curl -L -o ./terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v0.13.23/terragrunt_linux_amd64 \
