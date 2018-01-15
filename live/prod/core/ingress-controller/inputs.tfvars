@@ -11,5 +11,10 @@ release_spec = {
   chart_name    = "nginx-ingress"
   chart_version = "0.8.23"
 
-  post_hook = "kubectl apply -f /exekube/backup/tls/secret.yaml"
+  post_hook = <<-EOF
+              kubectl apply -f /exekube/backup/tls/secret.yaml \
+              && kubectl create secret generic \
+              concourse-concourse \
+              --from-file=/exekube/live/prod/ci/concourse/secrets/
+              EOF
 }
