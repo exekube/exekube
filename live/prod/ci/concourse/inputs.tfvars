@@ -1,6 +1,6 @@
 release_spec = {
   enabled        = false
-  release_name   = "concouse"
+  release_name   = "concourse"
   release_values = "values.yaml"
 
   chart_repo    = "private"

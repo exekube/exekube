@@ -1,4 +1,5 @@
 concourse:
+  externalURL: https://${domain_name}
   githubAuth:
     enabled: true
     user: ilyasotkov
@@ -15,6 +16,9 @@ web:
       - secretName: ${domain_name}-tls
         hosts:
           - ${domain_name}
+
+postgresql:
+  postgresDatabase: concourse
 
 rbac:
   create: false
