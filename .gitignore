@@ -9,6 +9,8 @@ live/**/docker
 charts/*/push.sh
 backup/tls
 
+live/*/*/*/secrets
+
 # .tfstate files
 *.tfstate
 *.tfstate.*
