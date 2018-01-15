@@ -1,13 +1,12 @@
 terraform {
-  # The configuration for this backend will be filled in by Terragrunt
   backend "gcs" {}
 }
 
 provider "helm" {}
 
 provider "cloudflare" {
-  email = "${var.cloudflare["email"]}"
-  token = "${var.cloudflare["token"]}"
+  email = "${var.cloudflare_auth["email"]}"
+  token = "${var.cloudflare_auth["token"]}"
 }
 
 provider "kubernetes" {}

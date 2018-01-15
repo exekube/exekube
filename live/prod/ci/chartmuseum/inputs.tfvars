@@ -1,3 +1,7 @@
+basic_auth_secret = {
+  file = "chartrepo.htpasswd"
+}
+
 release_spec = {
   enabled        = true
   release_name   = "chartmuseum"
@@ -8,8 +12,6 @@ release_spec = {
   chart_version = "0.3.1"
 
   domain_name = "charts.swarm.pw"
-
-  basic_auth = "chartrepo.htpasswd"
 
   post_hook = "sleep 15"
 }
