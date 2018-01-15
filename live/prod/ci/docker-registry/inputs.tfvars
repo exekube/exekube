@@ -1,5 +1,5 @@
 basic_auth_secret = {
-  file = "registry.htpasswd"
+  file = "secrets/registry.htpasswd"
 }
 
 release_spec = {

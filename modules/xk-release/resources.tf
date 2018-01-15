@@ -64,15 +64,19 @@ data "kubernetes_service" "ingress_controller" {
 # Basic auth Kubernetes secret
 # ------------------------------------------------------------------------------
 
+locals {
+  basic_auth_secret_name = "${replace(basename(var.basic_auth_secret["file"]), ".", "-")}"
+}
+
 resource "kubernetes_secret" "basic_auth" {
   count = "${var.basic_auth_secret["file"] == "" ? 0 : 1}"
 
   metadata {
-    name = "${replace(var.basic_auth_secret["file"], ".", "-")}"
+    name = "${local.basic_auth_secret_name}"
   }
 
   data {
-    auth = "${file("${format("%s/secrets/%s", path.module, var.basic_auth_secret["file"])}")}"
+    auth = "${file("${format("%s/%s", path.module, var.basic_auth_secret["file"])}")}"
   }
 
   type = "Opaque"

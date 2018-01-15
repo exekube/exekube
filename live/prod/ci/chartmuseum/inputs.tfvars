@@ -1,5 +1,5 @@
 basic_auth_secret = {
-  file = "chartrepo.htpasswd"
+  file = "secrets/chartrepo.htpasswd"
 }
 
 release_spec = {
