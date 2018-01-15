@@ -4,7 +4,7 @@
 
 *Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you full control over your infrastructure and container orchestration while also having a great default state with a *one-click-to-deploy* experience.
 
-Here is a quick example of how you'd deploy Jenkins using Exekube (which is just a Terraform module):
+Here is a quick example of how you'd deploy Jenkins using Exekube (this is "the client side" of a [Terraform module](https://github.com/ilyasotkov/exekube/tree/develop/modules/xk-release)):
 
 ```tf
 # live/prod/ci/jenkins/inputs.tfvars
