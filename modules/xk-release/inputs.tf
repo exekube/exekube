@@ -15,8 +15,6 @@ variable "release_spec" {
     post_hook      = "echo hello world"
 
     domain_name = ""
-
-    create_pull_secret = false
   }
 }
 
