@@ -1,23 +1,4 @@
 # ------------------------------------------------------------------------------
-# CloudFlare input variables
-# ------------------------------------------------------------------------------
-
-variable "cloudflare" {
-  type = "map"
-
-  default = {
-    email = ""
-    token = ""
-  }
-}
-
-variable "cluster_dns_zones" {
-  type = "list"
-
-  default = []
-}
-
-# ------------------------------------------------------------------------------
 # Helm release input variables
 # ------------------------------------------------------------------------------
 
@@ -35,12 +16,59 @@ variable "release_spec" {
 
     domain_name = ""
 
-    chartrepo_username = ""
-    chartrepo_password = ""
+    create_pull_secret = false
+  }
+}
 
-    basic_auth        = ""
-    pull_secret       = ""
-    registry_username = ""
-    registry_password = ""
+# ------------------------------------------------------------------------------
+# Point DNS zones to our cloud load balancer IP address
+# ------------------------------------------------------------------------------
+
+variable "cluster_dns_zones" {
+  type = "list"
+
+  default = []
+}
+
+# ------------------------------------------------------------------------------
+# Kubernetes secret inputs
+# ------------------------------------------------------------------------------
+
+variable "basic_auth_secret" {
+  type = "map"
+
+  default = {
+    file = ""
+  }
+}
+
+# ------------------------------------------------------------------------------
+# Credentials for use as client, can be filled by local environmental variables
+# ------------------------------------------------------------------------------
+
+variable "cloudflare_auth" {
+  type = "map"
+
+  default = {
+    email = ""
+    token = ""
+  }
+}
+
+variable "registry_auth" {
+  type = "map"
+
+  default = {
+    username = ""
+    password = ""
+  }
+}
+
+variable "chartrepo_auth" {
+  type = "map"
+
+  default = {
+    username = ""
+    password = ""
   }
 }
