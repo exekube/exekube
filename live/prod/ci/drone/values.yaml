@@ -74,6 +74,7 @@ server:
     DRONE_DEBUG: "true"
     DRONE_DATABASE_DRIVER: "sqlite3"
     DRONE_DATABASE_DATASOURCE: "/var/lib/drone/drone.sqlite"
+    DRONE_GITHUB_URL: https://github.com
 
     ## Drone requires some environment variables to bootstrap the
     ## git service or it won't start up.
