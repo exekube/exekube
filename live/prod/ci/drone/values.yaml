@@ -1,5 +1,11 @@
 appVersion: "0.8.2"
 
+secrets:
+  ## Create the secret resource from the following values. Set this to
+  ## false to manage these secrets outside Helm.
+  ##
+  create: false
+
 images:
   ## The official drone (server) image, change tag to use a different version.
   ## ref: https://hub.docker.com/r/drone/drone/tags/
@@ -58,18 +64,16 @@ server:
   ## Values in here get injected as environment variables.
   ## ref: http://readme.drone.io/admin/installation-reference
   ##
+  githubAuth:
+    enabled: true
+    openRegistration: false
+    orgs: ""
+    admin: "ilyasotkov"
+
   env:
     DRONE_DEBUG: "true"
     DRONE_DATABASE_DRIVER: "sqlite3"
     DRONE_DATABASE_DATASOURCE: "/var/lib/drone/drone.sqlite"
-    DRONE_PROVIDER: "github"
-    DRONE_OPEN: "false"
-
-    DRONE_GITHUB: "true"
-    DRONE_GITHUB_URL: https://github.com
-    DRONE_ADMIN: ""
-    DRONE_GITHUB_CLIENT: ""
-    DRONE_GITHUB_SECRET: ""
 
     ## Drone requires some environment variables to bootstrap the
     ## git service or it won't start up.
