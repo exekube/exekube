@@ -12,9 +12,6 @@ release_spec = {
   chart_version = "0.8.23"
 
   post_hook = <<-EOF
-              kubectl apply -f /exekube/backup/tls/secret.yaml \
-              && kubectl create secret generic \
-              concourse-concourse \
-              --from-file=/exekube/live/prod/ci/concourse/secrets/
+              kubectl apply -f /exekube/backup/tls/secret.yaml
               EOF
 }
