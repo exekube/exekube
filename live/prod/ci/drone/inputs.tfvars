@@ -12,10 +12,8 @@ release_spec = {
 
 pre_hook = {
   command = <<-EOF
-            sleep 15 \
-            && kubectl create secret generic drone-drone \
-            --from-file=/exekube/live/prod/ci/drone/secrets/ \
-            || true \
+            kubectl create secret generic drone-drone \
+            --from-file=/exekube/live/prod/ci/drone/secrets/ || true \
             && cd /exekube/charts/drone/ \
             && bash push.sh \
             && helm repo update

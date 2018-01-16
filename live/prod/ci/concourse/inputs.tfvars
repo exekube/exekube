@@ -3,10 +3,8 @@
 
 pre_hook = {
   command = <<-EOF
-            sleep 15 \
-            && kubectl create secret generic concourse-concourse \
-            --from-file=/exekube/live/prod/ci/concourse/secrets/ \
-            || true \
+            kubectl create secret generic concourse-concourse \
+            --from-file=/exekube/live/prod/ci/concourse/secrets/ || true \
             && cd /exekube/charts/concourse/ \
             && bash push.sh \
             && helm repo update
