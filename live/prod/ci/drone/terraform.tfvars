@@ -12,6 +12,7 @@ terragrunt = {
       "../../gcp-project",
       "../../core/ingress-controller",
       "../../core/kube-lego",
+      "../chartmuseum",
     ]
   }
 
