@@ -1,47 +1,12 @@
-replicaCount: 1
-image:
-  repository: chartmuseum/chartmuseum
-  tag: v0.2.7
-  pullPolicy: IfNotPresent
 env:
   open:
-    STORAGE: local
-    STORAGE_AMAZON_BUCKET:
-    STORAGE_AMAZON_PREFIX:
-    STORAGE_AMAZON_REGION:
-    STORAGE_AMAZON_ENDPOINT:
-    STORAGE_GOOGLE_BUCKET:
-    STORAGE_GOOGLE_PREFIX:
-    CHART_POST_FORM_FIELD_NAME: chart
-    PROV_POST_FORM_FIELD_NAME: prov
-    DEBUG: true
-    LOG_JSON: true
-    DISABLE_METRICS: false
     DISABLE_API: false
-    ALLOW_OVERWRITE: false
-    CHART_URL:
-  secret:
-
-deployment:
-  annotations: {}
-replica:
-  annotations: {}
-service:
-  type: ClusterIP
-  externalPort: 8080
-  internalPort: 8080
-  annotations: {}
-resources:
-  limits:
-    cpu: 100m
-    memory: 128Mi
-  requests:
-    cpu: 80m
-    memory: 64Mi
+    ALLOW_OVERWRITE: true
+    DISABLE_METRICS: true
+      
 persistence:
   Enabled: true
-  AccessMode: ReadWriteOnce
-  Size: 2Gi
+
 ingress:
   enabled: true
   annotations:
