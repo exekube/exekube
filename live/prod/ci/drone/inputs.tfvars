@@ -7,5 +7,5 @@ release_spec = {
   chart_name    = "drone"
   chart_version = "0.2.1"
 
-  domain_name = "drone.swarm.pw"
+  domain_name = "ci.swarm.pw"
 }
