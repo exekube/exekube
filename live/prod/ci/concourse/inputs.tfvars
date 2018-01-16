@@ -1,6 +1,5 @@
-# [TBD]
-# Has fatal bugs
-# See https://github.com/ilyasotkov/exekube/issues/44
+# Make sure to create the "concourse-concourse" secret
+# Files in secrets directory must NOT have a trailing newline!
 
 release_spec = {
   enabled        = false
