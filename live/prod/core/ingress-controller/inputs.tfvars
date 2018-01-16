@@ -12,8 +12,6 @@ release_spec = {
   chart_version = "0.8.23"
 
   post_hook = <<-EOF
-              kubectl apply -f /exekube/backup/tls/secret.yaml \
-              && kubectl create secret generic drone-drone \
-              --from-file=/exekube/live/prod/ci/drone/secrets/
+              kubectl apply -f /exekube/backup/tls/secret.yaml
               EOF
 }

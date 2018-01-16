@@ -1,4 +1,16 @@
 # ------------------------------------------------------------------------------
+# Run a pre_hook via the null_resource provisioner
+# ------------------------------------------------------------------------------
+
+variable "pre_hook" {
+  type = "map"
+
+  default = {
+    command = "echo hello from pre_hook"
+  }
+}
+
+# ------------------------------------------------------------------------------
 # Helm release input variables
 # ------------------------------------------------------------------------------
 
@@ -12,7 +24,7 @@ variable "release_spec" {
     chart_version  = ""
     release_name   = ""
     release_values = "values.yaml"
-    post_hook      = "echo hello world"
+    post_hook      = "echo hello from post_hook"
 
     domain_name = ""
   }

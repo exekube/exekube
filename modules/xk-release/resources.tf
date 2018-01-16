@@ -1,10 +1,27 @@
 # ------------------------------------------------------------------------------
+# Run a pre_hook via the null_resource provisioner
+# ------------------------------------------------------------------------------
+
+resource "null_resource" "pre_hook" {
+  count = "${var.pre_hook["command"] == "" ? 0 : 1}"
+
+  provisioner "local-exec" {
+    command = "${var.pre_hook["command"]}"
+  }
+}
+
+# ------------------------------------------------------------------------------
 # Helm release
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "release" {
-  count      = "${var.release_spec["enabled"]}"
-  depends_on = ["kubernetes_secret.basic_auth", "kubernetes_secret.docker_credentials"]
+  count = "${var.release_spec["enabled"]}"
+
+  depends_on = [
+    "kubernetes_secret.basic_auth",
+    "kubernetes_secret.docker_credentials",
+    "null_resource.pre_hook",
+  ]
 
   repository = "${var.release_spec["chart_repo"]}"
   chart      = "${var.release_spec["chart_name"]}"
