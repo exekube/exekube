@@ -1,3 +1,7 @@
+# [TBD]
+# Has fatal bugs
+# See https://github.com/ilyasotkov/exekube/issues/44
+
 release_spec = {
   enabled        = false
   release_name   = "concourse"
