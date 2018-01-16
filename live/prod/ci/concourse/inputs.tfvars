@@ -1,5 +1,4 @@
-# Make sure to create the "concourse-concourse" secret
-# Files in secrets directory must NOT have a trailing newline!
+# Files in ./secrets directory must NOT have a trailing newline!
 
 pre_hook = {
   command = <<-EOF

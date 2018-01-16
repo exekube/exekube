@@ -1,3 +1,5 @@
+# Files in ./secrets directory must NOT have a trailing newline!
+
 release_spec = {
   enabled        = true
   release_name   = "drone"
