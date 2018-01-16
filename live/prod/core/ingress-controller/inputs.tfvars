@@ -13,7 +13,7 @@ release_spec = {
 
   post_hook = <<-EOF
               kubectl apply -f /exekube/backup/tls/secret.yaml \
-              && xk kubectl create secret generic drone-drone \
+              && kubectl create secret generic drone-drone \
               --from-file=/exekube/live/prod/ci/drone/secrets/
               EOF
 }
