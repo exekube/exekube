@@ -4,6 +4,6 @@ source=("ci.${domain_zone}-tls" "wp.${domain_zone}-tls" "react.${domain_zone}-tl
 
 for i in ${source[@]}
 do
-  echo "---" >> tls/secret.yaml \
-  && docker-compose run --rm exekube kubectl get secret $i -o yaml >> tls/secret.yaml
+  echo "---" >> /exekube/backup/tls/secret.yaml \
+  && kubectl get secret $i -o yaml >> /exekube/backup/tls/secret.yaml
 done
