@@ -2,9 +2,9 @@
 
 # Exekube
 
-*Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you full control over your infrastructure and container orchestration while also having a great default state with a *one-click-to-deploy* experience.
+*Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you **full control** over your infrastructure and container orchestration while also having a great default state with a **one-click-to-deploy experience**.
 
-Here is a quick example of how you'd deploy Jenkins using Exekube (this is "the client side" of a [Terraform module](https://github.com/ilyasotkov/exekube/tree/develop/modules/xk-release)):
+Here is a quick example of how you'd deploy a Jenkins Helm release using Exekube (this is "the client side" of a [Terraform module](https://github.com/ilyasotkov/exekube/tree/develop/modules/xk-release)), expressed in HashiCorp Configuration Language (HCL):
 
 ```tf
 # live/prod/ci/jenkins/inputs.tfvars
@@ -26,14 +26,12 @@ release_spec = {
 
 You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
 
-- Docker Compose (for our local development environment)
+- Docker and Docker Compose (for our local development environment)
 - Terraform, Terragrunt, and HCL (HashiCorp Configuration Language)
 - Kubernetes
 - Helm
 
 Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
-
-📘 Read the companion guide: <https://github.com/ilyasotkov/learning-kubernetes/>
 
 - [Introduction](#introduction)
 - [Design principles](#design-principles)
@@ -166,7 +164,7 @@ xk gcloud auth list
 xk kubectl get nodes
 
 xk helm install --name custom-rails-app \
-        -f live/prod/kube-custom/values/rails-app.yaml \
+        -f live/prod/apps/my-app/values.yaml \
         charts/rails-app
 ```
 
