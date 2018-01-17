@@ -22,6 +22,28 @@ release_spec = {
 }
 ```
 
+Right after you set up Exekube to work with the a cloud provider, you you will be able to to create these resources (managed by Terraform + Terragrunt), in just one `xk apply` command:
+
+### Infrastructure (Kubernetes cluster creation):
+
+- Create a Kubernetes cluster (only Google Kubernetes Engine support in 0.1.0)    🔗[live/gcp-project](https://github.com/ilyasotkov/exekube/tree/develop/live/prod/gcp-project)
+
+### Kubernetes core resources
+
+- Set up an ingress controller (cloud load balancer) for the cluster 🔗[live/core/ingress-controller](https://github.com/ilyasotkov/exekube/tree/develop/live/prod/core/ingress-controller)
+- Enable automatic generation of Let's Encrypt TLS certificates for Ingress Kubernetes resources 🔗[live/core/kube-lego](https://github.com/ilyasotkov/exekube/tree/develop/live/prod/core/kube-lego)
+- Set up Vault, the single source for credentials and other secrets 🔗[live/core/vault](/)
+
+### Continuous integration (CI) tools (Drone / Jenkins / Concourse)
+
+- Private Docker Registry 🔗[live/ci/docker-registry](/)
+- ChartMuseum for storing Helm charts 🔗[live/ci/chartmuseum](/)
+- Drone 🔗[ci/drone](/) or Jenkins 🔗[live/ci/jenkins](/) or Concourse 🔗[live/ci/concouse](/)
+
+### Applications like Rails, React, or Wordress
+
+- A Ruby-on-Rails 5.1 with React 🔗[live/apps/rails-app](/)
+
 ## Introduction
 
 You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
