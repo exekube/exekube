@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 resource "null_resource" "pre_hook" {
-  count = "${var.pre_hook["command"] == "" ? 0 : 1}"
+  count = "${var.release_spec["enabled"]}"
 
   provisioner "local-exec" {
     command = "${var.pre_hook["command"]}"
