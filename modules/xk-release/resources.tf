@@ -39,7 +39,7 @@ resource "helm_release" "release" {
   recreate_pods = false
 
   provisioner "local-exec" {
-    command = "${var.release_spec["post_hook"]}"
+    command = "${var.post_hook["command"]}"
   }
 }
 

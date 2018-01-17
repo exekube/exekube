@@ -12,6 +12,8 @@ release_spec = {
   chart_repo    = "stable"
   chart_name    = "docker-registry"
   chart_version = "1.0.1"
+}
 
-  post_hook = "sleep 5 && helm repo update"
+post_hook = {
+  command = "sleep 5 && helm repo update"
 }

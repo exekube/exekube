@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# Run a pre_hook via the null_resource provisioner
+# Pre-hook and post-hook, to be run before creation and after release creation
 # ------------------------------------------------------------------------------
 
 variable "pre_hook" {
@@ -7,6 +7,14 @@ variable "pre_hook" {
 
   default = {
     command = "echo hello from pre_hook"
+  }
+}
+
+variable "post_hook" {
+  type = "map"
+
+  default = {
+    command = "echo hello from post_hook"
   }
 }
 
@@ -24,7 +32,6 @@ variable "release_spec" {
     chart_version  = ""
     release_name   = ""
     release_values = "values.yaml"
-    post_hook      = "echo hello from post_hook"
 
     domain_name = ""
   }
