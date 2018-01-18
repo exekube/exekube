@@ -4,6 +4,26 @@
 
 *Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you **full control** over your infrastructure and container orchestration while also having a great default state with a **one-click-to-deploy experience**.
 
+## Introduction
+
+You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
+
+The framework is a thin layer on top of several open-source DevOps tools:
+
+| Component | Purpose |
+| --- | --- |
+| Docker and Docker Compose | Local development environment |
+| Terraform | Declarative infrastructure and deployment management |
+| Terragrunt | Terraform *live module* management |
+| Kubernetes | Container orchestration |
+| Helm | Kubernetes package (chart / release) management |
+| NGINX Ingress Controller | Cluster ingress controller |
+| kube-lego | Automatic Let's Encrypt TLS certificates for Ingress |
+| HashiCorp Vault | Cluster secret management |
+| Docker Registry | Container image registry |
+| ChartMuseum | Helm chart repository |
+| Jenkins, Drone, or Concourse | Continuous integration |
+
 Here is a quick example of how you'd deploy a Jenkins Helm release using Exekube (this is "the client side" of a [Terraform module](https://github.com/ilyasotkov/exekube/tree/develop/modules/xk-release)), expressed in HashiCorp Configuration Language (HCL):
 
 ```tf
@@ -21,39 +41,6 @@ release_spec = {
   domain_name = "ci.example.com"
 }
 ```
-
-Right after you set up Exekube to work with the a cloud provider, you you will be able to to create these resources (managed by Terraform + Terragrunt), in just one `xk apply` command:
-
-### Infrastructure (Kubernetes cluster creation):
-
-- Create a Kubernetes cluster (only Google Kubernetes Engine support in 0.1.0)    🔗[live/gcp-project](https://github.com/ilyasotkov/exekube/tree/develop/live/prod/gcp-project)
-
-### Kubernetes core resources
-
-- Set up an ingress controller (cloud load balancer) for the cluster 🔗[live/core/ingress-controller](https://github.com/ilyasotkov/exekube/tree/develop/live/prod/core/ingress-controller)
-- Enable automatic generation of Let's Encrypt TLS certificates for Ingress Kubernetes resources 🔗[live/core/kube-lego](https://github.com/ilyasotkov/exekube/tree/develop/live/prod/core/kube-lego)
-- Set up Vault, the single source for credentials and other secrets 🔗[live/core/vault](/)
-
-### Continuous integration (CI) tools (Drone / Jenkins / Concourse)
-
-- Private Docker Registry 🔗[live/ci/docker-registry](/)
-- ChartMuseum for storing Helm charts 🔗[live/ci/chartmuseum](/)
-- Drone 🔗[ci/drone](/) or Jenkins 🔗[live/ci/jenkins](/) or Concourse 🔗[live/ci/concouse](/)
-
-### Applications like Rails, React, or Wordress
-
-- A Ruby-on-Rails 5.1 with React 🔗[live/apps/rails-app](/)
-
-## Introduction
-
-You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
-
-- Docker and Docker Compose (for our local development environment)
-- Terraform, Terragrunt, and HCL (HashiCorp Configuration Language)
-- Kubernetes
-- Helm
-
-Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
 
 - [Introduction](#introduction)
 - [Design principles](#design-principles)
