@@ -118,16 +118,15 @@ The only requirements, depending on your local OS:
     ```
 
 4. Go to <https://my-app.YOURDOMAIN.COM/> to check that a hello-world Rails app is running.
-5. Upgrade a Rails application Docker image version in [live/kube/apps/my-app/values.yaml](/):
+5. Upgrade the Rails application Docker image version in [live/kube/apps/my-app/values.yaml](/):
 
     ```diff
     replicaCount: 2
     image:
-      repository: registry.swarm.pw/rails-react-boilerplate
+      repository: ilyasotkov/rails-react-boilerplate
     -  tag: "0.1.0"
     +  tag: "0.2.0"
       pullPolicy: Always
-      pullSecret: registry-dockercfg
     ```
 
     Match the state of our `live` directory to the state of real-world cloud resources:
