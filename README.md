@@ -4,7 +4,7 @@
 
 ## Introduction
 
-*Exekube* is a declarative "Infrastructure as Code" framework for managing cloud infrastrucutre (including Kubernetes clusters) and deploying containerized software onto it. Exekube offers you **granular control** over your infrastructure and container orchestration while also having a great default state with a fully automated **one-click-to-deploy experience**.
+*Exekube* is a declarative "Infrastructure as Code" framework for managing cloud infrastrucutre (including Kubernetes clusters) and deploying containerized software onto that infrastructure. Exekube offers you **granular control** over your infrastructure and container orchestration while also having a great default state with a fully automated **one-click-to-deploy experience**.
 
 The Exekube framework is distributed as a Docker image [[Dockerfile](https://github.com/ilyasotkov/exekube/blob/develop/.docker/Dockerfile)], and combines several open-source DevOps tools into one easy-to-use workflow. Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
 
