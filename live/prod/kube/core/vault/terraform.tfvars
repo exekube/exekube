@@ -4,7 +4,7 @@
 
 terragrunt = {
   terraform {
-    source = "/exekube/modules//xk-release"
+    source = "/exekube/modules//helm-release"
   }
 
   dependencies {
