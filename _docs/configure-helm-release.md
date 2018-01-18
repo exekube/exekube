@@ -14,6 +14,30 @@ tree .
 ```
 
 ```tf
+# cat terraform.tfvars
+
+terragrunt = {
+  terraform {
+    source = "/exekube/modules//helm-release"
+  }
+
+  dependencies {
+    paths = [
+      "../../../infra/gcp-gke",
+      "../../core/ingress-controller",
+      "../../core/kube-lego",
+      "../../ci/chartmuseum",
+      "../../ci/docker-registry",
+    ]
+  }
+
+  include = {
+    path = "${find_in_parent_folders()}"
+  }
+}
+```
+
+```tf
 # cat inputs.tfvars
 
 release_spec = {
@@ -29,39 +53,14 @@ release_spec = {
 }
 ```
 
-```tf
-# cat terraform.tfvars
-
-terragrunt = {
-  terraform {
-    source = "/exekube/modules//helm-release"
-  }
-
-  dependencies {
-    paths = [
-      "../../../infra/gcp-project",
-      "../../core/ingress-controller",
-      "../../core/kube-lego",
-      "../../ci/chartmuseum",
-      "../../ci/docker-registry",
-    ]
-  }
-
-  include = {
-    path = "${find_in_parent_folders()}"
-  }
-}
-```
-
 ```yaml
 # cat values.yaml
 
 replicaCount: 2
 image:
-  repository: registry.swarm.pw/rails-react-boilerplate
-  tag: "0.1.3"
+  repository: ilyasotkov/rails-react-boilerplate
+  tag: "0.1.0"
   pullPolicy: Always
-  pullSecret: registry-dockercfg
 ingress:
   enabled: true
   annotations:

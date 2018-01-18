@@ -4,11 +4,12 @@
 
 ## Introduction
 
-*Exekube* is a declarative "Infrastructure as Code" framework for managing cloud infrastrucutre (including Kubernetes clusters) and deploying containerized software onto that infrastructure. Exekube offers you **granular control** over your infrastructure and container orchestration while also having a great default state with a fully automated **one-click-to-deploy experience**.
+*Exekube* is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastrucutre (including Kubernetes clusters) and deploying containerized software onto that infrastructure. Exekube offers you:
 
-The framework (a.k.a. platform / PaaS) is distributed as a [Docker image](/) that can be used manually by DevOps engineers or automatically via continuous integration (CI) pipelines. It combines several open-source DevOps tools into one easy-to-use workflow for managing cloud infrastructure and Kubernetes resources.
+- **Full control** over your infrastructure and container orchestration
+- A default state with a fully automated **one-click-to-deploy experience**
 
-You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube.
+The framework is distributed as a [Docker image on DockerHub](/) that can be used manually by DevOps engineers or automatically via continuous integration (CI) pipelines. It combines several open-source DevOps tools into one easy-to-use workflow for managing cloud infrastructure and Kubernetes resources.
 
 ## Components
 
@@ -26,20 +27,11 @@ You only need [Docker CE](/) and [Docker Compose](/) on your local machine to be
 | ChartMuseum | Helm chart repository |
 | Jenkins, Drone, or Concourse | Continuous integration |
 
-## Design principles
-
-- Everything on client side runs in a Docker container
-- Infrastructure (cloud provider) objects and Kubernetes API objects are expressed as declarative code, using HCL (HashiCorp Language) and Helm packages (YAML + Go templates)
-- Modular design
-- Git-based workflow with a CI pipeline [TBD]
-- No vendor lock-in, choose any cloud provider you want [only GCP for now]
-- Test-driven (TDD) or behavior-driven (BDD) model of development [TBD]
-
 ## Setup and usage
 
 ### Requirements starting from zero
 
-The only requirements, depending on your local OS:
+You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The only requirements, depending on your local OS:
 
 #### Linux
 
@@ -79,7 +71,7 @@ The only requirements, depending on your local OS:
 
 ### Usage
 
-#### Declarative Workflow
+#### Create and upgrade resources with just one command
 
 1. Edit code in [`live`](/):
 
@@ -87,11 +79,11 @@ The only requirements, depending on your local OS:
 
     [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/)
 
-2. Apply all *Terragrunt live modules* -- create infrastructure and all Kubernetes resources:
+2. Apply all *Terraform live modules* -- create infrastructure and all Kubernetes resources:
 
-    ```sh
-    xk plan
+    ```diff
     xk apply
+    + Module /exekube/live/prod/kube/apps/rails-app has finished successfully!
     ```
 3. Enable the Kubernetes dashboard at <http://localhost:8001/ui>:
 
@@ -103,29 +95,29 @@ The only requirements, depending on your local OS:
 5. Upgrade the Rails application Docker image version in [live/kube/apps/my-app/values.yaml](/):
 
     ```diff
-    replicaCount: 2
-    image:
-      repository: ilyasotkov/rails-react-boilerplate
+     replicaCount: 2
+     image:
+       repository: ilyasotkov/rails-react-boilerplate
     -  tag: "0.1.0"
     +  tag: "0.2.0"
-      pullPolicy: Always
+       pullPolicy: Always
     ```
 
     Match the state of our `live` directory to the state of real-world cloud resources:
     ```sh
     xk apply
     ```
-    You can also update the state of just one live module:
+    😎 Go back to your browser and check how your app updated with zero downtime!
+
+    You can also upgrade the state of just one live module:
     ```sh
     # Use bash completion!
     xk apply live/prod/kube/apps/my-app/
-    xk destroy live/prod/kube/apps/my-app/
     ```
 
     Or a group (a parent directory) of live modules:
     ```sh
     xk apply live/prod/kube/ci
-    xk destroy live/prod/kube/ci
     ```
 
 #### Cleanup
@@ -135,6 +127,22 @@ The only requirements, depending on your local OS:
     ```sh
     xk destroy
     ```
+
+    You can also destroy single live modules or groups of live modules:
+    ```sh
+    xk destroy live/prod/ci/drone/
+
+    xk destroy live/prod/apps/
+    ```
+
+## Design principles
+
+- Everything on client side runs in a Docker container
+- Infrastructure (cloud provider) objects and Kubernetes API objects are expressed as declarative code, using HCL (HashiCorp Language) and Helm packages (YAML + Go templates)
+- Modular design
+- Git-based workflow with a CI pipeline [TBD]
+- No vendor lock-in, choose any cloud provider you want [only GCP for now]
+- Test-driven (TDD) or behavior-driven (BDD) model of development [TBD]
 
 ### Comparing Workflows - imperative CLI vs declarative HCL+YAML
 

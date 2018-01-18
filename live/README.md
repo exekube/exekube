@@ -1,8 +1,10 @@
 # Live modules
 
-Each directory in this `live` directory contains configuration for a 100% isolated environment. The environment is configured declaratively using Terraform code with [Terragrunt](/) as a wrapper tool that gives it full automation and less boilerplate code.
+Each directory in `live` contains configuration for a 100% isolated environment. The environment is configured declaratively using Terraform code with [Terragrunt](/) as a wrapper tool that gives it full automation and less boilerplate code.
 
-## Environment (Project) directory structure
+Each environment directory, such as `prod` contains a number of **live modules** -- Terraform modules that import a *generic module* and configure it for this specfic environement.
+
+## Environment directory structure
 
 In `prod/infra` is a collection of live modules that can create create and manage **cloud provider resources**.
 

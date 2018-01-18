@@ -9,7 +9,7 @@ terragrunt = {
 
   dependencies {
     paths = [
-      "../../../infra/gcp-project",
+      "../../../infra/gcp-gke",
     ]
   }
 
