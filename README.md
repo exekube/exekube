@@ -10,31 +10,6 @@ The framework (a.k.a. platform / PaaS) is distributed as a [Docker image](/) tha
 
 You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube.
 
-Here is a quick example of how you'd configure a Rails application Helm release using Exekube (this is a part of a of a ["live" Terraform module](/), expressed in HashiCorp Configuration Language (HCL):
-
-```sh
-$ cd live/prod/kube/apps/rails-app
-$ tree .
-.
-├── inputs.tfvars
-├── terraform.tfvars
-└── values.yaml
-```
-
-```tf
-release_spec = {
-  enabled        = true
-  domain_name    = "my-app.swarm.pw"
-
-  release_name   = "my-app"
-  release_values = "values.yaml"
-
-  chart_repo    = "private"
-  chart_name    = "rails-app"
-  chart_version = "0.1.1"
-}
-```
-
 ## Components
 
 | Component | Purpose |
