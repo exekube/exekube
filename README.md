@@ -6,9 +6,7 @@
 
 ## Introduction
 
-You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
-
-The framework is a thin layer on top of several open-source DevOps tools:
+You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
 
 | Component | Purpose |
 | --- | --- |
@@ -23,6 +21,8 @@ The framework is a thin layer on top of several open-source DevOps tools:
 | Docker Registry | Container image registry |
 | ChartMuseum | Helm chart repository |
 | Jenkins, Drone, or Concourse | Continuous integration |
+
+Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
 
 Here is a quick example of how you'd deploy a Jenkins Helm release using Exekube (this is "the client side" of a [Terraform module](https://github.com/ilyasotkov/exekube/tree/develop/modules/xk-release)), expressed in HashiCorp Configuration Language (HCL):
 
