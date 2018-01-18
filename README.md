@@ -6,15 +6,22 @@
 
 *Exekube* is a declarative "Infrastructure as Code" framework for managing cloud infrastrucutre (including Kubernetes clusters) and deploying containerized software onto that infrastructure. Exekube offers you **granular control** over your infrastructure and container orchestration while also having a great default state with a fully automated **one-click-to-deploy experience**.
 
-The Exekube framework is distributed as a Docker image [[Dockerfile](https://github.com/ilyasotkov/exekube/blob/develop/.docker/Dockerfile)], and combines several open-source DevOps tools into one easy-to-use workflow. Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
+The framework (a.k.a. platform / PaaS) is distributed as a [Docker image](/) that can be used manually by DevOps engineers or automatically via continuous integration (CI) pipelines. It combines several open-source DevOps tools into one easy-to-use workflow for managing cloud infrastructure and Kubernetes resources.
 
 You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube.
 
-Here is a quick example of how you'd define a Rails application *Helm release* using Exekube (this is "the client side" of a [Terraform module](https://github.com/ilyasotkov/exekube/tree/develop/modules/xk-release)), expressed in HashiCorp Configuration Language (HCL):
+Here is a quick example of how you'd configure a Rails application Helm release using Exekube (this is a part of a of a ["live" Terraform module](/), expressed in HashiCorp Configuration Language (HCL):
+
+```sh
+$ cd live/prod/kube/apps/rails-app
+$ tree .
+.
+├── inputs.tfvars
+├── terraform.tfvars
+└── values.yaml
+```
 
 ```tf
-# live/prod/kube/ci/jenkins/inputs.tfvars
-
 release_spec = {
   enabled        = true
   domain_name    = "my-app.swarm.pw"

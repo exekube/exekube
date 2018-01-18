@@ -16,9 +16,68 @@ Each **live module**, for example [`live/prod/kube/apps/rails-app/`](/), contain
 terraform.tfvars
 inputs.tfvars
 ```
+### `terraform.tfvars`
 
 `terraform.tfvars` defines which generic Terraform module to import, declares which other live modules it depends on, and also allows you tweak some configuration in case you need it.
 
+Commented example:
+
+```tf
+# Terragrunt configuration: Terragrunt automates and improves management of Terraform modules.
+terragrunt = {
+
+  # The generic module to import.
+  terraform {
+    source = "/exekube/modules//helm-release"
+  }
+
+  # This live module depends on other live modules to work properly.
+  dependencies {
+    paths = [
+      "../../../infra/gcp-project",
+      "../../core/ingress-controller",
+      "../../core/kube-lego",
+      "../chartmuseum",
+    ]
+  }
+
+  # This module will include `terragrunt = {}` block from any `terraform.tfvars` files it can find in parent directories.
+  include = {
+    path = "${find_in_parent_folders()}"
+  }
+}
+```
+
+### `inputs.tfvars`
+
 `inputs.tfvars` allows you to configure the "live" version of a generic module you imported in `terraform.tfvars`.
+
+Commented example:
+
+```tf
+# Files in ./secrets directory must NOT have a trailing newline!
+
+release_spec = {
+  enabled        = false
+  release_name   = "concourse"
+  release_values = "values.yaml"
+
+  chart_repo    = "private"
+  chart_name    = "concourse"
+  chart_version = "1.0.0"
+
+  domain_name = "ci.swarm.pw"
+}
+
+pre_hook = {
+  command = <<-EOF
+            kubectl create secret generic concourse-concourse \
+            --from-file=/exekube/live/prod/kube/ci/concourse/secrets/ || true \
+            && cd /exekube/charts/concourse/ \
+            && bash push.sh \
+            && helm repo update
+            EOF
+}
+```
 
 A live module directory can also contain other files related to it, for example the `secrets` directory or `values.yaml` for a Helm release.
