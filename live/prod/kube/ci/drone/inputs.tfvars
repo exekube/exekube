@@ -15,7 +15,7 @@ release_spec = {
 pre_hook = {
   command = <<-EOF
             kubectl create secret generic drone-drone \
-            --from-file=/exekube/live/prod/ci/drone/secrets/ || true \
+            --from-file=/exekube/live/prod/kube/ci/drone/secrets/ || true \
             && cd /exekube/charts/drone/ \
             && bash push.sh \
             && helm repo update

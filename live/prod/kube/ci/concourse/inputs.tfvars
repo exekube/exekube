@@ -15,7 +15,7 @@ release_spec = {
 pre_hook = {
   command = <<-EOF
             kubectl create secret generic concourse-concourse \
-            --from-file=/exekube/live/prod/ci/concourse/secrets/ || true \
+            --from-file=/exekube/live/prod/kube/ci/concourse/secrets/ || true \
             && cd /exekube/charts/concourse/ \
             && bash push.sh \
             && helm repo update

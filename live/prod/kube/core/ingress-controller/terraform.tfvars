@@ -9,11 +9,7 @@ terragrunt = {
 
   dependencies {
     paths = [
-      "../../gcp-project",
-      "../../core/ingress-controller",
-      "../../core/kube-lego",
-      "../../ci/chartmuseum",
-      "../../ci/docker-registry",
+      "../../../infra/gcp-project",
     ]
   }
 

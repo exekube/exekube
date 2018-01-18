@@ -27,7 +27,7 @@ The framework is a thin layer on top of several open-source DevOps tools:
 Here is a quick example of how you'd deploy a Jenkins Helm release using Exekube (this is "the client side" of a [Terraform module](https://github.com/ilyasotkov/exekube/tree/develop/modules/xk-release)), expressed in HashiCorp Configuration Language (HCL):
 
 ```tf
-# live/prod/ci/jenkins/inputs.tfvars
+# live/prod/kube/ci/jenkins/inputs.tfvars
 
 release_spec = {
   enabled        = true
@@ -138,9 +138,9 @@ The only requirements, depending on your local OS:
     #
     # Trailing slash is optional
     # Use bash completion!
-    xk apply live/prod/gcp-project/
-    xk destroy live/prod/apps/rails-app/
-    xk apply live/prod/ci/
+    xk apply live/prod/infra/gcp-project/
+    xk destroy live/prod/kube/apps/rails-app/
+    xk apply live/prod/kube/ci/
 
     # To make the cluster dashboard available at localhost:8001/ui, run
     docker-compose up -d
@@ -173,7 +173,7 @@ xk gcloud auth list
 xk kubectl get nodes
 
 xk helm install --name custom-rails-app \
-        -f live/prod/apps/my-app/values.yaml \
+        -f live/prod/kube/apps/my-app/values.yaml \
         charts/rails-app
 ```
 
