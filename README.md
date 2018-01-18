@@ -17,7 +17,7 @@ Here is a quick example of how you'd define a Rails application *Helm release* u
 
 release_spec = {
   enabled        = true
-  domain_name = "my-app.swarm.pw"
+  domain_name    = "my-app.swarm.pw"
 
   release_name   = "my-app"
   release_values = "values.yaml"
@@ -72,9 +72,7 @@ The only requirements, depending on your local OS:
 
 - [Docker for Windows](/)
 
-### Usage
-
-#### Initial setup (cloud provider billing and access)
+### Initial setup: cloud provider billing and access
 
 0. Create `xk` (stands for "exekube") alias for your shell session (or save to ~/.bashrc):
     ```bash
@@ -96,6 +94,8 @@ The only requirements, depending on your local OS:
     && xk gsutil versioning set on \
             gs://${TF_VAR_gcp_remote_state_bucket}
     ```
+
+### Usage
 
 #### Declarative Workflow
 
