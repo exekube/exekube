@@ -1,6 +1,6 @@
 # Live modules
 
-Each directory in this `live` directory contains configuration for a 100% isolated environment.
+Each directory in this `live` directory contains configuration for a 100% isolated environment. The environment is configured declaratively using Terraform code with [Terragrunt](/) as a wrapper tool that gives it full automation and less boilerplate code.
 
 ## Environment (Project) directory structure
 
@@ -17,7 +17,7 @@ terraform.tfvars
 inputs.tfvars
 ```
 
-`terraform.tfvars` defines which Terraform module to import, declares which modules it depends on, and also allows you tweak some configuration in case you need it.
+`terraform.tfvars` defines which generic Terraform module to import, declares which other live modules it depends on, and also allows you tweak some configuration in case you need it.
 
 `inputs.tfvars` allows you to configure the "live" version of a generic module you imported in `terraform.tfvars`.
 
