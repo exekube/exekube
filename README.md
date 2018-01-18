@@ -1,12 +1,34 @@
-⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
-
 # Exekube
 
-*Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you **full control** over your infrastructure and container orchestration while also having a great default state with a **one-click-to-deploy experience**.
+⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
 
 ## Introduction
 
-You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
+*Exekube* is a declarative "Infrastructure as Code" framework for managing cloud infrastrucutre (including Kubernetes clusters) and deploying containerized software onto it. Exekube offers you **granular control** over your infrastructure and container orchestration while also having a great default state with a fully automated **one-click-to-deploy experience**.
+
+The Exekube framework is distributed as a Docker image [[Dockerfile](https://github.com/ilyasotkov/exekube/blob/develop/.docker/Dockerfile)], and combines several open-source DevOps tools into one easy-to-use workflow. Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
+
+You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube.
+
+Here is a quick example of how you'd define a Rails application *Helm release* using Exekube (this is "the client side" of a [Terraform module](https://github.com/ilyasotkov/exekube/tree/develop/modules/xk-release)), expressed in HashiCorp Configuration Language (HCL):
+
+```tf
+# live/prod/kube/ci/jenkins/inputs.tfvars
+
+release_spec = {
+  enabled        = true
+  domain_name = "my-app.swarm.pw"
+
+  release_name   = "my-app"
+  release_values = "values.yaml"
+
+  chart_repo    = "private"
+  chart_name    = "rails-app"
+  chart_version = "0.1.1"
+}
+```
+
+## Components
 
 | Component | Purpose |
 | --- | --- |
@@ -21,47 +43,6 @@ You only need [Docker CE](/) and [Docker Compose](/) on your local machine to be
 | Docker Registry | Container image registry |
 | ChartMuseum | Helm chart repository |
 | Jenkins, Drone, or Concourse | Continuous integration |
-
-Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
-
-Here is a quick example of how you'd deploy a Jenkins Helm release using Exekube (this is "the client side" of a [Terraform module](https://github.com/ilyasotkov/exekube/tree/develop/modules/xk-release)), expressed in HashiCorp Configuration Language (HCL):
-
-```tf
-# live/prod/kube/ci/jenkins/inputs.tfvars
-
-release_spec = {
-  enabled        = true
-  release_name   = "ci"
-  release_values = "values.yaml"
-
-  chart_repo    = "stable"
-  chart_name    = "jenkins"
-  chart_version = "0.12.0"
-
-  domain_name = "ci.example.com"
-}
-```
-
-- [Introduction](#introduction)
-- [Design principles](#design-principles)
-- [Setup and usage](#setup-and-usage)
-	- [Requirements starting from zero](#requirements-starting-from-zero)
-		- [Linux](#linux)
-		- [macOS](#macos)
-		- [Windows](#windows)
-	- [Usage step-by-step](#usage-step-by-step)
-		- [Cloud provider setup: do it once](#cloud-provider-setup-do-it-once)
-		- [Cluster setup: do it as often as you need](#cluster-setup-do-it-as-often-as-you-need)
-	- [Workflows](#workflows)
-		- [Legacy imperative workflow (CLI)](#legacy-imperative-workflow-cli)
-		- [Declarative workflow (.tf and .tfvars files)](#declarative-workflow-hcl-tf-files)
-- [Feature tracker](#feature-tracker)
-	- [Cloud provider and local environment setup](#cloud-provider-and-local-environment-setup)
-	- [Cloud provider config](#cloud-provider-config)
-	- [Cluster creation](#cluster-creation)
-	- [Cluster access control](#cluster-access-control)
-	- [Supporting tools](#supporting-tools)
-	- [User apps and services](#user-apps-and-services)
 
 ## Design principles
 
@@ -91,9 +72,9 @@ The only requirements, depending on your local OS:
 
 - [Docker for Windows](/)
 
-### Usage step-by-step
+### Usage
 
-#### Cloud provider setup: do it once
+#### Initial setup (cloud provider billing and access)
 
 0. Create `xk` (stands for "exekube") alias for your shell session (or save to ~/.bashrc):
     ```bash
@@ -116,44 +97,59 @@ The only requirements, depending on your local OS:
             gs://${TF_VAR_gcp_remote_state_bucket}
     ```
 
-#### Cluster setup: do it as often as you need
+#### Declarative Workflow
 
-7. Edit code in `live` and `modules` directories:
+1. Edit code in [`live`](/):
 
-    ⚠️ If you cloned / forked this repo, you'll need to have a domain name (DNS zone) like `example.com` and have CloudFlare DNS servers set up for it.
+    > ⚠️ If you cloned / forked this repo, you'll need to have a domain name (DNS zone) like `example.com` and have CloudFlare DNS servers set up for it. Then, in your text editor, search and replace `swarm.pw` with your domain zone.
 
-    Then, in your text editor, search and replace `swarm.pw` with your domain zone.
+    [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/)
 
-    [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/) [TODO]
+2. Apply all *Terragrunt live modules* -- create infrastructure and all Kubernetes resources:
 
-8. Deploy all *live modules* (the cluster and all Kubernetes resources):
     ```sh
-    # The .env file (.env.example initially) defines the XK_LIVE_DIR
-    # environmental variable for default commands
     xk plan
     xk apply
+    ```
+3. Enable the Kubernetes dashboard at <http://localhost:8001/ui>:
 
-    # You can also apply or destroy configuration for
-    # individual live modules and groups of live modules
-    #
-    # Trailing slash is optional
-    # Use bash completion!
-    xk apply live/prod/infra/gcp-project/
-    xk destroy live/prod/kube/apps/rails-app/
-    xk apply live/prod/kube/ci/
-
-    # To make the cluster dashboard available at localhost:8001/ui, run
+    ```sh
     docker-compose up -d
-    # To disable local dashboard, run `docker-compose down`
+    ```
+
+4. Go to <https://my-app.YOURDOMAIN.COM/> to check that a hello-world Rails app is running.
+5. Upgrade a Rails application Docker image version in [live/kube/apps/my-app/values.yaml](/):
+
+    ```diff
+    replicaCount: 2
+    image:
+      repository: registry.swarm.pw/rails-react-boilerplate
+    -  tag: "0.1.0"
+    +  tag: "0.2.0"
+      pullPolicy: Always
+      pullSecret: registry-dockercfg
+    ```
+
+    Match the state of our `live` directory to the state of real-world cloud resources:
+    ```sh
+    xk apply
+    ```
+    You can also update the state of just one live module:
+    ```sh
+    # Use bash completion!
+    xk apply live/prod/kube/apps/my-app/
+    xk destroy live/prod/kube/apps/my-app/
     ```
 
 #### Cleanup
 
-```sh
-xk destroy
-```
+6. Clean everything up:
 
-### Workflows
+    ```sh
+    xk destroy
+    ```
+
+### Comparing Workflows - imperative CLI vs declarative HCL+YAML
 
 #### Legacy imperative workflow (CLI)
 
