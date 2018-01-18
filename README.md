@@ -141,6 +141,12 @@ The only requirements, depending on your local OS:
     xk destroy live/prod/kube/apps/my-app/
     ```
 
+    Or a group (a parent directory) of live modules:
+    ```sh
+    xk apply live/prod/kube/ci
+    xk destroy live/prod/kube/ci
+    ```
+
 #### Cleanup
 
 6. Clean everything up:
