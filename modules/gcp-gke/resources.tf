@@ -1,8 +1,21 @@
+resource "google_project_service" "gke" {
+  project            = "${var.gcp_project}"
+  disable_on_destroy = false
+
+  service = "container.googleapis.com"
+
+  provisioner "local-exec" {
+    command = "sleep 10"
+  }
+}
+
 # ------------------------------------------------------------------------------
 # Create a Kubernetes cluster
 # ------------------------------------------------------------------------------
 
 resource "google_container_cluster" "gke_cluster" {
+  depends_on = ["google_project_service.gke"]
+
   name               = "${var.cluster_name}"
   zone               = "${var.gcp_zone}"
   initial_node_count = 2
