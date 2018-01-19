@@ -16,7 +16,3 @@ pre_hook = {
             --from-file=/exekube/live/prod/kube/core/vault/secrets/vault-tls/ || true
             EOF
 }
-
-post_hook = {
-  command = "echo kubectl port-forward"
-}

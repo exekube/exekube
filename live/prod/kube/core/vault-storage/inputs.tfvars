@@ -16,7 +16,7 @@ vault_sa_json_privkey_path = "/exekube/live/prod/kube/core/vault/secrets/gcp-cre
 # Bucket inputs
 # ------------------------------------------------------------------------------
 
-gcs_bucket_name = "vault-data"
+gcs_bucket_name = "gcp-credentials-vault"
 
 gcs_bucket_location = "eu"
 
