@@ -6,13 +6,13 @@ private_key_file_path = "/exekube/live/prod/kube/core/vault/secrets/vault-tls/se
 
 owner = "root"
 
-organization_name = "MY_ORG"
+organization_name = "Exekube Vault"
 
-ca_common_name = "Cluster certs"
+ca_common_name = "Managed by Terraform"
 
 common_name = "Vault server"
 
-dns_names = ["vault.local"]
+dns_names = ["iris.local"]
 
 ip_addresses = ["127.0.0.1"]
 
