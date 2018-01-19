@@ -6,9 +6,9 @@ Each environment directory, such as `prod` contains a number of **live modules**
 
 ## Environment directory structure
 
-In `prod/infra` is a collection of live modules that can create create and manage **cloud provider resources**.
+In `prod/infra` is a collection of live modules that manage **cloud provider resources**. Example: `prod/infra/gcp-gke`
 
-In `prod/kube` is a collection of live modules that can create and manage **Kubernetes and Helm resources**.
+In `prod/kube` is a collection of live modules that manage **Kubernetes and Helm resources**.
 
 ## Live module directory structure
 
@@ -36,7 +36,7 @@ terragrunt = {
   # This live module depends on other live modules to work properly.
   dependencies {
     paths = [
-      "../../../infra/gcp-project",
+      "../../../infra/gcp-gke",
       "../../core/ingress-controller",
       "../../core/kube-lego",
       "../chartmuseum",
