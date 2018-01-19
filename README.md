@@ -4,14 +4,19 @@
 
 ## Introduction
 
-*Exekube* is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastrucutre (including Kubernetes clusters) and deploying containerized software onto that infrastructure. Exekube offers you:
+*Exekube* is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastrucutre (including Kubernetes clusters) and deploying containerized software onto that infrastructure.
 
-- **Full control** over your infrastructure and container orchestration
-- A default state with a fully automated **one-click-to-deploy experience**
+Exekube offers you:
 
-The framework is distributed as a [Docker image on DockerHub](/) that can be used manually by DevOps engineers or automatically via continuous integration (CI) pipelines. It combines several open-source DevOps tools into one easy-to-use workflow for managing cloud infrastructure and Kubernetes resources.
+- **Full control** over your cloud infrastructure (via Terraform)
+- **Full control** over your container orchestration (via Kubernetes + Helm)
+- Fully automated **one-click-to-deploy experience**
+- Modular design and declarative model of management
+- Continuous integration (CI) facilities out of the box
 
 ## Components
+
+The framework is distributed as a [Docker image on DockerHub](/) that can be used manually by DevOps engineers or automatically via continuous integration (CI) pipelines. It combines several open-source DevOps tools into one easy-to-use workflow for managing cloud infrastructure and Kubernetes resources.
 
 ### DevOps tools
 
@@ -127,15 +132,6 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
     xk destroy live/prod/kube/ # Destroy all Kubernetes resources
     xk destroy # Destroy everything in live/prod
     ```
-
-## Design principles
-
-- Everything on client side runs in a Docker container
-- Infrastructure (cloud provider) objects and Kubernetes API objects are expressed as declarative code, using HCL (HashiCorp Language) and Helm packages (YAML + Go templates)
-- Modular design
-- Git-based workflow with a CI pipeline [TBD]
-- No vendor lock-in, choose any cloud provider you want [only GCP for now]
-- Test-driven (TDD) or behavior-driven (BDD) model of development [TBD]
 
 ### Comparing Workflows - imperative CLI vs declarative HCL+YAML
 
