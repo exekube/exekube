@@ -1,9 +1,9 @@
 vault:
-  dev: true
+  dev: false
   # Created via the pre_hook!
   customSecrets:
     - secretName: gcp-credentials-vault
-      mountPath: /gcp/credentials/vault.json
+      mountPath: /gcp/credentials
     - secretName: vault-tls
       mountPath: /vault/tls
   config:
