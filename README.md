@@ -38,20 +38,9 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 
 ### Requirements starting from zero
 
-You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The only requirements, depending on your local OS:
-
-#### Linux
-
-- [Docker](/)
-- [Docker Compose](/)
-
-#### macOS
-
-- [Docker for Mac](/)
-
-#### Windows
-
-- [Docker for Windows](/)
+- For Linux user, [Docker CE](/) and [Docker Compose](/) are sufficient
+- For macOS users, [Docker for Mac](/) is sufficient
+- For Windows users, [Docker for Windows](/) is sufficient
 
 ### Initial setup: cloud provider billing and access
 
