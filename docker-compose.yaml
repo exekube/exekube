@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   exekube:
-    build: ./.docker
+    build: ./_docker
     working_dir: /exekube
     environment:
       # TERRAGRUNT_SOURCE_UPDATE: "true"

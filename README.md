@@ -156,15 +156,22 @@ The only requirements, depending on your local OS:
 
 ### Comparing Workflows - imperative CLI vs declarative HCL+YAML
 
-#### Legacy imperative workflow (CLI)
+#### ✅ Declarative workflow (.tf and .tfvars files)
 
-⚠️ These tools are relatively mature and work well, but are considered *legacy* here since this framework aims to be [declarative](/)
+- `xk apply`
+- `xk destroy`
+
+Declarative tools are exact equivalents of stadard CLI tools like `gcloud` / `aws`, `kubectl`, and `helm`, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code.
+
+#### ⚠️ Legacy imperative workflow (CLI)
+
+These tools are relatively mature and work well, but are considered *legacy* here since this framework aims to be [declarative](/).
 
 Command line tools `kubectl` and `helm` are known to those who are familiar with Kubernetes. `gcloud` (part of Google Cloud SDK) is used for managing the Google Cloud Platform.
 
-- `xk gcloud`
-- `xk kubectl`
-- `xk helm`
+- `xk gcloud <group> <command> <arguments> <flags>`
+- `xk kubectl <group> <command> <arguments> <flags>`
+- `xk helm <command> <arguments> <flags>`
 
 Examples:
 
@@ -177,53 +184,3 @@ xk helm install --name custom-rails-app \
         -f live/prod/kube/apps/my-app/values.yaml \
         charts/rails-app
 ```
-
-#### Declarative workflow (.tf and .tfvars files)
-
-- `xk apply`
-- `xk destroy`
-
-Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xk apply`.
-
-## Feature tracker
-
-Features are marked with ✔️ when they enter the *alpha stage*, meaning a minimum viable solution has been implemented
-
-### Cloud provider and local environment setup
-
-- [x] Create GCP account, enable billing in GCP Console (web GUI)
-- [x] Get credentials for GCP (`credentials.json`)
-- [x] Authenticate to GCP using `credentials.json` (for `gcloud` and `terraform` use)
-- [x] Enable terraform remote state in a Cloud Storage bucket
-
-### Cloud provider config
-
-- [ ] Create GCP Folders and Projects and associated policies
-- [ ] Create GCP IAM Service Accounts and IAM Policies for the Project
-
-### Cluster creation
-
-- [x] Create the GKE cluster
-- [x] Get cluster credentials (`/root/.kube/config` file)
-- [x] Initialize Helm
-
-### Cluster access control
-
-- [ ] Add cluster namespaces (virtual clusters)
-- [ ] Add cluster roles and role bindings
-- [ ] Add cluster network policies
-
-### Supporting tools
-
-- [x] Install cluster ingress controller (cloud load balancer)
-- [x] Install TLS certificates controller (kube-lego)
-- [ ] Install Continuous Delivery tools
-    - [x] Continuous delivery service (Drone / Jenkins)
-    - [x] Helm chart repository (ChartMuseum)
-    - [x] Private Docker registry
-    - [ ] Git service (Gitlab / Gogs)
-- [ ] Monitoring and alerting tools (Prometheus / Grafana)
-
-### User apps and services
-
-- [x] Install "hello-world" apps like static sites, Ruby on Rails apps, etc.
