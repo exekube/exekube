@@ -1,5 +1,6 @@
 vault:
   dev: true
+  # Created via the pre_hook!
   customSecrets:
     - secretName: gcp-credentials-vault
       mountPath: /gcp/credentials/vault.json
@@ -9,17 +10,10 @@ vault:
     listener:
       tcp:
         address: '[::]:8200'
-        tls_disable: true
-        # tls_cert_file: /vault/tls/server.crt
-        # tls_key_file: /vault/tls/server.key
+        tls_disable: false
+        tls_cert_file: /vault/tls/server.crt
+        tls_key_file: /vault/tls/server.key
     storage:
-      # gcs:
-        # bucket: gcp-credentials-vault
-        # credentials_file: /gcp/credentials/vault.json
-    # seal:
-      # gcpckms:
-        # credentials: /usr/vault/vault-project-user-creds.json
-        # project: "ethereal-argon-123456"
-        # region: "global"
-        # key_ring:
-        # crypto_key:
+      gcs:
+        bucket: gcp-credentials-vault
+        credentials_file: /gcp/credentials/vault.json

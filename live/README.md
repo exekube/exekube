@@ -82,4 +82,4 @@ pre_hook = {
 }
 ```
 
-A live module directory can also contain other files related to it, for example the `secrets` directory or `values.yaml` for a Helm release.
+A live module directory can also contain other files related to it, for example a `secrets` directory or `values.yaml` for a Helm release.

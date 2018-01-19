@@ -4,16 +4,7 @@
 
 terragrunt = {
   terraform {
-    source = "/exekube/modules//helm-release"
-  }
-
-  dependencies {
-    paths = [
-      "../../../infra/gcp-gke",
-      "../ingress-controller",
-      "../kube-lego",
-      "../vault-credentials",
-    ]
+    source = "/exekube/modules//vendor/private-tls-cert"
   }
 
   include = {
