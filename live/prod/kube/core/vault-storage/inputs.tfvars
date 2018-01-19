@@ -10,6 +10,8 @@ project = "ethereal-argon-186217"
 
 role = "roles/storage.admin"
 
+vault_sa_json_privkey_path = "/exekube/live/prod/kube/core/vault/secrets/gcp-credentials/vault.json"
+
 # ------------------------------------------------------------------------------
 # Bucket inputs
 # ------------------------------------------------------------------------------

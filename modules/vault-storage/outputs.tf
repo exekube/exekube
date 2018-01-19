@@ -8,6 +8,10 @@ output "service_account_name" {
   description = "The fully-qualified name of the service account."
 }
 
+output "service_account_private_key" {
+  value = "${google_service_account_key.default.private_key}"
+}
+
 output "unique_id" {
   value       = "${google_service_account.default.unique_id}"
   description = "The unique id of the service account."

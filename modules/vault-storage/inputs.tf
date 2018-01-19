@@ -20,6 +20,10 @@ variable "role" {
   description = "The role/permission that will be granted to the members."
 }
 
+variable "vault_sa_json_privkey_path" {
+  default = ""
+}
+
 # ---------------------------------------------------------------------------------------------------------------------
 # CREATE A GOOGLE STORAGE BUCKET TO USE AS A VAULT STORAGE BACKEND
 # ---------------------------------------------------------------------------------------------------------------------
