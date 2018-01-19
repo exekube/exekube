@@ -83,6 +83,7 @@ You only need [Docker CE](/) and [Docker Compose](/) on your local machine to be
 
     ```diff
     xk apply
+    + ...
     + Module /exekube/live/prod/kube/apps/rails-app has finished successfully!
     ```
 3. Enable the Kubernetes dashboard at <http://localhost:8001/ui>:
@@ -107,7 +108,7 @@ You only need [Docker CE](/) and [Docker Compose](/) on your local machine to be
     ```sh
     xk apply
     ```
-    😎 Go back to your browser and check how your app updated with zero downtime!
+    Go back to your browser and check how your app updated with zero downtime! 😎
 
     You can also upgrade the state of just one live module:
     ```sh
@@ -117,7 +118,7 @@ You only need [Docker CE](/) and [Docker Compose](/) on your local machine to be
 
     Or a group (a parent directory) of live modules:
     ```sh
-    xk apply live/prod/kube/ci
+    xk apply live/prod/kube/ci/
     ```
 
 #### Cleanup
@@ -125,14 +126,10 @@ You only need [Docker CE](/) and [Docker Compose](/) on your local machine to be
 6. Clean everything up:
 
     ```sh
-    xk destroy
-    ```
-
-    You can also destroy single live modules or groups of live modules:
-    ```sh
-    xk destroy live/prod/ci/drone/
-
-    xk destroy live/prod/apps/
+    xk destroy live/prod/kube/apps/rails-app/ # Destroy only the rails-app release
+    xk destroy live/prod/kube/apps/ # Destroy all releases in apps
+    xk destroy live/prod/kube/ # Destroy all Kubernetes resources
+    xk destroy # Destroy everything in live/prod
     ```
 
 ## Design principles
