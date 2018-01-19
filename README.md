@@ -13,6 +13,8 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 
 ## Components
 
+### DevOps tools
+
 | Component | Purpose |
 | --- | --- |
 | Docker and Docker Compose | Local development environment |
@@ -20,6 +22,11 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 | Terragrunt | Terraform *live module* management |
 | Kubernetes | Container orchestration |
 | Helm | Kubernetes package (chart / release) management |
+
+### Default Helm packages installed in-cloud
+
+| Component | Purpose |
+| --- | --- |
 | NGINX Ingress Controller | Cluster ingress controller |
 | kube-lego | Automatic Let's Encrypt TLS certificates for Ingress |
 | HashiCorp Vault | Cluster secret management |
