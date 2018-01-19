@@ -33,6 +33,10 @@ gcloud container clusters get-credentials ${var.cluster_name} \
 && helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com
 EOF
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 # ------------------------------------------------------------------------------
@@ -54,5 +58,9 @@ resource "google_container_node_pool" "nodepool" {
 
   node_config {
     machine_type = "${var.nodepool_machine_type}"
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
