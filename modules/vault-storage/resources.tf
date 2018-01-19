@@ -14,6 +14,7 @@ resource "google_service_account" "default" {
 }
 
 resource "google_service_account_key" "default" {
+  depends_on         = ["google_project_iam_policy.default"]
   service_account_id = "${google_service_account.default.id}"
 
   provisioner "local-exec" {
