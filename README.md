@@ -139,7 +139,7 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 - `xk apply`
 - `xk destroy`
 
-Declarative tools are exact equivalents of stadard CLI tools like `gcloud` / `aws`, `kubectl`, and `helm`, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code.
+Declarative tools are exact equivalents of stadard CLI tools like `gcloud` / `aws`, `kubectl`, and `helm`, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Configuration Language) code.
 
 #### ⚠️ Legacy imperative workflow (CLI)
 
