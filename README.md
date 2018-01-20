@@ -125,7 +125,7 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 
 #### Cleanup
 
-6. Clean everything up:
+7. Clean everything up:
 
     ```sh
     # Destroy all cloud provider and Kubernetes resources
