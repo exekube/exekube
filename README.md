@@ -8,10 +8,11 @@
 
 Exekube offers you:
 
-- **Full control** over your cloud infrastructure (via Terraform)
-- **Full control** over your container orchestration (via Kubernetes + Helm)
-- Fully automated **one-click-to-deploy experience**
+- Full control over your cloud infrastructure (via Terraform)
+- Full control over your container orchestration (via Terraform + Helm)
+- Fully automated one-click-to-deploy experience
 - Modular design and declarative model of management
+- Freedom to choose a cloud provider to host Kubernetes
 - Continuous integration (CI) facilities out of the box
 
 ## Components
