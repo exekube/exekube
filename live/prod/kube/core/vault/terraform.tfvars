@@ -12,8 +12,8 @@ terragrunt = {
       "../../../infra/gcp-gke",
       "../ingress-controller",
       "../kube-lego",
-      "../vault-tls",
-      "../vault-storage",
+      "../../../local/vault-tls",
+      "../../../infra/vault-storage",
     ]
   }
 

@@ -18,6 +18,7 @@ services:
     ports:
       - 8001:8001
     volumes:
+      - ./live/prod/kube/core/vault/secrets/vault-tls/ca.crt:/etc/ssl/certs/ca-vault.pem
       - .:/exekube
       - ./config/helm:/root/.helm
       - ./config/terragrunt:/root/.terragrunt
