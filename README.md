@@ -81,7 +81,7 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 
     [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/)
 
-2. Apply all *Terraform live modules* -- create infrastructure and all Kubernetes resources:
+2. Apply all *Terraform live modules* — create all cloud infrastructure and all Kubernetes resources:
 
     ```diff
     xk apply
@@ -106,24 +106,22 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
        pullPolicy: Always
     ```
 
-    Match the state of our `live` directory to the state of real-world cloud resources:
+    Upgrade the state of real-world cloud resources to the state of our code in `live/prod` directory:
     ```sh
     xk apply
     ```
     Go back to your browser and check how your app updated with zero downtime! 😎
 
-    > You can also upgrade the state of just one live module:
+6. Experiment with creating, upgrading, and destroying single live modules and groups of live modules:
 
-        ```sh
-        # Use bash completion!
-        xk apply live/prod/kube/apps/my-app/
-        ```
+    ```sh
+    xk destroy live/prod/kube/apps/rails-app/
+    xk destroy live/prod/kube/apps/
+    xk apply live/prod/kube/apps/rails-app/
 
-    > Or a group (a parent directory) of live modules:
-
-        ```sh
-        xk apply live/prod/kube/ci/
-        ```
+    xk apply live/prod/kube/
+    xk destroy live/prod/kube/
+    ```
 
 #### Cleanup
 
@@ -132,14 +130,6 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
     ```sh
     # Destroy all cloud provider and Kubernetes resources
     xk destroy
-    ```
-    >
-    ```sh
-    # Destroy all releases in apps
-    xk destroy live/prod/kube/apps/
-
-    # Destroy all Kubernetes resources
-    xk destroy live/prod/kube/
     ```
 
 ### Comparing Workflows - imperative CLI vs declarative HCL+YAML
