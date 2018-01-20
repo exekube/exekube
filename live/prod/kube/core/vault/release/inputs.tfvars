@@ -11,8 +11,8 @@ release_spec = {
 pre_hook = {
   command = <<-EOF
             kubectl create secret generic gcp-credentials-vault \
-            --from-file=/exekube/live/prod/kube/core/vault/secrets/gcp-credentials/ || true \
+            --from-file=/exekube/live/prod/kube/core/vault/release/secrets/gcp-credentials/ || true \
             && kubectl create secret generic vault-tls \
-            --from-file=/exekube/live/prod/kube/core/vault/secrets/vault-tls/ || true
+            --from-file=/exekube/live/prod/kube/core/vault/release/secrets/vault-tls/ || true
             EOF
 }

@@ -9,11 +9,11 @@ terragrunt = {
 
   dependencies {
     paths = [
-      "../../../infra/gcp-gke",
-      "../ingress-controller",
-      "../kube-lego",
-      "../../../local/vault-tls",
-      "../../../infra/vault-storage",
+      "../../../../infra/gcp-gke",
+      "../../ingress-controller",
+      "../../kube-lego",
+      "../tls",
+      "../storage",
     ]
   }
 

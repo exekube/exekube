@@ -1,8 +1,8 @@
-ca_public_key_file_path = "/exekube/live/prod/kube/core/vault/secrets/vault-tls/ca.crt"
+ca_public_key_file_path = "/exekube/live/prod/kube/core/vault/release/secrets/vault-tls/ca.crt"
 
-public_key_file_path = "/exekube/live/prod/kube/core/vault/secrets/vault-tls/server.crt"
+public_key_file_path = "/exekube/live/prod/kube/core/vault/release/secrets/vault-tls/server.crt"
 
-private_key_file_path = "/exekube/live/prod/kube/core/vault/secrets/vault-tls/server.key"
+private_key_file_path = "/exekube/live/prod/kube/core/vault/release/secrets/vault-tls/server.key"
 
 owner = "root"
 

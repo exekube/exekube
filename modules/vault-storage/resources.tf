@@ -16,6 +16,9 @@ resource "google_service_account" "default" {
 resource "google_service_account_key" "default" {
   service_account_id = "${google_service_account.default.id}"
 
+  public_key_type  = "TYPE_X509_PEM_FILE"
+  private_key_type = "TYPE_GOOGLE_CREDENTIALS_FILE"
+
   provisioner "local-exec" {
     command = <<EOF
 echo ${google_service_account_key.default.private_key} | \
