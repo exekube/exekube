@@ -112,26 +112,34 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
     ```
     Go back to your browser and check how your app updated with zero downtime! 😎
 
-    You can also upgrade the state of just one live module:
-    ```sh
-    # Use bash completion!
-    xk apply live/prod/kube/apps/my-app/
-    ```
+    > You can also upgrade the state of just one live module:
 
-    Or a group (a parent directory) of live modules:
-    ```sh
-    xk apply live/prod/kube/ci/
-    ```
+        ```sh
+        # Use bash completion!
+        xk apply live/prod/kube/apps/my-app/
+        ```
+
+    > Or a group (a parent directory) of live modules:
+
+        ```sh
+        xk apply live/prod/kube/ci/
+        ```
 
 #### Cleanup
 
 6. Clean everything up:
 
     ```sh
-    xk destroy live/prod/kube/apps/rails-app/ # Destroy only the rails-app release
-    xk destroy live/prod/kube/apps/ # Destroy all releases in apps
-    xk destroy live/prod/kube/ # Destroy all Kubernetes resources
-    xk destroy # Destroy everything in live/prod
+    # Destroy all cloud provider and Kubernetes resources
+    xk destroy
+    ```
+    >
+    ```sh
+    # Destroy all releases in apps
+    xk destroy live/prod/kube/apps/
+
+    # Destroy all Kubernetes resources
+    xk destroy live/prod/kube/
     ```
 
 ### Comparing Workflows - imperative CLI vs declarative HCL+YAML
