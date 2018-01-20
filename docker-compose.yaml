@@ -5,7 +5,8 @@ services:
     build: ./_docker
     working_dir: /exekube
     environment:
-      # TERRAGRUNT_SOURCE_UPDATE: "true"
+      VAULT_ADDR: https://localhost
+      VAULT_CACERT: /vault-tls.crt
       GOOGLE_CREDENTIALS: /exekube/credentials.json
       TF_LOG:
       TF_INPUT: 0
@@ -18,6 +19,7 @@ services:
     ports:
       - 8001:8001
     volumes:
+      - ./live/prod/kube/core/vault/secrets/vault-tls/ca.crt:/vault-tls.crt
       - .:/exekube
       - ./config/helm:/root/.helm
       - ./config/terragrunt:/root/.terragrunt

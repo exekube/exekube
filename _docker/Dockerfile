@@ -34,5 +34,11 @@ RUN apk add --no-cache \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v0.6.0 /root/.terraform.d/plugins/
 
+RUN curl -L https://releases.hashicorp.com/vault/0.9.1/vault_0.9.1_linux_amd64.zip -o vault.zip \
+  && unzip vault.zip \
+  && rm vault.zip \
+  && chmod +x vault \
+  && mv vault /usr/bin
+
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT [ "docker-entrypoint.sh" ]
