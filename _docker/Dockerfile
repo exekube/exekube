@@ -6,8 +6,10 @@ FROM google/cloud-sdk:183.0.0-alpine
 RUN apk add --no-cache \
         openssl \
         tar \
+        ca-certificates \
         \
         && gcloud components install alpha beta kubectl \
+        && gcloud components update \
         \
         && curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash \
         && curl -o ./terraform.zip https://releases.hashicorp.com/terraform/0.11.2/terraform_0.11.2_linux_amd64.zip \
@@ -32,6 +34,12 @@ RUN apk add --no-cache \
         && chmod 0700 terraform-provider-helm_v0.6.0 \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v0.6.0 /root/.terraform.d/plugins/
+
+RUN curl -L https://releases.hashicorp.com/vault/0.9.1/vault_0.9.1_linux_amd64.zip -o vault.zip \
+  && unzip vault.zip \
+  && rm vault.zip \
+  && chmod +x vault \
+  && mv vault /usr/bin
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT [ "docker-entrypoint.sh" ]

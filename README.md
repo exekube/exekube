@@ -1,90 +1,54 @@
-⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
-
 # Exekube
 
-*Exekube* is a declarative "Infrastructure as Code" framework for administering Kubernetes clusters and deploying containerized software onto them. Exekube offers you **full control** over your infrastructure and container orchestration while also having a great default state with a **one-click-to-deploy experience**.
-
-Here is a quick example of how you'd deploy a Jenkins Helm release using Exekube (this is "the client side" of a [Terraform module](https://github.com/ilyasotkov/exekube/tree/develop/modules/xk-release)), expressed in HashiCorp Configuration Language (HCL):
-
-```tf
-# live/prod/ci/jenkins/inputs.tfvars
-
-release_spec = {
-  enabled        = true
-  release_name   = "ci"
-  release_values = "values.yaml"
-
-  chart_repo    = "stable"
-  chart_name    = "jenkins"
-  chart_version = "0.12.0"
-
-  domain_name = "ci.example.com"
-}
-```
+⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
 
 ## Introduction
 
-You only need [Docker CE](/) and [Docker Compose](/) on your local machine to begin using Exekube. The framework is a thin layer on top of several open-source DevOps tools:
+*Exekube* is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastrucutre (including Kubernetes clusters) and deploying containerized software onto that infrastructure.
 
-- Docker and Docker Compose (for our local development environment)
-- Terraform, Terragrunt, and HCL (HashiCorp Configuration Language)
-- Kubernetes
-- Helm
+Exekube offers you:
 
-Exekube allows you to manage both cloud infrastructure resources and Kubernetes resources using a git-based workflow with a continuous integration (CI) pipeline.
+- Full control over your cloud infrastructure (via Terraform)
+- Full control over your container orchestration (via Terraform + Helm)
+- Fully automated one-click-to-deploy experience
+- Modular design and declarative model of management
+- Freedom to choose a cloud provider to host Kubernetes
+- Continuous integration (CI) facilities out of the box
 
-- [Introduction](#introduction)
-- [Design principles](#design-principles)
-- [Setup and usage](#setup-and-usage)
-	- [Requirements starting from zero](#requirements-starting-from-zero)
-		- [Linux](#linux)
-		- [macOS](#macos)
-		- [Windows](#windows)
-	- [Usage step-by-step](#usage-step-by-step)
-		- [Cloud provider setup: do it once](#cloud-provider-setup-do-it-once)
-		- [Cluster setup: do it as often as you need](#cluster-setup-do-it-as-often-as-you-need)
-	- [Workflows](#workflows)
-		- [Legacy imperative workflow (CLI)](#legacy-imperative-workflow-cli)
-		- [Declarative workflow (.tf and .tfvars files)](#declarative-workflow-hcl-tf-files)
-- [Feature tracker](#feature-tracker)
-	- [Cloud provider and local environment setup](#cloud-provider-and-local-environment-setup)
-	- [Cloud provider config](#cloud-provider-config)
-	- [Cluster creation](#cluster-creation)
-	- [Cluster access control](#cluster-access-control)
-	- [Supporting tools](#supporting-tools)
-	- [User apps and services](#user-apps-and-services)
+## Components
 
-## Design principles
+The framework is distributed as a [Docker image on DockerHub](/) that can be used manually by DevOps engineers or automatically via continuous integration (CI) pipelines. It combines several open-source DevOps tools into one easy-to-use workflow for managing cloud infrastructure and Kubernetes resources.
 
-- Everything on client side runs in a Docker container
-- Infrastructure (cloud provider) objects and Kubernetes API objects are expressed as declarative code, using HCL (HashiCorp Language) and Helm packages (YAML + Go templates)
-- Modular design
-- Git-based workflow with a CI pipeline [TBD]
-- No vendor lock-in, choose any cloud provider you want [only GCP for now]
-- Test-driven (TDD) or behavior-driven (BDD) model of development [TBD]
+### DevOps tools
+
+| Component | Purpose |
+| --- | --- |
+| Docker and Docker Compose | Local development environment |
+| Terraform | Declarative infrastructure and deployment management |
+| Terragrunt | Terraform *live module* management |
+| Kubernetes | Container orchestration |
+| Helm | Kubernetes package (chart / release) management |
+
+### Default Helm packages installed in-cloud
+
+| Component | Purpose |
+| --- | --- |
+| NGINX Ingress Controller | Cluster ingress controller |
+| kube-lego | Automatic Let's Encrypt TLS certificates for Ingress |
+| HashiCorp Vault | Cluster secret management |
+| Docker Registry | Container image registry |
+| ChartMuseum | Helm chart repository |
+| Jenkins, Drone, or Concourse | Continuous integration |
 
 ## Setup and usage
 
 ### Requirements starting from zero
 
-The only requirements, depending on your local OS:
+- For Linux user, [Docker CE](/) and [Docker Compose](/) are sufficient
+- For macOS users, [Docker for Mac](/) is sufficient
+- For Windows users, [Docker for Windows](/) is sufficient
 
-#### Linux
-
-- [Docker](/)
-- [Docker Compose](/)
-
-#### macOS
-
-- [Docker for Mac](/)
-
-#### Windows
-
-- [Docker for Windows](/)
-
-### Usage step-by-step
-
-#### Cloud provider setup: do it once
+### Initial setup: cloud provider billing and access
 
 0. Create `xk` (stands for "exekube") alias for your shell session (or save to ~/.bashrc):
     ```bash
@@ -107,54 +71,85 @@ The only requirements, depending on your local OS:
             gs://${TF_VAR_gcp_remote_state_bucket}
     ```
 
-#### Cluster setup: do it as often as you need
+### Usage
 
-7. Edit code in `live` and `modules` directories:
+#### Create and upgrade resources with just one command
 
-    ⚠️ If you cloned / forked this repo, you'll need to have a domain name (DNS zone) like `example.com` and have CloudFlare DNS servers set up for it.
+1. Edit code in [`live`](/):
 
-    Then, in your text editor, search and replace `swarm.pw` with your domain zone.
+    > ⚠️ If you cloned / forked this repo, you'll need to have a domain name (DNS zone) like `example.com` and have CloudFlare DNS servers set up for it. Then, in your text editor, search and replace `swarm.pw` with your domain zone.
 
-    [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/) [TODO]
+    [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/)
 
-8. Deploy all *live modules* (the cluster and all Kubernetes resources):
-    ```sh
-    # The .env file (.env.example initially) defines the XK_LIVE_DIR
-    # environmental variable for default commands
-    xk plan
+2. Apply all *Terraform live modules* — create all cloud infrastructure and all Kubernetes resources:
+
+    ```diff
     xk apply
+    + ...
+    + Module /exekube/live/prod/kube/apps/rails-app has finished successfully!
+    ```
+3. Enable the Kubernetes dashboard at <http://localhost:8001/ui>:
 
-    # You can also apply or destroy configuration for
-    # individual live modules and groups of live modules
-    #
-    # Trailing slash is optional
-    # Use bash completion!
-    xk apply live/prod/gcp-project/
-    xk destroy live/prod/apps/rails-app/
-    xk apply live/prod/ci/
-
-    # To make the cluster dashboard available at localhost:8001/ui, run
+    ```sh
     docker-compose up -d
-    # To disable local dashboard, run `docker-compose down`
+    ```
+
+4. Go to <https://my-app.YOURDOMAIN.COM/> to check that a hello-world Rails app is running.
+5. Upgrade the Rails application Docker image version in [live/kube/apps/my-app/values.yaml](/):
+
+    ```diff
+     replicaCount: 2
+     image:
+       repository: ilyasotkov/rails-react-boilerplate
+    -  tag: "0.1.0"
+    +  tag: "0.2.0"
+       pullPolicy: Always
+    ```
+
+    Upgrade the state of real-world cloud resources to the state of our code in `live/prod` directory:
+    ```sh
+    xk apply
+    ```
+    Go back to your browser and check how your app updated with zero downtime! 😎
+
+6. Experiment with creating, upgrading, and destroying single live modules and groups of live modules:
+
+    ```sh
+    xk destroy live/prod/kube/apps/rails-app/
+    xk destroy live/prod/kube/apps/
+    xk apply live/prod/kube/apps/rails-app/
+
+    xk apply live/prod/kube/
+    xk destroy live/prod/kube/
     ```
 
 #### Cleanup
 
-```sh
-xk destroy
-```
+7. Clean everything up:
 
-### Workflows
+    ```sh
+    # Destroy all cloud provider and Kubernetes resources
+    xk destroy
+    ```
 
-#### Legacy imperative workflow (CLI)
+### Comparing Workflows - imperative CLI vs declarative HCL+YAML
 
-⚠️ These tools are relatively mature and work well, but are considered *legacy* here since this framework aims to be [declarative](/)
+#### ✅ Declarative workflow (.tf and .tfvars files)
+
+- `xk apply`
+- `xk destroy`
+
+Declarative tools are exact equivalents of stadard CLI tools like `gcloud` / `aws`, `kubectl`, and `helm`, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Configuration Language) code.
+
+#### ⚠️ Legacy imperative workflow (CLI)
+
+These tools are relatively mature and work well, but are considered *legacy* here since this framework aims to be [declarative](/).
 
 Command line tools `kubectl` and `helm` are known to those who are familiar with Kubernetes. `gcloud` (part of Google Cloud SDK) is used for managing the Google Cloud Platform.
 
-- `xk gcloud`
-- `xk kubectl`
-- `xk helm`
+- `xk gcloud <group> <command> <arguments> <flags>`
+- `xk kubectl <group> <command> <arguments> <flags>`
+- `xk helm <command> <arguments> <flags>`
 
 Examples:
 
@@ -164,56 +159,6 @@ xk gcloud auth list
 xk kubectl get nodes
 
 xk helm install --name custom-rails-app \
-        -f live/prod/apps/my-app/values.yaml \
+        -f live/prod/kube/apps/my-app/values.yaml \
         charts/rails-app
 ```
-
-#### Declarative workflow (.tf and .tfvars files)
-
-- `xk apply`
-- `xk destroy`
-
-Declarative tools are exact equivalents of the legacy imperative (CLI) toolset, except everything is implemented as a [Terraform provider plugin](/) and expressed as declarative HCL (HashiCorp Language) code. Instead of writing CLI commands like `xk helm install --name <release-name> -f <values> <chart>` for each individual Helm release, we install all releases simultaneously by running `xk apply`.
-
-## Feature tracker
-
-Features are marked with ✔️ when they enter the *alpha stage*, meaning a minimum viable solution has been implemented
-
-### Cloud provider and local environment setup
-
-- [x] Create GCP account, enable billing in GCP Console (web GUI)
-- [x] Get credentials for GCP (`credentials.json`)
-- [x] Authenticate to GCP using `credentials.json` (for `gcloud` and `terraform` use)
-- [x] Enable terraform remote state in a Cloud Storage bucket
-
-### Cloud provider config
-
-- [ ] Create GCP Folders and Projects and associated policies
-- [ ] Create GCP IAM Service Accounts and IAM Policies for the Project
-
-### Cluster creation
-
-- [x] Create the GKE cluster
-- [x] Get cluster credentials (`/root/.kube/config` file)
-- [x] Initialize Helm
-
-### Cluster access control
-
-- [ ] Add cluster namespaces (virtual clusters)
-- [ ] Add cluster roles and role bindings
-- [ ] Add cluster network policies
-
-### Supporting tools
-
-- [x] Install cluster ingress controller (cloud load balancer)
-- [x] Install TLS certificates controller (kube-lego)
-- [ ] Install Continuous Delivery tools
-    - [x] Continuous delivery service (Drone / Jenkins)
-    - [x] Helm chart repository (ChartMuseum)
-    - [x] Private Docker registry
-    - [ ] Git service (Gitlab / Gogs)
-- [ ] Monitoring and alerting tools (Prometheus / Grafana)
-
-### User apps and services
-
-- [x] Install "hello-world" apps like static sites, Ruby on Rails apps, etc.
