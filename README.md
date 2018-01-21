@@ -6,14 +6,14 @@
 
 *Exekube* is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastructure (notably Kubernetes clusters) and deploying containerized software onto that infrastructure.
 
-### Huh?
+### The workflow
 
-Right after you enable billing on a cloud platform like Amazon Web Services or Google Cloud, you are able to run one command, `xk apply`, to take care of:
+Right after you enable billing on a cloud platform like Amazon Web Services or Google Cloud, you are able to run one command, `xk apply`, in order to:
 
-- Creating a Kubernetes cluster and other infrastructure on the cloud platform
-- Deploying Kubernetes resources onto the cluster (via Helm)
+- Create a Kubernetes cluster and supporting resources on the cloud platform
+- Deploy various Kubernetes resources onto the cluster (as Helm releases)
 
-When it's time to upgrade some of your cloud resources, just edit code in the [live modules](https://github.com/ilyasotkov/exekube/tree/develop/live) and run `xk apply` again. Terraform will match the state of your code to the state of your cloud resources.
+When it's time to upgrade some of your cloud resources, just modify the code in the [live modules directory](https://github.com/ilyasotkov/exekube/tree/develop/live) and run `xk apply` again. Terraform will match the state of your code to the state of your cloud resources.
 
 To clean up, run `xk destroy` and the whole thing is gone from the cloud.
 

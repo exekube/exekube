@@ -1,5 +1,7 @@
 # Vault Helm release
 
+> tl;dr; Every Kubernetes pod gets a Service Account token that is automatically mounted at /var/run/secrets/kubernetes.io/serviceaccounts/token Now, you can use that token (JWT token) to also log into vault, if you enable the Kubernetes auth module and configure a Vault role for your Kubernetes service account.
+
 ## Kubernetes Auth Backend
 
 <https://www.hashicorp.com/blog/hashicorp-vault-0-8-3>
