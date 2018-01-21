@@ -2,7 +2,7 @@
 
 ⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
 
-## What is it?
+## What is Exekube?
 
 *Exekube* is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastructure (notably Kubernetes clusters) and deploying containerized software onto that infrastructure.
 
@@ -56,7 +56,7 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 | ChartMuseum | Helm chart repository |
 | Jenkins, Drone, or Concourse | Continuous integration |
 
-## Setup and usage
+## Getting started
 
 ### Requirements starting from zero
 
@@ -64,17 +64,24 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 - For macOS users, [Docker for Mac](/) is sufficient
 - For Windows users, [Docker for Windows](/) is sufficient
 
-### Initial setup: cloud provider billing and access
+### Initial setup
 
-0. Create `xk` (stands for "exekube") alias for your shell session (or save to ~/.bashrc):
+1. First, create an alias for your shell session (`xk` stands for "exekube"):
     ```bash
     alias xk=". .env && docker-compose run --rm exekube"
     ```
-1. Rename `.env.example` file in repo root to `.env`. Configure `${TF_VAR_gcp_project}` and `${TF_VAR_gcp_remote_state_bucket}` shell exports.
-2. [Set up a Google Account](https://console.cloud.google.com/) for GCP (Google Cloud Platform), create a project named `${TF_VAR_gcp_project}`, and enable billing.
-3. [Create a service account](/) in GCP Console GUI, give it project owner permissions.
-4. [Download JSON credentials](/) ("key") to repo root directory and rename the file to `credentials.json`.
-5. Use JSON credentials to authenticate us to `gcloud`:
+2. If you don't have one, create a [Google Account](https://console.cloud.google.com/). Then, create a new [Google Cloud Platform Project](https://console.cloud.google.com).
+
+    | Project name | Project ID |
+    | --- | --- |
+    | Production Environment | prod-env-20180101 |
+
+3. Rename `.env.example` file in repo root to `.env`. Set the `TF_VAR_gcp_project` variable from previous step.
+    ```bash
+    export TF_VAR_gcp_project='prod-env-20180101'
+    ```
+4. [Create a service account](https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts) and give it project owner permissions. Download the account JSON private key filee to repo root directory and rename the file to `credentials.json`.
+5. Run this command authenticate us to `gcloud`:
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
     ```
