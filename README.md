@@ -2,9 +2,13 @@
 
 ⚠️ This is a work in progress. Don't attempt to use it for anything except developing Exekube (or inspiration).
 
-## Introduction
+## What is it?
 
-*Exekube* is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastrucutre (including Kubernetes clusters) and deploying containerized software onto that infrastructure.
+*Exekube* is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastructure (notably Kubernetes clusters) and deploying containerized software onto that infrastructure.
+
+### Huh?
+
+You can think of the framework as the "production version" of `docker-compose.yml`, except that everything is deployed on a production-ready cloud environment with full control in your hands. Exekube is a fusion of Terraform and Kubernetes Helm that attempts to make that happen.
 
 Exekube offers you:
 
@@ -21,21 +25,22 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 
 ### DevOps tools
 
-| Component | Purpose |
+| Component | Role |
 | --- | --- |
-| Docker and Docker Compose | Local development environment |
-| Terraform | Declarative infrastructure and deployment management |
-| Terragrunt | Terraform *live module* management |
-| Kubernetes | Container orchestration |
-| Helm | Kubernetes package (chart / release) management |
+| Docker | Local and cloud container runtime |
+| Docker Compose | Local development enviroment manager |
+| Terraform | Declarative cloud infrastructure manager |
+| Terragrunt | Terraform *live module* manager |
+| Kubernetes | Container orchestrator |
+| Helm | Kubernetes package (chart / release) manager |
 
-### Default Helm packages installed in-cloud
+### Default Helm packages installed
 
 | Component | Purpose |
 | --- | --- |
 | NGINX Ingress Controller | Cluster ingress controller |
 | kube-lego | Automatic Let's Encrypt TLS certificates for Ingress |
-| HashiCorp Vault | Cluster secret management |
+| HashiCorp Vault (TBD) | Cluster secret management |
 | Docker Registry | Container image registry |
 | ChartMuseum | Helm chart repository |
 | Jenkins, Drone, or Concourse | Continuous integration |
@@ -117,10 +122,9 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
     ```sh
     xk destroy live/prod/kube/apps/rails-app/
     xk destroy live/prod/kube/apps/
-    xk apply live/prod/kube/apps/rails-app/
 
     xk apply live/prod/kube/
-    xk destroy live/prod/kube/
+    xk apply live/prod/kube/apps/rails-app/
     ```
 
 #### Cleanup
