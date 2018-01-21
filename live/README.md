@@ -83,3 +83,98 @@ pre_hook = {
 ```
 
 A live module directory can also contain other files related to it, for example a `secrets` directory or `values.yaml` for a Helm release.
+
+# Full directory structure)
+
+```
+./live/prod/
+├── infra
+│   └── gcp-gke
+│       ├── inputs.tfvars
+│       └── terraform.tfvars
+└── kube
+    ├── apps
+    │   ├── rails-app
+    │   │   ├── inputs.tfvars
+    │   │   ├── terraform.tfvars
+    │   │   └── values.yaml
+    │   └── wp-app
+    │       ├── inputs.tfvars
+    │       ├── terraform.tfvars
+    │       └── values.yaml
+    ├── ci
+    │   ├── chartmuseum
+    │   │   ├── inputs.tfvars
+    │   │   ├── secrets
+    │   │   │   └── chartrepo.htpasswd
+    │   │   ├── terraform.tfvars
+    │   │   └── values.yaml
+    │   ├── concourse
+    │   │   ├── inputs.tfvars
+    │   │   ├── secrets
+    │   │   │   ├── basic-auth-password
+    │   │   │   ├── basic-auth-username
+    │   │   │   ├── encryption-key
+    │   │   │   ├── github-auth-client-id
+    │   │   │   ├── github-auth-client-secret
+    │   │   │   ├── host-key
+    │   │   │   ├── host-key-pub
+    │   │   │   ├── old-encryption-key
+    │   │   │   ├── postgres-password
+    │   │   │   ├── postgresql-user
+    │   │   │   ├── session-signing-key
+    │   │   │   ├── worker-key
+    │   │   │   └── worker-key-pub
+    │   │   ├── terraform.tfvars
+    │   │   └── values.yaml
+    │   ├── docker-registry
+    │   │   ├── inputs.tfvars
+    │   │   ├── secrets
+    │   │   │   └── registry.htpasswd
+    │   │   ├── terraform.tfvars
+    │   │   └── values.yaml
+    │   ├── drone
+    │   │   ├── inputs.tfvars
+    │   │   ├── secrets
+    │   │   │   ├── github-auth-client-id
+    │   │   │   ├── github-auth-client-secret
+    │   │   │   └── secret
+    │   │   ├── terraform.tfvars
+    │   │   └── values.yaml
+    │   └── jenkins
+    │       ├── inputs.tfvars
+    │       ├── terraform.tfvars
+    │       └── values.yaml
+    └── core
+        ├── ingress-controller
+        │   ├── inputs.tfvars
+        │   ├── terraform.tfvars
+        │   └── values.yaml
+        ├── kube-lego
+        │   ├── inputs.tfvars
+        │   ├── terraform.tfvars
+        │   └── values.yaml
+        └── vault
+            ├── release
+            │   ├── README.md
+            │   ├── inputs.tfvars
+            │   ├── secrets
+            │   │   ├── gcp-credentials
+            │   │   │   └── vault.json
+            │   │   └── vault-tls
+            │   │       ├── ca.crt
+            │   │       ├── server.crt
+            │   │       └── server.key
+            │   ├── terraform.tfvars
+            │   └── values.yaml
+            ├── storage
+            │   ├── backend.tf
+            │   ├── inputs.tfvars
+            │   └── terraform.tfvars
+            └── tls
+                ├── backend.tf
+                ├── inputs.tfvars
+                └── terraform.tfvars
+
+26 directories, 61 files
+```
