@@ -2,17 +2,19 @@
 
 Each directory in `live` contains configuration for a 100% isolated environment. The environment is configured declaratively using Terraform code with [Terragrunt](/) as a wrapper tool that gives it full automation and less boilerplate code.
 
+> 👋 If the deep directory structure of `live` seems intimidating or hard to understand, keep in mind that all except the leaf directories are there simply for organization. The whole `live` directory is just a collection *live modules* that will eventually be applied by Terraform.
+
 Each environment directory, such as `prod` contains a number of **live modules** -- Terraform modules that import a *generic module* and configure it for this specfic environement.
 
 ## Environment directory structure
 
-In `prod/infra` is a collection of live modules that manage **cloud provider resources**. Example: `prod/infra/gcp-gke`
+In `prod/infra/` is a collection of live modules that manage **cloud provider resources**. Example live module: `prod/infra/gcp-gke/`
 
-In `prod/kube` is a collection of live modules that manage **Kubernetes and Helm resources**.
+In `prod/kube/` is a collection of live modules that manage **Kubernetes and Helm resources**. Example live module: `prod/kube/core/ingress-controller/`.
 
 ## Live module directory structure
 
-Each **live module**, for example [`live/prod/kube/apps/rails-app/`](/), contains at least 2 files:
+Each **live module**, for example [`live/prod/kube/apps/ingress-controller/`](/), contains at least 2 files:
 
 ```
 terraform.tfvars
@@ -20,9 +22,9 @@ inputs.tfvars
 ```
 ### `terraform.tfvars`
 
-`terraform.tfvars` defines which generic Terraform module to import, declares which other live modules it depends on, and also allows you tweak some configuration in case you need it.
+`terraform.tfvars` defines which generic Terraform module to import and declares which other live modules it depends on.
 
-Commented example:
+Commented example of `terraform.tfvars`:
 
 ```tf
 # Terragrunt configuration: Terragrunt automates and improves management of Terraform modules.
@@ -52,13 +54,11 @@ terragrunt = {
 
 ### `inputs.tfvars`
 
-`inputs.tfvars` allows you to configure the "live" version of a generic module you imported in `terraform.tfvars`.
+`inputs.tfvars` allows you to configure a generic module you imported in `terraform.tfvars`.
 
-Commented example:
+Commented example of `inputs.tfvars`:
 
 ```tf
-# Files in ./secrets directory must NOT have a trailing newline!
-
 release_spec = {
   enabled        = false
   release_name   = "concourse"

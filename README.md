@@ -8,7 +8,18 @@
 
 ### Huh?
 
-You can think of the framework as the "production version" of `docker-compose.yml`, except that everything is deployed on a production-ready cloud environment with full control in your hands. Exekube is a fusion of Terraform and Kubernetes Helm that attempts to make that happen.
+Right after you enable billing on a cloud platform like Amazon Web Services or Google Cloud, you are able to run one command, `xk apply`, to take care of:
+
+- Creating a Kubernetes cluster and other infrastructure on the cloud platform
+- Deploying Kubernetes resources onto the cluster (via Helm)
+
+When it's time to upgrade some of your cloud resources, just edit code in the [live modules](https://github.com/ilyasotkov/exekube/tree/develop/live) and run `xk apply` again. Terraform will match the state of your code to the state of your cloud resources.
+
+To clean up, run `xk destroy` and the whole thing is gone from the cloud.
+
+Go through the [Usage section](/) to see a full example in action.
+
+## Features
 
 Exekube offers you:
 
