@@ -70,17 +70,29 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
     ```bash
     alias xk=". .env && docker-compose run --rm exekube"
     ```
-2. If you don't have one, create a [Google Account](https://console.cloud.google.com/). Then, create a new [Google Cloud Platform Project](https://console.cloud.google.com).
+2. If you don't have one, create a [Google Account](https://console.cloud.google.com/). Then, create a new Google Cloud Platform [Project](https://console.cloud.google.com).
 
     | Project name | Project ID |
     | --- | --- |
     | Production Environment | prod-env-20180101 |
 
-3. Rename `.env.example` file in repo root to `.env`. Set the `TF_VAR_gcp_project` variable from previous step.
+3. Rename `.env.example` file in repo root to `.env`. Set the `TF_VAR_gcp_project` variable to the value from previous step.
     ```bash
-    export TF_VAR_gcp_project='prod-env-20180101'
+    mv .env.example .env
     ```
-4. [Create a service account](https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts) and give it project owner permissions. Download the account JSON private key filee to repo root directory and rename the file to `credentials.json`.
+    ```diff
+    # ./.env
+
+    export XK_LIVE_DIR='/exekube/live/prod'
+    - export TF_VAR_gcp_project='my-project-186217'
+    + export TF_VAR_gcp_project='prod-env-20180101'
+    export TF_VAR_gcp_remote_state_bucket='${TF_VAR_gcp_project}-tfstate'
+    ...
+    ```
+4. [Create a service account](https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts) and give it project owner permissions. Download the account JSON private key file to repo root directory and rename the file to `credentials.json`.
+
+    ![Creating a GCP service account in GCP Console](/_docs/img/gcp-sa.png?raw=true)
+
 5. Run this command authenticate us to `gcloud`:
     ```sh
     xk gcloud auth activate-service-account --key-file credentials.json
