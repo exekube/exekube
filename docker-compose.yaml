@@ -26,3 +26,15 @@ services:
       - ./config/gcloud:/root/.config/gcloud
       - ./config/kube:/root/.kube
     command: kubectl proxy --address="0.0.0.0" --accept-hosts ".*"
+
+  mkdocs:
+    image: squidfunk/mkdocs-material:latest
+    volumes:
+      - .:/docs
+    ports:
+      - 8000:8000
+    entrypoint: mkdocs
+    command:
+      - serve
+      - --livereload
+      - --dev-addr=0.0.0.0:8000

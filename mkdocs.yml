@@ -1,0 +1,54 @@
+repo_name: ilyasotkov/exekube
+repo_url: https://github.com/ilyasotkov/exekube
+edit_uri: ""
+
+pages:
+  - Overview: index.md
+  - Introduction:
+      - 'What is Exekube?': introduction/what-is-exekube.md
+      - 'Exekube in comparison': introduction/exekube-vs-other.md
+  - Setup and Installation:
+      - 'On Google Cloud Platform': setup/gcp-gke.md
+      - 'On Amazon Web Services': setup/aws-eks.md
+  - Usage:
+      - 'Deploy an application': usage/deploy-app.md
+  - Miscellaneous:
+      - 'Configure a Helm release': misc/configure-helm-release.md
+      - 'Use HashiCorp Vault to manage secrets': misc/vault-integration.md
+      - 'Project feature tracker': misc/feature-tracker.md
+
+copyright: 'Copyright &copy; 2018 Ilya Sotkov'
+
+docs_dir: '_docs'
+extra_css:
+  - 'css/extra.css'
+markdown_extensions:
+  - codehilite:
+      linenums: false
+  - admonition
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+theme:
+  name: material
+  logo:
+    icon: memory
+  feature:
+    tabs: true
+  font:
+    text: Open Sans
+    code: Roboto Mono
+  palette:
+    primary: indigo
+    accent: indigo
+site_name: Exekube documentation

@@ -1,6 +1,23 @@
-# Exekube
+# What is Exekube?
 
-Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes, built with Terraform and Helm.
+*Exekube* is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastructure (notably Kubernetes clusters) and deploying containerized software onto that infrastructure.
+
+## The declarative workflow
+
+Right after you enable billing on a cloud platform like Amazon Web Services or Google Cloud Platform, you are able to run one command
+
+```bash
+xk apply
+```
+
+in order to:
+
+- Create a Kubernetes cluster and supporting resources on the cloud platform
+- Deploy any number of Kubernetes resources onto the cluster (as Helm releases)
+
+When it's time to upgrade some of your cloud resources, just modify your code and run `xk apply` again. Terraform will match the state of your code to the state of your cloud resources.
+
+To clean up, run `xk destroy` and the whole thing is gone from the cloud.
 
 ## Features
 
@@ -38,7 +55,3 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 | Docker Registry | Container image registry |
 | ChartMuseum | Helm chart repository |
 | Jenkins, Drone, or Concourse | Continuous integration |
-
-## Documentation
-
-- [Documentation website](https://ilyasotkov.github.io/exekube/)
