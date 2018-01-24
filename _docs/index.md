@@ -14,7 +14,7 @@ Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes
 
 ## Usage
 
-- [Deploy an application on Kubernetes with Exekube](usage/deploy-app)
+- [Deploy an application on Kubernetes with Exekube](/usage/deploy-app)
 
 ## Reference
 
@@ -26,3 +26,4 @@ Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes
 - [How to configure a Helm release](/misc/configure-helm-release)
 - [Use HashiCorp Vault to manage secrets](/misc/vault-integration)
 - [Read the project's feature tracker](/misc/feature-tracker)
+- [Managing secrets in Exekube](/misc/secrets)
