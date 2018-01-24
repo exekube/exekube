@@ -40,7 +40,8 @@
 5. Run this command authenticate us to `gcloud`:
 
     ```bash
-    xk gcloud auth activate-service-account --key-file credentials.json
+    xk gcloud auth activate-service-account --key-file credentials.json \
+    && rm -rf credentials.json
     ```
 
 6. Finally, create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:
