@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Exekube documentation\n\n\nExekube is an \"Infrastructure as Code\" modular framework for managing Kubernetes, built with Terraform and Helm.\n\n\nIntroduction\n\n\n\n\nWhat is Exekube?\n\n\nHow does Exekube compare to other software?\n\n\n\n\nSetup and Installation\n\n\n\n\nCreate an Exekube project on Google Cloud Platform\n\n\nCreate an Exekube project on Amazon Web Services\n\n\n\n\nUsage\n\n\n\n\nDeploy an application on Kubernetes with Exekube\n\n\n\n\nReference\n\n\n\n\ngcp-gke module\n\n\nhelm-release module\n\n\n\n\nMiscellaneous\n\n\n\n\nHow to configure a Helm release\n\n\nUse HashiCorp Vault to manage secrets\n\n\nRead the project's feature tracker", 
+            "text": "Exekube documentation\n\n\nExekube is an \"Infrastructure as Code\" modular framework for managing Kubernetes, built with Terraform and Helm.\n\n\nIntroduction\n\n\n\n\nWhat is Exekube?\n\n\nHow does Exekube compare to other software?\n\n\n\n\nSetup and Installation\n\n\n\n\nCreate an Exekube project on Google Cloud Platform\n\n\nCreate an Exekube project on Amazon Web Services\n\n\n\n\nUsage\n\n\n\n\nDeploy an application on Kubernetes with Exekube\n\n\n\n\nReference\n\n\n\n\ngcp-gke module\n\n\nhelm-release module\n\n\n\n\nMiscellaneous\n\n\n\n\nHow to configure a Helm release\n\n\nUse HashiCorp Vault to manage secrets\n\n\nRead the project's feature tracker\n\n\nManaging secrets in Exekube", 
             "title": "Overview"
         }, 
         {
@@ -32,7 +32,7 @@
         }, 
         {
             "location": "/#miscellaneous", 
-            "text": "How to configure a Helm release  Use HashiCorp Vault to manage secrets  Read the project's feature tracker", 
+            "text": "How to configure a Helm release  Use HashiCorp Vault to manage secrets  Read the project's feature tracker  Managing secrets in Exekube", 
             "title": "Miscellaneous"
         }, 
         {
@@ -204,6 +204,26 @@
             "location": "/misc/feature-tracker/#user-apps-and-services", 
             "text": "Install \"hello-world\" apps like static sites, Ruby on Rails apps, etc.", 
             "title": "User apps and services"
+        }, 
+        {
+            "location": "/misc/secrets/", 
+            "text": "Managing secrets\n\n\nWhat are secrets?\n\n\nSecrets\n are configuration values that are directly responsible for the security of a part of a DevOps system.\n\n\nExamples:\n\n\n\n\nGitHub OAuth application token pair\n\n\nCloudFlare \nemail:token\n pair\n\n\nPrivate Docker Registry \nusername:password\n pair\n\n\n\n\nManaging secrets is non-trivial.\n\n\nAll secrets currently not commited to VCS\n\n\n\n\n\n\n\n\nPath\n\n\nPurpose\n\n\nManagement strategy\n\n\n\n\n\n\n\n\n\n\ncredentials.json\n\n\nAuthenticate to GCP project\n\n\nCreate via GUI, use by the \ngcloud auth activate-service-account --key-file credentials.json\n, delete ?\n\n\n\n\n\n\n.env\n\n\nRandom TF_VAR_* variables\n\n\nCommit to VCS if only use to import values \nexport TF_VAR_mysecret=\n$(security find-generic-password -a mysecret -w)\n\n\n\n\n\n\nbackup/tls\n\n\nStore LE TLS certificates\n\n\nReplace with Ark, encrypt in VCS\n\n\n\n\n\n\nconfig/**\n\n\nAuto-generated config files for gcloud, kubectl, helm, terraform\n\n\nNever commit to VCS\n\n\n\n\n\n\nlive/prod/kube/**/secrets/**\n\n\nCreate Kubernetes Secrets via pre_hook (for now)\n\n\nReplace with Vault? Store encrypted VCS?", 
+            "title": "Managing secrets in Exekube"
+        }, 
+        {
+            "location": "/misc/secrets/#managing-secrets", 
+            "text": "", 
+            "title": "Managing secrets"
+        }, 
+        {
+            "location": "/misc/secrets/#what-are-secrets", 
+            "text": "Secrets  are configuration values that are directly responsible for the security of a part of a DevOps system.  Examples:   GitHub OAuth application token pair  CloudFlare  email:token  pair  Private Docker Registry  username:password  pair   Managing secrets is non-trivial.", 
+            "title": "What are secrets?"
+        }, 
+        {
+            "location": "/misc/secrets/#all-secrets-currently-not-commited-to-vcs", 
+            "text": "Path  Purpose  Management strategy      credentials.json  Authenticate to GCP project  Create via GUI, use by the  gcloud auth activate-service-account --key-file credentials.json , delete ?    .env  Random TF_VAR_* variables  Commit to VCS if only use to import values  export TF_VAR_mysecret= $(security find-generic-password -a mysecret -w)    backup/tls  Store LE TLS certificates  Replace with Ark, encrypt in VCS    config/**  Auto-generated config files for gcloud, kubectl, helm, terraform  Never commit to VCS    live/prod/kube/**/secrets/**  Create Kubernetes Secrets via pre_hook (for now)  Replace with Vault? Store encrypted VCS?", 
+            "title": "All secrets currently not commited to VCS"
         }
     ]
 }

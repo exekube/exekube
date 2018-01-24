@@ -4,3 +4,17 @@
     margin-right: 4rem;
   }
 }
+
+.md-footer-copyright {
+  float: none;
+  max-width: none;
+  text-align: center;
+}
+
+.md-footer-copyright__highlight {
+  color: rgba(0,0,0,.55);
+}
+
+.md-footer-meta {
+    background-color: white;
+}
