@@ -27,7 +27,7 @@ services:
       - ./config/kube:/root/.kube
     command: kubectl proxy --address="0.0.0.0" --accept-hosts ".*"
 
-  mkdocs:
+  docs:
     image: squidfunk/mkdocs-material:latest
     volumes:
       - .:/docs
