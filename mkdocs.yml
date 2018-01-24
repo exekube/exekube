@@ -42,8 +42,9 @@ markdown_extensions:
   - pymdownx.tilde
 theme:
   name: material
+  custom_dir: _docs/theme
   logo:
-    icon: memory
+    icon: playlist_add_check
   feature:
     tabs: true
   font:
