@@ -60,7 +60,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -598,7 +598,7 @@
                 <h1 id="setup-exekube-with-google-cloud-and-gke">Setup Exekube with Google Cloud and GKE</h1>
 <h2 id="requirements-starting-from-zero">Requirements starting from zero</h2>
 <ul>
-<li>For Linux user, <a href="../../">Docker CE</a> and <a href="../../">Docker Compose</a> are sufficient</li>
+<li>For Linux users, <a href="../../">Docker CE</a> and <a href="../../">Docker Compose</a> are sufficient</li>
 <li>For macOS users, <a href="../../">Docker for Mac</a> is sufficient</li>
 <li>For Windows users, <a href="../../">Docker for Windows</a> is sufficient</li>
 </ul>
@@ -645,7 +645,8 @@ export TF_VAR_gcp_remote_state_bucket=&#39;${TF_VAR_gcp_project}-tfstate&#39;
 </li>
 <li>
 <p>Run this command authenticate us to <code class="codehilite">gcloud</code>:</p>
-<div class="codehilite"><pre><span></span>xk gcloud auth activate-service-account --key-file credentials.json
+<div class="codehilite"><pre><span></span>xk gcloud auth activate-service-account --key-file credentials.json <span class="se">\</span>
+<span class="o">&amp;&amp;</span> rm -rf credentials.json
 </pre></div>
 
 </li>
