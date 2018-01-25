@@ -51,6 +51,6 @@ theme:
     text: Open Sans
     code: Roboto Mono
   palette:
-    primary: indigo
+    primary: blue grey
     accent: indigo
 site_name: Exekube documentation

@@ -2,7 +2,7 @@
 
 ## Requirements starting from zero
 
-- For Linux user, [Docker CE](/) and [Docker Compose](/) are sufficient
+- For Linux users, [Docker CE](/) and [Docker Compose](/) are sufficient
 - For macOS users, [Docker for Mac](/) is sufficient
 - For Windows users, [Docker for Windows](/) is sufficient
 

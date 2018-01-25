@@ -1,8 +1,11 @@
 # Deploy an application on Kubernetes with Exekube
 
+!!! warning
+    This article is incomplete. Want to help? [Submit a pull request](https://github.com/ilyasotkov/exekube/pulls).
+
 1. Edit code in [`live`](/):
 
-    !!! caution
+    !!! important
         If you cloned / forked this repo, you'll need to have a domain name (DNS zone) like `example.com` and have CloudFlare DNS servers set up for it. Then, in your text editor, search and replace `swarm.pw` with your domain zone.
 
     [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/)
