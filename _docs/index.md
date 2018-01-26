@@ -18,8 +18,8 @@ Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes
 
 ## Reference
 
-- [gcp-gke module](/)
-- [helm-release module](/)
+- [gcp-gke module](/reference/gcp-gke)
+- [helm-release module](/reference/helm-release)
 
 ## Miscellaneous
 

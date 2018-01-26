@@ -1,23 +1,22 @@
 # What is Exekube?
 
-*Exekube* is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastructure (notably Kubernetes clusters) and deploying containerized software onto that infrastructure.
+Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes, built with Terraform and Helm.
 
-## The declarative workflow
+## Motivation
 
-Right after you enable billing on a cloud platform like Amazon Web Services or Google Cloud Platform, you are able to run one command
+Using many command line tools to manage cloud resources (e.g. `gcloud`, `aws`, `kops`) and Kubernetes resources (e.g. `kubectl`, `helm`) is tedious and error-prone.
 
-```bash
-xk apply
-```
+Terraform already provides a declarative interface for a large number of cloud providers, so why not use Terraform to manage both cloud resources and containers through a single, fully automated interface?
 
-in order to:
+## Sample workflow
 
-- Create a Kubernetes cluster and supporting resources on the cloud platform
-- Deploy any number of Kubernetes resources onto the cluster (as Helm releases)
+1. Create a namespace (project) for a deployment environment on a cloud platform like AWS or Google Cloud. This is only done once for every deployment environment. [Tutorial for Google Cloud](/setup/gcp-gke/)
+2. Configure your deployment environment by editing Terraform (HCL) files in your text editor of choice. [Example directory structure](https://github.com/ilyasotkov/exekube/tree/develop/live/prod)
+3. Run `xk apply` to deploy everything onto the cloud platform, including cloud infrastructure and Kubernetes resources.
+4. Edit Terraform code in face of changing requirements and run `xk apply` again to match the state of your code to the state of real-world resources.
+5. Run `xk destroy` to clean everything up.
 
-When it's time to upgrade some of your cloud resources, just modify your code and run `xk apply` again. Terraform will match the state of your code to the state of your cloud resources.
-
-To clean up, run `xk destroy` and the whole thing is gone from the cloud.
+This workflow is an excellent fit for creating simple continuous integration pipelines.
 
 ## Features
 
@@ -25,7 +24,7 @@ Exekube offers you:
 
 - Full control over your cloud infrastructure (via Terraform)
 - Full control over your container orchestration (via Terraform + Helm)
-- Fully automated one-click-to-deploy experience
+- Fully automated one-command-to-deploy experience
 - Modular design and declarative model of management
 - Freedom to choose a cloud provider to host Kubernetes
 - Continuous integration (CI) facilities out of the box

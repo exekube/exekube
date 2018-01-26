@@ -17,6 +17,9 @@ pages:
       - 'Use HashiCorp Vault to manage secrets': misc/vault-integration.md
       - 'Project feature tracker': misc/feature-tracker.md
       - 'Managing secrets in Exekube': misc/secrets.md
+  - Reference:
+      - 'gcp-gke module': reference/gcp-gke.md
+      - 'helm-release module': reference/helm-release.md
 
 copyright: 'Copyright &copy; 2018 Ilya Sotkov'
 
@@ -51,6 +54,6 @@ theme:
     text: Open Sans
     code: Roboto Mono
   palette:
-    primary: blue grey
-    accent: indigo
+    primary: pink
+    accent: pink
 site_name: Exekube documentation
