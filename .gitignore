@@ -8,6 +8,7 @@ live/**/docker
 **/docker-config.json
 charts/*/push.sh
 backup/tls
+site
 
 live/**/secrets
 
