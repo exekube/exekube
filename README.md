@@ -4,9 +4,9 @@ Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes
 
 ## Motivation
 
-Using many command line tools to manage cloud resources (e.g. `gcloud`, `aws`, `kops`) and Kubernetes resources (e.g. `kubectl`, `helm`) is tedious and error prone.
+Using many command line tools to manage cloud resources (e.g. `gcloud`, `aws`, `kops`) and Kubernetes resources (e.g. `kubectl`, `helm`) is tedious and error-prone.
 
-Terraform already provides a declarative interface for a large number of cloud providers, so why not manage **everything** through Terraform?
+Terraform already provides a declarative interface for a large number of cloud providers, so why not use Terraform to manage both cloud resources and containers through a single, fully automated interface?
 
 ## Features
 
@@ -17,8 +17,6 @@ Terraform already provides a declarative interface for a large number of cloud p
 - Freedom to choose a cloud provider to host Kubernetes
 - Continuous integration (CI) facilities out of the box
 
-## Documentation and other links
+## Documentation
 
 - [Documentation website](https://ilyasotkov.github.io/exekube/)
-- [Create an Exekube project on Google Cloud Platform](https://ilyasotkov.github.io/exekube/setup/gcp-gke/)
-- [Usage tutorial](https://ilyasotkov.github.io/exekube/usage/deploy-app/)
