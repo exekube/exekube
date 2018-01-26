@@ -37,22 +37,27 @@
         }, 
         {
             "location": "/introduction/what-is-exekube/", 
-            "text": "What is Exekube?\n\n\nExekube\n is a declarative \"Infrastructure as Code\" framework (a.k.a. platform / PaaS) for managing cloud infrastructure (notably Kubernetes clusters) and deploying containerized software onto that infrastructure.\n\n\nThe declarative workflow\n\n\nRight after you enable billing on a cloud platform like Amazon Web Services or Google Cloud Platform, you are able to run one command\n\n\nxk apply\n\n\n\n\nin order to:\n\n\n\n\nCreate a Kubernetes cluster and supporting resources on the cloud platform\n\n\nDeploy any number of Kubernetes resources onto the cluster (as Helm releases)\n\n\n\n\nWhen it's time to upgrade some of your cloud resources, just modify your code and run \nxk apply\n again. Terraform will match the state of your code to the state of your cloud resources.\n\n\nTo clean up, run \nxk destroy\n and the whole thing is gone from the cloud.\n\n\nFeatures\n\n\nExekube offers you:\n\n\n\n\nFull control over your cloud infrastructure (via Terraform)\n\n\nFull control over your container orchestration (via Terraform + Helm)\n\n\nFully automated one-click-to-deploy experience\n\n\nModular design and declarative model of management\n\n\nFreedom to choose a cloud provider to host Kubernetes\n\n\nContinuous integration (CI) facilities out of the box\n\n\n\n\nComponents\n\n\nThe framework is distributed as a \nDocker image on DockerHub\n that can be used manually by DevOps engineers or automatically via continuous integration (CI) pipelines. It combines several open-source DevOps tools into one easy-to-use workflow for managing cloud infrastructure and Kubernetes resources.\n\n\nDevOps tools\n\n\n\n\n\n\n\n\nComponent\n\n\nRole\n\n\n\n\n\n\n\n\n\n\nDocker\n\n\nLocal and cloud container runtime\n\n\n\n\n\n\nDocker Compose\n\n\nLocal development enviroment manager\n\n\n\n\n\n\nTerraform\n\n\nDeclarative cloud infrastructure manager\n\n\n\n\n\n\nTerragrunt\n\n\nTerraform \nlive module\n manager\n\n\n\n\n\n\nKubernetes\n\n\nContainer orchestrator\n\n\n\n\n\n\nHelm\n\n\nKubernetes package (chart / release) manager\n\n\n\n\n\n\n\n\nDefault Helm packages installed\n\n\n\n\n\n\n\n\nComponent\n\n\nPurpose\n\n\n\n\n\n\n\n\n\n\nNGINX Ingress Controller\n\n\nCluster ingress controller\n\n\n\n\n\n\nkube-lego\n\n\nAutomatic Let's Encrypt TLS certificates for Ingress\n\n\n\n\n\n\nHashiCorp Vault (TBD)\n\n\nCluster secret management\n\n\n\n\n\n\nDocker Registry\n\n\nContainer image registry\n\n\n\n\n\n\nChartMuseum\n\n\nHelm chart repository\n\n\n\n\n\n\nJenkins, Drone, or Concourse\n\n\nContinuous integration", 
+            "text": "What is Exekube?\n\n\nExekube is an \"Infrastructure as Code\" modular framework for managing Kubernetes, built with Terraform and Helm.\n\n\nMotivation\n\n\nUsing many command line tools to manage cloud resources (e.g. \ngcloud\n, \naws\n, \nkops\n) and Kubernetes resources (e.g. \nkubectl\n, \nhelm\n) is tedious and error-prone.\n\n\nTerraform already provides a declarative interface for a large number of cloud providers, so why not use Terraform to manage both cloud resources and containers through a single, fully automated interface?\n\n\nSample workflow\n\n\n\n\nCreate a namespace (project) for a deployment environment on a cloud platform like AWS or Google Cloud. This is only done once for every deployment environment. \nTutorial for Google Cloud\n\n\nConfigure your deployment environment by editing Terraform (HCL) files in your text editor of choice. \nExample directory structure\n\n\nRun \nxk apply\n to deploy everything onto the cloud platform, including cloud infrastructure and Kubernetes resources.\n\n\nEdit Terraform code in face of changing requirements and run \nxk apply\n again to match the state of your code to the state of real-world resources.\n\n\nRun \nxk destroy\n to clean everything up.\n\n\n\n\nThis workflow is an excellent fit for creating simple continuous integration pipelines.\n\n\nFeatures\n\n\nExekube offers you:\n\n\n\n\nFull control over your cloud infrastructure (via Terraform)\n\n\nFull control over your container orchestration (via Terraform + Helm)\n\n\nFully automated one-command-to-deploy experience\n\n\nModular design and declarative model of management\n\n\nFreedom to choose a cloud provider to host Kubernetes\n\n\nContinuous integration (CI) facilities out of the box\n\n\n\n\nComponents\n\n\nThe framework is distributed as a \nDocker image on DockerHub\n that can be used manually by DevOps engineers or automatically via continuous integration (CI) pipelines. It combines several open-source DevOps tools into one easy-to-use workflow for managing cloud infrastructure and Kubernetes resources.\n\n\nDevOps tools\n\n\n\n\n\n\n\n\nComponent\n\n\nRole\n\n\n\n\n\n\n\n\n\n\nDocker\n\n\nLocal and cloud container runtime\n\n\n\n\n\n\nDocker Compose\n\n\nLocal development enviroment manager\n\n\n\n\n\n\nTerraform\n\n\nDeclarative cloud infrastructure manager\n\n\n\n\n\n\nTerragrunt\n\n\nTerraform \nlive module\n manager\n\n\n\n\n\n\nKubernetes\n\n\nContainer orchestrator\n\n\n\n\n\n\nHelm\n\n\nKubernetes package (chart / release) manager\n\n\n\n\n\n\n\n\nDefault Helm packages installed\n\n\n\n\n\n\n\n\nComponent\n\n\nPurpose\n\n\n\n\n\n\n\n\n\n\nNGINX Ingress Controller\n\n\nCluster ingress controller\n\n\n\n\n\n\nkube-lego\n\n\nAutomatic Let's Encrypt TLS certificates for Ingress\n\n\n\n\n\n\nHashiCorp Vault (TBD)\n\n\nCluster secret management\n\n\n\n\n\n\nDocker Registry\n\n\nContainer image registry\n\n\n\n\n\n\nChartMuseum\n\n\nHelm chart repository\n\n\n\n\n\n\nJenkins, Drone, or Concourse\n\n\nContinuous integration", 
             "title": "What is Exekube?"
         }, 
         {
             "location": "/introduction/what-is-exekube/#what-is-exekube", 
-            "text": "Exekube  is a declarative \"Infrastructure as Code\" framework (a.k.a. platform / PaaS) for managing cloud infrastructure (notably Kubernetes clusters) and deploying containerized software onto that infrastructure.", 
+            "text": "Exekube is an \"Infrastructure as Code\" modular framework for managing Kubernetes, built with Terraform and Helm.", 
             "title": "What is Exekube?"
         }, 
         {
-            "location": "/introduction/what-is-exekube/#the-declarative-workflow", 
-            "text": "Right after you enable billing on a cloud platform like Amazon Web Services or Google Cloud Platform, you are able to run one command  xk apply  in order to:   Create a Kubernetes cluster and supporting resources on the cloud platform  Deploy any number of Kubernetes resources onto the cluster (as Helm releases)   When it's time to upgrade some of your cloud resources, just modify your code and run  xk apply  again. Terraform will match the state of your code to the state of your cloud resources.  To clean up, run  xk destroy  and the whole thing is gone from the cloud.", 
-            "title": "The declarative workflow"
+            "location": "/introduction/what-is-exekube/#motivation", 
+            "text": "Using many command line tools to manage cloud resources (e.g.  gcloud ,  aws ,  kops ) and Kubernetes resources (e.g.  kubectl ,  helm ) is tedious and error-prone.  Terraform already provides a declarative interface for a large number of cloud providers, so why not use Terraform to manage both cloud resources and containers through a single, fully automated interface?", 
+            "title": "Motivation"
+        }, 
+        {
+            "location": "/introduction/what-is-exekube/#sample-workflow", 
+            "text": "Create a namespace (project) for a deployment environment on a cloud platform like AWS or Google Cloud. This is only done once for every deployment environment.  Tutorial for Google Cloud  Configure your deployment environment by editing Terraform (HCL) files in your text editor of choice.  Example directory structure  Run  xk apply  to deploy everything onto the cloud platform, including cloud infrastructure and Kubernetes resources.  Edit Terraform code in face of changing requirements and run  xk apply  again to match the state of your code to the state of real-world resources.  Run  xk destroy  to clean everything up.   This workflow is an excellent fit for creating simple continuous integration pipelines.", 
+            "title": "Sample workflow"
         }, 
         {
             "location": "/introduction/what-is-exekube/#features", 
-            "text": "Exekube offers you:   Full control over your cloud infrastructure (via Terraform)  Full control over your container orchestration (via Terraform + Helm)  Fully automated one-click-to-deploy experience  Modular design and declarative model of management  Freedom to choose a cloud provider to host Kubernetes  Continuous integration (CI) facilities out of the box", 
+            "text": "Exekube offers you:   Full control over your cloud infrastructure (via Terraform)  Full control over your container orchestration (via Terraform + Helm)  Fully automated one-command-to-deploy experience  Modular design and declarative model of management  Freedom to choose a cloud provider to host Kubernetes  Continuous integration (CI) facilities out of the box", 
             "title": "Features"
         }, 
         {
@@ -224,6 +229,26 @@
             "location": "/misc/secrets/#all-secrets-currently-not-commited-to-vcs", 
             "text": "Path  Purpose  Management strategy      credentials.json  Authenticate to GCP project  Create via GUI, use by the  gcloud auth activate-service-account --key-file credentials.json , delete ?    .env  Random TF_VAR_* variables  Commit to VCS if only use to import values  export TF_VAR_mysecret= $(security find-generic-password -a mysecret -w)    backup/tls  Store LE TLS certificates  Replace with Ark, encrypt in VCS    config/**  Auto-generated config files for gcloud, kubectl, helm, terraform  Never commit to VCS    live/prod/kube/**/secrets/**  Create Kubernetes Secrets via pre_hook (for now)  Replace with Vault? Store encrypted VCS?", 
             "title": "All secrets currently not commited to VCS"
+        }, 
+        {
+            "location": "/reference/gcp-gke/", 
+            "text": "gcp-gke module\n\n\n\n\nMissing\n\n\nThis article has not been written yet. Want to help? \nSubmit a pull request\n.", 
+            "title": "gcp-gke module"
+        }, 
+        {
+            "location": "/reference/gcp-gke/#gcp-gke-module", 
+            "text": "Missing  This article has not been written yet. Want to help?  Submit a pull request .", 
+            "title": "gcp-gke module"
+        }, 
+        {
+            "location": "/reference/helm-release/", 
+            "text": "helm-release module reference\n\n\n\n\nMissing\n\n\nThis article has not been written yet. Want to help? \nSubmit a pull request\n.", 
+            "title": "helm-release module"
+        }, 
+        {
+            "location": "/reference/helm-release/#helm-release-module-reference", 
+            "text": "Missing  This article has not been written yet. Want to help?  Submit a pull request .", 
+            "title": "helm-release module reference"
         }
     ]
 }

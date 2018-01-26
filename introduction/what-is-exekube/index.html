@@ -60,7 +60,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-primary="pink" data-md-color-accent="pink">
   
     <svg class="md-svg">
       <defs>
@@ -240,6 +240,19 @@
   
 
       
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../reference/gcp-gke/" title="Reference" class="md-tabs__link">
+          Reference
+        </a>
+      
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -351,8 +364,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-declarative-workflow" title="The declarative workflow" class="md-nav__link">
-    The declarative workflow
+  <a href="#motivation" title="Motivation" class="md-nav__link">
+    Motivation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-workflow" title="Sample workflow" class="md-nav__link">
+    Sample workflow
   </a>
   
 </li>
@@ -573,6 +593,54 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/gcp-gke/" title="gcp-gke module" class="md-nav__link">
+      gcp-gke module
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/helm-release/" title="helm-release module" class="md-nav__link">
+      helm-release module
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -594,8 +662,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-declarative-workflow" title="The declarative workflow" class="md-nav__link">
-    The declarative workflow
+  <a href="#motivation" title="Motivation" class="md-nav__link">
+    Motivation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-workflow" title="Sample workflow" class="md-nav__link">
+    Sample workflow
   </a>
   
 </li>
@@ -650,25 +725,25 @@
                 
                 
                 <h1 id="what-is-exekube">What is Exekube?</h1>
-<p><em>Exekube</em> is a declarative "Infrastructure as Code" framework (a.k.a. platform / PaaS) for managing cloud infrastructure (notably Kubernetes clusters) and deploying containerized software onto that infrastructure.</p>
-<h2 id="the-declarative-workflow">The declarative workflow</h2>
-<p>Right after you enable billing on a cloud platform like Amazon Web Services or Google Cloud Platform, you are able to run one command</p>
-<div class="codehilite"><pre><span></span>xk apply
-</pre></div>
-
-<p>in order to:</p>
-<ul>
-<li>Create a Kubernetes cluster and supporting resources on the cloud platform</li>
-<li>Deploy any number of Kubernetes resources onto the cluster (as Helm releases)</li>
-</ul>
-<p>When it's time to upgrade some of your cloud resources, just modify your code and run <code class="codehilite">xk apply</code> again. Terraform will match the state of your code to the state of your cloud resources.</p>
-<p>To clean up, run <code class="codehilite">xk destroy</code> and the whole thing is gone from the cloud.</p>
+<p>Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes, built with Terraform and Helm.</p>
+<h2 id="motivation">Motivation</h2>
+<p>Using many command line tools to manage cloud resources (e.g. <code class="codehilite">gcloud</code>, <code class="codehilite">aws</code>, <code class="codehilite">kops</code>) and Kubernetes resources (e.g. <code class="codehilite">kubectl</code>, <code class="codehilite">helm</code>) is tedious and error-prone.</p>
+<p>Terraform already provides a declarative interface for a large number of cloud providers, so why not use Terraform to manage both cloud resources and containers through a single, fully automated interface?</p>
+<h2 id="sample-workflow">Sample workflow</h2>
+<ol>
+<li>Create a namespace (project) for a deployment environment on a cloud platform like AWS or Google Cloud. This is only done once for every deployment environment. <a href="../../setup/gcp-gke/">Tutorial for Google Cloud</a></li>
+<li>Configure your deployment environment by editing Terraform (HCL) files in your text editor of choice. <a href="https://github.com/ilyasotkov/exekube/tree/develop/live/prod">Example directory structure</a></li>
+<li>Run <code class="codehilite">xk apply</code> to deploy everything onto the cloud platform, including cloud infrastructure and Kubernetes resources.</li>
+<li>Edit Terraform code in face of changing requirements and run <code class="codehilite">xk apply</code> again to match the state of your code to the state of real-world resources.</li>
+<li>Run <code class="codehilite">xk destroy</code> to clean everything up.</li>
+</ol>
+<p>This workflow is an excellent fit for creating simple continuous integration pipelines.</p>
 <h2 id="features">Features</h2>
 <p>Exekube offers you:</p>
 <ul>
 <li>Full control over your cloud infrastructure (via Terraform)</li>
 <li>Full control over your container orchestration (via Terraform + Helm)</li>
-<li>Fully automated one-click-to-deploy experience</li>
+<li>Fully automated one-command-to-deploy experience</li>
 <li>Modular design and declarative model of management</li>
 <li>Freedom to choose a cloud provider to host Kubernetes</li>
 <li>Continuous integration (CI) facilities out of the box</li>
