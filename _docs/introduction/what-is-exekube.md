@@ -16,7 +16,7 @@ Terraform already provides a declarative interface for a large number of cloud p
 
 2. **Edit code**: Configure your deployment environment by editing Terraform (HCL) files in your text editor of choice.
 
-    [Guide to Exekube directory structure and framework usage](/) ● [Example directory structure](https://github.com/ilyasotkov/exekube/tree/develop/live/prod)
+    [Guide to Exekube directory structure and framework usage](/usage/directory-structure) ● [Example directory structure](https://github.com/ilyasotkov/exekube/tree/develop/live/prod)
 
 3. **Create an environment**: Run `xk apply` to deploy everything onto the cloud platform, including cloud infrastructure and Kubernetes resources.
 4. **Update an environment**: Edit Terraform code in face of changing requirements and run `xk apply` again to match the state of your code to the state of real-world resources.
