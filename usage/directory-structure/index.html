@@ -671,9 +671,9 @@
                 <h1 id="guide-to-exekube-directory-structure-and-framework-usage">Guide to Exekube directory structure and framework usage</h1>
 <h2 id="generic-modules-vs-live-modules">Generic modules vs live modules</h2>
 <p>Generic modules are normal Terraform modules, just like the ones you can find at <a href="https://modules.terraform.io">https://modules.terraform.io</a>. Generic modules are <strong>same across different deployment environments</strong>.</p>
-<p>Live modules are applicable / executable modules, the modules that will be located in the <code class="codehilite">live</code> directory and applied by Terraform. Exekube uses <a href="../../">Terragrunt</a> as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.</p>
+<p>Live modules are applicable / executable modules, the modules that will be located in the <code class="codehilite">live</code> directory and applied by Terraform. Exekube uses <a href="../../">Terragrunt</a> as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once. Live modules are <strong>different across different deployment environments</strong>.</p>
 <p>If you run <code class="codehilite">xk apply</code>, you are applying <strong>all live modules</strong>, so it is equivalent of running <code class="codehilite">xk apply $XK_LIVE_DIR</code>. Under the cover, <code class="codehilite">xk apply</code> calls <code class="codehilite">terragrunt apply-all</code>.</p>
-<p>You can also apply an individual live module by running <code class="codehilite">xk apply &lt;live-module-path&gt;</code> or groups of live modules by running <code class="codehilite">xk apply &lt;directory-structure-of-live-modules</code>.</p>
+<p>You can also apply an individual live module by running <code class="codehilite">xk apply &lt;live-module-path&gt;</code> or groups of live modules by running <code class="codehilite">xk apply &lt;directory-structure-of-live-modules&gt;</code>.</p>
 <h2 id="further-reading">Further reading</h2>
 <p>The <a href="https://github.com/ilyasotkov/exekube/tree/develop/live">README for the framework default live module directory</a> goes further into explaining how live modules are structured.</p>
                 
