@@ -44,6 +44,12 @@
     
         
     <url>
+     <loc>/usage/directory-structure/</loc>
+     <lastmod>2018-01-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/usage/deploy-app/</loc>
      <lastmod>2018-01-27</lastmod>
      <changefreq>daily</changefreq>

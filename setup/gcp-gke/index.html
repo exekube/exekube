@@ -219,7 +219,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../usage/deploy-app/" title="Usage" class="md-tabs__link">
+        <a href="../../usage/directory-structure/" title="Usage" class="md-tabs__link">
           Usage
         </a>
       
@@ -476,6 +476,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../usage/directory-structure/" title="Guide to Exekube directory structure and framework usage" class="md-nav__link">
+      Guide to Exekube directory structure and framework usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../usage/deploy-app/" title="Deploy an application" class="md-nav__link">
       Deploy an application
     </a>
@@ -666,7 +678,14 @@
 <h2 id="step-by-step-instructions">Step-by-step instructions</h2>
 <ol>
 <li>
-<p>First, create an alias for your shell session (<code class="codehilite">xk</code> stands for "exekube"):</p>
+<p>Clone the git repo with default configuration values:</p>
+<div class="codehilite"><pre><span></span>git clone https://github.com/ilyasotkov/exekube <span class="se">\</span>
+<span class="o">&amp;&amp;</span> <span class="nb">cd</span> exekube
+</pre></div>
+
+</li>
+<li>
+<p>Create an alias for your shell session (<code class="codehilite">xk</code> stands for "exekube"):</p>
 <div class="codehilite"><pre><span></span><span class="nb">alias</span> <span class="nv">xk</span><span class="o">=</span><span class="s2">&quot;. .env &amp;&amp; docker-compose run --rm exekube&quot;</span>
 </pre></div>
 
@@ -707,7 +726,7 @@ export TF_VAR_gcp_remote_state_bucket=&#39;${TF_VAR_gcp_project}-tfstate&#39;
 <li>
 <p>Run this command authenticate us to <code class="codehilite">gcloud</code>:</p>
 <div class="codehilite"><pre><span></span>xk gcloud auth activate-service-account --key-file credentials.json <span class="se">\</span>
-<span class="o">&amp;&amp;</span> rm -rf credentials.json
+<span class="o">&amp;&amp;</span> rm -f credentials.json
 </pre></div>
 
 </li>
