@@ -52,7 +52,7 @@ The framework is distributed as a [Docker image on DockerHub](/) that can be use
 
 ### Default Helm packages installed
 
-| Component | Purpose |
+| Component | Role |
 | --- | --- |
 | NGINX Ingress Controller | Cluster ingress controller |
 | kube-lego | Automatic Let's Encrypt TLS certificates for Ingress |
