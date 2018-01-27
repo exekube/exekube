@@ -460,8 +460,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#generic-modules-vs-live-modules" title="Generic modules vs live modules" class="md-nav__link">
-    Generic modules vs live modules
+  <a href="#generic-modules" title="Generic modules" class="md-nav__link">
+    Generic modules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-modules" title="Live modules" class="md-nav__link">
+    Live modules
   </a>
   
 </li>
@@ -640,8 +647,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#generic-modules-vs-live-modules" title="Generic modules vs live modules" class="md-nav__link">
-    Generic modules vs live modules
+  <a href="#generic-modules" title="Generic modules" class="md-nav__link">
+    Generic modules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-modules" title="Live modules" class="md-nav__link">
+    Live modules
   </a>
   
 </li>
@@ -669,9 +683,17 @@
                 
                 
                 <h1 id="guide-to-exekube-directory-structure-and-framework-usage">Guide to Exekube directory structure and framework usage</h1>
-<h2 id="generic-modules-vs-live-modules">Generic modules vs live modules</h2>
-<p>Generic modules are normal Terraform modules, just like the ones you can find at <a href="https://modules.terraform.io">https://modules.terraform.io</a>. Generic modules are <strong>same across different deployment environments</strong>.</p>
-<p>Live modules are applicable / executable modules, the modules that will be located in the <code class="codehilite">live</code> directory and applied by Terraform. Exekube uses <a href="../../">Terragrunt</a> as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once. Live modules are <strong>different across different deployment environments</strong>.</p>
+<h2 id="generic-modules">Generic modules</h2>
+<p>Generic modules are normal Terraform modules, just like the ones you can find at <a href="https://modules.terraform.io">https://modules.terraform.io</a>.</p>
+<p>Generic modules are <strong>same across different deployment environments</strong>.</p>
+<p>Currently, Exekube ships with two built-in modules:</p>
+<ul>
+<li><a href="../../">gcp-gke</a> module, which can create a Kubernetes cluster and a auto-scaling node-pool on Google Kubernetes Engine</li>
+<li><a href="../../">helm-release</a> module, which can deploy (release) a Helm chart onto a Kubernetes cluster</li>
+</ul>
+<h2 id="live-modules">Live modules</h2>
+<p>Live modules are applicable / executable modules, the modules that will be located in the <code class="codehilite">live</code> directory and applied by Terraform. Exekube uses <a href="https://github.com/gruntwork-io/terragrunt">Terragrunt</a> as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.</p>
+<p>Live modules are instances of generic modules configured for a specific deployment environment. Live modules are always <strong>different across different deployment environments</strong>.</p>
 <p>If you run <code class="codehilite">xk apply</code>, you are applying <strong>all live modules</strong>, so it is equivalent of running <code class="codehilite">xk apply $XK_LIVE_DIR</code>. Under the cover, <code class="codehilite">xk apply</code> calls <code class="codehilite">terragrunt apply-all</code>.</p>
 <p>You can also apply an individual live module by running <code class="codehilite">xk apply &lt;live-module-path&gt;</code> or groups of live modules by running <code class="codehilite">xk apply &lt;directory-structure-of-live-modules&gt;</code>.</p>
 <h2 id="further-reading">Further reading</h2>
