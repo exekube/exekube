@@ -6,7 +6,8 @@ FROM google/cloud-sdk:183.0.0-alpine
 RUN apk add --no-cache \
         openssl \
         tar \
-        ca-certificates
+        ca-certificates \
+        apache2-utils
 
 RUN gcloud components install alpha beta kubectl \
         && gcloud components update
