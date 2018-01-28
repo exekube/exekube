@@ -74,7 +74,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#setup-exekube-with-google-cloud-and-gke" tabindex="1" class="md-skip">
+      <a href="#setup-an-exekube-project-on-google-cloud-platform" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -219,7 +219,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../usage/directory-structure/" title="Usage" class="md-tabs__link">
+        <a href="../../usage/deploy-app/" title="Usage" class="md-tabs__link">
           Usage
         </a>
       
@@ -425,6 +425,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#up-next" title="Up next" class="md-nav__link">
+    Up next
+  </a>
+  
+</li>
+      
       
       
     </ul>
@@ -476,8 +483,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../usage/directory-structure/" title="Guide to Exekube directory structure and framework usage" class="md-nav__link">
-      Guide to Exekube directory structure and framework usage
+    <a href="../../usage/deploy-app/" title="Deploy an application" class="md-nav__link">
+      Deploy an application
     </a>
   </li>
 
@@ -488,8 +495,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../usage/deploy-app/" title="Deploy an application" class="md-nav__link">
-      Deploy an application
+    <a href="../../usage/directory-structure/" title="Guide to Exekube directory structure and framework usage" class="md-nav__link">
+      Guide to Exekube directory structure and framework usage
     </a>
   </li>
 
@@ -653,6 +660,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#up-next" title="Up next" class="md-nav__link">
+    Up next
+  </a>
+  
+</li>
+      
       
       
     </ul>
@@ -668,7 +682,7 @@
               
                 
                 
-                <h1 id="setup-exekube-with-google-cloud-and-gke">Setup Exekube with Google Cloud and GKE</h1>
+                <h1 id="setup-an-exekube-project-on-google-cloud-platform">Setup an Exekube project on Google Cloud Platform</h1>
 <h2 id="requirements-starting-from-zero">Requirements starting from zero</h2>
 <ul>
 <li>For Linux users, <a href="../../">Docker CE</a> and <a href="../../">Docker Compose</a> are sufficient</li>
@@ -691,7 +705,7 @@
 
 </li>
 <li>
-<p>If you don't have one, create a <a href="https://console.cloud.google.com/">Google Account</a>. Then, create a new Google Cloud Platform <a href="https://console.cloud.google.com">Project</a>.</p>
+<p>If you don't already have one, create a <a href="https://console.cloud.google.com/">Google Account</a>. Then, create a new <a href="https://console.cloud.google.com">GCP Project</a>.</p>
 <table>
 <thead>
 <tr>
@@ -708,30 +722,27 @@
 </table>
 </li>
 <li>
-<p>Rename <code class="codehilite"><span class="na">.env.example</span></code> file in repo root to <code class="codehilite"><span class="na">.env</span></code>. Set the <code class="codehilite">TF_VAR_gcp_project</code> variable to the value from previous step.</p>
+<p>Rename <code class="codehilite"><span class="na">.env.example</span></code> file in repo root to <code class="codehilite"><span class="na">.env</span></code> and set the <code class="codehilite">TF_VAR_gcp_project</code> variable to the value from previous step.</p>
 <div class="codehilite"><pre><span></span>mv .env.example .env
 </pre></div>
 
 <div class="codehilite"><pre><span></span>export XK_LIVE_DIR=&#39;/exekube/live/prod&#39;
 <span class="gd">- export TF_VAR_gcp_project=&#39;my-project-186217&#39;</span>
-<span class="gi">+ export TF_VAR_gcp_project=&#39;prod-env-20180101&#39;</span>
+<span class="gi">+ export TF_VAR_gcp_project=&#39;production-project-20180101&#39;</span>
 export TF_VAR_gcp_remote_state_bucket=&#39;project-terraform-state&#39;
 </pre></div>
 
 </li>
 <li>
-<p><a href="https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts">Create a service account</a> and give it project owner permissions. Download the account JSON private key file to repo root directory and rename the file to <code class="codehilite">credentials.json</code>.</p>
-<p><img alt="Creating a GCP service account in GCP Console" src="../img/gcp-sa.png" /></p>
+<p><a href="https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts">Create a service account</a> and give it project owner permissions. A JSON private key file will be downloaded onto your machine, which you'll need to move into <code class="codehilite">live/prod</code> (the deployment environement directory) and rename the file to <code class="codehilite">owner-key.json</code>.</p>
+<p><img alt="Creating a GCP service account in GCP Console" src="../img/gcp-sa.png" />
+<img alt="JSON key in the deployment environment directory" src="../img/dir.png" /></p>
 </li>
 <li>
-<p>Run this command authenticate us to <code class="codehilite">gcloud</code>:</p>
-<div class="codehilite"><pre><span></span>xk gcloud auth activate-service-account --key-file live/prod/owner-key.json
-</pre></div>
-
-</li>
-<li>
-<p>Finally, create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:</p>
-<div class="codehilite"><pre><span></span>xk gsutil mb <span class="se">\</span>
+<p>Finally, use the JSON key to authenticate to the Google Cloud SDK and create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:</p>
+<div class="codehilite"><pre><span></span>xk gcloud auth activate-service-account <span class="se">\</span>
+        --key-file live/prod/owner-key.json <span class="se">\</span>
+<span class="o">&amp;&amp;</span> xk gsutil mb <span class="se">\</span>
         -p <span class="si">${</span><span class="nv">TF_VAR_gcp_project</span><span class="si">}</span> <span class="se">\</span>
         gs://<span class="si">${</span><span class="nv">TF_VAR_gcp_remote_state_bucket</span><span class="si">}</span> <span class="se">\</span>
 <span class="o">&amp;&amp;</span> xk gsutil versioning <span class="nb">set</span> on <span class="se">\</span>
@@ -740,6 +751,12 @@ export TF_VAR_gcp_remote_state_bucket=&#39;project-terraform-state&#39;
 
 </li>
 </ol>
+<p>You deployment environment on the Google Cloud Platform is now ready!</p>
+<h2 id="up-next">Up next</h2>
+<ul>
+<li><a href="../../usage/deploy-app">Tutorial: deploy an application on Kubernetes with Exekube</a></li>
+<li><a href="../../usage/directory-structure">Guide to Exekube directory structure and framework usage</a></li>
+</ul>
                 
                   
                 
