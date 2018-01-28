@@ -38,8 +38,10 @@ resource "google_service_account_key" "default" {
 
   provisioner "local-exec" {
     command = <<EOF
-echo ${google_service_account_key.default.private_key} | \
-base64 -d > ${var.vault_sa_json_privkey_path} \
+mkdir -p ${dirname(var.vault_sa_json_privkey_path)} \
+&& echo ${google_service_account_key.default.private_key} \
+| base64 -d \
+> ${var.vault_sa_json_privkey_path} \
 && chmod 0600 ${var.vault_sa_json_privkey_path}
 EOF
   }
