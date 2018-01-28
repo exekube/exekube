@@ -10,10 +10,10 @@ release_spec = {
   domain_name = "charts.swarm.pw"
 }
 
-basic_auth_secret = {
-  file = "secrets/chartrepo.htpasswd"
-}
-
 post_hook = {
   command = "sleep 10"
+}
+
+basic_auth = {
+  secret_name = "chartrepo-htpasswd"
 }

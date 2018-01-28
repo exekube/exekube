@@ -1,7 +1,3 @@
-basic_auth_secret = {
-  file = "secrets/registry.htpasswd"
-}
-
 release_spec = {
   enabled     = true
   domain_name = "registry.swarm.pw"
@@ -14,6 +10,6 @@ release_spec = {
   chart_version = "1.0.1"
 }
 
-post_hook = {
-  command = "sleep 5 && helm repo update"
+basic_auth = {
+  secret_name = "registry-htpasswd"
 }

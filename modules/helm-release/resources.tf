@@ -18,9 +18,9 @@ resource "helm_release" "release" {
   count = "${var.release_spec["enabled"]}"
 
   depends_on = [
-    "kubernetes_secret.basic_auth",
-    "kubernetes_secret.docker_credentials",
     "null_resource.pre_hook",
+    "null_resource.basic_auth_secret",
+    "kubernetes_secret.docker_credentials",
   ]
 
   repository = "${var.release_spec["chart_repo"]}"
@@ -57,7 +57,7 @@ data "template_file" "release_values" {
 # ------------------------------------------------------------------------------
 
 resource "cloudflare_record" "web" {
-  count = "${var.release_spec["release_name"] == "ingress-controller" ? length(var.cluster_dns_zones) : 0}"
+  count = "${var.release_spec["release_name"] == "ingress-controller" && var.release_spec["enabled"] ? length(var.cluster_dns_zones) : 0}"
 
   domain   = "${element(var.cluster_dns_zones, count.index)}"
   name     = "*"
@@ -81,34 +81,44 @@ data "kubernetes_service" "ingress_controller" {
 # Basic auth Kubernetes secret
 # ------------------------------------------------------------------------------
 
-locals {
-  basic_auth_secret_name = "${replace(basename(var.basic_auth_secret["file"]), ".", "-")}"
+data "local_file" "basic_auth_username" {
+  count = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
+
+  filename = "${format("%s/%s", path.module, var.basic_auth["username_file"])}"
 }
 
-resource "kubernetes_secret" "basic_auth" {
-  count = "${var.basic_auth_secret["file"] == "" ? 0 : 1}"
+data "local_file" "basic_auth_password" {
+  count = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
 
-  metadata {
-    name = "${local.basic_auth_secret_name}"
+  filename = "${format("%s/%s", path.module, var.basic_auth["password_file"])}"
+}
+
+resource "null_resource" "basic_auth_secret" {
+  count = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
+
+  provisioner "local-exec" {
+    command = <<EOF
+kubectl create secret generic ${var.basic_auth["secret_name"]} \
+--from-literal=auth=$( \
+echo ${data.local_file.basic_auth_password.content} \
+| htpasswd -i -n \
+${data.local_file.basic_auth_username.content} \
+)
+EOF
   }
 
-  data {
-    auth = "${file("${format("%s/%s", path.module, var.basic_auth_secret["file"])}")}"
+  provisioner "local-exec" {
+    when    = "destroy"
+    command = "kubectl delete secret ${var.basic_auth["secret_name"]}"
   }
-
-  type = "Opaque"
 }
 
 # ------------------------------------------------------------------------------
 # dockercfg to use as imagePullSecret (dockercfg, dockerconfigjson)
 # ------------------------------------------------------------------------------
 
-locals {
-  dockercfg_auth = "${var.registry_auth["username"]}:${var.registry_auth["password"]}"
-}
-
 resource "kubernetes_secret" "docker_credentials" {
-  count = "${var.release_spec["release_name"] == "docker-registry" ? 1 : 0}"
+  count = "${var.release_spec["enabled"] && var.release_spec["release_name"] == "docker-registry" ? 1 : 0}"
 
   metadata {
     name = "registry-dockercfg"
@@ -116,7 +126,7 @@ resource "kubernetes_secret" "docker_credentials" {
 
   data {
     ".dockercfg" = <<EOF
-{"${var.release_spec["domain_name"]}":{"username":"${var.registry_auth["username"]}","password":"${var.registry_auth["password"]}","email":"","auth":"${base64encode(local.dockercfg_auth)}"}}
+{"${var.release_spec["domain_name"]}":{"username":"${data.local_file.basic_auth_username.content}","password":"${data.local_file.basic_auth_password.content}","email":"","auth":"${base64encode(format("%s:%s", data.local_file.basic_auth_username.content, data.local_file.basic_auth_password.content))}"}}
 EOF
   }
 
@@ -129,10 +139,10 @@ EOF
 
 resource "helm_repository" "private" {
   depends_on = ["helm_release.release"]
-  count      = "${var.release_spec["release_name"] == "chartmuseum" ? 1 : 0}"
+  count      = "${var.release_spec["enabled"] && var.release_spec["release_name"] == "chartmuseum" ? 1 : 0}"
 
   name = "private"
-  url  = "https://${var.chartrepo_auth["username"]}:${var.chartrepo_auth["password"]}@${var.release_spec["domain_name"]}"
+  url  = "https://${local.auth_username}:${local.auth_password}@${var.release_spec["domain_name"]}"
 
   provisioner "local-exec" {
     command = "helm repo update"

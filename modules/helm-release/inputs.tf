@@ -51,11 +51,13 @@ variable "cluster_dns_zones" {
 # Kubernetes secret inputs
 # ------------------------------------------------------------------------------
 
-variable "basic_auth_secret" {
+variable "basic_auth" {
   type = "map"
 
   default = {
-    file = ""
+    username_file = "secrets/basic-auth-username"
+    password_file = "secrets/basic-auth-password"
+    secret_name   = ""
   }
 }
 
@@ -69,23 +71,5 @@ variable "cloudflare_auth" {
   default = {
     email = ""
     token = ""
-  }
-}
-
-variable "registry_auth" {
-  type = "map"
-
-  default = {
-    username = ""
-    password = ""
-  }
-}
-
-variable "chartrepo_auth" {
-  type = "map"
-
-  default = {
-    username = ""
-    password = ""
   }
 }

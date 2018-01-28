@@ -41,7 +41,6 @@ gcloud container clusters get-credentials ${var.cluster_name} \
 --clusterrole cluster-admin \
 --serviceaccount=kube-system:tiller \
 && helm init --service-account tiller \
-&& helm init --upgrade --service-account tiller \
 && sleep 15 \
 && helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com
 EOF
