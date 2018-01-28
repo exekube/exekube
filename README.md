@@ -10,6 +10,8 @@ Terraform already provides a declarative interface for a large number of cloud p
 
 ## Features
 
+The framework offers you:
+
 - Full control over your cloud infrastructure (via Terraform)
 - Full control over your container orchestration (via Terraform + Helm)
 - Fully automated one-command-to-deploy experience

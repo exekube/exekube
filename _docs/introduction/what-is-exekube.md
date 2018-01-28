@@ -26,7 +26,7 @@ This workflow is an excellent fit for creating simple continuous integration pip
 
 ## Features
 
-Exekube offers you:
+The framework offers you:
 
 - Full control over your cloud infrastructure (via Terraform)
 - Full control over your container orchestration (via Terraform + Helm)
