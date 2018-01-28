@@ -701,8 +701,8 @@
 </thead>
 <tbody>
 <tr>
-<td>Production Environment</td>
-<td>prod-env-20180101</td>
+<td>Production Project</td>
+<td>production-project-20180101</td>
 </tr>
 </tbody>
 </table>
@@ -715,7 +715,7 @@
 <div class="codehilite"><pre><span></span>export XK_LIVE_DIR=&#39;/exekube/live/prod&#39;
 <span class="gd">- export TF_VAR_gcp_project=&#39;my-project-186217&#39;</span>
 <span class="gi">+ export TF_VAR_gcp_project=&#39;prod-env-20180101&#39;</span>
-export TF_VAR_gcp_remote_state_bucket=&#39;${TF_VAR_gcp_project}-tfstate&#39;
+export TF_VAR_gcp_remote_state_bucket=&#39;project-terraform-state&#39;
 </pre></div>
 
 </li>
@@ -725,7 +725,7 @@ export TF_VAR_gcp_remote_state_bucket=&#39;${TF_VAR_gcp_project}-tfstate&#39;
 </li>
 <li>
 <p>Run this command authenticate us to <code class="codehilite">gcloud</code>:</p>
-<div class="codehilite"><pre><span></span>xk gcloud auth activate-service-account --key-file credentials.json
+<div class="codehilite"><pre><span></span>xk gcloud auth activate-service-account --key-file live/prod/owner-key.json
 </pre></div>
 
 </li>

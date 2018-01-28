@@ -520,37 +520,63 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example-implementation-by-coreos-tectonic" title="Example implementation by CoreOS Tectonic" class="md-nav__link">
-    Example implementation by CoreOS Tectonic
+  <a href="#test-access-to-vault-from-local-machine" title="Test access to Vault from local machine" class="md-nav__link">
+    Test access to Vault from local machine
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kubernetes-auth-backend" title="Kubernetes Auth Backend" class="md-nav__link">
-    Kubernetes Auth Backend
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#test-connection" title="Test connection" class="md-nav__link">
-    Test connection
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#use-http-curl" title="Use HTTP (cURL)" class="md-nav__link">
     Use HTTP (cURL)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#use-vault-cli" title="Use Vault CLI" class="md-nav__link">
     Use Vault CLI
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-access-to-vault-from-a-cluster-pod" title="Test access to Vault from a cluster pod" class="md-nav__link">
+    Test access to Vault from a cluster pod
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-and-links" title="Notes and links" class="md-nav__link">
+    Notes and links
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-implementation-by-coreos-tectonic" title="Example implementation by CoreOS Tectonic" class="md-nav__link">
+    Example implementation by CoreOS Tectonic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-auth-backend" title="Kubernetes Auth Backend" class="md-nav__link">
+    Kubernetes Auth Backend
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -661,37 +687,63 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example-implementation-by-coreos-tectonic" title="Example implementation by CoreOS Tectonic" class="md-nav__link">
-    Example implementation by CoreOS Tectonic
+  <a href="#test-access-to-vault-from-local-machine" title="Test access to Vault from local machine" class="md-nav__link">
+    Test access to Vault from local machine
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kubernetes-auth-backend" title="Kubernetes Auth Backend" class="md-nav__link">
-    Kubernetes Auth Backend
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#test-connection" title="Test connection" class="md-nav__link">
-    Test connection
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#use-http-curl" title="Use HTTP (cURL)" class="md-nav__link">
     Use HTTP (cURL)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#use-vault-cli" title="Use Vault CLI" class="md-nav__link">
     Use Vault CLI
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-access-to-vault-from-a-cluster-pod" title="Test access to Vault from a cluster pod" class="md-nav__link">
+    Test access to Vault from a cluster pod
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-and-links" title="Notes and links" class="md-nav__link">
+    Notes and links
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-implementation-by-coreos-tectonic" title="Example implementation by CoreOS Tectonic" class="md-nav__link">
+    Example implementation by CoreOS Tectonic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-auth-backend" title="Kubernetes Auth Backend" class="md-nav__link">
+    Kubernetes Auth Backend
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -711,39 +763,46 @@
                 
                 
                 <h1 id="vault-on-kubernetes">Vault on Kubernetes</h1>
-<h2 id="example-implementation-by-coreos-tectonic">Example implementation by CoreOS Tectonic</h2>
+<h2 id="test-access-to-vault-from-local-machine">Test access to Vault from local machine</h2>
+<div class="codehilite"><pre><span></span>xk kubectl port-forward &lt;vault-pod-name&gt; <span class="m">443</span>:8200
+
+docker ps
+</pre></div>
+
+<h3 id="use-http-curl">Use HTTP (cURL)</h3>
+<p><a href="https://www.vaultproject.io/api/">https://www.vaultproject.io/api/</a></p>
+<div class="codehilite"><pre><span></span>docker <span class="nb">exec</span> &lt;local-container-id&gt; curl -k -vv https://localhost/v1/sys/seal-status/
+
+<span class="c1"># https://www.vaultproject.io/api/system/init.html</span>
+docker <span class="nb">exec</span> &lt;local-container-id&gt; curl --request PUT -s -k --data <span class="s1">&#39;{&quot;secret_shares&quot;: 5, &quot;secret_threshold&quot;: 3}&#39;</span> https://localhost/v1/sys/init
+</pre></div>
+
+<h3 id="use-vault-cli">Use Vault CLI</h3>
+<div class="codehilite"><pre><span></span>docker <span class="nb">exec</span> -it &lt;local-container-id&gt; bash
+
+bash-4.3# vault init
+</pre></div>
+
+<h3 id="test-access-to-vault-from-a-cluster-pod">Test access to Vault from a cluster pod</h3>
+<div class="codehilite"><pre><span></span>xk kubectl run my-shell --rm -i --tty --image ubuntu -- bash
+
+apt-get update
+apt-get install curl
+curl -k --request PUT --data <span class="s1">&#39;{&quot;secret_shares&quot;: 5, &quot;secret_threshold&quot;: 3}&#39;</span> https://vault-vault:8200/v1/sys/init
+</pre></div>
+
+<h2 id="notes-and-links">Notes and links</h2>
+<h3 id="example-implementation-by-coreos-tectonic">Example implementation by CoreOS Tectonic</h3>
 <p><a href="https://coreos.com/tectonic/docs/latest/account/create-account.html">https://coreos.com/tectonic/docs/latest/account/create-account.html</a></p>
-<blockquote>
-<p>tl;dr; Every Kubernetes pod gets a Service Account token that is automatically mounted at /var/run/secrets/kubernetes.io/serviceaccounts/token Now, you can use that token (JWT token) to also log into vault, if you enable the Kubernetes auth module and configure a Vault role for your Kubernetes service account.</p>
-</blockquote>
-<h2 id="kubernetes-auth-backend">Kubernetes Auth Backend</h2>
+<h3 id="kubernetes-auth-backend">Kubernetes Auth Backend</h3>
 <p><a href="https://www.hashicorp.com/blog/hashicorp-vault-0-8-3">https://www.hashicorp.com/blog/hashicorp-vault-0-8-3</a></p>
 <blockquote>
+<p>tl;dr; Every Kubernetes pod gets a Service Account token that is automatically mounted at /var/run/secrets/kubernetes.io/serviceaccounts/token Now, you can use that token (JWT token) to also log into vault, if you enable the Kubernetes auth module and configure a Vault role for your Kubernetes service account.</p>
 <p>Vault 0.8.3 introduces native Kubernetes auth backend that allows Kubernetes pods to directly receive and use Vault auth tokens without additional integration components.</p>
 </blockquote>
 <p>Prior to 0.8.3, a user accessing Vault via a pod required significant preparation work using an init pod or other custom interface. With the release of the Kubernetes auth backend, Vault now provides a production-ready interface for Kubernetes that allows a pod to authenticate with Vault via a JWT token from a pod’s service account.</p>
 <p>View the documentation for more information on the Kubernetes auth backend.</p>
 <p>For more information on the collaboration between Google and HashiCorp Vault, check out “Secret and infrastructure management made easy with HashiCorp and Google Cloud” and “Authenticating to Hashicorp Vault using GCE Signed Metadata” published by Google.</p>
-<h2 id="test-connection">Test connection</h2>
-<div class="codehilite"><pre><span></span>xk kubectl port-forward &lt;vault-pod-name&gt; <span class="m">443</span>:8200
-</pre></div>
-
-<h2 id="use-http-curl">Use HTTP (cURL)</h2>
-<p><a href="https://www.vaultproject.io/api/">https://www.vaultproject.io/api/</a></p>
-<div class="codehilite"><pre><span></span>docker ps
-
-docker <span class="nb">exec</span> &lt;local-container-id&gt; curl -k -vv https://localhost/v1/sys/seal-status/
-
-<span class="c1"># add payload.json to root repo to access via curl</span>
-<span class="c1"># https://www.vaultproject.io/api/system/init.html</span>
-docker <span class="nb">exec</span> &lt;local-container-id&gt; curl --request PUT -s -k --data @payload.json https://localhost/v1/sys/init
-</pre></div>
-
-<h2 id="use-vault-cli">Use Vault CLI</h2>
-<div class="codehilite"><pre><span></span>docker <span class="nb">exec</span> -it &lt;local-container-id&gt; bash
-
-bash-4.3# vault init
-</pre></div>
                 
                   
                 
