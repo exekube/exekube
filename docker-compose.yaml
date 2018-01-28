@@ -6,8 +6,8 @@ services:
     working_dir: /exekube
     environment:
       VAULT_ADDR: https://localhost
-      VAULT_CACERT: /vault-tls.crt
-      GOOGLE_CREDENTIALS: /exekube/live/prod/credentials.json
+      VAULT_CACERT: /exekube/live/prod/kube/core/vault/release/secrets/vault-tls/ca.crt
+      GOOGLE_CREDENTIALS: /exekube/live/prod/owner-key.json
       TF_LOG:
       TF_INPUT: 0
       XK_LIVE_DIR:
@@ -19,7 +19,6 @@ services:
     ports:
       - 8001:8001
     volumes:
-      - ./live/prod/kube/core/vault/release/secrets/vault-tls/ca.crt:/vault-tls.crt
       - .:/exekube
       - ./config/helm:/root/.helm
       - ./config/terragrunt:/root/.terragrunt

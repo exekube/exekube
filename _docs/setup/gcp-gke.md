@@ -25,7 +25,7 @@
 
     | Project name | Project ID |
     | --- | --- |
-    | Production Environment | prod-env-20180101 |
+    | Production Project | production-project-20180101 |
 
 4. Rename `.env.example` file in repo root to `.env`. Set the `TF_VAR_gcp_project` variable to the value from previous step.
 
@@ -37,7 +37,7 @@
     export XK_LIVE_DIR='/exekube/live/prod'
     - export TF_VAR_gcp_project='my-project-186217'
     + export TF_VAR_gcp_project='prod-env-20180101'
-    export TF_VAR_gcp_remote_state_bucket='${TF_VAR_gcp_project}-tfstate'
+    export TF_VAR_gcp_remote_state_bucket='project-terraform-state'
     ```
 
 5. [Create a service account](https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts) and give it project owner permissions. Download the account JSON private key file to repo root directory and rename the file to `credentials.json`.
@@ -47,7 +47,7 @@
 6. Run this command authenticate us to `gcloud`:
 
     ```bash
-    xk gcloud auth activate-service-account --key-file credentials.json
+    xk gcloud auth activate-service-account --key-file live/prod/owner-key.json
     ```
 
 7. Finally, create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:

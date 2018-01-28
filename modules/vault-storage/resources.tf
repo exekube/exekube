@@ -5,9 +5,26 @@ resource "google_project_service" "iam" {
   disable_on_destroy = false
 
   service = "iam.googleapis.com"
+
+  provisioner "local-exec" {
+    command = "sleep 15"
+  }
+}
+
+resource "google_project_service" "cloudresourcemanager" {
+  project            = "${var.project}"
+  disable_on_destroy = false
+
+  service = "cloudresourcemanager.googleapis.com"
+
+  provisioner "local-exec" {
+    command = "sleep 15"
+  }
 }
 
 resource "google_service_account" "default" {
+  depends_on = ["google_project_service.iam"]
+
   account_id   = "${var.account_id}"
   display_name = "${var.display_name}"
   project      = "${var.project}"
@@ -29,6 +46,8 @@ EOF
 }
 
 resource "google_project_iam_policy" "default" {
+  depends_on = ["google_project_service.cloudresourcemanager"]
+
   project     = "${var.project}"
   policy_data = "${data.google_iam_policy.default.policy_data}"
 }
