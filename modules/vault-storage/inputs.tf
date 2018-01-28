@@ -11,7 +11,7 @@ variable "display_name" {
   default     = "Managed by Terraform"
 }
 
-variable "project" {
+variable "gcp_project" {
   description = "GCE project name"
   default     = ""
 }

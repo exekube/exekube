@@ -4,7 +4,7 @@
 
 terragrunt = {
   terraform {
-    source = "/exekube/modules//vendor/private-tls-cert"
+    source = "/exekube/modules//private-tls-cert"
   }
 
   include = {

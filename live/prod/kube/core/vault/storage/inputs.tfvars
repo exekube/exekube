@@ -6,8 +6,6 @@ account_id = "vault-service-account"
 
 display = "Vault service account"
 
-project = "ethereal-argon-186217"
-
 role = "roles/storage.admin"
 
 vault_sa_json_privkey_path = "/exekube/live/prod/kube/core/vault/release/secrets/gcp-credentials/vault.json"

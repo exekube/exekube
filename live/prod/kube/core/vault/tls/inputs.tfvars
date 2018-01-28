@@ -12,7 +12,7 @@ ca_common_name = "Managed by Terraform"
 
 common_name = "Vault server"
 
-dns_names = ["localhost"]
+dns_names = ["localhost", "vault-vault"]
 
 ip_addresses = ["127.0.0.1"]
 
