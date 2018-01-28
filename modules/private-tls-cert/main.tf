@@ -23,13 +23,13 @@ resource "tls_self_signed_cert" "ca" {
 
   # Store the CA public key in a file.
   provisioner "local-exec" {
-    command = <<-EOF
-              mkdir -p '${dirname(var.ca_public_key_file_path)}' \
-              && echo '${tls_self_signed_cert.ca.cert_pem}' \
-              > '${var.ca_public_key_file_path}' \
-              && chmod ${var.permissions} '${var.ca_public_key_file_path}' \
-              && chown ${var.owner} '${var.ca_public_key_file_path}'
-              EOF
+    command = <<EOF
+mkdir -p '${dirname(var.ca_public_key_file_path)}' \
+&& echo '${tls_self_signed_cert.ca.cert_pem}' \
+> '${var.ca_public_key_file_path}' \
+&& chmod ${var.permissions} '${var.ca_public_key_file_path}' \
+&& chown ${var.owner} '${var.ca_public_key_file_path}'
+EOF
   }
 }
 
@@ -44,7 +44,13 @@ resource "tls_private_key" "cert" {
 
   # Store the certificate's private key in a file.
   provisioner "local-exec" {
-    command = "echo '${tls_private_key.cert.private_key_pem}' > '${var.private_key_file_path}' && chmod ${var.permissions} '${var.private_key_file_path}' && chown ${var.owner} '${var.private_key_file_path}'"
+    command = <<EOF
+mkdir -p '${dirname(var.private_key_file_path)}' \
+&& echo '${tls_private_key.cert.private_key_pem}' \
+> '${var.private_key_file_path}' \
+&& chmod ${var.permissions} '${var.private_key_file_path}' \
+&& chown ${var.owner} '${var.private_key_file_path}'
+EOF
   }
 }
 
@@ -73,6 +79,12 @@ resource "tls_locally_signed_cert" "cert" {
 
   # Store the certificate's public key in a file.
   provisioner "local-exec" {
-    command = "echo '${tls_locally_signed_cert.cert.cert_pem}' > '${var.public_key_file_path}' && chmod ${var.permissions} '${var.public_key_file_path}' && chown ${var.owner} '${var.public_key_file_path}'"
+    command = <<EOF
+mkdir -p '${dirname(var.public_key_file_path)}' \
+&& echo '${tls_locally_signed_cert.cert.cert_pem}' \
+> '${var.public_key_file_path}' \
+&& chmod ${var.permissions} '${var.public_key_file_path}' \
+&& chown ${var.owner} '${var.public_key_file_path}'
+EOF
   }
 }
