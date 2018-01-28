@@ -7,7 +7,7 @@ services:
     environment:
       VAULT_ADDR: https://localhost
       VAULT_CACERT: /vault-tls.crt
-      GOOGLE_CREDENTIALS: /exekube/credentials.json
+      GOOGLE_CREDENTIALS: /exekube/live/prod/credentials.json
       TF_LOG:
       TF_INPUT: 0
       XK_LIVE_DIR:
