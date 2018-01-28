@@ -11,8 +11,8 @@ pages:
       - 'On Google Cloud Platform': setup/gcp-gke.md
       - 'On Amazon Web Services': setup/aws-eks.md
   - Usage:
-      - 'Guide to Exekube directory structure and framework usage': usage/directory-structure.md
       - 'Deploy an application': usage/deploy-app.md
+      - 'Guide to Exekube directory structure and framework usage': usage/directory-structure.md
   - Miscellaneous:
       - 'Configure a Helm release': misc/configure-helm-release.md
       - 'Use HashiCorp Vault to manage secrets': misc/vault-integration.md
