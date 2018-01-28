@@ -142,7 +142,7 @@ resource "helm_repository" "private" {
   count      = "${var.release_spec["enabled"] && var.release_spec["release_name"] == "chartmuseum" ? 1 : 0}"
 
   name = "private"
-  url  = "https://${local.auth_username}:${local.auth_password}@${var.release_spec["domain_name"]}"
+  url  = "https://${data.local_file.basic_auth_username.content}:${data.local_file.basic_auth_password.content}@${var.release_spec["domain_name"]}"
 
   provisioner "local-exec" {
     command = "helm repo update"
