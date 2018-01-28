@@ -686,13 +686,31 @@
 <h2 id="generic-modules">Generic modules</h2>
 <p>Generic modules are normal Terraform modules, just like the ones you can find at <a href="https://modules.terraform.io">https://modules.terraform.io</a>.</p>
 <p>Generic modules are <strong>same across different deployment environments</strong>.</p>
-<p>Currently, Exekube ships with two built-in modules:</p>
+<p>Generic modules are imported by <em>live modules</em> via Terragrunt like that:</p>
+<p><div class="codehilite"><pre><span></span><span class="na">terragrunt</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+  <span class="err">terraform</span> <span class=" -Punctuation">{</span><span class="c1"></span>
+<span class="c1">    # Import a generic module from the local filesystem</span>
+<span class="na">    source</span> <span class="o">=</span> <span class="s2">&quot;/exekube/modules//gcp-gke&quot;</span>
+  <span class=" -Punctuation">}</span><span class="c1"></span>
+<span class="c1">  # ...</span>
+<span class=" -Punctuation">}</span>
+</pre></div>
+or like that:
+<div class="codehilite"><pre><span></span><span class="na">terragrunt</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+  <span class="err">terraform</span> <span class=" -Punctuation">{</span><span class="c1"></span>
+<span class="c1">    # Import a generic module from a remote git repo</span>
+<span class="na">    source</span> <span class="o">=</span><span class="na"> &quot;git::git@github.com:foo/modules.git//app?ref</span><span class="o">=</span><span class="err">v</span><span class="m">0</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">3</span><span class="err">&quot;</span>
+  <span class=" -Punctuation">}</span><span class="c1"></span>
+<span class="c1">  # ...</span>
+<span class=" -Punctuation">}</span>
+</pre></div></p>
+<p>Currently, Exekube ships with two built-in generic modules:</p>
 <ul>
-<li><a href="../../">gcp-gke</a> module, which can create a Kubernetes cluster and a auto-scaling node-pool on Google Kubernetes Engine</li>
+<li><a href="../../">gcp-gke</a> module, which can create a Kubernetes cluster and an auto-scaling node pool on Google Kubernetes Engine</li>
 <li><a href="../../">helm-release</a> module, which can deploy (release) a Helm chart onto a Kubernetes cluster</li>
 </ul>
 <h2 id="live-modules">Live modules</h2>
-<p>Live modules are applicable / executable modules, the modules that will be located in the <code class="codehilite">live</code> directory and applied by Terraform. Exekube uses <a href="https://github.com/gruntwork-io/terragrunt">Terragrunt</a> as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.</p>
+<p>Live modules are applicable / executable modules, the modules that will be located in the <code class="codehilite">live</code> directory and applied by Terraform. Exekube uses Terragrunt as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.</p>
 <p>Live modules are instances of generic modules configured for a specific deployment environment. Live modules are always <strong>different across different deployment environments</strong>.</p>
 <p>If you run <code class="codehilite">xk apply</code>, you are applying <strong>all live modules</strong>, so it is equivalent of running <code class="codehilite">xk apply $XK_LIVE_DIR</code>. Under the cover, <code class="codehilite">xk apply</code> calls <code class="codehilite">terragrunt apply-all</code>.</p>
 <p>You can also apply an individual live module by running <code class="codehilite">xk apply &lt;live-module-path&gt;</code> or groups of live modules by running <code class="codehilite">xk apply &lt;directory-structure-of-live-modules&gt;</code>.</p>
