@@ -23,7 +23,13 @@ resource "tls_self_signed_cert" "ca" {
 
   # Store the CA public key in a file.
   provisioner "local-exec" {
-    command = "echo '${tls_self_signed_cert.ca.cert_pem}' > '${var.ca_public_key_file_path}' && chmod ${var.permissions} '${var.ca_public_key_file_path}' && chown ${var.owner} '${var.ca_public_key_file_path}'"
+    command = <<-EOF
+              mkdir -p '${dirname(var.ca_public_key_file_path)}' \
+              && echo '${tls_self_signed_cert.ca.cert_pem}' \
+              > '${var.ca_public_key_file_path}' \
+              && chmod ${var.permissions} '${var.ca_public_key_file_path}' \
+              && chown ${var.owner} '${var.ca_public_key_file_path}'
+              EOF
   }
 }
 
