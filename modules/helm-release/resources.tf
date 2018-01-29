@@ -82,19 +82,22 @@ data "kubernetes_service" "ingress_controller" {
 # ------------------------------------------------------------------------------
 
 data "local_file" "basic_auth_username" {
-  count = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
+  count      = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
+  depends_on = ["null_resource.pre_hook"]
 
   filename = "${format("%s/%s", path.module, var.basic_auth["username_file"])}"
 }
 
 data "local_file" "basic_auth_password" {
-  count = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
+  count      = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
+  depends_on = ["null_resource.pre_hook"]
 
   filename = "${format("%s/%s", path.module, var.basic_auth["password_file"])}"
 }
 
 resource "null_resource" "basic_auth_secret" {
-  count = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
+  count      = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
+  depends_on = ["null_resource.pre_hook"]
 
   provisioner "local-exec" {
     command = <<EOF
