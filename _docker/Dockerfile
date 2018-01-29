@@ -37,10 +37,10 @@ RUN curl -L -o ./terraform-provider-helm_v0.6.0 \
         && mv terraform-provider-helm_v0.6.0 /root/.terraform.d/plugins/
 
 RUN curl -L https://releases.hashicorp.com/vault/0.9.2/vault_0.9.2_linux_amd64.zip -o vault.zip \
-  && unzip vault.zip \
-  && rm vault.zip \
-  && chmod +x vault \
-  && mv vault /usr/bin
+        && unzip vault.zip \
+        && rm vault.zip \
+        && chmod +x vault \
+        && mv vault /usr/bin
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT [ "docker-entrypoint.sh" ]
