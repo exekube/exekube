@@ -6,14 +6,36 @@ Generic modules are normal Terraform modules, just like the ones you can find at
 
 Generic modules are **same across different deployment environments**.
 
-Currently, Exekube ships with two built-in modules:
+Generic modules are imported by *live modules* via Terragrunt like that:
 
-- [gcp-gke](/) module, which can create a Kubernetes cluster and a auto-scaling node-pool on Google Kubernetes Engine
+```tf
+terragrunt = {
+  terraform {
+    # Import a generic module from the local filesystem
+    source = "/exekube/modules//gcp-gke"
+  }
+  # ...
+}
+```
+or like that:
+```tf
+terragrunt = {
+  terraform {
+    # Import a generic module from a remote git repo
+    source = "git::git@github.com:foo/modules.git//app?ref=v0.0.3"
+  }
+  # ...
+}
+```
+
+Currently, Exekube ships with two built-in generic modules:
+
+- [gcp-gke](/) module, which can create a Kubernetes cluster and an auto-scaling node pool on Google Kubernetes Engine
 - [helm-release](/) module, which can deploy (release) a Helm chart onto a Kubernetes cluster
 
 ## Live modules
 
-Live modules are applicable / executable modules, the modules that will be located in the `live` directory and applied by Terraform. Exekube uses [Terragrunt](https://github.com/gruntwork-io/terragrunt) as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.
+Live modules are applicable / executable modules, the modules that will be located in the `live` directory and applied by Terraform. Exekube uses Terragrunt as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.
 
 Live modules are instances of generic modules configured for a specific deployment environment. Live modules are always **different across different deployment environments**.
 
