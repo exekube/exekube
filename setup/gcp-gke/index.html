@@ -734,13 +734,14 @@ export TF_VAR_gcp_remote_state_bucket=&#39;project-terraform-state&#39;
 
 </li>
 <li>
-<p><a href="https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts">Create a service account</a> and give it project owner permissions. A JSON private key file will be downloaded onto your machine, which you'll need to move into <code class="codehilite">live/prod</code> (the deployment environement directory) and rename the file to <code class="codehilite">owner-key.json</code>.</p>
+<p><a href="https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts">Create a service account</a> and give it project owner permissions. A JSON-econded private key file will be downloaded onto your machine, which you'll need to move into <code class="codehilite">live/prod</code> (the deployment environment directory) and rename to <code class="codehilite">owner-key.json</code>.</p>
 <p><img alt="Creating a GCP service account in GCP Console" src="../img/gcp-sa.png" />
 <img alt="JSON key in the deployment environment directory" src="../img/dir.png" /></p>
 </li>
 <li>
-<p>Finally, use the JSON key to authenticate to the Google Cloud SDK and create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:</p>
-<div class="codehilite"><pre><span></span>xk gcloud auth activate-service-account <span class="se">\</span>
+<p>Finally, use the key to authenticate to the Google Cloud SDK and create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:</p>
+<div class="codehilite"><pre><span></span>chmod <span class="m">600</span> live/prod/owner-key.json <span class="se">\</span>
+<span class="o">&amp;&amp;</span> xk gcloud auth activate-service-account <span class="se">\</span>
         --key-file live/prod/owner-key.json <span class="se">\</span>
 <span class="o">&amp;&amp;</span> xk gsutil mb <span class="se">\</span>
         -p <span class="si">${</span><span class="nv">TF_VAR_gcp_project</span><span class="si">}</span> <span class="se">\</span>
