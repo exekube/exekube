@@ -40,15 +40,16 @@
     export TF_VAR_gcp_remote_state_bucket='project-terraform-state'
     ```
 
-5. [Create a service account](https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts) and give it project owner permissions. A JSON private key file will be downloaded onto your machine, which you'll need to move into `live/prod` (the deployment environement directory) and rename the file to `owner-key.json`.
+5. [Create a service account](https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts) and give it project owner permissions. A JSON-econded private key file will be downloaded onto your machine, which you'll need to move into `live/prod` (the deployment environment directory) and rename to `owner-key.json`.
 
     ![Creating a GCP service account in GCP Console](img/gcp-sa.png)
     ![JSON key in the deployment environment directory](img/dir.png)
 
-6. Finally, use the JSON key to authenticate to the Google Cloud SDK and create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:
+6. Finally, use the key to authenticate to the Google Cloud SDK and create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:
 
     ```bash
-    xk gcloud auth activate-service-account \
+    chmod 600 live/prod/owner-key.json \
+    && xk gcloud auth activate-service-account \
             --key-file live/prod/owner-key.json \
     && xk gsutil mb \
             -p ${TF_VAR_gcp_project} \
