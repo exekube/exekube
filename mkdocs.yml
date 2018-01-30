@@ -47,8 +47,6 @@ markdown_extensions:
 theme:
   name: material
   custom_dir: _docs/theme
-  logo:
-    icon: playlist_add_check
   feature:
     tabs: true
   font:
