@@ -12,8 +12,4 @@ workflows:
   version: 2
   deploy:
     jobs:
-      - deploy:
-          filters:
-            branches:
-              ignore:
-                - gh-pages
+      - deploy
