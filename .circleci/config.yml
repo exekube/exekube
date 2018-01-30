@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: squidfunk/mkdocs-material:latest
+    steps:
+      - checkout
+      - run:
+          name: Build and deploy website to GitHub Pages
+          command: mkdocs gh-deploy --message "[ci skip] Deployed with MkDocs"
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              ignore:
+                - gh-pages

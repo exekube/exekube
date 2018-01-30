@@ -18,3 +18,26 @@
 .md-footer-meta {
     background-color: white;
 }
+
+.md-footer {
+  margin-top: 2rem;
+}
+
+.md-nav__button.md-logo.md-logo.md-logo.md-logo {
+  display: none;
+}
+
+.md-nav__title.md-nav__title--site.md-nav__title--site.md-nav__title--site {
+  padding-top: 0.4rem;
+  height: auto;
+}
+
+.md-header-nav__topic {
+  font-size: 2.6rem !important;
+  font-weight: bold !important;
+}
+
+.md-nav__title {
+  font-size: 2.4rem !important;
+  font-weight: bold !important;
+}

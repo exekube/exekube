@@ -10,6 +10,7 @@ live/**/docker
 charts/*/push.sh
 backup/tls
 site
+.ssh
 
 live/**/secrets
 
