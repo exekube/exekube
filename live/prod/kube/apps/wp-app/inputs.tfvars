@@ -1,5 +1,5 @@
 release_spec = {
-  enabled        = true
+  enabled        = false
   release_name   = "wordpress-app"
   release_values = "values.yaml"
 

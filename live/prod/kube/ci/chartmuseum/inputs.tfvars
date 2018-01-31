@@ -1,5 +1,5 @@
 release_spec = {
-  enabled        = true
+  enabled        = false
   release_name   = "chartmuseum"
   release_values = "values.yaml"
 
