@@ -20,9 +20,7 @@ jobs:
               echo $GOOGLE_CREDENTIALS > google-credentials.json \
               && gcloud auth activate-service-account \
               --key-file=google-credentials.json \
-              && rm -rf google-credentials.json \
-              && mkdir -p /exekube/backup/tls \
-              && echo '$KUBE_LE_TLS_CERTS' > /exekube/backup/tls/secret.json
+              && rm -rf google-credentials.json
       - run:
           name: Create everything
           command: ./_docker/docker-entrypoint.sh apply && echo Done!

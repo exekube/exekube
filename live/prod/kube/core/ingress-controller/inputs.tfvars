@@ -11,9 +11,3 @@ release_spec = {
   chart_name    = "nginx-ingress"
   chart_version = "0.8.23"
 }
-
-post_hook = {
-  command = <<-EOF
-            kubectl apply -f /exekube/backup/tls/secret.json
-            EOF
-}
