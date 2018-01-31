@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Test working directory
-          command: echo $CIRCLE_WORKING_DIRECTORY && pwd && ls -alh
+          name: Give Terraform plan
+          command: ./_docker/docker-entrypoint.sh plan
   deploy:
     docker:
       - image: squidfunk/mkdocs-material:latest
@@ -17,7 +17,7 @@ jobs:
       - run: echo $CIRCLE_REPOSITORY_URL
       - run:
           name: Build and deploy website to GitHub Pages
-          command: mkdocs gh-deploy --message "[ci skip] Deployed with MkDocs"
+          command: mkdocs gh-deploy --message "Deployed with MkDocs and CircleCI $CIRCLE_BUILD_URL [ci skip]"
 workflows:
   version: 2
   deploy:
