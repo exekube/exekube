@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   exekube:
-    build: ./_docker
+    image: ilyasotkov/exekube:latest
     working_dir: /exekube
     environment:
       XK_LIVE_DIR:
