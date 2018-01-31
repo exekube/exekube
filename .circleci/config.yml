@@ -23,7 +23,7 @@ jobs:
               && rm -rf google-credentials.json
       - run:
           name: Create everything
-          command: ./_docker/docker-entrypoint.sh apply && echo Done!
+          command: ./_docker/docker-entrypoint.sh apply 2>&1 | grep -v 'terragrunt' && echo Done!
       - run:
           name: Destroy everything
           command: ./_docker/docker-entrypoint.sh destroy && echo Done!
