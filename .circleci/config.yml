@@ -4,8 +4,8 @@ jobs:
     working_directory: /exekube
     environment:
       XK_LIVE_DIR: /exekube/live/prod
-      TF_INPUT: 0
-      TF_LOG:
+      TF_INPUT: "0"
+      TF_LOG: ""
       TF_VAR_gcp_project: production-project-193513
       TF_VAR_gcp_remote_state_bucket: project-terraform-state
       VAULT_ADDR: https://localhost
@@ -15,8 +15,17 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Give Terraform plan
-          command: ./_docker/docker-entrypoint.sh plan
+          name: Authorize to gcloud
+          command: |
+              echo $TF_VAR_gcp_project > file.txt \
+              && cat file.txt \
+              && rm -rf file.txt
+      - run:
+          name: Create everything
+          command: ./_docker/docker-entrypoint.sh apply && echo Done!
+      - run:
+          name: Destroy everything
+          command: ./_docker/docker-entrypoint.sh destroy && echo Done!
   deploy-docs:
     docker:
       - image: squidfunk/mkdocs-material:latest
