@@ -23,21 +23,6 @@
   <!-- Top-level navigation -->
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
-
-      <!-- Link to home -->
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="{{ config.site_url | default(nav.homepage.url, true) }}"
-            title="{{ config.site_name }}"
-            class="md-header-nav__button md-logo">
-          {% if config.theme.logo.icon %}
-            <i class="md-icon">{{ config.theme.logo.icon }}</i>
-          {% else %}
-            <img src="{{ base_url }}/{{ config.theme.logo }}"
-                width="24" height="24" />
-          {% endif %}
-        </a>
-      </div>
-
       <!-- Button to toggle drawer -->
       <div class="md-flex__cell md-flex__cell--shrink">
         <label class="md-icon md-icon--menu md-header-nav__button"
@@ -52,7 +37,7 @@
             {% if config.site_name == page.title %}
               {{ config.site_name }}
             {% else %}
-              <a href="{{ nav.homepage.url }}" class="md-header-nav__topic">
+              <a href="{{ config.site_url | default(nav.homepage.url, true) }}" class="md-header-nav__topic">
                 {{ config.site_name }}
               </a>
               <a href="{{ canonical_url }}" class="md-header-nav__topic">
