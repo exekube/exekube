@@ -26,7 +26,7 @@ jobs:
           command: ./_docker/docker-entrypoint.sh apply 2>&1 | grep -v 'terragrunt' && echo Done!
       - run:
           name: Destroy everything
-          command: ./_docker/docker-entrypoint.sh destroy | grep -v 'terragrunt' && echo Done!
+          command: ./_docker/docker-entrypoint.sh destroy 2>&1 | grep -v 'terragrunt' && echo Done!
   deploy-docs:
     docker:
       - image: squidfunk/mkdocs-material:latest
