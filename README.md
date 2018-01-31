@@ -4,6 +4,10 @@
 
 Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes, built with Terraform and Helm.
 
+## Quick Links
+
+- [Documentation website](https://ilyasotkov.github.io/exekube/)
+
 ## Motivation
 
 Using many command line tools and GUIs to manage cloud resources (`gcloud`, `aws`, `kops`) and Kubernetes resources (`kubectl`, `helm`) is tedious and error-prone.
@@ -22,7 +26,3 @@ The framework offers you:
 - Modular design and declarative model of management
 - Freedom to choose a cloud provider to host Kubernetes
 - Continuous integration (CI) facilities out of the box
-
-## Documentation
-
-- [Documentation website](https://ilyasotkov.github.io/exekube/)
