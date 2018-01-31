@@ -5,17 +5,17 @@ services:
     build: ./_docker
     working_dir: /exekube
     environment:
-      VAULT_ADDR: https://localhost
-      VAULT_CACERT: /exekube/live/prod/kube/core/vault/release/secrets/vault-tls/ca.crt
-      GOOGLE_CREDENTIALS: /exekube/live/prod/owner-key.json
-      TF_LOG:
-      TF_INPUT: 0
       XK_LIVE_DIR:
+      TF_INPUT:
+      TF_LOG:
+      GOOGLE_CREDENTIALS:
       TF_VAR_gcp_project:
       TF_VAR_gcp_remote_state_bucket:
       TF_VAR_cloudflare_auth:
       TF_VAR_registry_auth:
       TF_VAR_chartrepo_auth:
+      VAULT_ADDR:
+      VAULT_CACERT:
     ports:
       - 8001:8001
     volumes:
