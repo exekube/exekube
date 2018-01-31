@@ -5,6 +5,7 @@ jobs:
       - image: squidfunk/mkdocs-material:latest
     steps:
       - checkout
+      - run: echo $CIRCLE_REPOSITORY_URL
       - run:
           name: Build and deploy website to GitHub Pages
           command: mkdocs gh-deploy --message "[ci skip] Deployed with MkDocs"
