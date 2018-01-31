@@ -2,6 +2,14 @@ version: 2
 jobs:
   apply-live:
     working_directory: /exekube
+    environment:
+      XK_LIVE_DIR: /exekube/live/prod
+      TF_INPUT: 0
+      TF_LOG:
+      TF_VAR_gcp_project: production-project-193513
+      TF_VAR_gcp_remote_state_bucket: project-terraform-state
+      VAULT_ADDR: https://localhost
+      VAULT_CACERT:
     docker:
       - image: ilyasotkov/exekube:latest
     steps:
@@ -9,7 +17,7 @@ jobs:
       - run:
           name: Give Terraform plan
           command: ./_docker/docker-entrypoint.sh plan
-  deploy:
+  deploy-docs:
     docker:
       - image: squidfunk/mkdocs-material:latest
     steps:
@@ -22,6 +30,6 @@ workflows:
   version: 2
   deploy:
     jobs:
-      - deploy
+      - deploy-docs
       - apply-live:
           context: org-global

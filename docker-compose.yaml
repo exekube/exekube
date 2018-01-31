@@ -12,8 +12,6 @@ services:
       TF_VAR_gcp_project:
       TF_VAR_gcp_remote_state_bucket:
       TF_VAR_cloudflare_auth:
-      TF_VAR_registry_auth:
-      TF_VAR_chartrepo_auth:
       VAULT_ADDR:
       VAULT_CACERT:
     ports:
