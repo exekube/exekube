@@ -1,5 +1,11 @@
 version: 2
 jobs:
+  apply-live:
+    docker:
+      - image: ilyasotkov/exekube:latest
+    steps:
+      - checkout
+      - run: echo $TF_VAR_cloudflare_auth
   deploy:
     docker:
       - image: squidfunk/mkdocs-material:latest
@@ -13,4 +19,5 @@ workflows:
   version: 2
   deploy:
     jobs:
-      - deploy
+      - deploy:
+          context: org-global
