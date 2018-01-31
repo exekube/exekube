@@ -1,20 +1,17 @@
-terraform {
-  # The configuration for this backend will be filled in by Terragrunt
-  backend "gcs" {}
-}
-
 # ------------------------------------------------------------------------------
 # Terragrunt configuration
 # ------------------------------------------------------------------------------
 
 terragrunt = {
   terraform {
-    source = "/exekube/modules//vault-storage"
+    source = "/exekube/modules//helm-release"
   }
 
   dependencies {
     paths = [
-      "../../../../infra/gcp-gke",
+      "../../prod/infra/gcp-gke",
+      "../tls",
+      "../storage",
     ]
   }
 
