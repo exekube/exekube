@@ -1,13 +1,14 @@
 version: 2
 jobs:
   apply-live:
+    working_directory: /exekube
     docker:
       - image: ilyasotkov/exekube:latest
     steps:
       - checkout
       - run:
-          name: Test if CircleCI contexts work
-          command: echo $TF_VAR_cloudflare_auth
+          name: Test working directory
+          command: echo $CIRCLE_WORKING_DIRECTORY && pwd && ls -alh
   deploy:
     docker:
       - image: squidfunk/mkdocs-material:latest
