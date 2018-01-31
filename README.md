@@ -6,7 +6,11 @@ Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes
 
 ## Quick Links
 
-- [Documentation website](https://ilyasotkov.github.io/exekube/)
+- [Exekube Docs](https://ilyasotkov.github.io/exekube/)
+
+- [Terraform Docs](https://www.terraform.io/docs/index.html)
+- [Kubernetes Docs](https://kubernetes.io/docs/home/?path=users&persona=app-developer&level=foundational)
+- [Helm Docs](https://docs.helm.sh/)
 
 ## Motivation
 
