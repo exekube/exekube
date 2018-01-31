@@ -14,6 +14,8 @@ jobs:
       - image: ilyasotkov/exekube:latest
     steps:
       - checkout
+      - restore_cache:
+          key: all-cache
       - run:
           name: Authorize to gcloud
           command: |
@@ -27,6 +29,14 @@ jobs:
       - run:
           name: Destroy everything
           command: ./_docker/docker-entrypoint.sh destroy 2>&1 | grep -v 'terragrunt' && echo Done!
+      - save_cache:
+          key: all-cache
+          paths:
+            - /root/.helm
+            - /root/.terragrunt
+            - /root/.config/gcloud
+            - /root/.kube
+
   deploy-docs:
     docker:
       - image: squidfunk/mkdocs-material:latest
