@@ -5,7 +5,9 @@ jobs:
       - image: ilyasotkov/exekube:latest
     steps:
       - checkout
-      - run: echo $TF_VAR_cloudflare_auth
+      - run:
+          name: Test if CircleCI contexts work
+          command: echo $TF_VAR_cloudflare_auth
   deploy:
     docker:
       - image: squidfunk/mkdocs-material:latest
@@ -19,5 +21,6 @@ workflows:
   version: 2
   deploy:
     jobs:
-      - deploy:
+      - deploy
+      - apply-live:
           context: org-global
