@@ -17,9 +17,10 @@ jobs:
       - run:
           name: Authorize to gcloud
           command: |
-              echo $TF_VAR_gcp_project > file.txt \
-              && cat file.txt \
-              && rm -rf file.txt
+              echo $GOOGLE_CREDENTIALS > google-credentials.json \
+              && gcloud auth activate-service-account \
+              --key-file=google-credentials.json \
+              && rm -rf google-credentials.json
       - run:
           name: Create everything
           command: ./_docker/docker-entrypoint.sh apply && echo Done!
