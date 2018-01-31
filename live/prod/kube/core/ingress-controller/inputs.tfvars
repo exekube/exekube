@@ -14,6 +14,6 @@ release_spec = {
 
 post_hook = {
   command = <<-EOF
-            kubectl apply -f /exekube/backup/tls/secret.yaml
+            kubectl apply -f /exekube/backup/tls/secret.json
             EOF
 }
