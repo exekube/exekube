@@ -9,6 +9,7 @@ live/**/docker
 **/docker-config.json
 charts/*/push.sh
 !charts/drone/push.sh
+!charts/concourse/push.sh
 backup/tls
 site
 .ssh

@@ -1,7 +1,7 @@
 # Files in ./secrets directory must NOT have a trailing newline!
 
 release_spec = {
-  enabled        = false
+  enabled        = true
   release_name   = "concourse"
   release_values = "values.yaml"
 
