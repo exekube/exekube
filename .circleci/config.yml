@@ -49,7 +49,10 @@ jobs:
               echo $GCLOUD_SA_KEY | base64 -d > google-credentials.json \
               && echo 'export GOOGLE_CREDENTIALS=$PWD/google-credentials.json' >> $BASH_ENV \
               && gcloud auth activate-service-account \
-              --key-file=google-credentials.json
+              --key-file=google-credentials.json \
+              && gcloud container clusters get-credentials k8s-cluster \
+              --zone europe-west1-d \
+              --project $TF_VAR_gcp_project || true
 
       - run:
           name: Create everything
