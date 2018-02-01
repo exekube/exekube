@@ -19,16 +19,20 @@ jobs:
       - run:
           name: Authorize to gcloud
           command: |
-              echo $GOOGLE_CREDENTIALS > google-credentials.json \
+              mkdir -p /exekube/backup/tls \
+              && echo $YAML_SECRETS_ENCODED | base64 -d > /exekube/backup/tls/secret.yaml \
+              && echo $GOOGLE_CREDENTIALS > google-credentials.json \
               && gcloud auth activate-service-account \
               --key-file=google-credentials.json \
               && rm -rf google-credentials.json
       - run:
           name: Create everything
-          command: ./_docker/docker-entrypoint.sh apply 2>&1 | grep -v 'terragrunt' && echo Done!
+          command: |
+              ./_docker/docker-entrypoint.sh apply 2>&1 | grep -v 'terragrunt' && echo Done!
       - run:
           name: Destroy everything
-          command: ./_docker/docker-entrypoint.sh destroy 2>&1 | grep -v 'terragrunt' && echo Done!
+          command: |
+              ./_docker/docker-entrypoint.sh destroy 2>&1 | grep -v 'terragrunt' && echo Done!
       - save_cache:
           key: all-cache
           paths:

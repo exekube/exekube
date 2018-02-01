@@ -11,3 +11,7 @@ release_spec = {
   chart_name    = "nginx-ingress"
   chart_version = "0.8.23"
 }
+
+post_hook = {
+  command = "kubectl apply -f /exekube/backup/tls/secret.yaml"
+}
