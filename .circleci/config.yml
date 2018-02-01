@@ -20,10 +20,29 @@ jobs:
           name: Import secrets from environment variables
           command: |
               mkdir -p /exekube/backup/tls \
-              && echo $YAML_SECRETS_ENCODED | base64 -d > /exekube/backup/tls/secret.yaml \
+              && echo $YAML_SECRETS_ENCODED | base64 -d \
+              > /exekube/backup/tls/secret.yaml \
+              \
               && mkdir -p /exekube/live/prod/kube/ci/docker-registry/secrets \
-              && echo $REGISTRY_PASSWORD | base64 -d > /exekube/live/prod/kube/ci/docker-registry/secrets/basic-auth-password \
-              && echo $REGISTRY_USERNAME | base64 -d > /exekube/live/prod/kube/ci/docker-registry/secrets/basic-auth-username
+              && echo $REGISTRY_PASSWORD | base64 -d \
+              > /exekube/live/prod/kube/ci/docker-registry/secrets/basic-auth-password \
+              && echo $REGISTRY_USERNAME | base64 -d \
+              > /exekube/live/prod/kube/ci/docker-registry/secrets/basic-auth-username \
+              \
+              && mkdir -p /exekube/live/prod/kube/ci/chartmuseum/secrets \
+              && echo $CHARTMUSEUM_PASSWORD | base64 -d \
+              > /exekube/live/prod/kube/ci/chartmuseum/secrets/basic-auth-password \
+              && echo $CHARTMUSEUM_USERNAME | base64 -d \
+              > /exekube/live/prod/kube/ci/chartmuseum/secrets/basic-auth-username \
+              \
+              && mkdir -p /exekube/live/prod/kube/ci/drone/secrets/ \
+              && echo $DRONE_GITHUB_AUTH_CLIENT_ID | base64 -d \
+              > /exekube/live/prod/kube/ci/drone/secrets/github-auth-client-id \
+              && echo $DRONE_GITHUB_AUTH_CLIENT_SECRET | base64 -d \
+              > /exekube/live/prod/kube/ci/drone/secrets/github-auth-client-secret \
+              && echo $DRONE_SECRET | base64 -d \
+              > /exekube/live/prod/kube/ci/drone/secrets/secret
+
       - run:
           name: Authorize to gcloud
           command: |
@@ -40,9 +59,11 @@ jobs:
       - run:
           name: Destroy everything
           command: |
-              ./_docker/docker-entrypoint.sh destroy 2>&1 | grep -v 'terragrunt' \
-              && echo Done! \
-              && rm -rf google-credentials.json
+              # ./_docker/docker-entrypoint.sh destroy 2>&1 | grep -v 'terragrunt' \
+              # && echo Done! \
+              # && \
+              # rm -rf google-credentials.json
+              echo hello
       - save_cache:
           key: all-cache
           paths:

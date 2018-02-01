@@ -8,6 +8,7 @@ live/**/docker
 **/.terraform/*
 **/docker-config.json
 charts/*/push.sh
+!charts/drone/push.sh
 backup/tls
 site
 .ssh
