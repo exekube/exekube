@@ -1,6 +1,6 @@
 # Exekube
 
-[![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ilyasotkov/exekube/) [![CircleCI](https://circleci.com/gh/ilyasotkov/exekube/tree/develop.svg?style=svg)](https://circleci.com/gh/ilyasotkov/exekube/tree/develop)
+[![Docker Automated build](https://img.shields.io/badge/hub.docker.com-automated-blue.svg?style=flat-square)](https://hub.docker.com/r/ilyasotkov/exekube/) [![CircleCI](https://circleci.com/gh/ilyasotkov/exekube/tree/develop.svg?style=svg)](https://circleci.com/gh/ilyasotkov/exekube/tree/develop)
 
 Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes, built with Terraform and Helm.
 

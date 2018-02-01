@@ -14,6 +14,9 @@ services:
       TF_VAR_cloudflare_auth:
       VAULT_ADDR:
       VAULT_CACERT:
+      CHARTMUSEUM_URL:
+      CHARTMUSEUM_USERNAME:
+      CHARTMUSEUM_PASSWORD:
     ports:
       - 8001:8001
     volumes:
