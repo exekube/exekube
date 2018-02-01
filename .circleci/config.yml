@@ -52,7 +52,7 @@ jobs:
               --key-file=google-credentials.json \
               && gcloud container clusters get-credentials k8s-cluster \
               --zone europe-west1-d \
-              --project $TF_VAR_gcp_project || true
+              --project $TF_VAR_gcp_project || true && helm repo update || true
 
       - run:
           name: Create everything
@@ -62,8 +62,8 @@ jobs:
       - run:
           name: Destroy everything
           command: |
-              # ./_docker/docker-entrypoint.sh destroy 2>&1 | grep -v 'terragrunt' \
-              # && echo Done! \
+              ./_docker/docker-entrypoint.sh destroy 2>&1 | grep -v 'terragrunt' \
+              && echo Done!
               # && \
               # rm -rf google-credentials.json
               echo hello
