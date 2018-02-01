@@ -1,4 +1,4 @@
-[![Exekube logo](/logo.png)](https://ilyasotkov.github.io/exekube/)
+# Exekube
 
 [![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ilyasotkov/exekube/) [![CircleCI](https://circleci.com/gh/ilyasotkov/exekube/tree/develop.svg?style=svg)](https://circleci.com/gh/ilyasotkov/exekube/tree/develop)
 
