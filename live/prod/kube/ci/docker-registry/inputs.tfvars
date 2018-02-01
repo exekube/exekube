@@ -1,5 +1,5 @@
 release_spec = {
-  enabled     = false
+  enabled     = true
   domain_name = "registry.swarm.pw"
 
   release_name   = "docker-registry"
