@@ -18,7 +18,7 @@ jobs:
           key: all-cache
       - run:
           name: Import secrets from environment variables
-          command:
+          command: |
               mkdir -p /exekube/backup/tls \
               && echo $YAML_SECRETS_ENCODED | base64 -d > /exekube/backup/tls/secret.yaml \
               && mkdir -p /exekube/live/prod/kube/ci/docker-registry/secrets \
@@ -28,10 +28,10 @@ jobs:
           name: Authorize to gcloud
           command: |
               echo $GCLOUD_SA_KEY | base64 -d > google-credentials.json \
-              && export GOOGLE_CREDENTIALS=$(cat google-credentials.json) \
+              && echo 'export GOOGLE_CREDENTIALS=$PWD/google-credentials.json' >> $BASH_ENV \
               && gcloud auth activate-service-account \
-              --key-file=google-credentials.json \
-              && rm -rf google-credentials.json
+              --key-file=google-credentials.json
+
       - run:
           name: Create everything
           command: |
@@ -41,7 +41,8 @@ jobs:
           name: Destroy everything
           command: |
               ./_docker/docker-entrypoint.sh destroy 2>&1 | grep -v 'terragrunt' \
-              && echo Done!
+              && echo Done! \
+              && rm -rf google-credentials.json
       - save_cache:
           key: all-cache
           paths:
