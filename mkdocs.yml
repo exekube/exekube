@@ -14,6 +14,7 @@ pages:
       - 'Deploy an application': usage/deploy-app.md
       - 'Guide to Exekube directory structure and framework usage': usage/directory-structure.md
   - Miscellaneous:
+      - 'Compare using Helm CLI and terraform-provider-helm': misc/helm-cli-vs-terraform-provider-helm.md
       - 'Configure a Helm release': misc/configure-helm-release.md
       - 'Use HashiCorp Vault to manage secrets': misc/vault-integration.md
       - 'Project feature tracker': misc/feature-tracker.md

@@ -24,6 +24,7 @@ Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes
 
 ## Miscellaneous
 
+- [Compare using Helm CLI and terraform-provider-helm](/misc/helm-cli-vs-terraform-provider-helm)
 - [How to configure a Helm release](/misc/configure-helm-release)
 - [Use HashiCorp Vault to manage secrets](/misc/vault-integration)
 - [Read the project's feature tracker](/misc/feature-tracker)
