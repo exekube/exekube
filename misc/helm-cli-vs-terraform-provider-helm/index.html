@@ -708,7 +708,7 @@
                 
                 
                 <h1 id="compare-deploying-helm-releases-via-helm-cli-to-using-terraform-provider-helm">Compare deploying Helm releases via Helm CLI to using terraform-provider-helm</h1>
-<p><strong>Example</strong>: deploy a Concourse deployment onto an existing Kubernetes cluster.</p>
+<p><strong>Example</strong>: deploy a Concourse Helm release onto an existing Kubernetes cluster</p>
 <h2 id="helm-cli">Helm CLI</h2>
 <ol>
 <li>
@@ -798,12 +798,12 @@
 </pre></div></p>
 </li>
 <li>
-<p>Deploy or upgrade:
+<p>Deploy or upgrade the release:
 <div class="codehilite"><pre><span></span>xk apply live/prod/kube/ci/concourse
 </pre></div></p>
 </li>
 <li>
-<p>Destroy:
+<p>Destroy the release:
 <div class="codehilite"><pre><span></span>xk destroy live/prod/kube/ci/concourse
 </pre></div></p>
 </li>
