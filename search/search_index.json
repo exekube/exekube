@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Exekube documentation\n\n\nExekube is an \"Infrastructure as Code\" modular framework for managing Kubernetes, built with Terraform and Helm.\n\n\nIntroduction\n\n\n\n\nWhat is Exekube?\n\n\nHow does Exekube compare to other software?\n\n\n\n\nSetup and Installation\n\n\n\n\nCreate an Exekube project on Google Cloud Platform\n\n\nCreate an Exekube project on Amazon Web Services\n\n\n\n\nUsage\n\n\n\n\nTutorial: deploy an application on Kubernetes with Exekube\n\n\nGuide to Exekube directory structure and framework usage\n\n\n\n\nReference\n\n\n\n\ngcp-gke module\n\n\nhelm-release module\n\n\n\n\nMiscellaneous\n\n\n\n\nHow to configure a Helm release\n\n\nUse HashiCorp Vault to manage secrets\n\n\nRead the project's feature tracker\n\n\nManaging secrets in Exekube", 
+            "text": "Exekube documentation\n\n\nExekube is an \"Infrastructure as Code\" modular framework for managing Kubernetes, built with Terraform and Helm.\n\n\nIntroduction\n\n\n\n\nWhat is Exekube?\n\n\nHow does Exekube compare to other software?\n\n\n\n\nSetup and Installation\n\n\n\n\nCreate an Exekube project on Google Cloud Platform\n\n\nCreate an Exekube project on Amazon Web Services\n\n\n\n\nUsage\n\n\n\n\nTutorial: deploy an application on Kubernetes with Exekube\n\n\nGuide to Exekube directory structure and framework usage\n\n\n\n\nReference\n\n\n\n\ngcp-gke module\n\n\nhelm-release module\n\n\n\n\nMiscellaneous\n\n\n\n\nCompare using Helm CLI and terraform-provider-helm\n\n\nHow to configure a Helm release\n\n\nUse HashiCorp Vault to manage secrets\n\n\nRead the project's feature tracker\n\n\nManaging secrets in Exekube", 
             "title": "Overview"
         }, 
         {
@@ -32,7 +32,7 @@
         }, 
         {
             "location": "/#miscellaneous", 
-            "text": "How to configure a Helm release  Use HashiCorp Vault to manage secrets  Read the project's feature tracker  Managing secrets in Exekube", 
+            "text": "Compare using Helm CLI and terraform-provider-helm  How to configure a Helm release  Use HashiCorp Vault to manage secrets  Read the project's feature tracker  Managing secrets in Exekube", 
             "title": "Miscellaneous"
         }, 
         {
@@ -179,6 +179,26 @@
             "location": "/usage/directory-structure/#further-reading", 
             "text": "The  README for the framework default live module directory  goes further into explaining how live modules are structured.", 
             "title": "Further reading"
+        }, 
+        {
+            "location": "/misc/helm-cli-vs-terraform-provider-helm/", 
+            "text": "Compare deploying Helm releases via Helm CLI to using terraform-provider-helm\n\n\nExample\n: deploy a Concourse deployment onto an existing Kubernetes cluster.\n\n\nHelm CLI\n\n\n\n\n\n\nPush the locally-developed Helm chart to a remote chart repository (ChartMuseum) and update our local repository index:\n\ncd\n charts/concourse \n\\\n\n\n bash push.sh \n\\\n\n\n helm repo update\n\n\n\n\n\n\n\nCreate the Kubernetes secrets necessary for the release:\n\nkubectl create secret generic concourse-concourse \n\\\n\n--from-file\n=\nlive/prod/kube/ci/concourse/secrets/\n\n\n\n\n\n\n\nDeploy the Helm release: pull the chart, combine with our release values and submit to the Kubernetes API:\n\nhelm install \n\\\n\n        --name concourse \n\\\n\n        -f values.yaml \n\\\n\n        private/concourse\n\n\n\n\n\n\n\nUpgrade the release:\n\nhelm upgrade \n\\\n\n        -f values.yaml \n\\\n\n        concourse \n\\\n\n        private/concourse\n\n\n\n\n\n\n\nDestroy the release:\n\nhelm delete \n\\\n\n        concourse \n\\\n\n        --purge\n\n\n\n\n\n\n\nterraform-provider-helm (via Exekube)\n\n\n\n\n\n\nImport the \nhelm-release\n Terraform module and declare its dependencies:\n\nterragrunt\n \n=\n \n{\n\n  \nterraform\n \n{\n\n\n    source\n \n=\n \n/exekube/modules//helm-release\n\n  \n}\n\n\n  \ndependencies\n \n{\n\n\n    paths\n \n=\n \n[\n\n      \n../../../infra/gcp-gke\n,\n\n      \n../../core/ingress-controller\n,\n\n      \n../../core/kube-lego\n,\n\n      \n../chartmuseum\n,\n\n    \n]\n\n  \n}\n\n\n\n  include\n \n=\n \n{\n\n\n    path\n \n=\n \n${find_in_parent_folders()}\n\n  \n}\n\n\n}\n\n\n\n\n\n\n\n\nConfigure the release via the \nhelm-release\n module API:\n\nrelease_spec\n \n=\n \n{\n\n\n  enabled\n        \n=\n \ntrue\n\n\n  release_name\n   \n=\n \nconcourse\n\n\n  release_values\n \n=\n \nvalues.yaml\n\n\n\n  chart_repo\n    \n=\n \nprivate\n\n\n  chart_name\n    \n=\n \nconcourse\n\n\n  chart_version\n \n=\n \n1.0.0\n\n\n\n  domain_name\n \n=\n \nci.swarm.pw\n\n\n}\n\n\n\npre_hook\n \n=\n \n{\n\n\n  command\n \n=\n \n-EOF\n\n            \nkubectl\n \ncreate\n \nsecret\n \ngeneric\n \nconcourse-concourse\n \\\n\n            --from-file\n=\n/exekube/live/prod/kube/ci/concourse/secrets/\n \n||\n \ntrue\n \\\n            \n \ncd\n \n/exekube/charts/concourse/\n \\\n            \n \nbash\n \npush\n.\nsh\n \\\n            \n \nhelm\n \nrepo\n \nupdate\n\n            \nEOF\n\n\n}\n\n\n\n\n\n\n\n\nDeploy or upgrade:\n\nxk apply live/prod/kube/ci/concourse\n\n\n\n\n\n\n\nDestroy:\n\nxk destroy live/prod/kube/ci/concourse", 
+            "title": "Compare using Helm CLI and terraform-provider-helm"
+        }, 
+        {
+            "location": "/misc/helm-cli-vs-terraform-provider-helm/#compare-deploying-helm-releases-via-helm-cli-to-using-terraform-provider-helm", 
+            "text": "Example : deploy a Concourse deployment onto an existing Kubernetes cluster.", 
+            "title": "Compare deploying Helm releases via Helm CLI to using terraform-provider-helm"
+        }, 
+        {
+            "location": "/misc/helm-cli-vs-terraform-provider-helm/#helm-cli", 
+            "text": "Push the locally-developed Helm chart to a remote chart repository (ChartMuseum) and update our local repository index: cd  charts/concourse  \\   bash push.sh  \\   helm repo update    Create the Kubernetes secrets necessary for the release: kubectl create secret generic concourse-concourse  \\ \n--from-file = live/prod/kube/ci/concourse/secrets/    Deploy the Helm release: pull the chart, combine with our release values and submit to the Kubernetes API: helm install  \\ \n        --name concourse  \\ \n        -f values.yaml  \\ \n        private/concourse    Upgrade the release: helm upgrade  \\ \n        -f values.yaml  \\ \n        concourse  \\ \n        private/concourse    Destroy the release: helm delete  \\ \n        concourse  \\ \n        --purge", 
+            "title": "Helm CLI"
+        }, 
+        {
+            "location": "/misc/helm-cli-vs-terraform-provider-helm/#terraform-provider-helm-via-exekube", 
+            "text": "Import the  helm-release  Terraform module and declare its dependencies: terragrunt   =   { \n   terraform   {      source   =   /exekube/modules//helm-release \n   } \n\n   dependencies   {      paths   =   [ \n       ../../../infra/gcp-gke , \n       ../../core/ingress-controller , \n       ../../core/kube-lego , \n       ../chartmuseum , \n     ] \n   }    include   =   {      path   =   ${find_in_parent_folders()} \n   }  }     Configure the release via the  helm-release  module API: release_spec   =   {    enabled          =   true    release_name     =   concourse    release_values   =   values.yaml    chart_repo      =   private    chart_name      =   concourse    chart_version   =   1.0.0    domain_name   =   ci.swarm.pw  }  pre_hook   =   {    command   =   -EOF \n             kubectl   create   secret   generic   concourse-concourse  \\             --from-file = /exekube/live/prod/kube/ci/concourse/secrets/   ||   true  \\\n               cd   /exekube/charts/concourse/  \\\n               bash   push . sh  \\\n               helm   repo   update \n             EOF  }     Deploy or upgrade: xk apply live/prod/kube/ci/concourse    Destroy: xk destroy live/prod/kube/ci/concourse", 
+            "title": "terraform-provider-helm (via Exekube)"
         }, 
         {
             "location": "/misc/configure-helm-release/", 
