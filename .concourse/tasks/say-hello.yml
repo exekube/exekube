@@ -11,4 +11,4 @@ inputs:
 - name: exekube
 
 run:
-  path: exekube/.concourse/tasks/say-hello
+  path: exekube/.concourse/scripts/say-hello
