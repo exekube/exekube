@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ls -alh \
         && echo "Hello from Concourse!"

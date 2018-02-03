@@ -8,5 +8,7 @@ resources:
 jobs:
 - name: hello-world
   plan:
+    - get: exekube
+      trigger: false
     - task: say-hello
       file: exekube/.concourse/tasks/say-hello.yml
