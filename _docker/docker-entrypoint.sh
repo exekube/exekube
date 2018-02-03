@@ -6,10 +6,24 @@ if [ "$1" = 'apply' ] || [ "$1" = 'destroy' ] || [ "$1" = 'plan' ] || [ "$1" = '
         else
                 cd $2 && terragrunt $1-all
         fi
-else
-        if [ "$1" = 'init' ]; then
-                cd $2 && terragrunt $1
+
+elif [ "$1" = 'up' ]; then
+        if [ -z "$2" ]; then
+                cd $XK_LIVE_DIR && terragrunt apply-all
         else
-                $@
+                cd $2 && terragrunt apply-all
         fi
+
+elif [ "$1" = 'down' ]; then
+        if [ -z "$2" ]; then
+                cd $XK_LIVE_DIR && terragrunt destroy-all
+        else
+                cd $2 && terragrunt destroy-all
+        fi
+
+elif [ "$1" = 'init' ]; then
+        cd $2 && terragrunt $1
+
+else
+        $@
 fi
