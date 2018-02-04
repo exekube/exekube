@@ -1,4 +1,4 @@
 #!/bin/sh
-
-ls -alh \
+pwd \
+        && ls -alh \
         && echo "Hello from Concourse!"
