@@ -14,6 +14,7 @@ jobs:
     - task: deploy-and-destroy-apps-project
       file: exekube/.concourse/tasks/deploy-apps.yml
       params:
+        TF_VAR_cloudflare_auth: ((TF_VAR_cloudflare_auth))
         YAML_SECRETS_ENCODED: ((YAML_SECRETS_ENCODED))
         GCLOUD_SA_KEY: ((GCLOUD_SA_KEY))
         TF_INPUT: "0"

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 cd $PWD/exekube \
-&& export XK_LIVE_DIR="$PWD/live/apps-project"
+&& export XK_LIVE_DIR="$PWD/live/apps-project" \
+&& export TF_VAR_cloudflare_auth=$(echo -n $TF_VAR_cloudflare_auth | base64 -d)
 
 mkdir -p $PWD/backup/tls \
 && echo $YAML_SECRETS_ENCODED | base64 -d \
