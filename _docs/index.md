@@ -16,6 +16,7 @@ Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes
 
 - [Tutorial: deploy an application on Kubernetes with Exekube](/usage/deploy-app)
 - [Guide to Exekube directory structure and framework usage](/usage/directory-structure)
+- [Guide to configuring Exekube](/usage/configuration)
 
 ## Reference
 

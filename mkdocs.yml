@@ -13,6 +13,7 @@ pages:
   - Usage:
       - 'Deploy an application': usage/deploy-app.md
       - 'Guide to Exekube directory structure and framework usage': usage/directory-structure.md
+      - 'Guide to configuring Exekube': usage/configuration.md
   - Miscellaneous:
       - 'Compare using Helm CLI and terraform-provider-helm': misc/helm-cli-vs-terraform-provider-helm.md
       - 'Configure a Helm release': misc/configure-helm-release.md
