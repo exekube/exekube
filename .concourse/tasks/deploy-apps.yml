@@ -13,6 +13,9 @@ inputs:
 
 caches:
 - path: exekube/cache/.terragrunt
+- path: exekube/cache/gcloud
+- path: exekube/cache/.kube
+- path: exekube/cache/.helm
 
 run:
   path: exekube/.concourse/scripts/deploy-apps
