@@ -1,0 +1,22 @@
+resources:
+- name: exekube
+  type: git
+  source:
+    uri: https://github.com/ilyasotkov/exekube.git
+    branch: apps-project-pipeline
+
+jobs:
+- name: apps-project-plan
+  serial: true
+  plan:
+    - get: exekube
+      version: latest
+      trigger: false
+    - task: create deployment environment and apps
+      file: exekube/.concourse/tasks/deploy.yml
+      params:
+        TF_VAR_cloudflare_auth: ((cloudflare_auth))
+        YAML_SECRETS_ENCODED: ((tls_secrets))
+        GCLOUD_SA_KEY: ((project_owner_key))
+        TF_VAR_gcp_project: ((gcp_project))
+        TF_VAR_gcp_remote_state_bucket: ((tfstate))

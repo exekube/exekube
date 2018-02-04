@@ -4,14 +4,13 @@
 
 terragrunt = {
   terraform {
-    source = "/exekube/modules//helm-release"
+    source = "${get_env("XK_LIVE_DIR", "")}/../../modules//helm-release"
   }
 
   dependencies {
     paths = [
-      "../../prod/infra/gcp-gke",
-      "../tls",
-      "../storage",
+      "../../../infra/gcp-gke",
+      "../ingress-controller",
     ]
   }
 
