@@ -3,7 +3,7 @@ resources:
   type: git
   source:
     uri: https://github.com/ilyasotkov/exekube.git
-    branch: develop
+    branch: apps-project-pipeline
 
 jobs:
 - name: hello-world

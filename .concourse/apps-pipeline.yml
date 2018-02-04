@@ -13,3 +13,10 @@ jobs:
       trigger: false
     - task: deploy-and-destroy-apps-project
       file: exekube/.concourse/tasks/deploy-apps.yml
+      params:
+        YAML_SECRETS_ENCODED: ((YAML_SECRETS_ENCODED))
+        GCLOUD_SA_KEY: ((GCLOUD_SA_KEY))
+        TF_INPUT: "0"
+        TF_LOG: ""
+        TF_VAR_gcp_project: apps-project-20180402
+        TF_VAR_gcp_remote_state_bucket: apps-project-20180402-tfstate

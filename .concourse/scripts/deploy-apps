@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd $PWD/exekube \
 && export XK_LIVE_DIR="$PWD/live/apps-project"
@@ -12,4 +12,4 @@ mkdir -p $PWD/backup/tls \
         && gcloud auth activate-service-account \
         --key-file=$PWD/google-credentials.json \
 \
-&& ./_docker/docker-entrypoint.sh plan
+&& ./_docker/docker-entrypoint.sh plan 2>&1 | grep -v 'terragrunt'

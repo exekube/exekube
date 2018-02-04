@@ -12,8 +12,6 @@ terragrunt = {
       "../../../infra/gcp-gke",
       "../../core/ingress-controller",
       "../../core/kube-lego",
-      "../../ci/chartmuseum",
-      "../../ci/docker-registry",
     ]
   }
 
