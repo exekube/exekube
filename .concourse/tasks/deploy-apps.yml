@@ -15,6 +15,8 @@ run:
   path: exekube/.concourse/scripts/deploy-apps
 
 params:
+  YAML_SECRETS_ENCODED: ((YAML_SECRETS_ENCODED))
+  GCLOUD_SA_KEY: ((GCLOUD_SA_KEY))
   TF_INPUT: "0"
   TF_LOG: ""
   TF_VAR_gcp_project: apps-project-20180402
