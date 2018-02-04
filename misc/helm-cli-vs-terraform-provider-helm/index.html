@@ -476,6 +476,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/configuration/" title="Guide to configuring Exekube" class="md-nav__link">
+      Guide to configuring Exekube
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -714,14 +726,14 @@
 <li>
 <p>Push the locally-developed Helm chart to a remote chart repository (ChartMuseum) and update our local repository index:
 <div class="codehilite"><pre><span></span><span class="nb">cd</span> charts/concourse <span class="se">\</span>
-<span class="o">&amp;&amp;</span> bash push.sh <span class="se">\</span>
-<span class="o">&amp;&amp;</span> helm repo update
+        <span class="o">&amp;&amp;</span> bash push.sh <span class="se">\</span>
+        <span class="o">&amp;&amp;</span> helm repo update
 </pre></div></p>
 </li>
 <li>
 <p>Create the Kubernetes secrets necessary for the release:
 <div class="codehilite"><pre><span></span>kubectl create secret generic concourse-concourse <span class="se">\</span>
---from-file<span class="o">=</span>live/prod/kube/ci/concourse/secrets/
+        --from-file<span class="o">=</span>live/prod/kube/ci/concourse/secrets/
 </pre></div></p>
 </li>
 <li>
