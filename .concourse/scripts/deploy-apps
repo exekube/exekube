@@ -1,8 +1,12 @@
 #!/bin/bash
 
 cd $PWD/exekube \
+\
+&& echo "Restoring cache..." \
 && mkdir -p cache/.terragrunt \
 && cp -a cache/.terragrunt /root \
+&& ls -alh /root/.terragrunt \
+\
 && export XK_LIVE_DIR="$PWD/live/apps-project" \
 && export TF_VAR_cloudflare_auth=$(echo -n $TF_VAR_cloudflare_auth | base64 -d)
 
