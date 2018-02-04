@@ -14,5 +14,9 @@ mkdir -p $PWD/backup/tls \
         --key-file=$PWD/google-credentials.json \
 \
 && ./_docker/docker-entrypoint.sh plan 2>&1 | grep -v 'terragrunt' \
+\
+&& echo "Create local cache directories..." \
 && mkdir -p $PWD/cache/terragrunt \
-&& cp -a /root/.terragrunt $PWD/cache/terragrunt
+&& cp -a /root/.terragrunt $PWD/cache/terragrunt \
+&& echo "Done caching..." \
+&& ls -alh $PWD/cache/terragrunt
