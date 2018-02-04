@@ -7,17 +7,16 @@ resources:
 
 jobs:
 - name: apps-project-plan
+  serial: true
   plan:
     - get: exekube
       version: latest
       trigger: false
-    - task: deploy-and-destroy-apps-project
-      file: exekube/.concourse/tasks/deploy-apps.yml
+    - task: create deployment environment and apps
+      file: exekube/.concourse/tasks/deploy.yml
       params:
-        TF_VAR_cloudflare_auth: ((TF_VAR_cloudflare_auth))
-        YAML_SECRETS_ENCODED: ((YAML_SECRETS_ENCODED))
-        GCLOUD_SA_KEY: ((GCLOUD_SA_KEY))
-        TF_INPUT: "0"
-        TF_LOG: ""
-        TF_VAR_gcp_project: apps-project-20180402
-        TF_VAR_gcp_remote_state_bucket: apps-project-20180402-tfstate
+        TF_VAR_cloudflare_auth: ((cloudflare_auth))
+        YAML_SECRETS_ENCODED: ((tls_secrets))
+        GCLOUD_SA_KEY: ((project_owner_key))
+        TF_VAR_gcp_project: ((gcp_project))
+        TF_VAR_gcp_remote_state_bucket: ((tfstate))
