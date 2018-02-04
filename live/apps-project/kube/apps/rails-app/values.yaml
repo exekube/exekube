@@ -1,0 +1,22 @@
+replicaCount: 2
+image:
+  repository: registry.c6ns.pw/rails-react-boilerplate
+  tag: "0.1.3"
+  pullPolicy: Always
+  pullSecret: registry-dockercfg
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - ${domain_name}
+  tls:
+    - secretName: ${domain_name}-tls
+      hosts:
+        - ${domain_name}
+postgresql:
+  persistence:
+    enabled: true
+  postgresUser: postgres
+  postgresPassword: postgres
