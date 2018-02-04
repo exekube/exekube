@@ -1,5 +1,5 @@
 *credentials.json
-live/prod/*.json
+live/*/*.json
 config
 .archive
 .env
@@ -13,6 +13,7 @@ charts/*/push.sh
 backup/tls
 site
 .ssh
+.concourse/secrets/*.yml
 
 live/**/secrets
 

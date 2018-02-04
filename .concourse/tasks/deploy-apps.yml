@@ -1,0 +1,21 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: ilyasotkov/exekube
+    tag: latest
+
+
+inputs:
+- name: exekube
+
+run:
+  path: exekube/.concourse/scripts/deploy-apps
+
+params:
+  TF_INPUT: "0"
+  TF_LOG: ""
+  TF_VAR_gcp_project: apps-project-20180402
+  TF_VAR_gcp_remote_state_bucket: apps-project-20180402-tfstate

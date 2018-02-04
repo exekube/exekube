@@ -1,0 +1,15 @@
+resources:
+- name: exekube
+  type: git
+  source:
+    uri: https://github.com/ilyasotkov/exekube.git
+    branch: apps-project-pipeline
+
+jobs:
+- name: apps-project-plan
+  plan:
+    - get: exekube
+      version: latest
+      trigger: false
+    - task: deploy-and-destroy-apps-project
+      file: exekube/.concourse/tasks/deploy-apps.yml

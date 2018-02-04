@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cd $PWD/exekube \
+&& export XK_LIVE_DIR="$PWD/live/apps-project"
+
+mkdir -p $PWD/backup/tls \
+&& echo $YAML_SECRETS_ENCODED | base64 -d \
+> $PWD/backup/tls/secret.yaml \
+\
+&& echo $GCLOUD_SA_KEY | base64 -d > google-credentials.json \
+        && export GOOGLE_CREDENTIALS="$PWD/google-credentials.json" \
+        && gcloud auth activate-service-account \
+        --key-file=$PWD/google-credentials.json \
+\
+&& ./_docker/docker-entrypoint.sh plan
