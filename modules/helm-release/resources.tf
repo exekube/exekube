@@ -33,7 +33,7 @@ resource "helm_release" "release" {
   reuse_values     = false
   force_update     = false
   disable_webhooks = false
-  timeout          = 300
+  timeout          = 500
 
   wait          = true
   recreate_pods = false
