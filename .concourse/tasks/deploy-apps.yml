@@ -11,5 +11,8 @@ image_resource:
 inputs:
 - name: exekube
 
+caches:
+- path: cache/terragrunt
+
 run:
   path: exekube/.concourse/scripts/deploy-apps

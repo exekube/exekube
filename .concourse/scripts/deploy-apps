@@ -13,4 +13,6 @@ mkdir -p $PWD/backup/tls \
         && gcloud auth activate-service-account \
         --key-file=$PWD/google-credentials.json \
 \
-&& ./_docker/docker-entrypoint.sh plan 2>&1 | grep -v 'terragrunt'
+&& ./_docker/docker-entrypoint.sh plan 2>&1 | grep -v 'terragrunt' \
+&& mkdir -p $PWD/cache/terragrunt \
+&& cp -a /root/.terragrunt $PWD/cache/terragrunt
