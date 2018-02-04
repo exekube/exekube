@@ -12,7 +12,7 @@ inputs:
 - name: exekube
 
 caches:
-- path: cache/.terragrunt
+- path: exekube/cache/.terragrunt
 
 run:
   path: exekube/.concourse/scripts/deploy-apps
