@@ -9,11 +9,16 @@ RUN apk add --no-cache \
         ca-certificates \
         apache2-utils
 
-RUN gcloud components install alpha beta kubectl \
+RUN gcloud components install \
+        alpha beta kubectl \
         && gcloud components update
 
-RUN curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
-
+RUN curl -L -o helm.tar.gz \
+        https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-linux-amd64.tar.gz \
+        && tar -xvzf helm.tar.gz \
+        && rm -rf helm.tar.gz \
+        && chmod 0700 linux-amd64/helm \
+        && mv linux-amd64/helm /usr/bin
 
 RUN curl -o ./terraform.zip https://releases.hashicorp.com/terraform/0.11.2/terraform_0.11.2_linux_amd64.zip \
         && unzip terraform.zip \
