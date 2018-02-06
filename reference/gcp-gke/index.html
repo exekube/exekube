@@ -665,10 +665,52 @@
                 
                 
                 <h1 id="gcp-gke-module">gcp-gke module</h1>
-<div class="admonition missing">
-<p class="admonition-title">Missing</p>
-<p>This article has not been written yet. Want to help? <a href="https://github.com/ilyasotkov/exekube/pulls">Submit a pull request</a>.</p>
-</div>
+<div class="codehilite"><pre><span></span><span class="kr">variable</span> <span class="s">&quot;gcp_zone&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  default</span> <span class="o">=</span> <span class="s2">&quot;europe-west1-d&quot;</span>
+<span class=" -Punctuation">}</span>
+
+<span class="kr">variable</span> <span class="s">&quot;gcp_region&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  default</span> <span class="o">=</span> <span class="s2">&quot;europe-west1&quot;</span>
+<span class=" -Punctuation">}</span>
+
+<span class="kr">variable</span> <span class="s">&quot;gcp_project&quot;</span> <span class=" -Punctuation">{}</span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Cluster vars</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="kr">variable</span> <span class="s">&quot;cluster_name&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  default</span> <span class="o">=</span> <span class="s2">&quot;k8s-cluster&quot;</span>
+<span class=" -Punctuation">}</span>
+
+<span class="kr">variable</span> <span class="s">&quot;node_type&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  default</span> <span class="o">=</span> <span class="s2">&quot;n1-standard-2&quot;</span>
+<span class=" -Punctuation">}</span>
+
+<span class="kr">variable</span> <span class="s">&quot;gke_version&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  default</span> <span class="o">=</span> <span class="s2">&quot;1.8.4-gke.1&quot;</span>
+<span class=" -Punctuation">}</span>
+
+<span class="kr">variable</span> <span class="s">&quot;enable_legacy_auth&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  default</span> <span class="o">=</span> <span class="s2">&quot;false&quot;</span>
+<span class=" -Punctuation">}</span><span class="c1"></span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Node pool vars</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="kr">variable</span> <span class="s">&quot;nodepool_name&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  default</span> <span class="o">=</span> <span class="s2">&quot;k8s-nodepool&quot;</span>
+<span class=" -Punctuation">}</span>
+
+<span class="kr">variable</span> <span class="s">&quot;nodepool_max_nodes&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  default</span> <span class="o">=</span> <span class="m">4</span>
+<span class=" -Punctuation">}</span>
+
+<span class="kr">variable</span> <span class="s">&quot;nodepool_machine_type&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  default</span> <span class="o">=</span> <span class="s2">&quot;n1-standard-2&quot;</span>
+<span class=" -Punctuation">}</span>
+</pre></div>
                 
                   
                 

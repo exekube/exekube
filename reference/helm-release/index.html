@@ -665,10 +665,82 @@
                 
                 
                 <h1 id="helm-release-module-reference">helm-release module reference</h1>
-<div class="admonition missing">
-<p class="admonition-title">Missing</p>
-<p>This article has not been written yet. Want to help? <a href="https://github.com/ilyasotkov/exekube/pulls">Submit a pull request</a>.</p>
-</div>
+<div class="codehilite"><pre><span></span><span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Pre-hook and post-hook, to be run before creation and after release creation</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="kr">variable</span> <span class="s">&quot;pre_hook&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  type</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
+
+<span class="na">  default</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+<span class="na">    command</span> <span class="o">=</span> <span class="s2">&quot;echo hello from pre_hook&quot;</span>
+  <span class=" -Punctuation">}</span>
+<span class=" -Punctuation">}</span>
+
+<span class="kr">variable</span> <span class="s">&quot;post_hook&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  type</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
+
+<span class="na">  default</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+<span class="na">    command</span> <span class="o">=</span> <span class="s2">&quot;echo hello from post_hook&quot;</span>
+  <span class=" -Punctuation">}</span>
+<span class=" -Punctuation">}</span><span class="c1"></span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Helm release input variables</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="kr">variable</span> <span class="s">&quot;release_spec&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  type</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
+
+<span class="na">  default</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+<span class="na">    enabled</span>        <span class="o">=</span> <span class="kt">false</span>
+<span class="na">    chart_repo</span>     <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="na">    chart_name</span>     <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="na">    chart_version</span>  <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="na">    release_name</span>   <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="na">    release_values</span> <span class="o">=</span> <span class="s2">&quot;values.yaml&quot;</span>
+
+<span class="na">    domain_name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+  <span class=" -Punctuation">}</span>
+<span class=" -Punctuation">}</span><span class="c1"></span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Point DNS zones to our cloud load balancer IP address</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="kr">variable</span> <span class="s">&quot;cluster_dns_zones&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  type</span> <span class="o">=</span> <span class="s2">&quot;list&quot;</span>
+
+<span class="na">  default</span> <span class="o">=</span> <span class="p">[]</span>
+<span class=" -Punctuation">}</span><span class="c1"></span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Kubernetes secret inputs</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="kr">variable</span> <span class="s">&quot;basic_auth&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  type</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
+
+<span class="na">  default</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+<span class="na">    username_file</span> <span class="o">=</span> <span class="s2">&quot;secrets/basic-auth-username&quot;</span>
+<span class="na">    password_file</span> <span class="o">=</span> <span class="s2">&quot;secrets/basic-auth-password&quot;</span>
+<span class="na">    secret_name</span>   <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+  <span class=" -Punctuation">}</span>
+<span class=" -Punctuation">}</span><span class="c1"></span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Credentials for use as client, can be filled by local environmental variables</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="kr">variable</span> <span class="s">&quot;cloudflare_auth&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  type</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
+
+<span class="na">  default</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+<span class="na">    email</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="na">    token</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+  <span class=" -Punctuation">}</span>
+<span class=" -Punctuation">}</span>
+</pre></div>
                 
                   
                 
