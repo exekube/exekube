@@ -20,3 +20,6 @@ jobs:
         GCLOUD_SA_KEY: ((project_owner_key))
         TF_VAR_gcp_project: ((gcp_project))
         TF_VAR_gcp_remote_state_bucket: ((tfstate))
+        CHARTMUSEUM_URL: ((CHARTMUSEUM_URL))
+        CHARTMUSEUM_USERNAME: ((CHARTMUSEUM_USERNAME))
+        CHARTMUSEUM_PASSWORD: ((CHARTMUSEUM_PASSWORD))

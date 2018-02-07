@@ -3,27 +3,35 @@ set -euo pipefail
 cd exekube
 
 # ------------------------------------------------------------------------------
-# Set variables and create files
+# Create necessary directories if they don't exist, restore cache
 # ------------------------------------------------------------------------------
-
-export XK_LIVE_DIR=$PWD/live/apps-project
-export TF_VAR_cloudflare_auth=$(echo -n $TF_VAR_cloudflare_auth | base64 -d)
-export HELM_HOME=$PWD/cache/.helm
 
 echo "Restoring cache..."
 mkdir -p cache/.terragrunt \
         cache/.kube \
-        cache/.helm
-cp -a cache/.terragrunt /root
+        cache/.helm \
+        backup/tls
+
 touch cache/.kube/config
-cat cache/.kube/config
+cp -a cache/.terragrunt /root
+
+# ------------------------------------------------------------------------------
+# Set variables for the framework and its tools
+# ------------------------------------------------------------------------------
+
+export XK_LIVE_DIR=$PWD/live/apps-project
+export TF_VAR_cloudflare_auth=$(echo -n $TF_VAR_cloudflare_auth | base64 -d)
 export KUBECONFIG=$PWD/cache/.kube/config
+export HELM_HOME=$PWD/cache/.helm
+export GOOGLE_CREDENTIALS=$PWD/google-credentials.json
 
-mkdir -p $PWD/backup/tls
+# ------------------------------------------------------------------------------
+# Create files from params
+# ------------------------------------------------------------------------------
+
 echo $YAML_SECRETS_ENCODED | base64 -d > backup/tls/secret.yaml
-
 echo $GCLOUD_SA_KEY | base64 -d > google-credentials.json
-export GOOGLE_CREDENTIALS="$PWD/google-credentials.json"
+
 gcloud auth activate-service-account \
         --key-file=google-credentials.json
 
@@ -31,9 +39,13 @@ gcloud auth activate-service-account \
 # Run terragrunt / terraform
 # ------------------------------------------------------------------------------
 
-# unset KUBECONFIG && ./_docker/docker-entrypoint.sh plan 2>&1 | grep -v 'terragrunt'
 ./_docker/docker-entrypoint.sh apply 2>&1 | grep -v 'terragrunt'
 ./_docker/docker-entrypoint.sh destroy 2>&1 | grep -v 'terragrunt'
+# unset KUBECONFIG && ./_docker/docker-entrypoint.sh plan 2>&1 | grep -v 'terragrunt'
+
+# ------------------------------------------------------------------------------
+# Save cache for subsequent runs
+# ------------------------------------------------------------------------------
 
 echo "Saving cache to local directory..."
 cp -a /root/.terragrunt ./cache
