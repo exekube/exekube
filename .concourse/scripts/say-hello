@@ -1,2 +1,2 @@
 #!/bin/sh
-pwd && ls -alh && echo "Hello from Concourse!"
+pwd && ls -alh && echo "Hello from Concourse!" && env
