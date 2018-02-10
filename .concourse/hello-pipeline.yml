@@ -12,3 +12,5 @@ jobs:
       trigger: false
     - task: say-hello
       file: exekube/.concourse/tasks/say-hello.yml
+      params:
+        SECRET_FROM_VAULT: ((secret_from_vault))
