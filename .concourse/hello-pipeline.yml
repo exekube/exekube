@@ -1,0 +1,14 @@
+resources:
+- name: exekube
+  type: git
+  source:
+    uri: https://github.com/ilyasotkov/exekube.git
+    branch: develop
+
+jobs:
+- name: hello-world
+  plan:
+    - get: exekube
+      trigger: false
+    - task: say-hello
+      file: exekube/.concourse/tasks/say-hello.yml
