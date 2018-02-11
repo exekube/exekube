@@ -33,7 +33,8 @@ resource "google_container_cluster" "gke_cluster" {
   provisioner "local-exec" {
     # configure "kubectl" credentials
     command = <<EOF
-gcloud container clusters get-credentials ${var.cluster_name} \
+sleep 5 \
+&& gcloud container clusters get-credentials ${var.cluster_name} \
 --zone ${var.gcp_zone} \
 --project ${var.gcp_project} \
 && kubectl -n kube-system create sa tiller \
