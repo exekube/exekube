@@ -23,60 +23,14 @@ postgresql:
 rbac:
   create: false
 
+
+credentialManager:
+  vault:
+    enabled: true
+    url: https://vault-vault:8200
+    pathPrefix: "/concourse"
+    authBackend: ""
+    caCert: true
+
 secrets:
   create: false
-
-  credentialManager:
-    ## use Hashicorp Vault for Credential Manager.
-    ##
-    vault:
-      ## Enable Credential Manager using below configuration.
-      ##
-      enabled: true
-
-      pathPrefix: concourse
-
-      caCert: |
-        -----BEGIN CERTIFICATE-----
-        MIIDOzCCAiOgAwIBAgIRAOJrOE91TmVlRBCcsg70FEUwDQYJKoZIhvcNAQELBQAw
-        NzEWMBQGA1UEChMNRXhla3ViZSBWYXVsdDEdMBsGA1UEAxMUTWFuYWdlZCBieSBU
-        ZXJyYWZvcm0wHhcNMTgwMjEwMTgwNzIwWhcNMTgwMjExMDAwNzIwWjA3MRYwFAYD
-        VQQKEw1FeGVrdWJlIFZhdWx0MR0wGwYDVQQDExRNYW5hZ2VkIGJ5IFRlcnJhZm9y
-        bTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJ3lxCFDh3Ltz6QnS/6G
-        0kpj4D6PTuytEyXjBg/SUEWiDYdRKExCw8HvLhpBr+109qfNjfayXbg/QpmPggHM
-        oQzhnT0ZUW7fFmRIOIIxZIp0DfGM8cAVfdaUaPxb9Jb3Thnesw08QYVftWCFJMG3
-        zsYG9Z9wA+DMs8FOK9kG2havuXNCtJSHDlQaT48qPnU2qbNXuL7gzqc5rpiphSHO
-        05vp09SCbCa2nyWvm7c+Eknk6HBS6648Eahu8K/JK3xJCK/xlq7I6r6WayT7l4Vw
-        jOvh+ajGK9tQnqaVVxzdr1Op+QzQ0PXu9+6bWPVgeT9+jRNzwlB5fsCp9Ri3CBEk
-        jDkCAwEAAaNCMEAwDgYDVR0PAQH/BAQDAgKkMA8GA1UdEwEB/wQFMAMBAf8wHQYD
-        VR0OBBYEFOIZ/vB/IjoG9uLCD900n/8gBip8MA0GCSqGSIb3DQEBCwUAA4IBAQCY
-        FP05Q+rt8ugzgu1RN+5cNWYm8KE4mb3k3wZ6ddtfrDz8yUL+cZdgGvOeN4VACfaZ
-        eAU4EsBhfQwzYdemIcjMKIzr4Js9Gkxg+XN5JPLrrK/n8XIKD0pX2TpQmfPL7880
-        RmDvyoLneCs5KqqodHxeMjm8u3MFWgV2jaLIAyFsBV9nJOTDl42Kto1WIAH9+7kL
-        WUKwLNR4mgI7O0uaiF1Y7S+SDel5BI987AuxhAmkedyHLkV/+YgtjeGPK7f4yg/j
-        Y2fZRl6UpVC4g4lz8D0gPada1D3vbg1D6CxwanSQoWIzqtRywChsjL2Y6lH3CFGr
-        aTBJlnVb6t7Yc6kdkVEu
-        -----END CERTIFICATE-----
-      url: https://vault-vault:8200
-      clientToken: 65856242-5256-8f82-5610-6185abd9afa7
-
-
-      ## URL pointing to vault addr (i.e. http://vault:8200).
-      ##
-      # url:
-
-      ## vault path under which to namespace credential lookup, defaults to /concourse.
-      ##
-      # pathPrefix:
-
-      ## if the Vault server is using a self-signed certificate, set this to true,
-      ## and provide a value for the cert in secrets.
-      ##
-      # caCert:
-
-      ## vault authentication backend, leave this blank if using an intial periodic token
-      ## currently supported backends: token, approle, cert.
-      ##
-      # authBackend:
-
-  ## For RBAC support:
