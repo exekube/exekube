@@ -1,7 +1,7 @@
 replicaCount: 2
 image:
-  repository: registry.c6ns.pw/rails-react-boilerplate
-  tag: "0.1.3"
+  repository: ilyasotkov/rails-react-boilerplate
+  tag: "1.0.0"
   pullPolicy: Always
   pullSecret: registry-dockercfg
 ingress:
