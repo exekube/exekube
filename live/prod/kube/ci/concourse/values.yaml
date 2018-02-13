@@ -26,11 +26,12 @@ rbac:
 
 credentialManager:
   vault:
-    enabled: true
-    url: https://vault-vault:8200
-    pathPrefix: "/concourse"
-    authBackend: ""
-    caCert: true
+    enabled: false
+    # enabled: true
+    # url: https://vault-vault:8200
+    # pathPrefix: "/concourse"
+    # authBackend: ""
+    # caCert: true
 
 secrets:
   create: false
