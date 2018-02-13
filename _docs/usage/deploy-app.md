@@ -31,8 +31,8 @@
      replicaCount: 2
      image:
        repository: ilyasotkov/rails-react-boilerplate
-    -  tag: "0.1.0"
-    +  tag: "0.2.0"
+    -  tag: "1.0.0"
+    +  tag: "1.0.1"
        pullPolicy: Always
     ```
 
