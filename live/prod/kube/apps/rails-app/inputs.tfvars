@@ -12,7 +12,7 @@ release_spec = {
 
 pre_hook = {
   command = <<-EOF
-            cd /exekube/charts/rails-app/ \
+            cd $XK_LIVE_DIR/../../charts/rails-app/ \
             && bash push.sh \
             && helm repo update
             EOF
