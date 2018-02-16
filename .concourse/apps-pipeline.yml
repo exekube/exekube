@@ -3,23 +3,24 @@ resources:
   type: git
   source:
     uri: https://github.com/ilyasotkov/exekube.git
-    branch: apps-project-pipeline
+    branch: develop
 
 jobs:
-- name: apps-project-plan
+- name: deploy applications to cluster
   serial: true
   plan:
-    - get: exekube
-      version: latest
-      trigger: false
-    - task: create deployment environment and apps
-      file: exekube/.concourse/tasks/deploy.yml
-      params:
-        TF_VAR_cloudflare_auth: ((cloudflare_auth))
-        YAML_SECRETS_ENCODED: ((tls_secrets))
-        GCLOUD_SA_KEY: ((project_owner_key))
-        TF_VAR_gcp_project: ((gcp_project))
-        TF_VAR_gcp_remote_state_bucket: ((tfstate))
-        CHARTMUSEUM_URL: ((CHARTMUSEUM_URL))
-        CHARTMUSEUM_USERNAME: ((CHARTMUSEUM_USERNAME))
-        CHARTMUSEUM_PASSWORD: ((CHARTMUSEUM_PASSWORD))
+  - get: exekube
+    version: latest
+    trigger: false
+  - task: create deployment environment and apps
+    file: exekube/.concourse/tasks/deploy.yml
+    params:
+      TF_VAR_gcp_project: ((gcp_project))
+      TF_VAR_gcp_remote_state_bucket: ((tfstate))
+      GCLOUD_SA_KEY: ((project_owner_key))
+      CHARTMUSEUM_URL: ((CHARTMUSEUM_URL))
+      CHARTMUSEUM_DNS_NAME: ((CHARTMUSEUM_DNS_NAME))
+      CHARTMUSEUM_USERNAME: ((CHARTMUSEUM_USERNAME))
+      CHARTMUSEUM_PASSWORD: ((CHARTMUSEUM_PASSWORD))
+      TF_VAR_cloudflare_auth: ((cloudflare_auth))
+      YAML_SECRETS_ENCODED: ((tls_secrets))

@@ -1,0 +1,30 @@
+resource_types:
+- name: helm
+  type: docker-image
+  source:
+    repository: linkyard/concourse-helm-resource
+
+resources:
+- name: rails-react-boilerplate
+  type: git
+  source:
+    uri: https://github.com/ilyasotkov/rails-react-boilerplate.git
+    branch: master
+- name: rails-react-boilerplate-image
+  type: docker-image
+  source:
+    repository: registry.swarm.pw:443/rails-react-boilerplate
+    username: ((docker_registry_username))
+    password: ((docker_registry_password))
+
+jobs:
+- name: build and push rails-react-boilerplate docker image
+  serial: true
+  plan:
+    - get: rails-react-boilerplate
+      version: latest
+      trigger: false
+    - put: rails-react-boilerplate-image
+      params:
+        build: rails-react-boilerplate
+        tag: rails-react-boilerplate/VERSION

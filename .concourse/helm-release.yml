@@ -1,0 +1,26 @@
+resource_types:
+- name: helm
+  type: docker-image
+  source:
+    repository: linkyard/concourse-helm-resource
+
+resources:
+- name: helm-release
+  type: helm
+  source:
+    cluster_url: ((kube_url))
+    cluster_ca: ((kube_ca))
+    token: ((kube_token))
+    release: dandy-anaconda
+
+jobs:
+- name: release jenkins to the cluster
+  serial: true
+  plan:
+    - put: helm-release
+      params:
+        chart: stable/jenkins
+        replace: true
+        override_values:
+        - key: Master.Memory
+          value: 512Mi

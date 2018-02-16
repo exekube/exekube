@@ -14,6 +14,14 @@ fly -t ci login -c https://ci.swarm.pw
 fly --target ci set-pipeline --pipeline hello-pipeline --config .concourse/hello-pipeline.yml
 ```
 
+```sh
+fly --target ci set-pipeline --pipeline rails-react-boilerplate-pipeline --config .concourse/rails-react-boilerplate.yml --load-vars-from .concourse/secrets/rails-react-boilerplate.yml
+```
+
+```sh
+fly --target ci set-pipeline --pipeline helm-release-pipeline --config .concourse/helm-release.yml --load-vars-from .concourse/secrets/helm-release.yml
+```
+
 ### Enable apps-pipeline
 
 ```sh
