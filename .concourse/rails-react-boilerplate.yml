@@ -5,6 +5,11 @@ resource_types:
     repository: linkyard/concourse-helm-resource
 
 resources:
+- name: exekube
+  type: git
+  source:
+    uri: https://github.com/ilyasotkov/exekube.git
+    branch: develop
 - name: rails-react-boilerplate
   type: git
   source:
@@ -22,30 +27,39 @@ resources:
     cluster_url: ((kube_url))
     cluster_ca: ((kube_ca))
     token: ((kube_token))
+    release: rails-app
     repos:
-      - name: private
-        url: ((private_charts_repo_url))
+    - name: private
+      url: ((private_charts_repo_url))
 
 jobs:
 - name: build and push rails-react-boilerplate docker image
   serial: true
   plan:
-    - get: rails-react-boilerplate
-      version: latest
-      trigger: false
-    - put: rails-react-boilerplate-image
-      params:
-        build: rails-react-boilerplate
-        tag: rails-react-boilerplate/VERSION
-    - put: helm-release
-      params:
-        chart: private/rails-app-1.0.0.tgz
-        values: exekube/.concourse/release/values.yaml
-        release: exekube/.concourse/release/release.txt
-        replace: true
-        devel: true
-        recreate_pods: true
-        override_values:
-        - hide: false
-          key: image.tag
-          value: '1.0.2'
+  - get: exekube
+    trigger: false
+  - get: rails-react-boilerplate
+    trigger: true
+  - put: rails-react-boilerplate-image
+    params:
+      build: rails-react-boilerplate
+      tag: rails-react-boilerplate/VERSION
+      tag_as_latest: true
+      cache: false
+      # cache: true
+      # cache_tag: latest
+  - put: helm-release
+    params:
+      chart: private/rails-app
+      values: exekube/.concourse/release/values.yaml
+      release: exekube/.concourse/release/release.txt
+      replace: true
+      devel: true
+      recreate_pods: false
+      override_values:
+      - key: image.pullSecret
+        value: registry-dockercfg
+      - key: image.tag
+        value: latest
+      - key: image.repository
+        value: registry.swarm.pw/rails-react-boilerplate
