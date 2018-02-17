@@ -37,18 +37,15 @@ jobs:
       params:
         build: rails-react-boilerplate
         tag: rails-react-boilerplate/VERSION
-    - name: release the application helm chart
-      serial: true
-      plan:
-        - put: helm-release
-          params:
-            chart: private/rails-app-1.0.0.tgz
-            values: exekube/.concourse/release/values.yaml
-            release: exekube/.concourse/release/release.txt
-            replace: true
-            devel: true
-            recreate_pods: true
-            override_values:
-            - hide: false
-              key: image.tag
-              value: '1.0.2'
+    - put: helm-release
+      params:
+        chart: private/rails-app-1.0.0.tgz
+        values: exekube/.concourse/release/values.yaml
+        release: exekube/.concourse/release/release.txt
+        replace: true
+        devel: true
+        recreate_pods: true
+        override_values:
+        - hide: false
+          key: image.tag
+          value: '1.0.2'
