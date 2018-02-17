@@ -10,17 +10,20 @@ resources:
   source:
     uri: https://github.com/ilyasotkov/exekube.git
     branch: develop
+
 - name: rails-react-boilerplate
   type: git
   source:
     uri: https://github.com/ilyasotkov/rails-react-boilerplate.git
     branch: master
+
 - name: rails-react-boilerplate-image
   type: docker-image
   source:
     repository: registry.swarm.pw:443/rails-react-boilerplate
     username: ((docker_registry_username))
     password: ((docker_registry_password))
+
 - name: helm-release
   type: helm
   source:
@@ -33,7 +36,7 @@ resources:
       url: ((private_charts_repo_url))
 
 jobs:
-- name: build and push rails-react-boilerplate docker image
+- name: build and deploy the application
   serial: true
   plan:
   - get: exekube
@@ -44,10 +47,10 @@ jobs:
     params:
       build: rails-react-boilerplate
       tag: rails-react-boilerplate/VERSION
-      tag_as_latest: true
       cache: false
       # cache: true
       # cache_tag: latest
+      # tag_as_latest: true
   - put: helm-release
     params:
       chart: private/rails-app
@@ -60,6 +63,6 @@ jobs:
       - key: image.pullSecret
         value: registry-dockercfg
       - key: image.tag
-        value: latest
+        path: rails-react-boilerplate/VERSION
       - key: image.repository
         value: registry.swarm.pw/rails-react-boilerplate
