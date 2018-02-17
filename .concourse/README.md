@@ -1,28 +1,33 @@
 # Concourse Pipelines
 
-## Commons tasks
-
-### Log in
+## Log in
 
 ```sh
 fly -t ci login -c https://ci.swarm.pw
 ```
 
-### Demo: enable hello-pipeline
+## Set pipelines via Fly CLI
+
+
+### hello-pipeline
 
 ```sh
 fly --target ci set-pipeline --pipeline hello-pipeline --config .concourse/hello-pipeline.yml
 ```
 
+## rails-react-boilerplate-pipeline
+
 ```sh
 fly --target ci set-pipeline --pipeline rails-react-boilerplate-pipeline --config .concourse/rails-react-boilerplate.yml --load-vars-from .concourse/secrets/rails-react-boilerplate.yml
 ```
+
+### helm-release-pipeline
 
 ```sh
 fly --target ci set-pipeline --pipeline helm-release-pipeline --config .concourse/helm-release.yml --load-vars-from .concourse/secrets/helm-release.yml
 ```
 
-### Enable apps-pipeline
+### apps-pipeline
 
 ```sh
 fly --target ci set-pipeline --pipeline apps-pipeline --config .concourse/apps-pipeline.yml --load-vars-from .concourse/secrets/apps-secrets.yml
