@@ -60,6 +60,22 @@ jobs:
     params:
       pre: rc
 
+- name: tag-master
+  serial: true
+  plan:
+  - aggregate:
+    - get: master
+      resource: repo-master
+      passed: [ version-master ]
+      trigger: true
+    - get: rc-version
+      passed: [ version-master ]
+  - put: master
+    resource: repo-master
+    params:
+      repository: master
+      tag: rc-version/version
+
 - name: build-master
   serial: true
   plan:
@@ -75,6 +91,7 @@ jobs:
       tag: rc-version/version
       cache: false
       tag_as_latest: true
+      # uncomment these lines after initial image build and push
       cache: true
       cache_tag: latest
 
@@ -102,3 +119,36 @@ jobs:
         path: rc-version/version
       - key: image.repository
         value: registry.swarm.pw/rails-react-boilerplate
+
+# semver patch, minor, major version bumps must be triggered manually
+- name: patch
+  serial: true
+  serial_groups: [ update-version ]
+  plan:
+    - get: rc-version
+    - put: rc-version
+      params: { bump: patch }
+
+- name: minor
+  serial: true
+  serial_groups: [ update-version ]
+  plan:
+    - get: rc-version
+    - put: rc-version
+      params: { bump: minor }
+
+- name: major
+  serial: true
+  serial_groups: [ update-version ]
+  plan:
+    - get: rc-version
+    - put: rc-version
+      params: { bump: major }
+
+- name: rc
+  serial: true
+  serial_groups: [ update-version ]
+  plan:
+    - get: rc-version
+    - put: rc-version
+      params: { pre: rc }
