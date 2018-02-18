@@ -11,13 +11,24 @@ resources:
     uri: https://github.com/ilyasotkov/exekube.git
     branch: develop
 
-- name: rails-react-boilerplate
+- name: repo-master
   type: git
   source:
-    uri: https://github.com/ilyasotkov/rails-react-boilerplate.git
+    uri: ((github_repo_uri))
+    private_key: ((github_private_key))
     branch: master
 
-- name: rails-react-boilerplate-image
+- name: rc-version
+  type: semver
+  source:
+    driver: git
+    uri: ((github_repo_uri))
+    private_key: ((github_private_key))
+    branch: rc-version
+    file: version
+    intial_version: ((initial_version))
+
+- name: docker-image
   type: docker-image
   source:
     repository: registry.swarm.pw:443/rails-react-boilerplate
@@ -30,27 +41,52 @@ resources:
     cluster_url: ((kube_url))
     cluster_ca: ((kube_ca))
     token: ((kube_token))
-    release: rails-app
     repos:
     - name: private
       url: ((private_charts_repo_url))
 
 jobs:
-- name: build and deploy the application
+# master branch is used for staging, so we version it as x.y.z-rc.n
+- name: version-master
+  serial: true
+  serial_groups: [ update-version ]
+  plan:
+  - aggregate:
+    - get: master
+      resource: repo-master
+      trigger: true
+    - get: rc-version
+  - put: rc-version
+    params:
+      pre: rc
+
+- name: build-master
+  serial: true
+  plan:
+  - get: master
+    resource: repo-master
+    trigger: true
+    passed: [ version-master ]
+  - get: rc-version
+    passed: [ version-master ]
+  - put: docker-image
+    params:
+      build: master
+      tag: rc-version/version
+      cache: false
+      tag_as_latest: true
+      cache: true
+      cache_tag: latest
+
+- name: release-master
   serial: true
   plan:
   - get: exekube
-    trigger: false
-  - get: rails-react-boilerplate
+  - get: repo-master
     trigger: true
-  - put: rails-react-boilerplate-image
-    params:
-      build: rails-react-boilerplate
-      tag: rails-react-boilerplate/VERSION
-      cache: false
-      # cache: true
-      # cache_tag: latest
-      # tag_as_latest: true
+    passed: [ build-master ]
+  - get: rc-version
+    passed: [ version-master ]
   - put: helm-release
     params:
       chart: private/rails-app
@@ -63,6 +99,6 @@ jobs:
       - key: image.pullSecret
         value: registry-dockercfg
       - key: image.tag
-        path: rails-react-boilerplate/VERSION
+        path: rc-version/version
       - key: image.repository
         value: registry.swarm.pw/rails-react-boilerplate
