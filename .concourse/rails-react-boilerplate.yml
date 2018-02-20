@@ -147,12 +147,11 @@ jobs:
       trigger: true
       passed: [ build-master ]
     - get: rc-version
-      passed: [ version-master ]
   - put: helm-release
     params:
       chart: private/rails-app
-      values: exekube/.concourse/release/values.yaml
-      release: exekube/.concourse/release/release.txt
+      values: exekube/.concourse/release/rails-app/values.yaml
+      release: exekube/.concourse/release/rails-app/release.txt
       replace: true
       devel: true
       recreate_pods: false
@@ -175,6 +174,7 @@ jobs:
     - get: exekube
     - get: master
       resource: repo-master
+      trigger: true
       passed: [ release-master ]
     - get: production
       resource: repo-production
@@ -241,7 +241,7 @@ jobs:
       build: production
       tag: final-version/version
       cache: true
-      cache_tag: rc-version/version
+      cache_tag: latest
 
 - name: release-production
   serial: true
@@ -256,8 +256,8 @@ jobs:
   - put: helm-release
     params:
       chart: private/rails-app
-      values: exekube/.concourse/release/values.yaml
-      release: exekube/.concourse/release/release.txt
+      values: exekube/.concourse/release/rails-app-production/values.yaml
+      release: exekube/.concourse/release/rails-app/rails-app-production/release.txt
       replace: true
       devel: true
       recreate_pods: false
