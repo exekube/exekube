@@ -87,7 +87,7 @@ resources:
 
 jobs:
 # ------------------------------------------------------------------------------
-# Master / staging branch jobs
+# Master branch jobs (released to staging)
 # ------------------------------------------------------------------------------
 - name: version-master
   serial: true
@@ -96,7 +96,8 @@ jobs:
   - aggregate:
     - get: master
       resource: repo-master
-      trigger: true
+      # uncomment this line after you add the pipeline to your new concourse server
+      # trigger: true
     - get: rc-version
   - put: rc-version
     params:
@@ -165,7 +166,7 @@ jobs:
         value: registry.swarm.pw/rails-react-boilerplate
 
 # ------------------------------------------------------------------------------
-# Production branch jobs
+# Production branch jobs (released to production)
 # ------------------------------------------------------------------------------
 - name: merge-master-to-production
   serial: true
