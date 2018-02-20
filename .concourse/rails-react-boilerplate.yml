@@ -174,8 +174,8 @@ jobs:
     - get: exekube
     - get: master
       resource: repo-master
-      trigger: true
-      passed: [ release-master ]
+      # trigger: true
+      # passed: [ release-master ]
     - get: production
       resource: repo-production
   - task: merge-master-to-production
@@ -257,7 +257,7 @@ jobs:
     params:
       chart: private/rails-app
       values: exekube/.concourse/release/rails-app-production/values.yaml
-      release: exekube/.concourse/release/rails-app/rails-app-production/release.txt
+      release: exekube/.concourse/release/rails-app-production/release.txt
       replace: true
       devel: true
       recreate_pods: false
