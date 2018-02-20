@@ -1,3 +1,5 @@
 controller:
   config:
     server-tokens: "false"
+  service:
+    loadBalancerIP: "104.155.42.182"
