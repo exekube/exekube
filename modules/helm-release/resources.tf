@@ -129,7 +129,7 @@ resource "kubernetes_secret" "docker_credentials" {
 
   data {
     ".dockercfg" = <<EOF
-{"${var.release_spec["domain_name"]}":{"username":"${data.local_file.basic_auth_username.content}","password":"${data.local_file.basic_auth_password.content}","email":"","auth":"${base64encode(format("%s:%s", data.local_file.basic_auth_username.content, data.local_file.basic_auth_password.content))}"}}
+{"${var.release_spec["domain_name"]}:443":{"username":"${data.local_file.basic_auth_username.content}","password":"${data.local_file.basic_auth_password.content}","email":"","auth":"${base64encode(format("%s:%s", data.local_file.basic_auth_username.content, data.local_file.basic_auth_password.content))}"}}
 EOF
   }
 
