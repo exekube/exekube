@@ -7,7 +7,7 @@ release_spec = {
   chart_name    = "rails-app"
   chart_version = "1.0.0"
 
-  domain_name = "react.swarm.pw"
+  domain_name = "staging.swarm.pw"
 }
 
 pre_hook = {
