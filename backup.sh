@@ -1,6 +1,6 @@
 #!/bin/bash
 domain_zone="swarm.pw"
-source=("ci.${domain_zone}-tls" "wp.${domain_zone}-tls" "react.${domain_zone}-tls" "registry.${domain_zone}-tls" "charts.${domain_zone}-tls")
+source=("staging.${domain_zone}-tls" "production.${domain_zone}-tls" "ci.${domain_zone}-tls" "wp.${domain_zone}-tls" "react.${domain_zone}-tls" "registry.${domain_zone}-tls" "charts.${domain_zone}-tls")
 green="\e[1;32m"
 no_color="\e[0m"
 secret_file_name="secret-$(date '+%Y-%m-%d-%H-%M-%S').yaml"
