@@ -3,3 +3,12 @@ controller:
     server-tokens: "false"
   service:
     loadBalancerIP: "104.155.42.182"
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 50
+
+rbac:
+  create: true
+  serviceAccountName: default

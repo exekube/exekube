@@ -5,7 +5,7 @@ release_spec = {
   release_name   = "concourse"
   release_values = "values.yaml"
 
-  chart_repo    = "private"
+  chart_repo    = "stable"
   chart_name    = "concourse"
   chart_version = "1.0.0"
 
@@ -15,9 +15,6 @@ release_spec = {
 pre_hook = {
   command = <<-EOF
             kubectl create secret generic concourse-concourse \
-            --from-file=$XK_LIVE_DIR/kube/ci/concourse/secrets/ || true \
-            && cd $XK_LIVE_DIR/../../charts/concourse/ \
-            && bash push.sh \
-            && helm repo update
+            --from-file=$XK_LIVE_DIR/kube/ci/concourse/secrets/ || true
             EOF
 }

@@ -21,10 +21,15 @@ postgresql:
   postgresDatabase: concourse
 
 rbac:
-  create: false
-
-
+  create: true
+  
 credentialManager:
+  kubernetes:
+    enabled: true
+    namespacePrefix: concourse
+    teams:
+      - main
+
   vault:
     enabled: false
     # enabled: true

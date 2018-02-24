@@ -7,7 +7,7 @@ release_spec = {
 
   chart_repo    = "stable"
   chart_name    = "docker-registry"
-  chart_version = "1.0.1"
+  chart_version = "1.0.2"
 }
 
 basic_auth = {

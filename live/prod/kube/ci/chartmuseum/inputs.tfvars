@@ -5,7 +5,7 @@ release_spec = {
 
   chart_repo    = "incubator"
   chart_name    = "chartmuseum"
-  chart_version = "0.3.1"
+  chart_version = "0.3.5"
 
   domain_name = "charts.swarm.pw"
 }

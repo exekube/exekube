@@ -10,4 +10,4 @@ nodepool_name = "k8s-np"
 
 gke_version = "1.8.7-gke.1"
 
-enable_legacy_auth = "true"
+enable_legacy_auth = "false"
