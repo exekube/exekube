@@ -1,13 +1,13 @@
 {{- $releaseName := .Release.Name -}}
-{{- $serviceName := default "nginx-webpage" .Values.nameOverride -}}
+{{- $serviceName := default "nginx-react" .Values.nameOverride -}}
 {{- $servicePort := .Values.servicePort -}}
 
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "nginx-webpage.fullname" . }}
+  name: {{ template "nginx-react.fullname" . }}
   labels:
-    app: {{ template "nginx-webpage.fullname" . }}
+    app: {{ template "nginx-react.fullname" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}

@@ -1,16 +1,16 @@
-nginx-webpageapiVersion: v1
+nginx-reactapiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "nginx-webpage.fullname" . }}
+  name: {{ template "nginx-react.fullname" . }}
   labels:
-    app: {{ template "nginx-webpage.fullname" . }}
+    app: {{ template "nginx-react.fullname" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.serviceType }}
   selector:
-    app: {{ template "nginx-webpage.fullname" . }}
+    app: {{ template "nginx-react.fullname" . }}
   ports:
     - name: http-nginx
       port: {{ .Values.servicePort | int }}

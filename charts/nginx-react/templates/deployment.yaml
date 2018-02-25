@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "nginx-webpage.fullname" . }}
+  name: {{ template "nginx-react.fullname" . }}
   labels:
-    app: {{ template "nginx-webpage.fullname" . }}
+    app: {{ template "nginx-react.fullname" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -17,15 +17,15 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "nginx-webpage.fullname" . }}
+        app: {{ template "nginx-react.fullname" . }}
         chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
     spec: # PodSpec
       volumes:
-        - name: {{ template "nginx-webpage.fullname" . }}-conf
+        - name: {{ template "nginx-react.fullname" . }}-conf
           configMap:
-            name: {{ template "nginx-webpage.fullname" . }}
+            name: {{ template "nginx-react.fullname" . }}
       containers:
         - name: nginx
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -33,7 +33,7 @@ spec:
           ports:
             - containerPort: {{ .Values.servicePort | int }}
           volumeMounts:
-            - name: {{ template "nginx-webpage.fullname" . }}-conf
+            - name: {{ template "nginx-react.fullname" . }}-conf
               mountPath: /etc/nginx/conf.d
           resources:
 {{ toYaml .Values.resources | indent 12 }}
