@@ -22,11 +22,11 @@ postgresql:
 
 rbac:
   create: true
-  
+
 credentialManager:
   kubernetes:
     enabled: true
-    namespacePrefix: concourse
+    namespacePrefix: "concourse-"
     teams:
       - main
 
