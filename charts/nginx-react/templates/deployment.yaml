@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "nginx-webpage.fullname" . }}
+  labels:
+    app: {{ template "nginx-webpage.fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ template "nginx-webpage.fullname" . }}
+        chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+    spec: # PodSpec
+      volumes:
+        - name: {{ template "nginx-webpage.fullname" . }}-conf
+          configMap:
+            name: {{ template "nginx-webpage.fullname" . }}
+      containers:
+        - name: nginx
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.servicePort | int }}
+          volumeMounts:
+            - name: {{ template "nginx-webpage.fullname" . }}-conf
+              mountPath: /etc/nginx/conf.d
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
