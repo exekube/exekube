@@ -11,6 +11,7 @@ backup/tls
 site
 .ssh
 .concourse/secrets/*.yml
+backup/concourse/*
 
 live/**/secrets
 

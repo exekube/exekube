@@ -25,5 +25,5 @@ release_spec = {
 }
 
 post_hook = {
-  command = "kubectl apply -f /exekube/backup/tls/secret.yaml"
+  command = "kubectl apply -f $XK_LIVE_DIR/../../backup/tls/secret.yaml"
 }

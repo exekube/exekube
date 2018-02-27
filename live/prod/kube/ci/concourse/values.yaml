@@ -1,4 +1,6 @@
 concourse:
+  basicAuth:
+    enabled: true
   externalURL: https://${domain_name}
   githubAuth:
     enabled: true
