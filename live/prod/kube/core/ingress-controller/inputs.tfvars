@@ -25,5 +25,8 @@ release_spec = {
 }
 
 post_hook = {
-  command = "kubectl apply -f $XK_LIVE_DIR/../../backup/tls/secret.yaml"
+  command = <<-EOF
+  kubectl apply -f $XK_LIVE_DIR/../../backup/tls/secret.yaml" \
+  && kubectl apply -f $XK_LIVE_DIR/kube/dashboard-rbac.yaml
+  EOF
 }
