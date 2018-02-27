@@ -15,7 +15,10 @@ release_spec = {
 pre_hook = {
   command = <<-EOF
             kubectl create secret generic concourse-concourse \
-            --from-file=$XK_LIVE_DIR/kube/ci/concourse/secrets/ || true \
-            && kubectl apply -f $XK_LIVE_DIR/../../backup/concourse/
+            --from-file=$XK_LIVE_DIR/kube/ci/concourse/secrets/ || true
             EOF
+}
+
+post_hook = {
+  command = "kubectl apply -f $XK_LIVE_DIR/../../backup/concourse/"
 }
