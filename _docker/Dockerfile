@@ -1,5 +1,5 @@
 # Use Google Cloud SDK image from Docker Hub as our base
-FROM google/cloud-sdk:183.0.0-alpine
+FROM google/cloud-sdk:190.0.1-alpine
 
 # Install openssl (used for kubectl), tar, gcloud alpha and beta extensions,
 # kubectl, helm, terraform, terragrunt, ark, and terraform-provider-helm plugin
