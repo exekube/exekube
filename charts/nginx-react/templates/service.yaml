@@ -1,4 +1,4 @@
-nginx-reactapiVersion: v1
+apiVersion: v1
 kind: Service
 metadata:
   name: {{ template "nginx-react.fullname" . }}
