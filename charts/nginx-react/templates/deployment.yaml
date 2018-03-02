@@ -26,6 +26,10 @@ spec:
         - name: {{ template "nginx-react.fullname" . }}-conf
           configMap:
             name: {{ template "nginx-react.fullname" . }}
+      {{- if .Values.image.pullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.image.pullSecret}}
+      {{- end }}
       containers:
         - name: nginx
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
