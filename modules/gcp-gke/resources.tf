@@ -27,6 +27,11 @@ resource "google_container_cluster" "gke_cluster" {
   subnetwork         = "default"
 
   node_config {
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+    ]
+
     machine_type = "${var.node_type}"
   }
 
@@ -71,6 +76,11 @@ resource "google_container_node_pool" "nodepool" {
 
   node_config {
     machine_type = "${var.nodepool_machine_type}"
+
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+    ]
   }
 
   lifecycle {
