@@ -26,7 +26,7 @@ pages:
 
 copyright: 'Copyright &copy; 2018 Ilya Sotkov'
 
-docs_dir: '_docs'
+docs_dir: 'docs'
 extra_css:
   - 'css/extra.css'
 extra_javascript:
@@ -50,7 +50,7 @@ markdown_extensions:
   - pymdownx.tilde
 theme:
   name: material
-  custom_dir: _docs/theme
+  custom_dir: docs/theme
   feature:
     tabs: true
   font:

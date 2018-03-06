@@ -1,33 +1,6 @@
 version: "3.5"
 
 services:
-  exekube:
-    build: ./_docker
-    image: ilyasotkov/exekube:latest
-    working_dir: /exekube
-    environment:
-      XK_LIVE_DIR:
-      TF_INPUT:
-      TF_LOG:
-      GOOGLE_CREDENTIALS:
-      TF_VAR_gcp_project:
-      TF_VAR_gcp_remote_state_bucket:
-      TF_VAR_cloudflare_auth:
-      VAULT_ADDR:
-      VAULT_CACERT:
-      CHARTMUSEUM_URL:
-      CHARTMUSEUM_USERNAME:
-      CHARTMUSEUM_PASSWORD:
-    ports:
-      - 8001:8001
-    volumes:
-      - .:/exekube
-      - ./config/helm:/root/.helm
-      - ./config/terragrunt:/root/.terragrunt
-      - ./config/gcloud:/root/.config/gcloud
-      - ./config/kube:/root/.kube
-    command: kubectl proxy --address="0.0.0.0" --accept-hosts ".*"
-
   docs:
     image: squidfunk/mkdocs-material:latest
     volumes:
