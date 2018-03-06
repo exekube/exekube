@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+# Enable GKE API on Google Cloud Platform
+# ------------------------------------------------------------------------------
+
 resource "google_project_service" "gke" {
   project            = "${var.gcp_project}"
   disable_on_destroy = false
