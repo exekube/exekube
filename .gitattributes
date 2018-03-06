@@ -1,2 +1,0 @@
-*.tpl linguist-vendored
-.docker/vendor/* linguist-vendored
