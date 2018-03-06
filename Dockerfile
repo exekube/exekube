@@ -1,8 +1,5 @@
-# Use Google Cloud SDK image from Docker Hub as our base
 FROM google/cloud-sdk:190.0.1-alpine
 
-# Install openssl (used for kubectl), tar, gcloud alpha and beta extensions,
-# kubectl, helm, terraform, terragrunt, ark, and terraform-provider-helm plugin
 RUN apk add --no-cache \
         openssl \
         tar \
@@ -49,5 +46,7 @@ RUN curl -L https://releases.hashicorp.com/vault/0.9.2/vault_0.9.2_linux_amd64.z
         && chmod +x vault \
         && mv vault /usr/bin
 
+COPY modules /exekube-modules/
 COPY docker-entrypoint.sh /usr/local/bin/
+
 ENTRYPOINT [ "docker-entrypoint.sh" ]
