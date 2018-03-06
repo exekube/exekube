@@ -1,8 +1,0 @@
-config:
-  LEGO_EMAIL: account@example.com
-  LEGO_URL: https://acme-v01.api.letsencrypt.org/directory
-  LEGO_SUPPORTED_INGRESS_CLASS: nginx
-
-rbac:
-  create: true
-  serviceAccountName: default
