@@ -38,16 +38,6 @@ variable "release_spec" {
 }
 
 # ------------------------------------------------------------------------------
-# Point DNS zones to our cloud load balancer IP address
-# ------------------------------------------------------------------------------
-
-variable "cluster_dns_zones" {
-  type = "list"
-
-  default = []
-}
-
-# ------------------------------------------------------------------------------
 # Kubernetes secret inputs
 # ------------------------------------------------------------------------------
 
@@ -58,18 +48,5 @@ variable "basic_auth" {
     username_file = "secrets/basic-auth-username"
     password_file = "secrets/basic-auth-password"
     secret_name   = ""
-  }
-}
-
-# ------------------------------------------------------------------------------
-# Credentials for use as client, can be filled by local environmental variables
-# ------------------------------------------------------------------------------
-
-variable "cloudflare_auth" {
-  type = "map"
-
-  default = {
-    email = ""
-    token = ""
   }
 }
