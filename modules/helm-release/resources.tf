@@ -53,31 +53,6 @@ data "template_file" "release_values" {
 }
 
 # ------------------------------------------------------------------------------
-# Point DNS zones to our cloud load balancer IP address
-# ------------------------------------------------------------------------------
-
-resource "cloudflare_record" "web" {
-  count = "${var.release_spec["release_name"] == "ingress-controller" && var.release_spec["enabled"] ? length(var.cluster_dns_zones) : 0}"
-
-  domain   = "${element(var.cluster_dns_zones, count.index)}"
-  name     = "*"
-  value    = "${data.kubernetes_service.ingress_controller.load_balancer_ingress.0.ip}"
-  type     = "A"
-  ttl      = 120
-  proxied  = false
-  priority = 0
-}
-
-data "kubernetes_service" "ingress_controller" {
-  depends_on = ["helm_release.release"]
-  count      = "${var.release_spec["release_name"] == "ingress-controller" ? 1 : 0}"
-
-  metadata {
-    name = "ingress-controller-nginx-ingress-controller"
-  }
-}
-
-# ------------------------------------------------------------------------------
 # Basic auth Kubernetes secret
 # ------------------------------------------------------------------------------
 

@@ -1,5 +1,3 @@
-docker-compose.yaml
-Dockerfile
-.dockerignore
-.gitignore
-README.md
+*
+!modules/
+!docker-entrypoint.sh
