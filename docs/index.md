@@ -1,3 +1,7 @@
+!!! danger
+
+    The docs are currently outdated and will be updated for the 0.1.0 release.
+
 # Exekube documentation
 
 Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes, built with Terraform and Helm.
