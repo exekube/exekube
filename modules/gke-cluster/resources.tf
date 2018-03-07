@@ -45,6 +45,7 @@ resource "google_container_cluster" "gke_cluster" {
     # configure "kubectl" credentials
     command = <<EOF
 sleep 5 \
+&& gcloud auth activate-service-account --key-file $GOOGLE_CREDENTIALS \
 && gcloud container clusters get-credentials ${var.cluster_name} \
 --zone ${var.gcp_zone} \
 --project ${var.gcp_project} \
