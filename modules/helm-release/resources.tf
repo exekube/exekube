@@ -56,38 +56,22 @@ data "template_file" "release_values" {
 # Basic auth Kubernetes secret
 # ------------------------------------------------------------------------------
 
-data "local_file" "basic_auth_username" {
-  count      = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
-  depends_on = ["null_resource.pre_hook"]
-
-  filename = "${format("%s/%s", path.module, var.basic_auth["username_file"])}"
-}
-
-data "local_file" "basic_auth_password" {
-  count      = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
-  depends_on = ["null_resource.pre_hook"]
-
-  filename = "${format("%s/%s", path.module, var.basic_auth["password_file"])}"
-}
-
-resource "null_resource" "basic_auth_secret" {
-  count      = "${var.release_spec["enabled"] && var.basic_auth["secret_name"] != "" ? 1 : 0}"
+resource "null_resource" "ingress_basic_auth" {
+  count      = "${var.release_spec["enabled"] && var.ingress_basic_auth["secret_name"] != "" ? 1 : 0}"
   depends_on = ["null_resource.pre_hook"]
 
   provisioner "local-exec" {
     command = <<EOF
-kubectl create secret generic ${var.basic_auth["secret_name"]} \
---from-literal=auth=$( \
-echo ${data.local_file.basic_auth_password.content} \
-| htpasswd -i -n \
-${data.local_file.basic_auth_username.content} \
+kubectl create secret generic ${var.ingress_basic_auth["secret_name"]} \
+--from-literal=auth=$(cat $XK_LIVE_DIR/secrets/${var.ingress_basic_auth["password"]} \
+| htpasswd -i -n $(cat $XK_LIVE_DIR/secrets/${var.ingress_basic_auth["username"]}) \
 )
 EOF
   }
 
   provisioner "local-exec" {
     when    = "destroy"
-    command = "kubectl delete secret ${var.basic_auth["secret_name"]}"
+    command = "kubectl delete secret ${var.ingress_basic_auth["secret_name"]}"
   }
 }
 
@@ -96,7 +80,7 @@ EOF
 # ------------------------------------------------------------------------------
 
 resource "kubernetes_secret" "docker_credentials" {
-  count = "${var.release_spec["enabled"] && var.release_spec["release_name"] == "docker-registry" ? 1 : 0}"
+  count = "${var.release_spec["enabled"] && var.release_spec["chart_name"] == "docker-registry" ? 1 : 0}"
 
   metadata {
     name = "registry-dockercfg"
@@ -117,7 +101,7 @@ EOF
 
 resource "helm_repository" "private" {
   depends_on = ["helm_release.release"]
-  count      = "${var.release_spec["enabled"] && var.release_spec["release_name"] == "chartmuseum" ? 1 : 0}"
+  count      = "${var.release_spec["enabled"] && var.release_spec["chart_name"] == "chartmuseum" ? 1 : 0}"
 
   name = "private"
   url  = "https://${data.local_file.basic_auth_username.content}:${data.local_file.basic_auth_password.content}@${var.release_spec["domain_name"]}"

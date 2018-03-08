@@ -41,12 +41,12 @@ variable "release_spec" {
 # Kubernetes secret inputs
 # ------------------------------------------------------------------------------
 
-variable "basic_auth" {
+variable "ingress_basic_auth" {
   type = "map"
 
   default = {
-    username_file = "secrets/basic-auth-username"
-    password_file = "secrets/basic-auth-password"
-    secret_name   = ""
+    username    = ""
+    password    = ""
+    secret_name = ""
   }
 }
