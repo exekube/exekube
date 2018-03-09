@@ -6,6 +6,8 @@ Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes
 
 ---
 
+- **Go to example project: [internal-ops-project](https://github.com/exekube/internal-ops-project)**
+
 - **[Go to documentation website](https://exekube.github.io/exekube/)**
 
 ---
