@@ -19,7 +19,7 @@ resource "helm_release" "release" {
 
   depends_on = [
     "null_resource.pre_hook",
-    "null_resource.basic_auth_secret",
+    "null_resource.ingress_basic_auth",
     "kubernetes_secret.docker_credentials",
   ]
 
@@ -56,6 +56,20 @@ data "template_file" "release_values" {
 # Basic auth Kubernetes secret
 # ------------------------------------------------------------------------------
 
+data "local_file" "basic_auth_username" {
+  count      = "${var.release_spec["enabled"] && var.ingress_basic_auth["secret_name"] != "" ? 1 : 0}"
+  depends_on = ["null_resource.pre_hook"]
+
+  filename = "${format("%s/secrets/%s", var.xk_live_dir, var.ingress_basic_auth["username"])}"
+}
+
+data "local_file" "basic_auth_password" {
+  count      = "${var.release_spec["enabled"] && var.ingress_basic_auth["secret_name"] != "" ? 1 : 0}"
+  depends_on = ["null_resource.pre_hook"]
+
+  filename = "${format("%s/secrets/%s", var.xk_live_dir, var.ingress_basic_auth["password"])}"
+}
+
 resource "null_resource" "ingress_basic_auth" {
   count      = "${var.release_spec["enabled"] && var.ingress_basic_auth["secret_name"] != "" ? 1 : 0}"
   depends_on = ["null_resource.pre_hook"]
@@ -63,8 +77,8 @@ resource "null_resource" "ingress_basic_auth" {
   provisioner "local-exec" {
     command = <<EOF
 kubectl create secret generic ${var.ingress_basic_auth["secret_name"]} \
---from-literal=auth=$(cat $XK_LIVE_DIR/secrets/${var.ingress_basic_auth["password"]} \
-| htpasswd -i -n $(cat $XK_LIVE_DIR/secrets/${var.ingress_basic_auth["username"]}) \
+--from-literal=auth=$(echo ${data.local_file.basic_auth_password.content} \
+| htpasswd -i -n ${data.local_file.basic_auth_username.content} \
 )
 EOF
   }

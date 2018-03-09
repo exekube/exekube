@@ -41,6 +41,8 @@ variable "release_spec" {
 # Kubernetes secret inputs
 # ------------------------------------------------------------------------------
 
+variable "xk_live_dir" {}
+
 variable "ingress_basic_auth" {
   type = "map"
 
