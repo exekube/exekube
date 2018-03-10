@@ -733,7 +733,7 @@
 <li>
 <p>Clone the example project (<a href="https://github.com/exekube/internal-ops-project">internal-ops-project</a>) git repo:</p>
 <div class="codehilite"><pre><span></span>git clone https://github.com/exekube/internal-ops-project <span class="se">\</span>
-<span class="o">&amp;&amp;</span> <span class="nb">cd</span> exekube
+<span class="o">&amp;&amp;</span> <span class="nb">cd</span> internal-ops-project
 </pre></div>
 
 </li>
@@ -744,34 +744,50 @@
 
 </li>
 <li>
-<p>If you don't already have one, create a <a href="https://console.cloud.google.com/">Google Account</a>. Then, create a new <a href="https://console.cloud.google.com">GCP Project</a>.</p>
-<table>
-<thead>
-<tr>
-<th>Project name</th>
-<th>Project ID</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Production Project</td>
-<td>production-project-20180101</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
 <p>Set the variables for your environment in <code class="codehilite">live/prod/.env</code>:</p>
-<div class="codehilite"><pre><span></span><span class="nv">GOOGLE_CREDENTIALS</span><span class="o">=</span>/project/live/prod/secrets/sa-key.json
-<span class="nv">TF_VAR_xk_live_dir</span><span class="o">=</span>/project/live/prod
-<span class="nv">TF_VAR_gcp_project</span><span class="o">=</span>production-project-20180101
-<span class="nv">TF_VAR_gcp_remote_state_bucket</span><span class="o">=</span>production-project-20180101-tfstate
+<div class="codehilite"><pre><span></span><span class="c1"># GOOGLE_CREDENTIALS=/project/live/prod/secrets/sa/owner.json</span>
+
+<span class="nv">TF_VAR_xk_live_dir</span><span class="o">=</span><span class="s1">&#39;/project/live/prod&#39;</span>
+<span class="nv">TF_VAR_gcp_organization</span><span class="o">=</span><span class="s1">&#39;889071810646&#39;</span>
+<span class="nv">TF_VAR_gcp_billing_id</span><span class="o">=</span><span class="s1">&#39;327BDY-9FAAFB-40FF75&#39;</span>
+<span class="nv">TF_VAR_gcp_project</span><span class="o">=</span><span class="s1">&#39;prod-my-internal-ops&#39;</span>
+<span class="nv">TF_VAR_gcp_remote_state_bucket</span><span class="o">=</span><span class="s1">&#39;prod-my-internal-ops-tfstate&#39;</span>
 </pre></div>
 
 </li>
 <li>
-<p><a href="https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts">Create a service account</a> and give it project owner permissions. A JSON-econded private key file will be downloaded onto your machine, which you'll need to move into <code class="codehilite">live/prod/secrets/</code> directory and rename to <code class="codehilite">sa-key.json</code>.</p>
-<p><img alt="Creating a GCP service account in GCP Console" src="../img/gcp-sa.png" /></p>
+<p>Then, you'll need to create a new GCP Project and enable billing for it:</p>
+<div class="codehilite"><pre><span></span>gcloud projects create <span class="nv">$TF_VAR_gcp_project</span> <span class="se">\</span>
+    --organization<span class="o">=</span><span class="nv">$TF_VAR_gcp_organization</span> <span class="se">\</span>
+<span class="o">&amp;&amp;</span> gcloud beta billing projects link <span class="nv">$TF_VAR_gcp_project</span> <span class="se">\</span>
+    --billing-account <span class="nv">$TF_VAR_gcp_billing_id</span>
+</pre></div>
+
+</li>
+<li>
+<p>Create a service account for Terraform and give it appropriate permissions:</p>
+<p><div class="codehilite"><pre><span></span>gcloud iam service-accounts create terraform <span class="se">\</span>
+    --project<span class="o">=</span><span class="nv">$TF_VAR_gcp_project</span> <span class="se">\</span>
+    --display-name <span class="s2">&quot;Terraform admin account&quot;</span>
+</pre></div>
+<div class="codehilite"><pre><span></span>gcloud organizations add-iam-policy-binding <span class="nv">$TF_VAR_gcp_organization</span> <span class="se">\</span>
+    --member serviceAccount:terraform@<span class="nv">$TF_VAR_gcp_project</span>.iam.gserviceaccount.com <span class="se">\</span>
+    --role roles/resourcemanager.projectCreator
+</pre></div>
+<div class="codehilite"><pre><span></span>gcloud organizations add-iam-policy-binding <span class="nv">$TF_VAR_gcp_organization</span> <span class="se">\</span>
+    --member serviceAccount:terraform@<span class="nv">$TF_VAR_gcp_project</span>.iam.gserviceaccount.com <span class="se">\</span>
+    --role roles/billing.user
+</pre></div>
+<div class="codehilite"><pre><span></span>gcloud projects add-iam-policy-binding <span class="nv">$TF_VAR_gcp_project</span> <span class="se">\</span>
+    --member serviceAccount:terraform@<span class="nv">$TF_VAR_gcp_project</span>.iam.gserviceaccount.com <span class="se">\</span>
+    --role roles/owner
+</pre></div>
+<div class="codehilite"><pre><span></span>gcloud iam service-accounts keys create <span class="se">\</span>
+    --project<span class="o">=</span><span class="nv">$TF_VAR_gcp_project</span> <span class="se">\</span>
+    --key-file-type json <span class="se">\</span>
+    --iam-account terraform@<span class="nv">$TF_VAR_gcp_project</span>.iam.gserviceaccount.com <span class="se">\</span>
+    ./live/prod/secrets/sa-key.json
+</pre></div></p>
 </li>
 <li>
 <p>Finally, use the key to authenticate to the Google Cloud SDK and create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:</p>
@@ -787,7 +803,23 @@
 
 </li>
 </ol>
-<p>✅ You project space on the Google Cloud Platform is now ready!</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>DNS and a static IP for our cluster ingress-controller are currently created outside of Terraform, using <code class="codehilite">gcloud</code>:</p>
+<p><div class="codehilite"><pre><span></span>gcloud dns managed-zones create examplezonename --description<span class="o">=</span><span class="s2">&quot;Example Zone&quot;</span> <span class="se">\</span>
+    --dns-name<span class="o">=</span><span class="s2">&quot;example.zone.com.&quot;</span>
+</pre></div>
+<div class="codehilite"><pre><span></span>gcloud dns record-sets <span class="nb">export</span> records.yaml --zone examplezonename
+</pre></div>
+<div class="codehilite"><pre><span></span>gcloud dns record-sets import records.yaml --zone examplezonename
+</pre></div></p>
+<div class="codehilite"><pre><span></span>gcloud compute addresses create <span class="o">[</span>ADDRESS_NAME<span class="o">]</span> <span class="se">\</span>
+    <span class="o">[</span>--region <span class="o">[</span>REGION<span class="o">]</span> <span class="p">|</span> --global <span class="o">]</span> <span class="se">\</span>
+    <span class="o">[</span>--ip-version <span class="o">[</span>IPV4 <span class="p">|</span> IPV6<span class="o">]]</span>
+</pre></div>
+
+</div>
+<p>✅ Your project space on the Google Cloud Platform is now ready!</p>
 <h2 id="up-next">Up next</h2>
 <ul>
 <li><a href="../../usage/deploy-app">Tutorial: deploy an application on Kubernetes with Exekube</a></li>
