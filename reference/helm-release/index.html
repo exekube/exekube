@@ -60,7 +60,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -272,7 +272,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../gcp-gke/" title="Reference" class="md-tabs__link md-tabs__link--active">
+        <a href="../gke-cluster/" title="Reference" class="md-tabs__link md-tabs__link--active">
           Reference
         </a>
       
@@ -476,18 +476,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/configuration/" title="Guide to configuring Exekube" class="md-nav__link">
-      Guide to configuring Exekube
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -604,8 +592,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../gcp-gke/" title="gcp-gke module" class="md-nav__link">
-      gcp-gke module
+    <a href="../gke-cluster/" title="gke-cluster module" class="md-nav__link">
+      gke-cluster module
     </a>
   </li>
 
@@ -665,6 +653,7 @@
                 
                 
                 <h1 id="helm-release-module-reference">helm-release module reference</h1>
+<p>Module inputs and defaults:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># ------------------------------------------------------------------------------</span>
 <span class="c1"># Pre-hook and post-hook, to be run before creation and after release creation</span>
 <span class="c1"># ------------------------------------------------------------------------------</span>
@@ -705,39 +694,18 @@
 <span class=" -Punctuation">}</span><span class="c1"></span>
 
 <span class="c1"># ------------------------------------------------------------------------------</span>
-<span class="c1"># Point DNS zones to our cloud load balancer IP address</span>
-<span class="c1"># ------------------------------------------------------------------------------</span>
-
-<span class="kr">variable</span> <span class="s">&quot;cluster_dns_zones&quot;</span> <span class=" -Punctuation">{</span>
-<span class="na">  type</span> <span class="o">=</span> <span class="s2">&quot;list&quot;</span>
-
-<span class="na">  default</span> <span class="o">=</span> <span class="p">[]</span>
-<span class=" -Punctuation">}</span><span class="c1"></span>
-
-<span class="c1"># ------------------------------------------------------------------------------</span>
 <span class="c1"># Kubernetes secret inputs</span>
 <span class="c1"># ------------------------------------------------------------------------------</span>
 
-<span class="kr">variable</span> <span class="s">&quot;basic_auth&quot;</span> <span class=" -Punctuation">{</span>
+<span class="kr">variable</span> <span class="s">&quot;xk_live_dir&quot;</span> <span class=" -Punctuation">{}</span>
+
+<span class="kr">variable</span> <span class="s">&quot;ingress_basic_auth&quot;</span> <span class=" -Punctuation">{</span>
 <span class="na">  type</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
 
 <span class="na">  default</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
-<span class="na">    username_file</span> <span class="o">=</span> <span class="s2">&quot;secrets/basic-auth-username&quot;</span>
-<span class="na">    password_file</span> <span class="o">=</span> <span class="s2">&quot;secrets/basic-auth-password&quot;</span>
-<span class="na">    secret_name</span>   <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-  <span class=" -Punctuation">}</span>
-<span class=" -Punctuation">}</span><span class="c1"></span>
-
-<span class="c1"># ------------------------------------------------------------------------------</span>
-<span class="c1"># Credentials for use as client, can be filled by local environmental variables</span>
-<span class="c1"># ------------------------------------------------------------------------------</span>
-
-<span class="kr">variable</span> <span class="s">&quot;cloudflare_auth&quot;</span> <span class=" -Punctuation">{</span>
-<span class="na">  type</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
-
-<span class="na">  default</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
-<span class="na">    email</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="na">    token</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="na">    username</span>    <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="na">    password</span>    <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="na">    secret_name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
   <span class=" -Punctuation">}</span>
 <span class=" -Punctuation">}</span>
 </pre></div>

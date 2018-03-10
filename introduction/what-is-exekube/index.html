@@ -60,7 +60,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -272,7 +272,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../reference/gcp-gke/" title="Reference" class="md-tabs__link">
+        <a href="../../reference/gke-cluster/" title="Reference" class="md-tabs__link">
           Reference
         </a>
       
@@ -555,18 +555,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/configuration/" title="Guide to configuring Exekube" class="md-nav__link">
-      Guide to configuring Exekube
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -681,8 +669,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../reference/gcp-gke/" title="gcp-gke module" class="md-nav__link">
-      gcp-gke module
+    <a href="../../reference/gke-cluster/" title="gke-cluster module" class="md-nav__link">
+      gke-cluster module
     </a>
   </li>
 
@@ -788,16 +776,16 @@
                 
                 
                 <h1 id="what-is-exekube">What is Exekube?</h1>
-<p>Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes, built with Terraform and Helm.</p>
+<p>Exekube is an "Infrastructure as Code" modular framework for managing the whole lifecycle of Kubernetes-based projects. Exekube is built with Terraform, Terragrunt, and Helm as its developer interfaces.</p>
 <h2 id="motivation">Motivation</h2>
-<p>Using many command line tools and GUIs to manage cloud resources (<code class="codehilite">gcloud</code>, <code class="codehilite">aws</code>, <code class="codehilite">kops</code>) and Kubernetes resources (<code class="codehilite">kubectl</code>, <code class="codehilite">helm</code>) is tedious and error-prone.</p>
+<p>Using many command line tools and GUIs to manage cloud resources (<code class="codehilite">gcloud</code>, <code class="codehilite">aws</code>, <code class="codehilite">kops</code>) and Kubernetes resources (<code class="codehilite">kubectl</code>, <code class="codehilite">helm</code>) is quite tedious and can be error-prone.</p>
 <p>Terraform is a very flexible declarative tool with support for a <a href="https://www.terraform.io/docs/providers/index.html">large number</a> of cloud providers and can replace all of the said command line tools.</p>
-<p>Exekube aims to take advantage of Terraform's power and give us a "sane default" state for managing everything related to Kubernetes <strong>as declarative code</strong> in a fully automated, git-based workflow.</p>
+<p>Exekube takes advantage of Terraform's power to give us "sane default" state for managing everything related to Kubernetes <strong>as declarative code</strong> in a fully automated, modular, git-based workflow.</p>
 <h2 id="sample-workflow">Sample workflow</h2>
 <div class="admonition done">
 <p class="admonition-title"><strong>TL;DR</strong></p>
-<p>Spin up and destroy a Kubernetes cluster and all Kubernetes resources:
-<div class="codehilite"><pre><span></span>xk apply <span class="o">&amp;&amp;</span> xk destroy
+<p>Spin up and then destroy a Kubernetes cluster and all Kubernetes resources:
+<div class="codehilite"><pre><span></span>xk up <span class="o">&amp;&amp;</span> xk down
 </pre></div></p>
 </div>
 <ol>
@@ -807,27 +795,28 @@
 </li>
 <li>
 <p><strong>Edit code</strong>: Configure your project by editing Terraform (HCL) files in a text editor of your choice.</p>
-<p><a href="../../usage/directory-structure">Guide to Exekube directory structure and framework usage</a> ● <a href="https://github.com/ilyasotkov/exekube/tree/develop/live/prod">Example directory structure</a></p>
+<p><a href="../../usage/directory-structure">Guide to Exekube directory structure and framework usage</a> ● <a href="https://github.com/exekube/internal-ops-project">Example project</a></p>
 </li>
 <li>
-<p><strong>Create a project</strong>: Run <code class="codehilite">xk apply</code> to deploy everything onto the cloud platform, including cloud infrastructure and Kubernetes resources.</p>
+<p><strong>Create a project</strong>: Run <code class="codehilite">xk up</code> to deploy everything onto the cloud platform, including cloud infrastructure and Kubernetes resources.</p>
 </li>
-<li><strong>Update the project</strong>: Edit Terraform code in face of changing requirements and run <code class="codehilite">xk apply</code> again to match the state of your code to the state of real-world resources.</li>
-<li><strong>Destroy the project</strong>: Run <code class="codehilite">xk destroy</code> to clean everything up.</li>
+<li><strong>Update the project</strong>: Edit Terraform code in face of changing requirements and run <code class="codehilite">xk up</code> again to match the state of your code to the state of real-world resources.</li>
+<li><strong>Destroy the project</strong>: Run <code class="codehilite">xk down</code> to clean everything up.</li>
 </ol>
 <p>This workflow is an excellent fit for creating easy-to-understand continuous integration pipelines.</p>
 <h2 id="features">Features</h2>
 <p>The framework offers you:</p>
 <ul>
+<li>Docker-based cloud development environment with all necessary framework tools</li>
 <li>Full control over your cloud infrastructure (via Terraform)</li>
 <li>Full control over your container orchestration (via Terraform + Helm)</li>
-<li>Fully automated one-command-to-deploy experience</li>
+<li>Fully automated one-command-to-deploy <code class="codehilite">xk up</code> and <code class="codehilite">xk down</code> experience</li>
 <li>Modular design and declarative model of management</li>
 <li>Freedom to choose a cloud provider to host Kubernetes</li>
 <li>Continuous integration (CI) facilities out of the box</li>
 </ul>
 <h2 id="components">Components</h2>
-<p>The framework is distributed as a <a href="../../">Docker image on DockerHub</a> that can be used manually by DevOps engineers or automatically via continuous integration (CI) pipelines. It combines several open-source DevOps tools into one easy-to-use workflow for managing cloud infrastructure and Kubernetes resources.</p>
+<p>The framework is distributed as a <a href="https://hub.docker.com/r/ilyasotkov/exekube/">Docker image on DockerHub</a> that can be used manually by DevOps engineers or automatically via continuous integration (CI) pipelines. It combines several open-source DevOps tools into one easy-to-use workflow for managing cloud infrastructure and Kubernetes resources.</p>
 <h3 id="devops-tools">DevOps tools</h3>
 <table>
 <thead>

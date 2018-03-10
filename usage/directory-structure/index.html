@@ -60,7 +60,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -272,7 +272,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../reference/gcp-gke/" title="Reference" class="md-tabs__link">
+        <a href="../../reference/gke-cluster/" title="Reference" class="md-tabs__link">
           Reference
         </a>
       
@@ -512,31 +512,12 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#further-reading" title="Further reading" class="md-nav__link">
-    Further reading
-  </a>
-  
-</li>
-      
       
       
     </ul>
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../configuration/" title="Guide to configuring Exekube" class="md-nav__link">
-      Guide to configuring Exekube
-    </a>
   </li>
 
         
@@ -654,8 +635,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../reference/gcp-gke/" title="gcp-gke module" class="md-nav__link">
-      gcp-gke module
+    <a href="../../reference/gke-cluster/" title="gke-cluster module" class="md-nav__link">
+      gke-cluster module
     </a>
   </li>
 
@@ -711,13 +692,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#further-reading" title="Further reading" class="md-nav__link">
-    Further reading
-  </a>
-  
-</li>
-      
       
       
     </ul>
@@ -734,6 +708,10 @@
                 
                 
                 <h1 id="guide-to-exekube-directory-structure-and-framework-usage">Guide to Exekube directory structure and framework usage</h1>
+<div class="admonition success">
+<p class="admonition-title">Tip</p>
+<p>Check out the <a href="https://github.com/exekube/internal-ops-project">internal-ops-project</a> to see an example directory structure of a cloud project managed by Exekube.</p>
+</div>
 <h2 id="generic-modules">Generic modules</h2>
 <p>Generic modules are normal Terraform modules, just like the ones you can find at <a href="https://modules.terraform.io">https://modules.terraform.io</a>.</p>
 <p>Generic modules are <strong>same across different deployment environments</strong>.</p>
@@ -741,7 +719,7 @@
 <p><div class="codehilite"><pre><span></span><span class="na">terragrunt</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
   <span class="err">terraform</span> <span class=" -Punctuation">{</span><span class="c1"></span>
 <span class="c1">    # Import a generic module from the local filesystem</span>
-<span class="na">    source</span> <span class="o">=</span> <span class="s2">&quot;/exekube/modules//gcp-gke&quot;</span>
+<span class="na">    source</span> <span class="o">=</span> <span class="s2">&quot;/exekube-modules//gke-cluster&quot;</span>
   <span class=" -Punctuation">}</span><span class="c1"></span>
 <span class="c1">  # ...</span>
 <span class=" -Punctuation">}</span>
@@ -757,16 +735,14 @@ or like that:
 </pre></div></p>
 <p>Currently, Exekube ships with two built-in generic modules:</p>
 <ul>
-<li><a href="../../reference/gcp-gke">gcp-gke</a> module, which can create a Kubernetes cluster and an auto-scaling node pool on Google Kubernetes Engine</li>
+<li><a href="../../reference/gcp-gke">gke-cluster</a> module, which can create a Kubernetes cluster and an auto-scaling node pool on Google Kubernetes Engine</li>
 <li><a href="../../reference/helm-release">helm-release</a> module, which can deploy (release) a Helm chart onto a Kubernetes cluster</li>
 </ul>
 <h2 id="live-modules">Live modules</h2>
 <p>Live modules are applicable / executable modules, the modules that will be located in the <code class="codehilite">live</code> directory and applied by Terraform. Exekube uses Terragrunt as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.</p>
 <p>Live modules are instances of generic modules configured for a specific deployment environment. Live modules are always <strong>different across different deployment environments</strong>.</p>
-<p>If you run <code class="codehilite">xk apply</code>, you are applying <strong>all live modules</strong>, so it is equivalent of running <code class="codehilite">xk apply $XK_LIVE_DIR</code>. Under the cover, <code class="codehilite">xk apply</code> calls <code class="codehilite">terragrunt apply-all</code>.</p>
-<p>You can also apply an individual live module by running <code class="codehilite">xk apply &lt;live-module-path&gt;</code> or groups of live modules by running <code class="codehilite">xk apply &lt;directory-structure-of-live-modules&gt;</code>.</p>
-<h2 id="further-reading">Further reading</h2>
-<p>The <a href="https://github.com/ilyasotkov/exekube/tree/develop/live">README for the framework default live module directory</a> goes further into explaining how live modules are structured.</p>
+<p>If you run <code class="codehilite">xk up</code>, you are applying <strong>all live modules</strong>, so it is equivalent of running <code class="codehilite">xk up $TF_VAR_xk_live_dir</code>. Under the cover, <code class="codehilite">xk up</code> calls <code class="codehilite">terragrunt apply-all</code>.</p>
+<p>You can also apply an individual live module by running <code class="codehilite">xk up &lt;live-module-path&gt;</code> or groups of live modules by running <code class="codehilite">xk up &lt;directory-structure-of-live-modules&gt;</code>.</p>
                 
                   
                 

@@ -60,7 +60,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -74,7 +74,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#setup-an-exekube-project-on-google-cloud-platform" tabindex="1" class="md-skip">
+      <a href="#setup-a-project-space-on-google-cloud-platform" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -272,7 +272,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../reference/gcp-gke/" title="Reference" class="md-tabs__link">
+        <a href="../../reference/gke-cluster/" title="Reference" class="md-tabs__link">
           Reference
         </a>
       
@@ -528,18 +528,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/configuration/" title="Guide to configuring Exekube" class="md-nav__link">
-      Guide to configuring Exekube
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -654,8 +642,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../reference/gcp-gke/" title="gcp-gke module" class="md-nav__link">
-      gcp-gke module
+    <a href="../../reference/gke-cluster/" title="gke-cluster module" class="md-nav__link">
+      gke-cluster module
     </a>
   </li>
 
@@ -733,7 +721,7 @@
               
                 
                 
-                <h1 id="setup-an-exekube-project-on-google-cloud-platform">Setup an Exekube project on Google Cloud Platform</h1>
+                <h1 id="setup-a-project-space-on-google-cloud-platform">Setup a project space on Google Cloud Platform</h1>
 <h2 id="requirements-starting-from-zero">Requirements starting from zero</h2>
 <ul>
 <li>For Linux users, <a href="../../">Docker CE</a> and <a href="../../">Docker Compose</a> are sufficient</li>
@@ -743,15 +731,15 @@
 <h2 id="step-by-step-instructions">Step-by-step instructions</h2>
 <ol>
 <li>
-<p>Clone the git repo with default configuration values:</p>
-<div class="codehilite"><pre><span></span>git clone https://github.com/ilyasotkov/exekube <span class="se">\</span>
+<p>Clone the example project (<a href="https://github.com/exekube/internal-ops-project">internal-ops-project</a>) git repo:</p>
+<div class="codehilite"><pre><span></span>git clone https://github.com/exekube/internal-ops-project <span class="se">\</span>
 <span class="o">&amp;&amp;</span> <span class="nb">cd</span> exekube
 </pre></div>
 
 </li>
 <li>
-<p>Create an alias for your shell session (<code class="codehilite">xk</code> stands for "exekube"):</p>
-<div class="codehilite"><pre><span></span><span class="nb">alias</span> <span class="nv">xk</span><span class="o">=</span><span class="s2">&quot;. .env &amp;&amp; docker-compose run --rm exekube&quot;</span>
+<p>Create a bash alias for your shell session (<code class="codehilite">xk</code> stands for "exekube"):</p>
+<div class="codehilite"><pre><span></span><span class="nb">alias</span> <span class="nv">xk</span><span class="o">=</span><span class="s2">&quot;docker-compose run --rm exekube&quot;</span>
 </pre></div>
 
 </li>
@@ -773,37 +761,33 @@
 </table>
 </li>
 <li>
-<p>Rename <code class="codehilite"><span class="na">.env.example</span></code> file in repo root to <code class="codehilite"><span class="na">.env</span></code> and set the <code class="codehilite">TF_VAR_gcp_project</code> variable to the value from previous step.</p>
-<div class="codehilite"><pre><span></span>mv .env.example .env
-</pre></div>
-
-<div class="codehilite"><pre><span></span>export XK_LIVE_DIR=&#39;/exekube/live/prod&#39;
-<span class="gd">- export TF_VAR_gcp_project=&#39;my-project-186217&#39;</span>
-<span class="gi">+ export TF_VAR_gcp_project=&#39;production-project-20180101&#39;</span>
-export TF_VAR_gcp_remote_state_bucket=&#39;project-terraform-state&#39;
+<p>Set the variables for your environment in <code class="codehilite">live/prod/.env</code>:</p>
+<div class="codehilite"><pre><span></span><span class="nv">GOOGLE_CREDENTIALS</span><span class="o">=</span>/project/live/prod/secrets/sa-key.json
+<span class="nv">TF_VAR_xk_live_dir</span><span class="o">=</span>/project/live/prod
+<span class="nv">TF_VAR_gcp_project</span><span class="o">=</span>production-project-20180101
+<span class="nv">TF_VAR_gcp_remote_state_bucket</span><span class="o">=</span>production-project-20180101-tfstate
 </pre></div>
 
 </li>
 <li>
-<p><a href="https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts">Create a service account</a> and give it project owner permissions. A JSON-econded private key file will be downloaded onto your machine, which you'll need to move into <code class="codehilite">live/prod</code> (the deployment environment directory) and rename to <code class="codehilite">owner-key.json</code>.</p>
-<p><img alt="Creating a GCP service account in GCP Console" src="../img/gcp-sa.png" />
-<img alt="JSON key in the deployment environment directory" src="../img/dir.png" /></p>
+<p><a href="https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts">Create a service account</a> and give it project owner permissions. A JSON-econded private key file will be downloaded onto your machine, which you'll need to move into <code class="codehilite">live/prod/secrets/</code> directory and rename to <code class="codehilite">sa-key.json</code>.</p>
+<p><img alt="Creating a GCP service account in GCP Console" src="../img/gcp-sa.png" /></p>
 </li>
 <li>
 <p>Finally, use the key to authenticate to the Google Cloud SDK and create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:</p>
-<div class="codehilite"><pre><span></span>chmod <span class="m">600</span> live/prod/owner-key.json <span class="se">\</span>
+<div class="codehilite"><pre><span></span>chmod <span class="m">600</span> live/prod/secrets/sa-key.json <span class="se">\</span>
 <span class="o">&amp;&amp;</span> xk gcloud auth activate-service-account <span class="se">\</span>
-        --key-file live/prod/owner-key.json <span class="se">\</span>
+        --key-file live/prod/secrets/sa-key.json <span class="se">\</span>
 <span class="o">&amp;&amp;</span> xk gsutil mb <span class="se">\</span>
-        -p <span class="si">${</span><span class="nv">TF_VAR_gcp_project</span><span class="si">}</span> <span class="se">\</span>
-        gs://<span class="si">${</span><span class="nv">TF_VAR_gcp_remote_state_bucket</span><span class="si">}</span> <span class="se">\</span>
+        -p <span class="nv">$TF_VAR_gcp_project</span> <span class="se">\</span>
+        gs://<span class="nv">$TF_VAR_gcp_remote_state_bucket</span> <span class="se">\</span>
 <span class="o">&amp;&amp;</span> xk gsutil versioning <span class="nb">set</span> on <span class="se">\</span>
-        gs://<span class="si">${</span><span class="nv">TF_VAR_gcp_remote_state_bucket</span><span class="si">}</span>
+        gs://<span class="nv">$TF_VAR_gcp_remote_state_bucket</span>
 </pre></div>
 
 </li>
 </ol>
-<p>You deployment environment on the Google Cloud Platform is now ready!</p>
+<p>✅ You project space on the Google Cloud Platform is now ready!</p>
 <h2 id="up-next">Up next</h2>
 <ul>
 <li><a href="../../usage/deploy-app">Tutorial: deploy an application on Kubernetes with Exekube</a></li>

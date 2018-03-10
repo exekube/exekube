@@ -60,7 +60,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -272,7 +272,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../reference/gcp-gke/" title="Reference" class="md-tabs__link">
+        <a href="../../reference/gke-cluster/" title="Reference" class="md-tabs__link">
           Reference
         </a>
       
@@ -403,16 +403,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#declarative-vs-imperative-workflows" title="Declarative vs imperative workflows" class="md-nav__link">
-    Declarative vs imperative workflows
+  <a href="#vs-cli-tools-shell-scripts" title="vs CLI tools / shell scripts" class="md-nav__link">
+    vs CLI tools / shell scripts
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#legacy-imperative-workflow" title="Legacy imperative workflow" class="md-nav__link">
-    Legacy imperative workflow
+  <a href="#cli-tools-exekube-legacy-imperative-workflow" title="CLI tools / Exekube legacy imperative workflow" class="md-nav__link">
+    CLI tools / Exekube legacy imperative workflow
   </a>
   
 </li>
@@ -534,18 +534,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/configuration/" title="Guide to configuring Exekube" class="md-nav__link">
-      Guide to configuring Exekube
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -660,8 +648,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../reference/gcp-gke/" title="gcp-gke module" class="md-nav__link">
-      gcp-gke module
+    <a href="../../reference/gke-cluster/" title="gke-cluster module" class="md-nav__link">
+      gke-cluster module
     </a>
   </li>
 
@@ -704,16 +692,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#declarative-vs-imperative-workflows" title="Declarative vs imperative workflows" class="md-nav__link">
-    Declarative vs imperative workflows
+  <a href="#vs-cli-tools-shell-scripts" title="vs CLI tools / shell scripts" class="md-nav__link">
+    vs CLI tools / shell scripts
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#legacy-imperative-workflow" title="Legacy imperative workflow" class="md-nav__link">
-    Legacy imperative workflow
+  <a href="#cli-tools-exekube-legacy-imperative-workflow" title="CLI tools / Exekube legacy imperative workflow" class="md-nav__link">
+    CLI tools / Exekube legacy imperative workflow
   </a>
   
 </li>
@@ -750,28 +738,28 @@
 <p class="admonition-title">Warning</p>
 <p>This article is incomplete. Want to help? <a href="https://github.com/ilyasotkov/exekube/pulls">Submit a pull request</a>.</p>
 </div>
-<h2 id="declarative-vs-imperative-workflows">Declarative vs imperative workflows</h2>
-<h3 id="legacy-imperative-workflow">Legacy imperative workflow</h3>
+<h2 id="vs-cli-tools-shell-scripts">vs CLI tools / shell scripts</h2>
+<h3 id="cli-tools-exekube-legacy-imperative-workflow">CLI tools / Exekube legacy imperative workflow</h3>
 <p>Command line tools <code class="codehilite">kubectl</code> and <code class="codehilite">helm</code> are known to those who are familiar with Kubernetes. <code class="codehilite">gcloud</code> (part of Google Cloud SDK) is used for managing the Google Cloud Platform.</p>
 <ul>
-<li><code class="codehilite">xk gcloud &lt;group&gt; &lt;command&gt; &lt;arguments&gt; &lt;flags&gt;</code></li>
-<li><code class="codehilite">xk kubectl &lt;group&gt; &lt;command&gt; &lt;arguments&gt; &lt;flags&gt;</code></li>
-<li><code class="codehilite">xk helm &lt;command&gt; &lt;arguments&gt; &lt;flags&gt;</code></li>
+<li><code class="codehilite">gcloud &lt;group&gt; &lt;command&gt; &lt;arguments&gt; &lt;flags&gt;</code></li>
+<li><code class="codehilite">kubectl &lt;group&gt; &lt;command&gt; &lt;arguments&gt; &lt;flags&gt;</code></li>
+<li><code class="codehilite">helm &lt;command&gt; &lt;arguments&gt; &lt;flags&gt;</code></li>
 </ul>
 <p>Examples:</p>
-<div class="codehilite"><pre><span></span>xk gcloud auth list
+<div class="codehilite"><pre><span></span>gcloud auth list
 
-xk kubectl get nodes
+kubectl get nodes
 
-xk helm install --name custom-rails-app <span class="se">\</span>
+helm install --name custom-rails-app <span class="se">\</span>
         -f live/prod/kube/apps/my-app/values.yaml <span class="se">\</span>
         charts/rails-app
 </pre></div>
 
 <h3 id="declarative-workflow">Declarative workflow</h3>
 <ul>
-<li><code class="codehilite">xk apply</code></li>
-<li><code class="codehilite">xk destroy</code></li>
+<li><code class="codehilite">xk up</code></li>
+<li><code class="codehilite">xk down</code></li>
 </ul>
 <p>Declarative tools are exact equivalents of stadard CLI tools like <code class="codehilite">gcloud</code> / <code class="codehilite">aws</code>, <code class="codehilite">kubectl</code>, and <code class="codehilite">helm</code>, except everything is implemented as a <a href="../../">Terraform provider plugin</a> and expressed as declarative HCL (HashiCorp Configuration Language) code.</p>
                 

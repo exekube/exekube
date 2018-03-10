@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,13 +13,13 @@
         
     <url>
      <loc>/introduction/what-is-exekube/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/introduction/exekube-vs-other/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -29,13 +29,13 @@
         
     <url>
      <loc>/setup/gcp-gke/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/setup/aws-eks/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -45,19 +45,13 @@
         
     <url>
      <loc>/usage/deploy-app/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/usage/directory-structure/</loc>
-     <lastmod>2018-03-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/usage/configuration/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -67,31 +61,31 @@
         
     <url>
      <loc>/misc/helm-cli-vs-terraform-provider-helm/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/misc/configure-helm-release/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/misc/vault-integration/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/misc/feature-tracker/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/misc/secrets/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -100,14 +94,14 @@
     
         
     <url>
-     <loc>/reference/gcp-gke/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <loc>/reference/gke-cluster/</loc>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/reference/helm-release/</loc>
-     <lastmod>2018-03-07</lastmod>
+     <lastmod>2018-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

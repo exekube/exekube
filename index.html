@@ -60,7 +60,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -270,7 +270,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="reference/gcp-gke/" title="Reference" class="md-tabs__link">
+        <a href="reference/gke-cluster/" title="Reference" class="md-tabs__link">
           Reference
         </a>
       
@@ -538,18 +538,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="usage/configuration/" title="Guide to configuring Exekube" class="md-nav__link">
-      Guide to configuring Exekube
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -664,8 +652,8 @@
 
 
   <li class="md-nav__item">
-    <a href="reference/gcp-gke/" title="gcp-gke module" class="md-nav__link">
-      gcp-gke module
+    <a href="reference/gke-cluster/" title="gke-cluster module" class="md-nav__link">
+      gke-cluster module
     </a>
   </li>
 
@@ -757,12 +745,13 @@
               
                 
                 
-                <div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>The docs are currently outdated and will be updated for the 0.1.0 release.</p>
+                <h1 id="exekube-documentation">Exekube documentation</h1>
+<p>Exekube is an "Infrastructure as Code" modular framework for managing the whole lifecycle of Kubernetes-based projects. Exekube is built with Terraform, Terragrunt, and Helm as its developer interfaces.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Documentation is for Exekube version <strong>0.1.0</strong>.</p>
+<p>Check all Exekube releases: <a href="https://github.com/exekube/exekube/releases">https://github.com/exekube/exekube/releases</a></p>
 </div>
-<h1 id="exekube-documentation">Exekube documentation</h1>
-<p>Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes, built with Terraform and Helm.</p>
 <h2 id="introduction">Introduction</h2>
 <ul>
 <li><a href="./introduction/what-is-exekube">What is Exekube?</a></li>
@@ -775,13 +764,12 @@
 </ul>
 <h2 id="usage">Usage</h2>
 <ul>
+<li><a href="./usage/directory-structure">Guide to project directory structure and framework usage</a></li>
 <li><a href="./usage/deploy-app">Tutorial: deploy an application on Kubernetes with Exekube</a></li>
-<li><a href="./usage/directory-structure">Guide to Exekube directory structure and framework usage</a></li>
-<li><a href="./usage/configuration">Guide to configuring Exekube</a></li>
 </ul>
 <h2 id="reference">Reference</h2>
 <ul>
-<li><a href="./reference/gcp-gke">gcp-gke module</a></li>
+<li><a href="./reference/gke-cluster">gke-cluster module</a></li>
 <li><a href="./reference/helm-release">helm-release module</a></li>
 </ul>
 <h2 id="miscellaneous">Miscellaneous</h2>

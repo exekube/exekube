@@ -60,7 +60,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -272,7 +272,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../reference/gcp-gke/" title="Reference" class="md-tabs__link">
+        <a href="../../reference/gke-cluster/" title="Reference" class="md-tabs__link">
           Reference
         </a>
       
@@ -487,18 +487,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../configuration/" title="Guide to configuring Exekube" class="md-nav__link">
-      Guide to configuring Exekube
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -613,8 +601,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../reference/gcp-gke/" title="gcp-gke module" class="md-nav__link">
-      gcp-gke module
+    <a href="../../reference/gke-cluster/" title="gke-cluster module" class="md-nav__link">
+      gke-cluster module
     </a>
   </li>
 
@@ -672,15 +660,11 @@
 <ol>
 <li>
 <p>Edit code in <a href="../../"><code class="codehilite">live</code></a>:</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>If you cloned / forked this repo, you'll need to have a domain name (DNS zone) like <code class="codehilite">example.com</code> and have CloudFlare DNS servers set up for it. Then, in your text editor, search and replace <code class="codehilite">swarm.pw</code> with your domain zone.</p>
-</div>
-<p><a href="../../">Guide to Terraform / Terragrunt, HCL, and Exekube directory structure</a></p>
+<p><a href="../../usage/directory-structure">Guide to Terraform / Terragrunt, HCL, and Exekube directory structure</a></p>
 </li>
 <li>
 <p>Apply all <em>Terraform live modules</em> — create all cloud infrastructure and all Kubernetes resources:</p>
-<div class="codehilite"><pre><span></span>xk apply
+<div class="codehilite"><pre><span></span>xk up
 <span class="gi">+ ...</span>
 <span class="gi">+ Module /exekube/live/prod/kube/apps/rails-app has finished successfully!</span>
 </pre></div>
@@ -706,24 +690,24 @@
 </pre></div>
 
 <p>Upgrade the state of real-world cloud resources to the state of our code in <code class="codehilite">live/prod</code> directory:
-<div class="codehilite"><pre><span></span>xk apply
+<div class="codehilite"><pre><span></span>xk up
 </pre></div>
 Go back to your browser and check how your app updated with zero downtime! 😎</p>
 </li>
 <li>
 <p>Experiment with creating, upgrading, and destroying single live modules and groups of live modules:</p>
-<div class="codehilite"><pre><span></span>xk destroy live/prod/kube/apps/rails-app/
-xk destroy live/prod/kube/apps/
+<div class="codehilite"><pre><span></span>xk down live/prod/releases/rails-app/
+xk down live/prod/kube/apps/
 
-xk apply live/prod/kube/
-xk apply live/prod/kube/apps/rails-app/
+xk up live/prod/kube/
+xk up live/prod/kube/apps/rails-app/
 </pre></div>
 
 </li>
 <li>
 <p>Clean everything up:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># Destroy all cloud provider and Kubernetes resources</span>
-xk destroy
+xk down
 </pre></div>
 
 </li>
