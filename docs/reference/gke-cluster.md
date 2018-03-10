@@ -1,4 +1,6 @@
-# gcp-gke module
+# gke-cluster module
+
+Module inputs and defaults:
 
 ```tf
 variable "gcp_zone" {
@@ -24,7 +26,7 @@ variable "node_type" {
 }
 
 variable "gke_version" {
-  default = "1.8.4-gke.1"
+  default = "1.8.7-gke.1"
 }
 
 variable "enable_legacy_auth" {

@@ -91,10 +91,10 @@ pre_hook = {
 
 3. Deploy or upgrade the release:
 ```sh
-xk apply live/prod/kube/ci/concourse
+xk up live/prod/kube/ci/concourse
 ```
 
 4. Destroy the release:
 ```sh
-xk destroy live/prod/kube/ci/concourse
+xk down live/prod/kube/ci/concourse
 ```

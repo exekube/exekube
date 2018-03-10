@@ -1,3 +1,4 @@
+site_name: Exekube Docs
 repo_name: exekube/exekube
 repo_url: https://github.com/exekube/exekube
 edit_uri: ""
@@ -13,7 +14,6 @@ pages:
   - Usage:
       - 'Deploy an application': usage/deploy-app.md
       - 'Guide to Exekube directory structure and framework usage': usage/directory-structure.md
-      - 'Guide to configuring Exekube': usage/configuration.md
   - Miscellaneous:
       - 'Compare using Helm CLI and terraform-provider-helm': misc/helm-cli-vs-terraform-provider-helm.md
       - 'Configure a Helm release': misc/configure-helm-release.md
@@ -21,7 +21,7 @@ pages:
       - 'Project feature tracker': misc/feature-tracker.md
       - 'Managing secrets in Exekube': misc/secrets.md
   - Reference:
-      - 'gcp-gke module': reference/gcp-gke.md
+      - 'gke-cluster module': reference/gke-cluster.md
       - 'helm-release module': reference/helm-release.md
 
 copyright: 'Copyright &copy; 2018 Ilya Sotkov'
@@ -57,6 +57,5 @@ theme:
     text: Fira Sans
     code: Roboto Mono
   palette:
-    primary: teal
-    accent: teal
-site_name: Exekube Docs
+    primary: indigo
+    accent: indigo

@@ -1,10 +1,11 @@
-!!! danger
-
-    The docs are currently outdated and will be updated for the 0.1.0 release.
-
 # Exekube documentation
 
-Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes, built with Terraform and Helm.
+Exekube is an "Infrastructure as Code" modular framework for managing the whole lifecycle of Kubernetes-based projects. Exekube is built with Terraform, Terragrunt, and Helm as its developer interfaces.
+
+!!! note
+    Documentation is for Exekube version **0.1.0**.
+
+    Check all Exekube releases: <https://github.com/exekube/exekube/releases>
 
 ## Introduction
 
@@ -18,13 +19,12 @@ Exekube is an "Infrastructure as Code" modular framework for managing Kubernetes
 
 ## Usage
 
+- [Guide to project directory structure and framework usage](/usage/directory-structure)
 - [Tutorial: deploy an application on Kubernetes with Exekube](/usage/deploy-app)
-- [Guide to Exekube directory structure and framework usage](/usage/directory-structure)
-- [Guide to configuring Exekube](/usage/configuration)
 
 ## Reference
 
-- [gcp-gke module](/reference/gcp-gke)
+- [gke-cluster module](/reference/gke-cluster)
 - [helm-release module](/reference/helm-release)
 
 ## Miscellaneous

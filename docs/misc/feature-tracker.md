@@ -1,5 +1,8 @@
 # Feature tracker
 
+!!! warning
+    This section might be outdated.
+
 Features are marked with ✔️ when they enter the *alpha stage*, meaning a minimum viable solution has been implemented
 
 ## Cloud provider and local environment setup

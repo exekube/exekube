@@ -1,5 +1,7 @@
 # helm-release module reference
 
+Module inputs and defaults:
+
 ```tf
 # ------------------------------------------------------------------------------
 # Pre-hook and post-hook, to be run before creation and after release creation
@@ -41,40 +43,18 @@ variable "release_spec" {
 }
 
 # ------------------------------------------------------------------------------
-# Point DNS zones to our cloud load balancer IP address
-# ------------------------------------------------------------------------------
-
-variable "cluster_dns_zones" {
-  type = "list"
-
-  default = []
-}
-
-# ------------------------------------------------------------------------------
 # Kubernetes secret inputs
 # ------------------------------------------------------------------------------
 
-variable "basic_auth" {
+variable "xk_live_dir" {}
+
+variable "ingress_basic_auth" {
   type = "map"
 
   default = {
-    username_file = "secrets/basic-auth-username"
-    password_file = "secrets/basic-auth-password"
-    secret_name   = ""
+    username    = ""
+    password    = ""
+    secret_name = ""
   }
 }
-
-# ------------------------------------------------------------------------------
-# Credentials for use as client, can be filled by local environmental variables
-# ------------------------------------------------------------------------------
-
-variable "cloudflare_auth" {
-  type = "map"
-
-  default = {
-    email = ""
-    token = ""
-  }
-}
-
 ```

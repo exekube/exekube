@@ -1,4 +1,4 @@
-# Setup an Exekube project on Google Cloud Platform
+# Setup a project space on Google Cloud Platform
 
 ## Requirements starting from zero
 
@@ -8,17 +8,17 @@
 
 ## Step-by-step instructions
 
-1. Clone the git repo with default configuration values:
+1. Clone the example project ([internal-ops-project](https://github.com/exekube/internal-ops-project)) git repo:
 
     ```bash
-    git clone https://github.com/ilyasotkov/exekube \
+    git clone https://github.com/exekube/internal-ops-project \
     && cd exekube
     ```
 
-2. Create an alias for your shell session (`xk` stands for "exekube"):
+2. Create a bash alias for your shell session (`xk` stands for "exekube"):
 
     ```bash
-    alias xk=". .env && docker-compose run --rm exekube"
+    alias xk="docker-compose run --rm exekube"
     ```
 
 3. If you don't already have one, create a [Google Account](https://console.cloud.google.com/). Then, create a new [GCP Project](https://console.cloud.google.com).
@@ -27,38 +27,33 @@
     | --- | --- |
     | Production Project | production-project-20180101 |
 
-4. Rename `.env.example` file in repo root to `.env` and set the `TF_VAR_gcp_project` variable to the value from previous step.
+4. Set the variables for your environment in `live/prod/.env`:
 
-    ```bash
-    mv .env.example .env
+    ```sh
+    GOOGLE_CREDENTIALS=/project/live/prod/secrets/sa-key.json
+    TF_VAR_xk_live_dir=/project/live/prod
+    TF_VAR_gcp_project=production-project-20180101
+    TF_VAR_gcp_remote_state_bucket=production-project-20180101-tfstate
     ```
 
-    ```diff
-    export XK_LIVE_DIR='/exekube/live/prod'
-    - export TF_VAR_gcp_project='my-project-186217'
-    + export TF_VAR_gcp_project='production-project-20180101'
-    export TF_VAR_gcp_remote_state_bucket='project-terraform-state'
-    ```
-
-5. [Create a service account](https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts) and give it project owner permissions. A JSON-econded private key file will be downloaded onto your machine, which you'll need to move into `live/prod` (the deployment environment directory) and rename to `owner-key.json`.
+5. [Create a service account](https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts) and give it project owner permissions. A JSON-econded private key file will be downloaded onto your machine, which you'll need to move into `live/prod/secrets/` directory and rename to `sa-key.json`.
 
     ![Creating a GCP service account in GCP Console](img/gcp-sa.png)
-    ![JSON key in the deployment environment directory](img/dir.png)
 
 6. Finally, use the key to authenticate to the Google Cloud SDK and create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:
 
     ```bash
-    chmod 600 live/prod/owner-key.json \
+    chmod 600 live/prod/secrets/sa-key.json \
     && xk gcloud auth activate-service-account \
-            --key-file live/prod/owner-key.json \
+            --key-file live/prod/secrets/sa-key.json \
     && xk gsutil mb \
-            -p ${TF_VAR_gcp_project} \
-            gs://${TF_VAR_gcp_remote_state_bucket} \
+            -p $TF_VAR_gcp_project \
+            gs://$TF_VAR_gcp_remote_state_bucket \
     && xk gsutil versioning set on \
-            gs://${TF_VAR_gcp_remote_state_bucket}
+            gs://$TF_VAR_gcp_remote_state_bucket
     ```
 
-You deployment environment on the Google Cloud Platform is now ready!
+✅ You project space on the Google Cloud Platform is now ready!
 
 ## Up next
 
