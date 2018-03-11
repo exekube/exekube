@@ -27,15 +27,18 @@ resource "helm_release" "release" {
   chart      = "${var.release_spec["chart_name"]}"
   version    = "${var.release_spec["chart_version"]}"
 
-  name   = "${var.release_spec["release_name"]}"
-  values = "${data.template_file.release_values.rendered}"
+  name = "${var.release_spec["release_name"]}"
 
-  reuse_values     = false
+  values = [
+    "${data.template_file.release_values.rendered}",
+  ]
+
   force_update     = false
+  devel            = true
   disable_webhooks = false
   timeout          = 500
+  reuse            = true
 
-  wait          = true
   recreate_pods = false
 
   provisioner "local-exec" {

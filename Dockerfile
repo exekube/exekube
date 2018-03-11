@@ -1,8 +1,11 @@
 FROM alpine:3.7
 
 ENV CLOUD_SDK_VERSION 190.0.1
+ENV HELM_VERSION 2.7.2
 ENV TERRAFORM_VERSION 0.11.3
-ENV HELM_VERSION 2.8.2
+ENV TERRAGRUNT_VERSION 0.14.2
+ENV TERRAFORM_PROVIDER_HELM_VERSION 0.5.0
+
 ENV PATH /google-cloud-sdk/bin:$PATH
 
 RUN apk --no-cache add \
@@ -44,16 +47,15 @@ RUN curl -o ./terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM
         && rm -rf terraform.zip
 
 RUN curl -L -o ./terragrunt \
-        https://github.com/gruntwork-io/terragrunt/releases/download/v0.13.23/terragrunt_linux_amd64 \
+        https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 \
         && chmod 0700 terragrunt \
         && mv terragrunt /usr/bin
 
-RUN curl -L -o ./terraform-provider-helm_v0.6.0 \
-        https://github.com/burdiyan/terraform-provider-helm/releases/download/v0.6.0/terraform-provider-helm_linux_amd64 \
-        && chmod 0700 terraform-provider-helm_v0.6.0 \
+RUN curl -L -o ./terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
+        https://github.com/mcuadros/terraform-provider-helm/releases/download/v${TERRAFORM_PROVIDER_HELM_VERSION}/terraform-provider-helm_linux_amd64 \
+        && chmod 0700 terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
         && mkdir -p /root/.terraform.d/plugins/ \
-        && mv terraform-provider-helm_v0.6.0 /root/.terraform.d/plugins/
-
+        && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
 
 COPY modules /exekube-modules/
 COPY docker-entrypoint.sh /usr/local/bin/
