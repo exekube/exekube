@@ -1,6 +1,8 @@
 FROM alpine:3.7
 
-ENV CLOUD_SDK_VERSION 191.0.0
+ENV CLOUD_SDK_VERSION 190.0.1
+ENV TERRAFORM_VERSION 0.11.3
+ENV HELM_VERSION 2.8.2
 ENV PATH /google-cloud-sdk/bin:$PATH
 
 RUN apk --no-cache add \
@@ -30,13 +32,13 @@ RUN gcloud components install \
         alpha beta kubectl
 
 RUN curl -L -o helm.tar.gz \
-        https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-linux-amd64.tar.gz \
+        https://kubernetes-helm.storage.googleapis.com/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
         && tar -xvzf helm.tar.gz \
         && rm -rf helm.tar.gz \
         && chmod 0700 linux-amd64/helm \
         && mv linux-amd64/helm /usr/bin
 
-RUN curl -o ./terraform.zip https://releases.hashicorp.com/terraform/0.11.2/terraform_0.11.2_linux_amd64.zip \
+RUN curl -o ./terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
         && unzip terraform.zip \
         && mv terraform /usr/bin \
         && rm -rf terraform.zip
