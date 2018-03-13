@@ -786,14 +786,14 @@
     --project<span class="o">=</span><span class="nv">$TF_VAR_gcp_project</span> <span class="se">\</span>
     --key-file-type json <span class="se">\</span>
     --iam-account terraform@<span class="nv">$TF_VAR_gcp_project</span>.iam.gserviceaccount.com <span class="se">\</span>
-    ./live/prod/secrets/sa-key.json
+    ./live/prod/secrets/sa/owner.json
 </pre></div></p>
 </li>
 <li>
 <p>Finally, use the key to authenticate to the Google Cloud SDK and create a Google Cloud Storage bucket (with versioning) for our Terraform remote state:</p>
-<div class="codehilite"><pre><span></span>chmod <span class="m">600</span> live/prod/secrets/sa-key.json <span class="se">\</span>
+<div class="codehilite"><pre><span></span>chmod <span class="m">600</span> live/prod/secrets/sa/owner.json <span class="se">\</span>
 <span class="o">&amp;&amp;</span> xk gcloud auth activate-service-account <span class="se">\</span>
-        --key-file live/prod/secrets/sa-key.json <span class="se">\</span>
+        --key-file live/prod/secrets/sa/owner.json <span class="se">\</span>
 <span class="o">&amp;&amp;</span> xk gsutil mb <span class="se">\</span>
         -p <span class="nv">$TF_VAR_gcp_project</span> <span class="se">\</span>
         gs://<span class="nv">$TF_VAR_gcp_remote_state_bucket</span> <span class="se">\</span>
