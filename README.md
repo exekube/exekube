@@ -30,3 +30,23 @@ The framework offers you:
 - Modular design and declarative model of management
 - Freedom to choose a cloud provider to host Kubernetes
 - Continuous integration (CI) facilities out of the box
+
+## Roadmap
+
+### 0.1 — *current version*
+
+- Documented setup and framework usage
+- Support for Google Cloud and GKE via the `gke-cluster` Terraform module
+- Support for generic Helm releases via the `helm-release` module
+
+### 0.2 — *upcoming release*
+
+- Initial setup should only be concerned with making Terraform functional
+- Secrets should be stored, rotated, and distributed in a secure way
+- `gcp-project` module for setting up cloud resources automatically for every project environment
+
+### 1.0 — *production-ready release*
+
+- Helm / Tiller are set up securely
+- Add auditing and monitoring
+- IAM and RBAC follow the principle of least-privilege
