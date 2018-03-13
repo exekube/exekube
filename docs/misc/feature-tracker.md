@@ -1,7 +1,7 @@
 # Feature tracker
 
 !!! warning
-    This section might be outdated.
+    The feature tracker might be outdated.
 
 Features are marked with ✔️ when they enter the *alpha stage*, meaning a minimum viable solution has been implemented
 

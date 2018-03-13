@@ -1,28 +1,28 @@
-# Deploy an application on Kubernetes with Exekube
+# Deploy all infrastructure and a custom application to Kubernetes
 
-!!! warning
-    This article is incomplete. Want to help? [Submit a pull request](https://github.com/ilyasotkov/exekube/pulls).
+1. Set up the example internal-ops-project:
 
-1. Edit code in [`live`](/):
+    - [Create an Exekube project on Google Cloud Platform](/setup/gcp-gke)
 
-    [Guide to Terraform / Terragrunt, HCL, and Exekube directory structure](/usage/directory-structure)
+2. Customize the code in `live/prod`:
 
-2. Apply all *Terraform live modules* — create all cloud infrastructure and all Kubernetes resources:
+    - [Configure a Helm release](/misc/configure-helm-release/)
+    - [Add secrets for the environment](/misc/secrets/)
+
+3. Apply all *Terraform live modules* — create all cloud infrastructure and all Kubernetes resources:
 
     ```diff
     xk up
-    + ...
-    + Module /exekube/live/prod/kube/apps/rails-app has finished successfully!
     ```
 
-3. Enable the Kubernetes dashboard at <http://localhost:8001/ui>:
+4. Enable the Kubernetes dashboard at <http://localhost:8001/ui>:
 
     ```sh
     docker-compose up -d
     ```
 
-4. Go to <https://my-app.YOURDOMAIN.COM/> to check that a hello-world Rails app is running.
-5. Upgrade the Rails application Docker image version in [live/kube/apps/my-app/values.yaml](/):
+5. Go to <https://my-app.YOURDOMAIN.COM/> to check that a hello-world Rails app is running.
+6. Change the Rails application container image version in [live/prod/releases/rails-app/values.yaml](/):
 
     ```diff
      replicaCount: 2
@@ -37,21 +37,19 @@
     ```bash
     xk up
     ```
-    Go back to your browser and check how your app updated with zero downtime! 😎
+    Now, go back to your browser and check how your app updated with zero downtime! 😎
 
-6. Experiment with creating, upgrading, and destroying single live modules and groups of live modules:
+7. Experiment with creating, upgrading, and destroying single live modules and groups of live modules:
 
     ```bash
     xk down live/prod/releases/rails-app/
-    xk down live/prod/kube/apps/
 
-    xk up live/prod/kube/
-    xk up live/prod/kube/apps/rails-app/
+    xk up live/prod/releases/rails-app/
+    xk up live/prod/releases/some-other-app/
     ```
 
-7. Clean everything up:
+8. Clean everything up (destroy all cloud provider and Kubernetes resources):
 
     ```sh
-    # Destroy all cloud provider and Kubernetes resources
     xk down
     ```

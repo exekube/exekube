@@ -1,7 +1,7 @@
 # Vault on Kubernetes
 
 !!! missing
-    Support and integration for HashiCorp Vault has not been yet added in Exekube version 0.1.0.
+    Support and integration for HashiCorp Vault has not been yet added as of 0.1.0.
 
 ## Test access to Vault from local machine
 

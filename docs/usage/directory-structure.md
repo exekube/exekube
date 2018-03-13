@@ -33,7 +33,7 @@ terragrunt = {
 
 Currently, Exekube ships with two built-in generic modules:
 
-- [gke-cluster](/reference/gcp-gke) module, which can create a Kubernetes cluster and an auto-scaling node pool on Google Kubernetes Engine
+- [gke-cluster](/reference/gke-cluster) module, which can create a Kubernetes cluster and an auto-scaling node pool on Google Kubernetes Engine
 - [helm-release](/reference/helm-release) module, which can deploy (release) a Helm chart onto a Kubernetes cluster
 
 ## Live modules
