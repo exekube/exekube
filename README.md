@@ -33,20 +33,21 @@ The framework offers you:
 
 ## Roadmap
 
-### 0.1 — *current version*
+### 0.1 — current version
 
-- Documented setup and framework usage
-- Support for Google Cloud and GKE via the `gke-cluster` Terraform module
-- Support for generic Helm releases via the `helm-release` module
+- [x] Documented setup and framework usage
+- [x] Every GCP project is set up manually via `gcloud` CLI
+- [x] Support for Google Cloud and GKE via the `gke-cluster` Terraform module
+- [x] Support for generic Helm releases via the `helm-release` module
 
-### 0.2 — *upcoming release*
+### 0.2 — upcoming release
 
-- Initial setup should only be concerned with making Terraform functional
-- Secrets should be stored, rotated, and distributed in a secure way
-- `gcp-project` module for setting up cloud resources automatically for every project environment
+- [ ] Initial setup is only concerned with making Terraform functional
+- [ ] A more comprehensive `gcp-kubernetes` module to replace `gke-cluster`
+- [ ] Secrets are stored, rotated, and distributed in a secure way
 
-### 1.0 — *production-ready release*
+### 1.0 — production-ready release
 
-- Helm / Tiller are set up securely
-- Add auditing and monitoring
-- IAM and RBAC follow the principle of least-privilege
+- [ ] Helm / Tiller are set up securely
+- [ ] Add auditing and monitoring
+- [ ] IAM and RBAC follow the principle of least-privilege
