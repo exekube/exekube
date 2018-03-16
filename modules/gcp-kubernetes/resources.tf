@@ -48,7 +48,7 @@ resource "google_project_services" "apis" {
 
   # TODO: figure out how much time it takes to enable the APIs
   provisioner "local-exec" {
-    command = "sleep 15"
+    command = "sleep 20"
   }
 }
 
@@ -144,6 +144,8 @@ resource "google_compute_firewall" "allow_pods_internal" {
   description = "Allow traffic between pods and services in all regions"
 
   # services and pods ranges
+  direction = "INGRESS"
+
   source_ranges = [
     "${google_compute_subnetwork.subnets.*.secondary_ip_range.0.ip_cidr_range}",
     "${google_compute_subnetwork.subnets.*.secondary_ip_range.1.ip_cidr_range}",
@@ -230,7 +232,7 @@ sleep 5 \
 && gcloud auth activate-service-account --key-file ${var.terraform_credentials} \
 && gcloud container clusters get-credentials ${var.cluster["name"]} \
 --zone ${var.gcp_zone} \
---project ${var.gcp_project} \
+--project "${google_project.project.project_id}" \
 \
 \
 && kubectl -n kube-system create sa tiller \
@@ -277,16 +279,18 @@ resource "google_storage_bucket" "secret_store" {
 # ---
 
 resource "google_kms_key_ring_iam_binding" "admins" {
-  project     = "${google_project.project.project_id}"
-  key_ring_id = "${google_kms_key_ring.key_ring}"
+  count = "${length(var.key_ring_admins) > 0 ? 1 : 0}"
+
+  key_ring_id = "${google_kms_key_ring.key_ring.id}"
   role        = "roles/cloudkms.admin"
 
   members = "${var.key_ring_admins}"
 }
 
 resource "google_kms_key_ring_iam_binding" "users" {
-  project     = "${google_project.project.project_id}"
-  key_ring_id = "${google_kms_key_ring.key_ring}"
+  count = "${length(var.key_ring_users) > 0 ? 1 : 0}"
+
+  key_ring_id = "${google_kms_key_ring.key_ring.id}"
   role        = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
 
   members = "${var.key_ring_users}"

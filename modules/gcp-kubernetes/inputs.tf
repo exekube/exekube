@@ -74,11 +74,15 @@ variable "cluster" {
 # ------------------------------------------------------------------------------
 
 variable "key_ring_admins" {
+  type        = "list"
   description = "Users who have full controll over the keyring"
+  default     = []
 }
 
 variable "key_ring_users" {
+  type        = "list"
   description = "Users who can encrypt and decrypt keys in the keyring"
+  default     = []
 }
 
 variable "crypto_keys" {
