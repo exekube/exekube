@@ -3,9 +3,13 @@ terraform {
   backend "gcs" {}
 }
 
+provider "random" {
+  version = "~> 1.1"
+}
+
 provider "google" {
   project     = "${var.terraform_project}"
   credentials = "${var.terraform_credentials}"
-  zone        = "${var.gcp_region}"
-  region      = "${var.gcp_zone}"
+  region      = "${var.gcp_region}"
+  zone        = "${var.gcp_zone}"
 }
