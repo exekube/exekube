@@ -1,3 +1,13 @@
+terraform {
+  backend "gcs" {}
+}
+
+provider "local" {}
+
+provider "helm" {}
+
+provider "kubernetes" {}
+
 # ------------------------------------------------------------------------------
 # Run a pre_hook via the null_resource provisioner
 # ------------------------------------------------------------------------------
