@@ -1,12 +1,31 @@
 # ------------------------------------------------------------------------------
+# TERRAFORM REMOTE STATE BACKEND
+# ------------------------------------------------------------------------------
+
+terraform {
+  # The configuration for this backend will be filled in by Terragrunt
+  backend "gcs" {}
+}
+
+# ------------------------------------------------------------------------------
+# TERRAFORM PROVIDERS
+# ------------------------------------------------------------------------------
+
+provider "random" {}
+
+provider "google" {
+  project     = "${var.project_id}"
+  credentials = "${var.terraform_credentials}"
+}
+
+# ------------------------------------------------------------------------------
 # STORAGE BUCKET FOR PROJECT SECRETS
 # ------------------------------------------------------------------------------
 
 resource "google_storage_bucket" "secret_store" {
   count = "${length(var.crypto_keys)}"
 
-  project       = "${google_project.project.project_id}"
-  name          = "${google_project.project.project_id}-${element(keys(var.crypto_keys), count.index)}-secrets"
+  name          = "${var.project_id}-${element(keys(var.crypto_keys), count.index)}-secrets"
   force_destroy = true
   storage_class = "REGIONAL"
   location      = "${var.secret_store_location}"
@@ -17,7 +36,6 @@ resource "google_storage_bucket" "secret_store" {
 # ------------------------------------------------------------------------------
 
 resource "google_kms_key_ring" "key_ring" {
-  project  = "${google_project.project.project_id}"
   name     = "${var.product_env}"
   location = "global"
 }
@@ -69,7 +87,6 @@ resource "google_kms_crypto_key_iam_binding" "cryptokey_users" {
 # ------------------------------------------------------------------------------
 
 resource "google_project_iam_custom_role" "storage_viewer_creator" {
-  project     = "${google_project.project.project_id}"
   role_id     = "storageViewerCreator"
   title       = "Storage Object View and Creator"
   description = "Allows to view and create storage bucket objects"
@@ -97,7 +114,18 @@ resource "google_storage_bucket_iam_binding" "bucket_users" {
 
   bucket = "${element(google_storage_bucket.secret_store.*.name, count.index)}"
 
-  role = "projects/${google_project.project.project_id}/roles/storageViewerCreator"
+  role = "projects/${var.project_id}/roles/storageViewerCreator"
 
   members = "${var.keyring_users}"
+}
+
+resource "google_storage_bucket_iam_binding" "inidvidual_bucket_users" {
+  count      = "${length(var.crypto_keys)}"
+  depends_on = ["google_project_iam_custom_role.storage_viewer_creator"]
+
+  bucket = "${var.project_id}-${element(keys(var.crypto_keys), count.index)}-secrets"
+
+  role = "projects/${var.project_id}/roles/${google_project_iam_custom_role.storage_viewer_creator.role_id}"
+
+  members = "${split(",", lookup(var.crypto_keys, element(keys(var.crypto_keys), count.index)))}"
 }

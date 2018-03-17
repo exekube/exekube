@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -eu
 
 gcloud projects get-iam-policy ${project_id} > /tmp/${project_id}.iam.policy.yml
 

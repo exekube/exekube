@@ -60,8 +60,6 @@ resource "null_resource" "audit_config" {
       cat '${data.template_file.audit_config.rendered}' > /tmp/audit-config.sh \
       && bash /tmp/audit-config.sh
     EOT
-
-    interpreter = ["/bin/bash"]
   }
 }
 
