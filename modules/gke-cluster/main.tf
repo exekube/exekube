@@ -1,11 +1,18 @@
+# ------------------------------------------------------------------------------
+# TERRAFORM REMOTE STATE BACKEND
+# ------------------------------------------------------------------------------
+
 terraform {
   # The configuration for this backend will be filled in by Terragrunt
   backend "gcs" {}
 }
 
+# ------------------------------------------------------------------------------
+# TERRAFORM PROVIDERS
+# ------------------------------------------------------------------------------
+
 provider "google" {
-  project = "${var.gcp_project}"
-  region  = "${var.gcp_region}"
+  credentials = "${var.terraform_credentials}"
 }
 
 # ------------------------------------------------------------------------------
@@ -13,20 +20,18 @@ provider "google" {
 # ------------------------------------------------------------------------------
 
 resource "google_container_cluster" "cluster" {
-  lifecycle {
-    create_before_destroy = true
-  }
+  project = "${var.project_id}"
 
-  name = "${var.cluster["name"]}"
-  zone = "${var.cluster["main_zone"]}"
+  name = "${var.cluster_name}"
+  zone = "${var.main_compute_zone}"
 
-  additional_zones = "${var.cluster["additional_zones"]}"
+  additional_zones = "${var.additional_zones}"
 
-  initial_node_count = "${var.cluster["initial_node_count"]}"
-  node_version       = "${var.cluster["kubernetes_version"]}"
-  min_master_version = "${var.cluster["kubernetes_version"]}"
+  initial_node_count = "${var.initial_node_count}"
+  node_version       = "${var.kubernetes_version}"
+  min_master_version = "${var.kubernetes_version}"
   enable_legacy_abac = "false"
-  network            = "${google_compute_network.network.name}"
+  network            = "${var.network_name}"
   subnetwork         = "nodes"
 
   ip_allocation_policy {
@@ -44,16 +49,16 @@ resource "google_container_cluster" "cluster" {
     }
 
     http_load_balancing {
-      disabled = true
+      disabled = false
     }
   }
 
   node_config {
-    machine_type = "${var.cluster["node_type"]}"
+    machine_type = "${var.node_type}"
     disk_size_gb = 200
 
     labels {
-      project = "${google_project.project.project_id}"
+      project = "${var.project_id}"
       pool    = "default"
     }
 
@@ -70,13 +75,17 @@ resource "google_container_cluster" "cluster" {
     provider = "CALICO"
   }
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   provisioner "local-exec" {
     command = <<EOF
 sleep 5 \
 && gcloud auth activate-service-account --key-file ${var.terraform_credentials} \
-&& gcloud container clusters get-credentials ${var.cluster["name"]} \
---zone ${var.gcp_zone} \
---project "${google_project.project.project_id}" \
+&& gcloud container clusters get-credentials ${var.cluster_name} \
+--zone "${var.main_compute_zone}" \
+--project "${var.project_id}" \
 \
 \
 && kubectl -n kube-system create sa tiller \
@@ -87,38 +96,5 @@ sleep 5 \
 && sleep 15 \
 && helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com
 EOF
-  }
-}
-
-# ------------------------------------------------------------------------------
-# Create an auto-scaling node pool for the cluster [disabled]
-# ------------------------------------------------------------------------------
-
-resource "google_container_node_pool" "nodepool" {
-  count = 0
-
-  name       = "${var.nodepool_name}"
-  zone       = "${var.gcp_zone}"
-  cluster    = "${google_container_cluster.gke_cluster.name}"
-  node_count = 1
-
-  autoscaling {
-    min_node_count = 0
-    max_node_count = "${var.nodepool_max_nodes}"
-  }
-
-  node_config {
-    machine_type = "${var.nodepool_machine_type}"
-
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/compute",
-      "https://www.googleapis.com/auth/devstorage.read_only",
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/monitoring",
-    ]
-  }
-
-  lifecycle {
-    create_before_destroy = true
   }
 }

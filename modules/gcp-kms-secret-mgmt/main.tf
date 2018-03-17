@@ -98,7 +98,7 @@ resource "google_project_iam_custom_role" "storage_viewer_creator" {
   ]
 }
 
-resource "google_storage_bucket_iam_binding" "bucket_admins" {
+resource "google_storage_bucket_iam_binding" "all_bucket_admins" {
   count = "${length(var.keyring_admins) == 0 ? 0 : length(var.crypto_keys)}"
 
   bucket = "${element(google_storage_bucket.secret_store.*.name, count.index)}"
@@ -108,7 +108,7 @@ resource "google_storage_bucket_iam_binding" "bucket_admins" {
   members = "${var.keyring_admins}"
 }
 
-resource "google_storage_bucket_iam_binding" "bucket_users" {
+resource "google_storage_bucket_iam_binding" "all_bucket_users" {
   count      = "${length(var.keyring_users) == 0 ? 0 : length(var.crypto_keys)}"
   depends_on = ["google_project_iam_custom_role.storage_viewer_creator"]
 
@@ -119,7 +119,7 @@ resource "google_storage_bucket_iam_binding" "bucket_users" {
   members = "${var.keyring_users}"
 }
 
-resource "google_storage_bucket_iam_binding" "inidvidual_bucket_users" {
+resource "google_storage_bucket_iam_binding" "individual_bucket_users" {
   count      = "${length(var.crypto_keys)}"
   depends_on = ["google_project_iam_custom_role.storage_viewer_creator"]
 
