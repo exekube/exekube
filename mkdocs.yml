@@ -20,6 +20,7 @@ pages:
       - 'Use HashiCorp Vault to manage secrets': misc/vault-integration.md
       - 'Project feature tracker': misc/feature-tracker.md
       - 'Managing secrets in Exekube': misc/secrets.md
+      - 'Add audit config for KMS and secret store bucket': misc/add-audit-config.md
   - Reference:
       - 'gke-cluster module': reference/gke-cluster.md
       - 'helm-release module': reference/helm-release.md

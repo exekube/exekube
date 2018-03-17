@@ -44,32 +44,12 @@ resource "google_project_service" "services" {
 }
 
 # ------------------------------------------------------------------------------
-# ENABLE AUDITING FOR STORAGE AND KMS
 # Support for AuditConfigs is missing in terraform-provider-google
 # GitHub issue:
 # https://github.com/terraform-providers/terraform-provider-google/issues/936
-# That's why we use the bash script "audit-config.sh" for now
 # ------------------------------------------------------------------------------
 
-resource "null_resource" "audit_config" {
-  depends_on = ["google_project_service.services"]
-  count      = 0
-
-  provisioner "local-exec" {
-    command = <<-EOT
-      cat '${data.template_file.audit_config.rendered}' > /tmp/audit-config.sh \
-      && bash /tmp/audit-config.sh
-    EOT
-  }
-}
-
-data "template_file" "audit_config" {
-  template = "${file("${path.module}/audit-config.sh")}"
-
-  vars {
-    project_id = "${google_project.project.project_id}"
-  }
-}
+# ...
 
 # ------------------------------------------------------------------------------
 # VPC NETWORK, SUBNETS, FIREWALL RULES

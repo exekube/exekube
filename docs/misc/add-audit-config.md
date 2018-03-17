@@ -1,9 +1,9 @@
-#!/bin/bash
+# Add audit config
 
-set -eu
-
-gcloud projects get-iam-policy ${project_id} > /tmp/${project_id}.iam.policy.yml
-
+```sh
+gcloud projects get-iam-policy ${project_id} > ${project_id}.iam.policy.yml
+```
+```sh
 cat <<EOT >> /tmp/${project_id}.iam.policy.yml
 auditConfigs:
 - auditLogConfigs:
@@ -15,5 +15,7 @@ auditConfigs:
   - logType: DATA_READ
   service: cloudkms.googleapis.com
 EOT
-
-gcloud projects set-iam-policy ${project_id} /tmp/${project_id}.iam.policy.yml
+```
+```sh
+gcloud projects set-iam-policy ${project_id} ${project_id}.iam.policy.yml
+```
