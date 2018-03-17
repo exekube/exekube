@@ -1,12 +1,15 @@
 FROM alpine:3.7
 
-ENV CLOUD_SDK_VERSION 190.0.1
+ENV CLOUD_SDK_VERSION 193.0.0
 ENV HELM_VERSION 2.7.2
 ENV TERRAFORM_VERSION 0.11.3
 ENV TERRAGRUNT_VERSION 0.14.2
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.5.0
 
-ENV PATH /google-cloud-sdk/bin:$PATH
+ENV PATH /google-cloud-sdk/bin:/exekube-modules/scripts:$PATH
+
+COPY modules /exekube-modules/
+COPY docker-entrypoint.sh /usr/local/bin/
 
 RUN apk --no-cache add \
         curl \
@@ -60,8 +63,5 @@ RUN curl -L -o ./tph.tar.gz \
         && chmod 0700 terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
-
-COPY modules /exekube-modules/
-COPY docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
