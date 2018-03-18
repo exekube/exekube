@@ -161,3 +161,14 @@ resource "google_dns_managed_zone" "dns_zones" {
   name     = "${element(keys(var.dns_zones), count.index)}"
   dns_name = "${element(values(var.dns_zones), count.index)}"
 }
+
+resource "google_dns_record_set" "ingress_domains" {
+  count   = "${length(var.dns_zones) > 0 && length(var.ingress_domains) > 0 ? length(var.ingress_domains) : 0}"
+  project = "${google_project.project.project_id}"
+  type    = "A"
+  ttl     = 3600
+
+  managed_zone = "${element(keys(var.ingress_domains), count.index)}"
+  name         = "${element(values(var.ingress_domains), count.index)}"
+  rrdatas      = ["${google_compute_global_address.ingress_controller_ip.0.address}"]
+}

@@ -16,6 +16,7 @@ gcloud services enable cloudbilling.googleapis.com
 gcloud services enable iam.googleapis.com
 gcloud services enable compute.googleapis.com
 gcloud services enable cloudkms.googleapis.com
+gcloud services enable dns.googleapis.com
 
 gcloud iam service-accounts create terraform \
 --display-name "Terraform admin account"

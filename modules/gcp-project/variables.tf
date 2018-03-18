@@ -47,6 +47,7 @@ variable "project_services" {
     "container.googleapis.com",
     "containerregistry.googleapis.com",
     "cloudkms.googleapis.com",
+    "dns.googleapis.com",
   ]
 }
 
@@ -73,5 +74,12 @@ variable "dns_zones" {
   description = "External DNS zones that will be used for this environment"
 
   # Example: {"prod-internal-zone" = "prod.example.com."}
+  default = {}
+}
+
+variable "ingress_domains" {
+  type = "map"
+
+  # Example: {"prod-internal-zone" = "*.prod.example.com."}
   default = {}
 }
