@@ -141,3 +141,23 @@ resource "google_compute_firewall" "allow_pods_internal" {
     ports    = ["0-65535"]
   }
 }
+
+# ------------------------------------------------------------------------------
+# DNS ZONES AND EXTERNAL IP ADDRESS
+# ------------------------------------------------------------------------------
+
+resource "google_compute_global_address" "ingress_controller_ip" {
+  count   = "${var.create_static_ip_address ? 1 : 0}"
+  project = "${google_project.project.project_id}"
+
+  name       = "ingress-controller-ip"
+  ip_version = "IPV4"
+}
+
+resource "google_dns_managed_zone" "dns_zones" {
+  count   = "${length(var.dns_zones) > 0 ? length(var.dns_zones) : 0}"
+  project = "${google_project.project.project_id}"
+
+  name     = "${element(keys(var.dns_zones), count.index)}"
+  dns_name = "${element(values(var.dns_zones), count.index)}"
+}
