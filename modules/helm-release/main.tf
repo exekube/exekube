@@ -39,6 +39,8 @@ resource "helm_release" "release" {
 
   name = "${var.release_spec["release_name"]}"
 
+  namespace = "${var.release_spec["namespace"]}"
+
   values = [
     "${data.template_file.release_values.rendered}",
   ]
@@ -48,8 +50,7 @@ resource "helm_release" "release" {
   disable_webhooks = false
   timeout          = 500
   reuse            = true
-
-  recreate_pods = false
+  recreate_pods    = false
 
   provisioner "local-exec" {
     command = "${var.post_hook["command"]}"

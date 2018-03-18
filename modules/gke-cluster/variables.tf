@@ -23,5 +23,5 @@ variable "initial_node_count" {
 }
 
 variable "kubernetes_version" {
-  default = "1.8.7-gke.1"
+  default = "1.8.9-gke.1"
 }

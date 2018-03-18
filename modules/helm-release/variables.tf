@@ -2,6 +2,8 @@
 # Pre-hook and post-hook, to be run before creation and after release creation
 # ------------------------------------------------------------------------------
 
+variable "xk_live_dir" {}
+
 variable "pre_hook" {
   type = "map"
 
@@ -28,6 +30,7 @@ variable "release_spec" {
   default = {
     enabled        = false
     chart_repo     = ""
+    namespace      = "default"
     chart_name     = ""
     chart_version  = ""
     release_name   = ""
@@ -40,8 +43,6 @@ variable "release_spec" {
 # ------------------------------------------------------------------------------
 # Kubernetes secret inputs
 # ------------------------------------------------------------------------------
-
-variable "xk_live_dir" {}
 
 variable "ingress_basic_auth" {
   type = "map"

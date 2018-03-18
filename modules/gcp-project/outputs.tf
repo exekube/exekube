@@ -7,7 +7,7 @@ output "network_name" {
 }
 
 output "static_ip_address" {
-  value = "${google_compute_global_address.ingress_controller_ip.0.address}"
+  value = "${google_compute_address.ingress_controller_ip.0.address}"
 }
 
 output "dns_zones" {

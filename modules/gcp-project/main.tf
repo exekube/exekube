@@ -146,12 +146,13 @@ resource "google_compute_firewall" "allow_pods_internal" {
 # DNS ZONES AND EXTERNAL IP ADDRESS
 # ------------------------------------------------------------------------------
 
-resource "google_compute_global_address" "ingress_controller_ip" {
+resource "google_compute_address" "ingress_controller_ip" {
   count   = "${var.create_static_ip_address ? 1 : 0}"
   project = "${google_project.project.project_id}"
 
-  name       = "ingress-controller-ip"
-  ip_version = "IPV4"
+  name         = "ingress-controller-ip"
+  region       = "europe-west1"
+  address_type = "EXTERNAL"
 }
 
 resource "google_dns_managed_zone" "dns_zones" {
@@ -170,5 +171,5 @@ resource "google_dns_record_set" "ingress_domains" {
 
   managed_zone = "${element(keys(var.ingress_domains), count.index)}"
   name         = "${element(values(var.ingress_domains), count.index)}"
-  rrdatas      = ["${google_compute_global_address.ingress_controller_ip.0.address}"]
+  rrdatas      = ["${google_compute_address.ingress_controller_ip.0.address}"]
 }
