@@ -18,7 +18,7 @@ variable "node_type" {
   default = "n1-standard-2"
 }
 
-varialble "initial_node_count" {
+variable "initial_node_count" {
   default = 2
 }
 
