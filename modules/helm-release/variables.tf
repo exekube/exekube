@@ -2,7 +2,7 @@
 # Pre-hook and post-hook, to be run before creation and after release creation
 # ------------------------------------------------------------------------------
 
-variable "xk_live_dir" {}
+variable "secrets_dir" {}
 
 variable "pre_hook" {
   type = "map"

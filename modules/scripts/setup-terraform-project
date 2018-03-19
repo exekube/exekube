@@ -49,8 +49,6 @@ gcloud projects create $TF_VAR_terraform_project \
 --organization $TF_VAR_organization_id \
 --set-as-default
 
-gcloud config set project $TF_VAR_terraform_project
-
 gcloud beta billing projects link $TF_VAR_terraform_project \
 --billing-account $TF_VAR_billing_id
 

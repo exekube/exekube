@@ -74,14 +74,14 @@ data "local_file" "basic_auth_username" {
   count      = "${var.release_spec["enabled"] && var.ingress_basic_auth["secret_name"] != "" ? 1 : 0}"
   depends_on = ["null_resource.pre_hook"]
 
-  filename = "${format("%s/secrets/%s", var.xk_live_dir, var.ingress_basic_auth["username"])}"
+  filename = "${format("%s/%s", var.secrets_dir, var.ingress_basic_auth["username"])}"
 }
 
 data "local_file" "basic_auth_password" {
   count      = "${var.release_spec["enabled"] && var.ingress_basic_auth["secret_name"] != "" ? 1 : 0}"
   depends_on = ["null_resource.pre_hook"]
 
-  filename = "${format("%s/secrets/%s", var.xk_live_dir, var.ingress_basic_auth["password"])}"
+  filename = "${format("%s/%s", var.secrets_dir, var.ingress_basic_auth["password"])}"
 }
 
 resource "null_resource" "ingress_basic_auth" {
