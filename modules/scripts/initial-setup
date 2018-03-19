@@ -2,14 +2,57 @@
 
 set -ex
 
-gcloud projects create ${TF_VAR_terraform_project} \
---organization ${TF_VAR_gcp_org_id} \
+C_RED='\033[0;31m'
+C_GREEN='\033[0;32m'
+NC='\033[0;0m'
+
+printUsage() {
+    echo "Required environment variables:"
+    echo "  TF_VAR_terraform_project:      Google Project ID"
+    echo "  TF_VAR_terraform_credentials:  File where to put the service account key"
+    echo "  TF_VAR_terraform_remote_state: Name for the remote state bucket"
+    echo "  TF_VAR_organization_id:        Organization ID under which to create the project"
+    echo "  TF_VAR_billing_id:             GCP Billing ID to use for the project"
+    echo ""
+}
+printUsageAndExit() {
+    printUsage
+    exit
+}
+
+if [ "$TF_VAR_terraform_project" = "" ]; then
+    echo -e "${C_RED}Variable TF_VAR_billing_id not defined!${NC}"
+    printUsageAndExit
+fi
+
+if [ "$TF_VAR_terraform_credentials" = "" ]; then
+    echo -e "${C_RED}Variable TF_VAR_terraform_credentials not defined!${NC}"
+    printUsageAndExit
+fi
+
+if [ "$TF_VAR_terraform_remote_state" = "" ]; then
+    echo -e "${C_RED}Variable TF_VAR_terraform_remote_state not defined!${NC}"
+    printUsageAndExit
+fi
+
+if [ "$TF_VAR_organization_id" = "" ]; then
+    echo -e "${C_RED}Variable TF_VAR_organization_id not defined!${NC}"
+    printUsageAndExit
+fi
+
+if [ "$TF_VAR_billing_id" = "" ]; then
+    echo -e "${C_RED}Variable TF_VAR_billing_id not defined!${NC}"
+    printUsageAndExit
+fi
+
+gcloud projects create $TF_VAR_terraform_project \
+--organization $TF_VAR_organization_id \
 --set-as-default
 
-gcloud config set project ${TF_VAR_terraform_project}
+gcloud config set project $TF_VAR_terraform_project
 
-gcloud beta billing projects link ${TF_VAR_terraform_project} \
---billing-account ${TF_VAR_gcp_billing_id}
+gcloud beta billing projects link $TF_VAR_terraform_project \
+--billing-account $TF_VAR_billing_id
 
 gcloud services enable cloudresourcemanager.googleapis.com
 gcloud services enable cloudbilling.googleapis.com
@@ -22,23 +65,25 @@ gcloud services enable dns.googleapis.com
 gcloud iam service-accounts create terraform \
 --display-name "Terraform admin account"
 
-gcloud iam service-accounts keys create ${TF_VAR_terraform_credentials} \
---iam-account terraform@${TF_VAR_terraform_project}.iam.gserviceaccount.com
+gcloud iam service-accounts keys create $TF_VAR_terraform_credentials \
+--iam-account terraform@$TF_VAR_terraform_project.iam.gserviceaccount.com
 
-gcloud projects add-iam-policy-binding ${TF_VAR_terraform_project} \
---member serviceAccount:terraform@${TF_VAR_terraform_project}.iam.gserviceaccount.com \
+gcloud projects add-iam-policy-binding $TF_VAR_terraform_project \
+--member serviceAccount:terraform@$TF_VAR_terraform_project.iam.gserviceaccount.com \
 --role roles/viewer
 
-gcloud projects add-iam-policy-binding ${TF_VAR_terraform_project} \
---member serviceAccount:terraform@${TF_VAR_terraform_project}.iam.gserviceaccount.com \
+gcloud projects add-iam-policy-binding $TF_VAR_terraform_project \
+--member serviceAccount:terraform@$TF_VAR_terraform_project.iam.gserviceaccount.com \
 --role roles/storage.admin
 
-gcloud organizations add-iam-policy-binding ${TF_VAR_gcp_org_id} \
---member serviceAccount:terraform@${TF_VAR_terraform_project}.iam.gserviceaccount.com \
+gcloud organizations add-iam-policy-binding $TF_VAR_organization_id \
+--member serviceAccount:terraform@$TF_VAR_terraform_project.iam.gserviceaccount.com \
 --role roles/resourcemanager.projectCreator
 
-gcloud organizations add-iam-policy-binding ${TF_VAR_gcp_org_id} \
---member serviceAccount:terraform@${TF_VAR_terraform_project}.iam.gserviceaccount.com \
+gcloud organizations add-iam-policy-binding $TF_VAR_organization_id \
+--member serviceAccount:terraform@$TF_VAR_terraform_project.iam.gserviceaccount.com \
 --role roles/billing.user
 
-gsutil mb -p ${TF_VAR_terraform_project} gs://${TF_VAR_terraform_remote_state}
+gsutil mb -p $TF_VAR_terraform_project gs://$TF_VAR_terraform_remote_state
+
+echo -e "${C_GREEN}Finished!${NC}"
