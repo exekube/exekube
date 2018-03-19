@@ -93,7 +93,7 @@ sleep 5 \
 --clusterrole cluster-admin \
 --serviceaccount=kube-system:tiller \
 && helm init --service-account tiller \
-&& sleep 15 \
+&& sleep 20 \
 && helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com
 EOF
   }
