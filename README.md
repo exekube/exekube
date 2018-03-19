@@ -42,9 +42,9 @@ The framework offers you:
 
 ### 0.2 — upcoming release
 
-- [ ] Initial setup is only concerned with making Terraform functional
-- [ ] A more comprehensive `gcp-kubernetes` module to replace `gke-cluster`
-- [ ] Secrets are stored, rotated, and distributed in a secure way
+- [x] Initial setup is only concerned with making Terraform functional
+- [x] Resources that don't cost anything are managed via a *persistent* Terraform module `gcp-project`
+- [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS, storage in a Cloud Storage bucket
 
 ### 1.0 — production-ready release
 
