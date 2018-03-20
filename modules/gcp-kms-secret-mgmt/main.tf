@@ -25,7 +25,7 @@ provider "google" {
 resource "google_storage_bucket" "secret_store" {
   count = "${length(var.crypto_keys)}"
 
-  name          = "${var.project_id}-${element(keys(var.crypto_keys), count.index)}-secrets"
+  name          = "${var.project_id}-${element(var.crypto_keys, count.index)}-secrets"
   force_destroy = true
   storage_class = "REGIONAL"
   location      = "${var.secret_store_location}"
@@ -43,7 +43,7 @@ resource "google_kms_key_ring" "key_ring" {
 resource "google_kms_crypto_key" "crypto_keys" {
   count = "${length(var.crypto_keys)}"
 
-  name     = "${element(keys(var.crypto_keys), count.index)}"
+  name     = "${element(var.crypto_keys, count.index)}"
   key_ring = "${google_kms_key_ring.key_ring.id}"
 }
 
@@ -76,10 +76,11 @@ resource "google_kms_key_ring_iam_binding" "keyring_users" {
 resource "google_kms_crypto_key_iam_binding" "cryptokey_users" {
   count = "${length(var.crypto_keys)}"
 
-  crypto_key_id = "${element(google_kms_crypto_key.crypto_keys.*.id, count.index)}"
+  # crypto_key_id = "${element(google_kms_crypto_key.crypto_keys.*.id, count.index)}"
+  crypto_key_id = "${var.project_id}/global/${google_kms_key_ring.key_ring.name}/${element(var.crypto_keys, count.index)}"
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
 
-  members = "${split(",", lookup(var.crypto_keys, element(keys(var.crypto_keys), count.index)))}"
+  members = "${split(",", element(var.crypto_keys_users, count.index))}"
 }
 
 # ------------------------------------------------------------------------------
@@ -120,12 +121,16 @@ resource "google_storage_bucket_iam_binding" "all_bucket_users" {
 }
 
 resource "google_storage_bucket_iam_binding" "individual_bucket_users" {
-  count      = "${length(var.crypto_keys)}"
-  depends_on = ["google_project_iam_custom_role.storage_viewer_creator"]
+  count = "${length(var.crypto_keys)}"
 
-  bucket = "${var.project_id}-${element(keys(var.crypto_keys), count.index)}-secrets"
+  depends_on = [
+    "google_project_iam_custom_role.storage_viewer_creator",
+    "google_storage_bucket.secret_store",
+  ]
+
+  bucket = "${var.project_id}-${element(var.crypto_keys, count.index)}-secrets"
 
   role = "projects/${var.project_id}/roles/${google_project_iam_custom_role.storage_viewer_creator.role_id}"
 
-  members = "${split(",", lookup(var.crypto_keys, element(keys(var.crypto_keys), count.index)))}"
+  members = "${split(",", element(var.crypto_keys_users, count.index))}"
 }

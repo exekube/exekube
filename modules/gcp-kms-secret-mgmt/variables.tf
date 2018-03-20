@@ -30,11 +30,17 @@ variable "keyring_users" {
 }
 
 variable "crypto_keys" {
-  type        = "map"
-  description = "A map for setting cryptographic keys and access to them"
+  type        = "list"
+  description = "A map for setting cryptographic keys"
 
   # Format:
   # crypto_key = "comma-separated crypto_key users"
   # "team1" = "user:jon@example.com,user:anna@example.com,user:maria@example.com"
-  default = {}
+  default = []
+}
+
+variable "crypto_keys_users" {
+  type = "list"
+
+  default = []
 }
