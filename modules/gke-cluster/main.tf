@@ -88,11 +88,10 @@ sleep 5 \
 --project "${var.project_id}" \
 \
 \
-&& kubectl -n kube-system create sa tiller \
-&& kubectl create clusterrolebinding tiller \
---clusterrole cluster-admin \
---serviceaccount=kube-system:tiller \
-&& helm init --service-account tiller \
+&& kubectl apply -f ${path.module}/tiller.yaml \
+&& helm init \
+--service-account tiller \
+--override 'spec.template.spec.containers[0].command'='{/tiller,--storage=secret}' \
 && sleep 20 \
 && helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com
 EOF
