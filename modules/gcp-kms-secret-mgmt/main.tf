@@ -45,6 +45,10 @@ resource "google_kms_crypto_key" "crypto_keys" {
 
   name     = "${element(var.crypto_keys, count.index)}"
   key_ring = "${google_kms_key_ring.key_ring.id}"
+
+  provisioner "local-exec" {
+    command = "sleep 10"
+  }
 }
 
 # ------------------------------------------------------------------------------
