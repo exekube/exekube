@@ -2,7 +2,7 @@
 
 [![Docker Automated build](https://img.shields.io/badge/hub.docker.com-automated-blue.svg?style=flat-square)](https://hub.docker.com/r/ilyasotkov/exekube/)
 
-Exekube is an "Infrastructure as Code" modular framework for managing the whole lifecycle of Kubernetes-based projects. Exekube is built with Terraform, Terragrunt, and Helm as its developer interfaces.
+Exekube is a modular automation framework for managing the whole lifecycle of Kubernetes-based cloud projects.
 
 ---
 
@@ -14,22 +14,25 @@ Quick Links:
 
 ## Motivation
 
-Using many command line tools and GUIs to manage cloud resources (`gcloud`, `aws`, `kops`) and Kubernetes resources (`kubectl`, `helm`) is tedious and error-prone.
-
-Terraform is a very flexible declarative tool with support for a [large number](https://www.terraform.io/docs/providers/index.html) of cloud providers and can replace all of the said command line tools.
-
-Exekube aims to take advantage of Terraform's power and give us a "sane default" state for managing everything related to Kubernetes **as declarative code** in a fully automated, git-based workflow.
+- Using many command line tools and GUIs to manage cloud resources (`gcloud`, `aws`, `kops`) and Kubernetes resources (`kubectl`, `helm`) is tedious and error-prone
+- Terraform is a very flexible declarative tool with support for a [large number](https://www.terraform.io/docs/providers/index.html) of cloud providers and can replace all of the said command line tools
+- Exekube aims to take advantage of Terraform's power and give us a "sane default" state for managing everything related to Kubernetes as declarative code in an **automated, Git-based workflow** following the "Infrastructure as Code" philosophy
 
 ## Features
 
-The framework offers you:
+The framework allows you:
 
-- Full control over your cloud infrastructure (via Terraform)
-- Full control over your container orchestration (via Terraform + Helm)
-- Fully automated one-command-to-deploy experience
-- Modular design and declarative model of management
-- Freedom to choose a cloud provider to host Kubernetes
-- Continuous integration (CI) facilities out of the box
+- Control your cloud infrastructure as declarative code via Terraform
+- Control your container orchestration as decalrative code via Terraform and Helm
+- Create a production-grade clusters and deploy all Kubernetes resources **via one command**:
+    ```sh
+    xk up
+    ```
+- Destroy all cloud and Kubernetes resources via one command (to avoid wasting money in non-production environments):
+    ```sh
+    xk down
+    ```
+- Freedom to choose a cloud provider to host Kubernetes (only Google Cloud Platform as of 0.2)
 
 ## Roadmap
 
