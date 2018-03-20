@@ -1,3 +1,13 @@
+terraform {
+  backend "gcs" {}
+}
+
+provider "local" {}
+
+provider "helm" {}
+
+provider "kubernetes" {}
+
 # ------------------------------------------------------------------------------
 # Run a pre_hook via the null_resource provisioner
 # ------------------------------------------------------------------------------
@@ -29,6 +39,8 @@ resource "helm_release" "release" {
 
   name = "${var.release_spec["release_name"]}"
 
+  namespace = "${var.release_spec["namespace"]}"
+
   values = [
     "${data.template_file.release_values.rendered}",
   ]
@@ -38,8 +50,7 @@ resource "helm_release" "release" {
   disable_webhooks = false
   timeout          = 500
   reuse            = true
-
-  recreate_pods = false
+  recreate_pods    = false
 
   provisioner "local-exec" {
     command = "${var.post_hook["command"]}"
@@ -63,14 +74,14 @@ data "local_file" "basic_auth_username" {
   count      = "${var.release_spec["enabled"] && var.ingress_basic_auth["secret_name"] != "" ? 1 : 0}"
   depends_on = ["null_resource.pre_hook"]
 
-  filename = "${format("%s/secrets/%s", var.xk_live_dir, var.ingress_basic_auth["username"])}"
+  filename = "${format("%s/%s", var.secrets_dir, var.ingress_basic_auth["username"])}"
 }
 
 data "local_file" "basic_auth_password" {
   count      = "${var.release_spec["enabled"] && var.ingress_basic_auth["secret_name"] != "" ? 1 : 0}"
   depends_on = ["null_resource.pre_hook"]
 
-  filename = "${format("%s/secrets/%s", var.xk_live_dir, var.ingress_basic_auth["password"])}"
+  filename = "${format("%s/%s", var.secrets_dir, var.ingress_basic_auth["password"])}"
 }
 
 resource "null_resource" "ingress_basic_auth" {

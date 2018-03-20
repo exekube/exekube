@@ -34,3 +34,4 @@ Exekube is an "Infrastructure as Code" modular framework for managing the whole 
 - [Use HashiCorp Vault to manage secrets](/misc/vault-integration)
 - [Read the project's feature tracker](/misc/feature-tracker)
 - [Managing secrets in Exekube](/misc/secrets)
+- [Add audit config for KMS and secret store bucket](/misc/add-audit-config)
