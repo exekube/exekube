@@ -37,10 +37,12 @@ resource "tls_self_signed_cert" "root" {
   }
 }
 
+/*
 resource "local_file" "ca_key" {
   filename = "${var.secrets_dir}/${var.tiller_namespace}/helm-tiller/ca.key.pem"
   content  = "${tls_private_key.root.private_key_pem}"
 }
+*/
 
 resource "local_file" "ca_cert" {
   filename = "${var.secrets_dir}/${var.tiller_namespace}/helm-tiller/ca.cert.pem"
