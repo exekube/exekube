@@ -1,8 +1,24 @@
 # ------------------------------------------------------------------------------
-# Pre-hook and post-hook, to be run before creation and after release creation
+# Helm TLS
 # ------------------------------------------------------------------------------
 
 variable "secrets_dir" {}
+
+variable "enable_tls" {
+  default = true
+}
+
+variable "tiller_namespace" {
+  default = "kube-system"
+}
+
+variable "custom_tls_dir" {
+  default = ""
+}
+
+# ------------------------------------------------------------------------------
+# Pre-hook and post-hook, to be run before creation and after release creation
+# ------------------------------------------------------------------------------
 
 variable "pre_hook" {
   type = "map"

@@ -4,7 +4,20 @@ terraform {
 
 provider "local" {}
 
-provider "helm" {}
+locals {
+  tls_dir = "${var.custom_tls_dir == "" ? var.tiller_namespace : var.custom_tls_dir}"
+}
+
+provider "helm" {
+  namespace  = "${var.tiller_namespace}"
+  enable_tls = "${var.enable_tls}"
+  insecure   = true
+  debug      = true
+
+  ca_certificate     = "${file("${var.secrets_dir}/${local.tls_dir}/helm-tiller/ca.cert.pem")}"
+  client_certificate = "${file("${var.secrets_dir}/${local.tls_dir}/helm-tiller/helm.cert.pem")}"
+  client_key         = "${file("${var.secrets_dir}/${local.tls_dir}/helm-tiller/helm.key.pem")}"
+}
 
 provider "kubernetes" {}
 

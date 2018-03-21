@@ -84,16 +84,8 @@ resource "google_container_cluster" "cluster" {
 sleep 5 \
 && gcloud auth activate-service-account --key-file ${var.terraform_credentials} \
 && gcloud container clusters get-credentials ${var.cluster_name} \
---zone "${var.main_compute_zone}" \
---project "${var.project_id}" \
-\
-\
-&& kubectl apply -f ${path.module}/tiller.yaml \
-&& helm init \
---service-account tiller \
---override 'spec.template.spec.containers[0].command'='{/tiller,--storage=secret}' \
-&& sleep 20 \
-&& helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com
+--zone ${var.main_compute_zone} \
+--project ${var.project_id}
 EOF
   }
 }
