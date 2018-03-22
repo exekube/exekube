@@ -14,13 +14,22 @@ provider "tls" {}
 # ------------------------------------------------------------------------------
 
 locals {
-  tls_dir = "${var.custom_tls_dir == "" ? var.tiller_namespace : var.custom_tls_dir}"
+  tls_dir       = "${var.custom_tls_dir == "" ? var.tiller_namespace : var.custom_tls_dir}"
+  rbac_filename = "${var.tiller_namespace == "kube-system" ? "rbac-cluster.yaml" : "rbac-ns.yaml"}"
+}
+
+data "template_file" "tiller_rbac" {
+  template = "${file("${format("%s/%s", path.module, local.rbac_filename)}")}"
+
+  vars {
+    tiller_namespace = "${var.tiller_namespace}"
+  }
 }
 
 resource "null_resource" "install_tiller" {
   provisioner "local-exec" {
     command = <<EOF
-kubectl apply -f ${path.module}/tiller.yaml \
+echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f - \
 && helm init \
 --tiller-namespace ${var.tiller_namespace} \
 --service-account tiller \
@@ -30,7 +39,7 @@ kubectl apply -f ${path.module}/tiller.yaml \
 --tiller-tls-cert=${local_file.tiller_cert.filename} \
 --tiller-tls-key=${local_file.tiller_key.filename} \
 --override 'spec.template.spec.containers[0].command'='{/tiller,--storage=secret}' \
-&& sleep 30 \
+&& sleep 60 \
 && helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com \
 && helm repo update
 EOF
@@ -41,6 +50,7 @@ EOF
 
     command = <<EOF
 helm reset --force \
+--tiller-namespace ${var.tiller_namespace} \
 --tls --tls-verify \
 --tls-ca-cert=${local_file.ca_cert.filename} \
 --tls-cert=${local_file.helm_cert.filename} \
