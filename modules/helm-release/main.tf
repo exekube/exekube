@@ -84,7 +84,8 @@ resource "null_resource" "pre_hook" {
 # ------------------------------------------------------------------------------
 
 resource "null_resource" "kubernetes_secrets" {
-  count = "${length(var.kubernetes_secrets}"
+  count      = "${length(var.kubernetes_secrets})"
+  depends_on = ["helm_release.release"]
 
   provisioner "local-exec" {
     command = "kubectl apply -f ${var.secrets_dir}/${element(var.kubernetes_secrets, count.index)}"
