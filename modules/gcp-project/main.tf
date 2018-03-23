@@ -22,6 +22,10 @@ resource "google_project_service" "services" {
   disable_on_destroy = false
 
   service = "${element(var.project_services, count.index)}"
+
+  provisioner "local-exec" {
+    command = "sleep 20"
+  }
 }
 
 # ------------------------------------------------------------------------------
