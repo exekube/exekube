@@ -39,27 +39,18 @@ variable "release_spec" {
 }
 
 # ------------------------------------------------------------------------------
-# Pre-hook and post-hook, to be run before creation and after release creation
+# Create a Kubernetes secret
 # ------------------------------------------------------------------------------
 
-variable "pre_hook" {
-  type = "map"
-
-  default = {
-    command = "echo hello from pre_hook"
-  }
-}
-
-variable "post_hook" {
-  type = "map"
-
-  default = {
-    command = "echo hello from post_hook"
-  }
+variable "kubernetes_secrets" {
+  description = "A list of paths from $TF_VAR_secrets_dir to `kubectl apply`"
+  default     = []
 }
 
 # ------------------------------------------------------------------------------
-# Allows to easily create a basic auth secret to use for ingress
+# Create secret for ingress basic authenticaion
+# Two separate files instead of one YAML used to integrate
+# with docker-registry and chartmuseum charts
 # ------------------------------------------------------------------------------
 
 variable "ingress_basic_auth" {
@@ -69,5 +60,27 @@ variable "ingress_basic_auth" {
     username    = ""
     password    = ""
     secret_name = ""
+  }
+}
+
+# ------------------------------------------------------------------------------
+# Pre-hook and post-hook, to be run before creation and after release creation
+# ------------------------------------------------------------------------------
+
+variable "pre_hook" {
+  type        = "map"
+  description = "Raw bash command to run before release creation"
+
+  default = {
+    command = "echo hello from pre_hook"
+  }
+}
+
+variable "post_hook" {
+  type        = "map"
+  description = "Raw bash command to run after release creation"
+
+  default = {
+    command = "echo hello from post_hook"
   }
 }

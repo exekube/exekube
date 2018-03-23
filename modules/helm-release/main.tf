@@ -22,18 +22,6 @@ provider "helm" {
 provider "kubernetes" {}
 
 # ------------------------------------------------------------------------------
-# Run a pre_hook via the null_resource provisioner
-# ------------------------------------------------------------------------------
-
-resource "null_resource" "pre_hook" {
-  count = "${var.release_spec["enabled"]}"
-
-  provisioner "local-exec" {
-    command = "${var.pre_hook["command"]}"
-  }
-}
-
-# ------------------------------------------------------------------------------
 # Helm release
 # ------------------------------------------------------------------------------
 
@@ -76,6 +64,36 @@ data "template_file" "release_values" {
 
   vars {
     domain_name = "${var.release_spec["domain_name"]}"
+  }
+}
+
+# ------------------------------------------------------------------------------
+# Run a pre_hook via the null_resource provisioner
+# ------------------------------------------------------------------------------
+
+resource "null_resource" "pre_hook" {
+  count = "${var.release_spec["enabled"]}"
+
+  provisioner "local-exec" {
+    command = "${var.pre_hook["command"]}"
+  }
+}
+
+# ------------------------------------------------------------------------------
+# Create a kubernetes secret
+# ------------------------------------------------------------------------------
+
+resource "null_resource" "kubernetes_secrets" {
+  count = "${length(var.kubernetes_secrets}"
+
+  provisioner "local-exec" {
+    command = "kubectl apply -f ${var.secrets_dir}/${element(var.kubernetes_secrets, count.index)}"
+  }
+
+  provisioner "local-exec" {
+    when = "destroy"
+
+    command = "kubectl delete -f ${var.secrets_dir}/${element(var.kubernetes_secrets, count.index)}"
   }
 }
 
