@@ -5,11 +5,11 @@ terraform {
 provider "local" {}
 
 locals {
-  tls_dir = "${var.custom_tls_dir == "" ? var.tiller_namespace : var.custom_tls_dir}"
+  tls_dir = "${var.custom_tls_dir == "" ? var.release_spec["tiller_namespace"] : var.custom_tls_dir}"
 }
 
 provider "helm" {
-  namespace  = "${var.tiller_namespace}"
+  namespace  = "${var.release_spec["tiller_namespace"]}"
   enable_tls = true
   insecure   = false
   debug      = true

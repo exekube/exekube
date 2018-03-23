@@ -8,10 +8,6 @@ variable "secrets_dir" {
   description = "The directory for storing secrets for the project"
 }
 
-variable "tiller_namespace" {
-  default = "kube-system"
-}
-
 # Set this if TLS assets are in directory other than ${tiller_namespace}
 # i.e. ${secrets_dir}/${custom_tls_dir}/helm-tiller/*.pem
 variable "custom_tls_dir" {
@@ -26,13 +22,14 @@ variable "release_spec" {
   type = "map"
 
   default = {
-    enabled        = false
-    chart_repo     = ""
-    namespace      = "default"
-    chart_name     = ""
-    chart_version  = ""
-    release_name   = ""
-    release_values = "values.yaml"
+    enabled          = false
+    tiller_namespace = "kube-system"
+    chart_repo       = ""
+    namespace        = "default"
+    chart_name       = ""
+    chart_version    = ""
+    release_name     = ""
+    release_values   = "values.yaml"
 
     domain_name = ""
   }
