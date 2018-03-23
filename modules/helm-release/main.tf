@@ -11,7 +11,7 @@ locals {
 provider "helm" {
   namespace  = "${var.tiller_namespace}"
   enable_tls = "${var.enable_tls}"
-  insecure   = true
+  insecure   = false
   debug      = true
 
   ca_certificate     = "${file("${var.secrets_dir}/${local.tls_dir}/helm-tiller/ca.cert.pem")}"
