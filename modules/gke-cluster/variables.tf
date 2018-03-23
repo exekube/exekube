@@ -1,9 +1,25 @@
-variable "terraform_credentials" {}
-variable "project_id" {}
-variable "network_name" {}
+# ------------------------------------------------------------------------------
+# REQUIRED VARIABLES
+# ------------------------------------------------------------------------------
+
+variable "project_id" {
+  description = "Project where resources will be created"
+}
+
+variable "serviceaccount_key" {
+  description = "Service account key for the project"
+}
+
+# ------------------------------------------------------------------------------
+# OPTIONAL VARIABLES
+# ------------------------------------------------------------------------------
 
 variable "cluster_name" {
   default = "k8s-cluster"
+}
+
+variable "network_name" {
+  default = "network"
 }
 
 variable "main_compute_zone" {

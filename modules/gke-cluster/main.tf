@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# TERRAFORM REMOTE STATE BACKEND
+# TERRAFORM / PROVIDER CONFIG
 # ------------------------------------------------------------------------------
 
 terraform {
@@ -7,21 +7,16 @@ terraform {
   backend "gcs" {}
 }
 
-# ------------------------------------------------------------------------------
-# TERRAFORM PROVIDERS
-# ------------------------------------------------------------------------------
-
 provider "google" {
-  credentials = "${var.terraform_credentials}"
+  project     = "${var.project_id}"
+  credentials = "${var.serviceaccount_key}"
 }
 
 # ------------------------------------------------------------------------------
-# GKE KUBERNETES CLUSTER AND NODE POOL
+# GOOGLE KUBERNTES ENGINE CLUSTER
 # ------------------------------------------------------------------------------
 
 resource "google_container_cluster" "cluster" {
-  project = "${var.project_id}"
-
   name = "${var.cluster_name}"
   zone = "${var.main_compute_zone}"
 
@@ -81,8 +76,7 @@ resource "google_container_cluster" "cluster" {
 
   provisioner "local-exec" {
     command = <<EOF
-sleep 5 \
-&& gcloud auth activate-service-account --key-file ${var.terraform_credentials} \
+gcloud auth activate-service-account --key-file ${var.serviceaccount_key} \
 && gcloud container clusters get-credentials ${var.cluster_name} \
 --zone ${var.main_compute_zone} \
 --project ${var.project_id}
