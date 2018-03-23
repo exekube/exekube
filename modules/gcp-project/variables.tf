@@ -27,10 +27,6 @@ variable "project_services" {
   ]
 }
 
-# ------------------------------------------------------------------------------
-# NETWORKING RESOURCES
-# ------------------------------------------------------------------------------
-
 variable "cluster_subnets" {
   type        = "map"
   description = "A map of index to a comma separated list of `region,nodes-subnet,pods-subnet,services-subnet` string."

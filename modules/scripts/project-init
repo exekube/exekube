@@ -41,26 +41,26 @@ if [ "$BILLING_ID" = "" ]; then
 fi
 
 echo -e "${C_BLUE}Creating project $TF_VAR_project_id...${NC}"
-gcloud --quiet projects create $TF_VAR_project_id \
+gcloud projects create $TF_VAR_project_id \
 --organization $ORGANIZATION_ID \
 --set-as-default
 
 echo -e "${C_BLUE}Enabling billing for the project...${NC}"
-gcloud --quiet beta billing projects link $TF_VAR_project_id \
+gcloud beta billing projects link $TF_VAR_project_id \
 --billing-account $BILLING_ID
 
 SA_NAME=owner
 echo -e "${C_BLUE}Creating service account...${NC}"
-gcloud --quiet iam service-accounts create $SA_NAME \
+gcloud iam service-accounts create $SA_NAME \
 --display-name "Project owner service account"
 
 echo -e "${C_BLUE}Setting permissions for the service account...${NC}"
-gcloud --quiet projects add-iam-policy-binding $TF_VAR_project_id \
+gcloud projects add-iam-policy-binding $TF_VAR_project_id \
 --member serviceAccount:$SA_NAME@$TF_VAR_project_id.iam.gserviceaccount.com \
 --role roles/owner
 
 echo -e "${C_BLUE}Creating service account key...${NC}"
-gcloud --quiet iam service-accounts keys create $TF_VAR_serviceaccount_key \
+gcloud iam service-accounts keys create $TF_VAR_serviceaccount_key \
 --iam-account $SA_NAME@$TF_VAR_project_id.iam.gserviceaccount.com
 
 TFSTATE_BUCKET=$TF_VAR_project_id-tfstate

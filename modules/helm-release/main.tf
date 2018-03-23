@@ -10,7 +10,7 @@ locals {
 
 provider "helm" {
   namespace  = "${var.tiller_namespace}"
-  enable_tls = "${var.enable_tls}"
+  enable_tls = true
   insecure   = false
   debug      = true
 

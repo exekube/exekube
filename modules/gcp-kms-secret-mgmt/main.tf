@@ -13,7 +13,7 @@ provider "google" {
 }
 
 # ------------------------------------------------------------------------------
-# KEY RING == FOLDER FOR ALL CRYPTO KEYS
+# PROJECT KEY RING
 # ------------------------------------------------------------------------------
 
 resource "google_kms_key_ring" "key_ring" {
@@ -26,7 +26,7 @@ resource "google_kms_key_ring" "key_ring" {
 }
 
 # ------------------------------------------------------------------------------
-# CRYPTO KEYS FOR ENCRYPTION AND GCS BUCKET FOR STORAGE
+# CRYPTO KEYS AND STORAGE BUCKETS
 # ------------------------------------------------------------------------------
 
 resource "google_kms_crypto_key" "encryption_keys" {
@@ -46,7 +46,7 @@ resource "google_storage_bucket" "gcs_buckets" {
 }
 
 # ------------------------------------------------------------------------------
-# PROJECT OWNER HAS ADMIN PERMISSIONS, ADDITIONAL PERMISSIONS ARE ADDED DIRECTLY
+# TEMPLATE FOR GIVING GRANULAR ACCESS
 # ------------------------------------------------------------------------------
 
 
