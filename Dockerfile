@@ -33,7 +33,8 @@ RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cl
         && gcloud config set metrics/environment github_docker_image \
         && gcloud --version \
         && gcloud components install alpha beta kubectl \
-        && gcloud components update
+        && gcloud components update \
+        && gcloud config set component_manager/disable_update_check true
 
 RUN curl -L -o helm.tar.gz \
         https://kubernetes-helm.storage.googleapis.com/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
