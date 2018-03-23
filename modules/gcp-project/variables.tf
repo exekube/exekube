@@ -1,42 +1,18 @@
 # ------------------------------------------------------------------------------
-# TERRAFORM ADMIN PROJECT
+# REQUIRED VARIABLES
 # ------------------------------------------------------------------------------
 
-variable "terraform_credentials" {
-  description = "Terraform service account key to use for initial setup"
+variable "project_id" {
+  description = "Project where resources will be created"
+}
+
+variable "serviceaccount_key" {
+  description = "Service account key for the project"
 }
 
 # ------------------------------------------------------------------------------
-# PRODUCT ENVIRONMENT PROJECT
+# OPTIONAL VARIABLES
 # ------------------------------------------------------------------------------
-
-/*
-variable "default_region" {
-  description = "default GCP region"
-  default     = "europe-west1"
-}
-
-variable "default_zone" {
-  description = "default GCP zone"
-  default     = "europe-west1-d"
-}
-*/
-
-variable "product_name" {
-  description = "Base name used for creating new projects"
-}
-
-variable "product_env" {
-  description = "The environment prefix for the project [ dev | stg | test | prod ]"
-}
-
-variable "organization_id" {
-  description = "Organization under which the project will be created"
-}
-
-variable "billing_id" {
-  description = "The billing id for the project"
-}
 
 variable "project_services" {
   type        = "list"
@@ -50,10 +26,6 @@ variable "project_services" {
     "dns.googleapis.com",
   ]
 }
-
-# ------------------------------------------------------------------------------
-# NETWORKING RESOURCES
-# ------------------------------------------------------------------------------
 
 variable "cluster_subnets" {
   type        = "map"
@@ -77,7 +49,7 @@ variable "dns_zones" {
   default = {}
 }
 
-variable "ingress_domains" {
+variable "dns_records" {
   type = "map"
 
   # Example: {"prod-internal-zone" = "*.prod.example.com."}

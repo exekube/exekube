@@ -1,27 +1,25 @@
 # ------------------------------------------------------------------------------
-# Pre-hook and post-hook, to be run before creation and after release creation
+# HELM TLS CONFIG
 # ------------------------------------------------------------------------------
 
-variable "secrets_dir" {}
-
-variable "pre_hook" {
-  type = "map"
-
-  default = {
-    command = "echo hello from pre_hook"
-  }
+# By default ca.cert.pem, helm.cert.pem, and helm.key.pem will be sourced from
+# ${secrets_dir}/${tiller_namespace}/helm-tiller/*.pem
+variable "secrets_dir" {
+  description = "The directory for storing secrets for the project"
 }
 
-variable "post_hook" {
-  type = "map"
+variable "tiller_namespace" {
+  default = "kube-system"
+}
 
-  default = {
-    command = "echo hello from post_hook"
-  }
+# Set this if TLS assets are in directory other than ${tiller_namespace}
+# i.e. ${secrets_dir}/${custom_tls_dir}/helm-tiller/*.pem
+variable "custom_tls_dir" {
+  default = ""
 }
 
 # ------------------------------------------------------------------------------
-# Helm release input variables
+# Helm release specification
 # ------------------------------------------------------------------------------
 
 variable "release_spec" {
@@ -41,7 +39,27 @@ variable "release_spec" {
 }
 
 # ------------------------------------------------------------------------------
-# Kubernetes secret inputs
+# Pre-hook and post-hook, to be run before creation and after release creation
+# ------------------------------------------------------------------------------
+
+variable "pre_hook" {
+  type = "map"
+
+  default = {
+    command = "echo hello from pre_hook"
+  }
+}
+
+variable "post_hook" {
+  type = "map"
+
+  default = {
+    command = "echo hello from post_hook"
+  }
+}
+
+# ------------------------------------------------------------------------------
+# Allows to easily create a basic auth secret to use for ingress
 # ------------------------------------------------------------------------------
 
 variable "ingress_basic_auth" {

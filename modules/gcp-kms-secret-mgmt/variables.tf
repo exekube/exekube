@@ -1,40 +1,29 @@
 # ------------------------------------------------------------------------------
-# GOOGLE CLOUD PROJECT
+# REQUIRED VARIABLES
 # ------------------------------------------------------------------------------
 
 variable "project_id" {
-  description = "The id of the project we created via the gcp-project module"
+  description = "Project where resources will be created"
 }
 
-variable "terraform_credentials" {}
-variable "product_env" {}
+variable "serviceaccount_key" {
+  description = "Service account key for the project"
+}
 
 # ------------------------------------------------------------------------------
-# SECRETS MANAGEMENT AND KMS
+# OPTIONAL VARIABLES
 # ------------------------------------------------------------------------------
 
-variable "secret_store_location" {
+variable "keyring_name" {
+  default = "keyring"
+}
+
+variable "storage_location" {
   default = "europe-west1"
 }
 
-variable "keyring_admins" {
-  type        = "list"
-  description = "Users who have full controll over the keyring"
-  default     = []
-}
+variable "encryption_keys" {
+  description = "Names of encryption keys to create (a storage bucket will also be created for each)"
 
-variable "keyring_users" {
-  type        = "list"
-  description = "Users who can encrypt and decrypt keys in the keyring"
-  default     = []
-}
-
-variable "crypto_keys" {
-  type        = "map"
-  description = "A map for setting cryptographic keys and access to them"
-
-  # Format:
-  # crypto_key = "comma-separated crypto_key users"
-  # "team1" = "user:jon@example.com,user:anna@example.com,user:maria@example.com"
-  default = {}
+  default = []
 }

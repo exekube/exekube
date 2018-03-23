@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# TERRAFORM REMOTE STATE BACKEND
+# TERRAFORM / PROVIDER CONFIG
 # ------------------------------------------------------------------------------
 
 terraform {
@@ -7,125 +7,81 @@ terraform {
   backend "gcs" {}
 }
 
-# ------------------------------------------------------------------------------
-# TERRAFORM PROVIDERS
-# ------------------------------------------------------------------------------
-
-provider "random" {}
-
 provider "google" {
   project     = "${var.project_id}"
-  credentials = "${var.terraform_credentials}"
+  credentials = "${var.serviceaccount_key}"
 }
 
 # ------------------------------------------------------------------------------
-# STORAGE BUCKET FOR PROJECT SECRETS
-# ------------------------------------------------------------------------------
-
-resource "google_storage_bucket" "secret_store" {
-  count = "${length(var.crypto_keys)}"
-
-  name          = "${var.project_id}-${element(keys(var.crypto_keys), count.index)}-secrets"
-  force_destroy = true
-  storage_class = "REGIONAL"
-  location      = "${var.secret_store_location}"
-}
-
-# ------------------------------------------------------------------------------
-# KEY RING AND CRYPTOGRAPHIC KEYS
+# PROJECT KEY RING
 # ------------------------------------------------------------------------------
 
 resource "google_kms_key_ring" "key_ring" {
-  name     = "${var.product_env}"
+  name     = "${var.keyring_name}"
   location = "global"
+
+  provisioner "local-exec" {
+    command = "sleep 10"
+  }
 }
 
-resource "google_kms_crypto_key" "crypto_keys" {
-  count = "${length(var.crypto_keys)}"
+# ------------------------------------------------------------------------------
+# CRYPTO KEYS AND STORAGE BUCKETS
+# ------------------------------------------------------------------------------
 
-  name     = "${element(keys(var.crypto_keys), count.index)}"
+resource "google_kms_crypto_key" "encryption_keys" {
+  count = "${length(var.encryption_keys)}"
+
+  name     = "${element(var.encryption_keys, count.index)}"
   key_ring = "${google_kms_key_ring.key_ring.id}"
 }
 
+resource "google_storage_bucket" "gcs_buckets" {
+  count = "${length(var.encryption_keys)}"
+
+  name          = "${var.project_id}-${element(var.encryption_keys, count.index)}-secrets"
+  storage_class = "REGIONAL"
+  location      = "${var.storage_location}"
+  force_destroy = true
+}
+
 # ------------------------------------------------------------------------------
-# PERMISSIONS FOR KEYRING
+# TEMPLATE FOR GIVING GRANULAR ACCESS
 # ------------------------------------------------------------------------------
 
+
+/*
+# Full control over the kerring and all encryption keys in it
 resource "google_kms_key_ring_iam_binding" "keyring_admins" {
-  count = "${length(var.keyring_admins) > 0 ? 1 : 0}"
-
-  key_ring_id = "${google_kms_key_ring.key_ring.id}"
+  key_ring_id = ""
   role        = "roles/cloudkms.admin"
 
-  members = "${var.keyring_admins}"
+  members = []
 }
 
+# Access to all encryption keys
 resource "google_kms_key_ring_iam_binding" "keyring_users" {
-  count = "${length(var.keyring_users) > 0 ? 1 : 0}"
-
-  key_ring_id = "${google_kms_key_ring.key_ring.id}"
+  key_ring_id = ""
   role        = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
 
-  members = "${var.keyring_users}"
+  members = []
 }
-
-# ------------------------------------------------------------------------------
-# PERMISSIONS FOR CRYPTOKEYS
-# ------------------------------------------------------------------------------
 
 resource "google_kms_crypto_key_iam_binding" "cryptokey_users" {
-  count = "${length(var.crypto_keys)}"
-
-  crypto_key_id = "${element(google_kms_crypto_key.crypto_keys.*.id, count.index)}"
+  crypto_key_id = ""
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
 
-  members = "${split(",", lookup(var.crypto_keys, element(keys(var.crypto_keys), count.index)))}"
+  members = []
 }
 
-# ------------------------------------------------------------------------------
-# PERMISSIONS FOR STORAGE BUCKET
-# ------------------------------------------------------------------------------
 
-resource "google_project_iam_custom_role" "storage_viewer_creator" {
-  role_id     = "storageViewerCreator"
-  title       = "Storage Object View and Creator"
-  description = "Allows to view and create storage bucket objects"
-
-  permissions = [
-    "storage.objects.get",
-    "storage.objects.list",
-    "storage.objects.create",
-  ]
-}
-
-resource "google_storage_bucket_iam_binding" "all_bucket_admins" {
-  count = "${length(var.keyring_admins) == 0 ? 0 : length(var.crypto_keys)}"
-
-  bucket = "${element(google_storage_bucket.secret_store.*.name, count.index)}"
+# Allow fetching and pushing secrets in the bucket
+resource "google_storage_bucket_iam_binding" "bucket_admins" {
+  bucket = ""
 
   role = "roles/storage.objectAdmin"
 
-  members = "${var.keyring_admins}"
+  members = []
 }
+*/
 
-resource "google_storage_bucket_iam_binding" "all_bucket_users" {
-  count      = "${length(var.keyring_users) == 0 ? 0 : length(var.crypto_keys)}"
-  depends_on = ["google_project_iam_custom_role.storage_viewer_creator"]
-
-  bucket = "${element(google_storage_bucket.secret_store.*.name, count.index)}"
-
-  role = "projects/${var.project_id}/roles/storageViewerCreator"
-
-  members = "${var.keyring_users}"
-}
-
-resource "google_storage_bucket_iam_binding" "individual_bucket_users" {
-  count      = "${length(var.crypto_keys)}"
-  depends_on = ["google_project_iam_custom_role.storage_viewer_creator"]
-
-  bucket = "${var.project_id}-${element(keys(var.crypto_keys), count.index)}-secrets"
-
-  role = "projects/${var.project_id}/roles/${google_project_iam_custom_role.storage_viewer_creator.role_id}"
-
-  members = "${split(",", lookup(var.crypto_keys, element(keys(var.crypto_keys), count.index)))}"
-}

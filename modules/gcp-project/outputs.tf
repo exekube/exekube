@@ -1,11 +1,3 @@
-output "project_id" {
-  value = "${google_project.project.project_id}"
-}
-
-output "network_name" {
-  value = "${google_compute_network.network.name}"
-}
-
 output "static_ip_address" {
   value = "${google_compute_address.ingress_controller_ip.0.address}"
 }

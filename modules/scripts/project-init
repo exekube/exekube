@@ -1,0 +1,73 @@
+#!/bin/bash
+
+set -e
+
+C_RED='\033[0;31m'
+C_GREEN='\033[0;32m'
+C_BLUE='\e[0;34m'
+NC='\033[0;0m'
+
+printUsage() {
+    echo "Required environment variables:"
+    echo "  TF_VAR_project_id:                     Unique Google Cloud project ID to create"
+    echo "  TF_VAR_serviceaccount_key:             Path where the owner service account key will be put"
+    echo "  ORGANIZATION_ID:                       Organization ID under which to create the project"
+    echo "  BILLING_ID:                            GCP Billing ID to use for the project"
+    echo ""
+}
+printUsageAndExit() {
+    printUsage
+    exit
+}
+
+if [ "$TF_VAR_project_id" = "" ]; then
+    echo -e "${C_RED}ERROR: Variable TF_VAR_project_id not defined!${NC}"
+    printUsageAndExit
+fi
+
+if [ "$TF_VAR_serviceaccount_key" = "" ]; then
+    echo -e "${C_RED}ERROR: Variable TF_VAR_serviceaccount_key not defined!${NC}"
+    printUsageAndExit
+fi
+
+if [ "$ORGANIZATION_ID" = "" ]; then
+    echo -e "${C_RED}ERROR: Variable ORGANIZATION_ID not defined!${NC}"
+    printUsageAndExit
+fi
+
+if [ "$BILLING_ID" = "" ]; then
+    echo -e "${C_RED}ERROR: Variable BILLING_ID not defined!${NC}"
+    printUsageAndExit
+fi
+
+echo -e "${C_BLUE}Creating project $TF_VAR_project_id...${NC}"
+gcloud projects create $TF_VAR_project_id \
+--organization $ORGANIZATION_ID \
+--set-as-default
+
+echo -e "${C_BLUE}Enabling billing for the project...${NC}"
+gcloud beta billing projects link $TF_VAR_project_id \
+--billing-account $BILLING_ID
+
+SA_NAME=owner
+echo -e "${C_BLUE}Creating service account...${NC}"
+gcloud iam service-accounts create $SA_NAME \
+--display-name "Project owner service account"
+
+echo -e "${C_BLUE}Setting permissions for the service account...${NC}"
+gcloud projects add-iam-policy-binding $TF_VAR_project_id \
+--member serviceAccount:$SA_NAME@$TF_VAR_project_id.iam.gserviceaccount.com \
+--role roles/owner
+
+echo -e "${C_BLUE}Creating service account key...${NC}"
+gcloud iam service-accounts keys create $TF_VAR_serviceaccount_key \
+--iam-account $SA_NAME@$TF_VAR_project_id.iam.gserviceaccount.com
+
+TFSTATE_BUCKET=$TF_VAR_project_id-tfstate
+echo -e "${C_BLUE}Creating bucket for Terraform remote state...${NC}"
+gsutil mb gs://$TFSTATE_BUCKET
+
+echo -e "${C_BLUE}Enabling versioning for the bucket...${NC}"
+gsutil versioning set on gs://$TFSTATE_BUCKET
+
+echo -e "${C_GREEN}Finished successfully!${NC}"
