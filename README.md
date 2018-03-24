@@ -40,7 +40,7 @@ The framework allows you to:
 
 ### 0.2 — *upcoming release*
 
-- [x] Initial (bash script) setup is only concerned with making Terraform functional
+- [x] Cloud projects are created via a bash script `xk project-init`
 - [x] Resources that don't cost anything are managed via a *persistent* Terraform module `gcp-project`
-- [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket
-- [x] Helm / Tiller are set up securely with support for multiple namespaces
+- [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket via a *persistent* Terraform module `gcp-kms-secret-mgmt`
+- [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-tiller` module
