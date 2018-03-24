@@ -1,6 +1,6 @@
 FROM alpine:3.7
 
-ENV CLOUD_SDK_VERSION 193.0.0
+ENV CLOUD_SDK_VERSION 194.0.0
 ENV HELM_VERSION 2.7.2
 ENV TERRAFORM_VERSION 0.11.4
 ENV TERRAGRUNT_VERSION 0.14.2
@@ -22,7 +22,8 @@ RUN apk --no-cache add \
         openssl \
         tar \
         ca-certificates \
-        apache2-utils
+        apache2-utils \
+        jq
 
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
         && tar xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
