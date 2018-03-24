@@ -2,7 +2,7 @@
 
 [![Docker Automated build](https://img.shields.io/badge/hub.docker.com-automated-blue.svg?style=flat-square)](https://hub.docker.com/r/ilyasotkov/exekube/)
 
-Exekube is a high-level framework for managing the whole lifecycle of Kubernetes-based projects. Exekube takes the modular "Infrastructure as Code" approach to automate the management of both cloud infrastructure and Kubernetes resources using popular open-source tools: HashiCorp Terraform and Helm.
+Exekube is a high-level framework for managing the whole lifecycle of Kubernetes-based projects. Exekube takes the modular "Infrastructure as Code" approach to automate the management of both cloud infrastructure and Kubernetes resources using popular open-source tools: Terraform and Helm.
 
 ---
 
@@ -22,12 +22,22 @@ Quick Links:
 
 The framework allows you to:
 
-- Not worry about managing dependencies like Google Cloud SDK, Terraform, `kubectl`, etc. since they're all packaged in a Docker image
+- Not worry about managing dependencies like `gcloud`, `terraform`, `kubectl`, `helm`, etc. since they're all packaged in a Docker image
 - Control your cloud infrastructure as declarative code via Terraform
 - Control your container orchestration as decalrative code via Terraform and Helm
-- Create a production-grade clusters and deploy all Kubernetes resources **via one command**
+- Create production-grade clusters and deploy all Kubernetes resources via one command
 - Destroy all cloud and Kubernetes resources via one command (to avoid wasting money in non-production environments)
 - Freely choose a cloud provider to host Kubernetes (only Google Cloud Platform as of 0.2)
+
+## Built-in Terraform modules
+
+| Terraform module | Purpose |
+| --- | --- |
+| gcp-project | Enable project APIs, set up networking, firewall rules, DNS |
+| gcp-kms-secret-mgmt | Create encryption keys and storage buckets for securely managing project secrets |
+| gke-cluster | Create a production-grade Kubernetes cluster |
+| helm-tiller | Deploy Tiller into any namespace following [security best practices](https://github.com/kubernetes/helm/blob/master/docs/securing_installation.md) |
+| helm-release | Securely install a Helm chart (create a release) |
 
 ## Roadmap
 
@@ -42,5 +52,5 @@ The framework allows you to:
 
 - [x] Cloud projects are created via a bash script `xk project-init`
 - [x] Resources that don't cost anything are managed via a *persistent* Terraform module `gcp-project`
-- [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket via a *persistent* Terraform module `gcp-kms-secret-mgmt` using [this methodology](https://cloud.google.com/kms/docs/store-secrets)
-- [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-tiller` module using [this methodology](https://github.com/kubernetes/helm/blob/master/docs/securing_installation.md)
+- [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket via a *persistent* Terraform module `gcp-kms-secret-mgmt`
+- [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-tiller` module
