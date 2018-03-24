@@ -134,6 +134,12 @@ EOF
   }
 }
 
+resource "null_resource" "add_audit_config" {
+  provisioner "local-exec" {
+    command = "add-audit-config"
+  }
+}
+
 # ------------------------------------------------------------------------------
 # EXTERNAL IP ADDRESS
 # ------------------------------------------------------------------------------
