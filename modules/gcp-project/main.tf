@@ -129,7 +129,7 @@ resource "google_compute_address" "ingress_controller_ip" {
   count = "${var.create_static_ip_address ? 1 : 0}"
 
   name         = "ingress-controller-ip"
-  region       = "europe-west1"
+  region       = "${var.static_ip_region}"
   address_type = "EXTERNAL"
 }
 

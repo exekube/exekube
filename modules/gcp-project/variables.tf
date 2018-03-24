@@ -41,6 +41,10 @@ variable "create_static_ip_address" {
   default = true
 }
 
+variable "static_ip_region" {
+  default = "europe-west1"
+}
+
 variable "dns_zones" {
   type        = "map"
   description = "External DNS zones that will be used for this environment"
