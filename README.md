@@ -42,5 +42,5 @@ The framework allows you to:
 
 - [x] Cloud projects are created via a bash script `xk project-init`
 - [x] Resources that don't cost anything are managed via a *persistent* Terraform module `gcp-project`
-- [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket via a *persistent* Terraform module `gcp-kms-secret-mgmt`
-- [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-tiller` module
+- [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket via a *persistent* Terraform module `gcp-kms-secret-mgmt` using [this methodology](https://cloud.google.com/kms/docs/store-secrets)
+- [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-tiller` module using [this methodology](https://github.com/kubernetes/helm/blob/master/docs/securing_installation.md)
