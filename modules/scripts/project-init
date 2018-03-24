@@ -40,14 +40,14 @@ if [ "$BILLING_ID" = "" ]; then
     printUsageAndExit
 fi
 
-#echo -e "${C_BLUE}Creating project $TF_VAR_project_id...${NC}"
-#gcloud projects create $TF_VAR_project_id \
-#--organization $ORGANIZATION_ID \
-#--set-as-default
+echo -e "${C_BLUE}Creating project $TF_VAR_project_id...${NC}"
+gcloud projects create $TF_VAR_project_id \
+--organization $ORGANIZATION_ID \
+--set-as-default
 
-#echo -e "${C_BLUE}Enabling billing for the project...${NC}"
-#gcloud beta billing projects link $TF_VAR_project_id \
-#--billing-account $BILLING_ID
+echo -e "${C_BLUE}Enabling billing for the project...${NC}"
+gcloud beta billing projects link $TF_VAR_project_id \
+--billing-account $BILLING_ID
 
 SA_NAME=projectowner
 echo -e "${C_BLUE}Creating service account...${NC}"
