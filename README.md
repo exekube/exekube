@@ -2,7 +2,7 @@
 
 [![Docker Automated build](https://img.shields.io/badge/hub.docker.com-automated-blue.svg?style=flat-square)](https://hub.docker.com/r/ilyasotkov/exekube/)
 
-Exekube is a high-level framework for managing the whole lifecycle of Kubernetes-based projects. Exekube takes the modular "Infrastructure as Code" approach to automate the management of both cloud infrastructure and Kubernetes resources using popular open-source tools: Terraform and Helm.
+Exekube is a high-level framework for managing the whole lifecycle of Kubernetes-based projects. Exekube takes the modular "Infrastructure as Code" approach to automate the management of both cloud infrastructure and Kubernetes resources using popular open-source tools: Terraform and Kubernetes Helm.
 
 ---
 
@@ -35,7 +35,7 @@ The framework allows you to:
 | --- | --- |
 | gcp-project | Enable project APIs, set up networking, firewall rules, DNS |
 | gcp-kms-secret-mgmt | Create encryption keys and storage buckets for securely managing project secrets |
-| gke-cluster | Create a production-grade Kubernetes cluster |
+| gke-cluster | Create a [production-grade](https://cloud.google.com/solutions/prep-kubernetes-engine-for-prod) Kubernetes cluster |
 | helm-tiller | Deploy Tiller into any namespace following [security best practices](https://github.com/kubernetes/helm/blob/master/docs/securing_installation.md) |
 | helm-release | Securely install a Helm chart (create a release) |
 
