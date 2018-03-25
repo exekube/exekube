@@ -25,7 +25,7 @@ The framework allows you to:
 - Not worry about managing dependencies like `gcloud`, `terraform`, `kubectl`, `helm`, etc. since they're all packaged in a Docker image
 - Control your cloud infrastructure as declarative code via Terraform
 - Control your container orchestration as decalrative code via Terraform and Helm
-- Create production-grade clusters and deploy all Kubernetes resources via one command
+- :warning: TBD! Create [production-grade](https://cloud.google.com/solutions/prep-kubernetes-engine-for-prod) clusters and deploy all Kubernetes resources via one command
 - Destroy all cloud and Kubernetes resources via one command (to avoid wasting money in non-production environments)
 - Freely choose a cloud provider to host Kubernetes (only Google Cloud Platform as of 0.2)
 
@@ -54,3 +54,4 @@ The framework allows you to:
 - [x] Resources that don't cost anything are managed via `gcp-project` *persistent* Terraform module
 - [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket via `gcp-kms-secret-mgmt` *persistent* Terraform module
 - [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-tiller` module
+- [x] Add an example React app which uses ingress-gce & GCP L7 Load Balancer & CDN [@internal-ops-project](https://github.com/exekube/internal-ops-project)
