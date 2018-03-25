@@ -39,7 +39,7 @@ echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f - \
 --tiller-tls-cert=${local_file.tiller_cert.filename} \
 --tiller-tls-key=${local_file.tiller_key.filename} \
 --override 'spec.template.spec.containers[0].command'='{/tiller,--storage=secret}' \
-&& sleep 60 \
+&& sleep 75 \
 && helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com \
 && helm repo update
 EOF
