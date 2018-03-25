@@ -6,9 +6,15 @@ Exekube is a high-level framework for managing the whole lifecycle of Kubernetes
 
 ---
 
+| Emoji | Meaning |
+| --- | --- |
+| ✅ | Up to date |
+| 〽️ | Outdated |
+| ❌ | Missing |
+
 Quick Links:
-- [**Example project (internal-ops-project)**](https://github.com/exekube/internal-ops-project)
-- [**Documentation website**](https://exekube.github.io/exekube/)
+- ✅ [**Example project (internal-ops-project)**](https://github.com/exekube/internal-ops-project)
+- 〽️ [**Documentation website**](https://exekube.github.io/exekube/)
 
 ---
 
@@ -55,3 +61,10 @@ The framework allows you to:
 - [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket via `gcp-kms-secret-mgmt` *persistent* Terraform module
 - [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-tiller` module
 - [x] Add an example React app which uses ingress-gce & GCP L7 Load Balancer & CDN [@internal-ops-project](https://github.com/exekube/internal-ops-project)
+
+### 0.3+ - *future release*
+
+- [ ] Replace kube-lego with cert-manager
+- [ ] Replace nginx-ingress (LoadBalancer service) with Istio
+- [ ] Move DNS-record management to `external-dns` Helm release, still use `gcp-project` for adding DNS zones
+- [ ] Use sops with cloud KMS to store (and diff!) secrets via git instead of having them in a GCS Bucket
