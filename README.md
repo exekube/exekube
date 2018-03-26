@@ -4,25 +4,11 @@
 
 Exekube is a high-level framework for managing the whole lifecycle of Kubernetes-based projects. Exekube takes the modular "Infrastructure as Code" approach to automate the management of both cloud infrastructure and Kubernetes resources using popular open-source tools: Terraform and Kubernetes Helm.
 
----
-
-| Emoji | Meaning |
-| --- | --- |
-| ✅ | Up to date |
-| 〽️ | Outdated |
-| ❌ | Missing |
-
-Quick Links:
-- ✅ [**Example project (internal-ops-project)**](https://github.com/exekube/internal-ops-project)
-- 〽️ [**Documentation website**](https://exekube.github.io/exekube/)
-
----
-
 ## Motivation
 
 - Using many command line tools and GUIs to manage cloud resources (`gcloud`, `aws`, `kops`) and Kubernetes resources (`kubectl`, `helm`) is tedious and error-prone
 - Terraform is a very flexible declarative tool with support for a [large number](https://www.terraform.io/docs/providers/index.html) of cloud providers and can replace all of the said command line tools
-- Exekube aims to take advantage of Terraform's power and give us a "sane default" state for managing everything related to Kubernetes as declarative code in an **automated, Git-based workflow** following the "Infrastructure as Code" philosophy
+- Exekube aims to take advantage of Terraform's power and give us a "sane default" state for managing everything related to Kubernetes as declarative code in an *automated, Git-based workflow* following the "Infrastructure as Code" philosophy
 
 ## Features
 
@@ -45,6 +31,12 @@ The framework allows you to:
 | helm-tiller | Deploy Tiller into any namespace following [security best practices](https://github.com/kubernetes/helm/blob/master/docs/securing_installation.md) |
 | helm-release | Securely install a Helm chart (create a release) |
 
+## Examples
+
+Check out the project that is used to actively develop the framework:
+
+[@internal-ops-project](https://github.com/exekube/internal-ops-project)
+
 ## Roadmap
 
 ### 0.1 — current version
@@ -54,17 +46,17 @@ The framework allows you to:
 - [x] Support for Google Cloud and GKE via the `gke-cluster` Terraform module
 - [x] Support for generic Helm releases via the `helm-release` module
 
-### 0.2 — *upcoming release*
+### 0.2 — upcoming release
 
-- [x] Cloud projects are created via `project-init` bash script
+- [x] Projects (dev, stg, prod) are initialized via `project-init` bash script
 - [x] Resources that don't cost anything are managed via `gcp-project` *persistent* Terraform module
 - [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket via `gcp-kms-secret-mgmt` *persistent* Terraform module
 - [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-tiller` module
-- [x] Add an example React app which uses ingress-gce & GCP L7 Load Balancer & CDN [@internal-ops-project](https://github.com/exekube/internal-ops-project)
+- [x] [@internal-ops-project](https://github.com/exekube/internal-ops-project) Add an example React app which uses ingress-gce & GCP L7 Load Balancer & CDN
 
-### 0.3+ - *future release*
+### 0.3+ — future release
 
 - [ ] Replace kube-lego with cert-manager
 - [ ] Replace nginx-ingress (LoadBalancer service) with Istio
 - [ ] Move DNS-record management to `external-dns` Helm release, still use `gcp-project` for adding DNS zones
-- [ ] Use sops with cloud KMS to store (and diff!) secrets via git instead of having them in a GCS Bucket
+- [ ] Use [sops](https://github.com/mozilla/sops) with cloud KMS to store (and diff!) secrets via git as an alternative to having them in a GCS Bucket
