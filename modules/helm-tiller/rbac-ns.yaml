@@ -7,13 +7,32 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: tiller
+  name: tiller-admin
   namespace: ${tiller_namespace}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: admin
+  name: cluster-admin
 subjects:
   - kind: ServiceAccount
     name: tiller
     namespace: ${tiller_namespace}
+---
+# Allow Tiller to contact kube-apiserver
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-tiller-access-to-kube-apiserver
+  namespace: ${tiller_namespace}
+spec:
+  podSelector:
+    matchLabels:
+      app: helm
+      name: tiller
+  policyTypes:
+  - Egress
+  egress:
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 443

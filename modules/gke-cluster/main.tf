@@ -79,7 +79,8 @@ resource "google_container_cluster" "cluster" {
 gcloud auth activate-service-account --key-file ${var.serviceaccount_key} \
 && gcloud container clusters get-credentials ${var.cluster_name} \
 --zone ${var.main_compute_zone} \
---project ${var.project_id}
+--project ${var.project_id} \
+&& kubectl label ns kube-system name=kube-system
 EOF
   }
 }
