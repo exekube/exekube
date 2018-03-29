@@ -10,6 +10,12 @@ Exekube is a high-level framework for managing the whole lifecycle of Kubernetes
 - Terraform is a very flexible declarative tool with support for a [large number](https://www.terraform.io/docs/providers/index.html) of cloud providers and can replace all of the said command line tools
 - Exekube aims to take advantage of Terraform's power and give us a "sane default" state for managing everything related to Kubernetes as declarative code in an *automated, Git-based workflow* following the "Infrastructure as Code" philosophy
 
+## Examples
+
+Check out the project that is used to actively develop the framework:
+
+[@internal-ops-project](https://github.com/exekube/internal-ops-project)
+
 ## Features
 
 The framework allows you to:
@@ -17,8 +23,8 @@ The framework allows you to:
 - Not worry about managing dependencies like `gcloud`, `terraform`, `kubectl`, `helm`, etc. since they're all packaged in a Docker image
 - Control your cloud infrastructure as declarative code via Terraform
 - Control your container orchestration as decalrative code via Terraform and Helm
-- :warning: TBD! Create [production-grade](https://cloud.google.com/solutions/prep-kubernetes-engine-for-prod) clusters and deploy all Kubernetes resources via one command
-- Destroy all cloud and Kubernetes resources via one command (to avoid wasting money in non-production environments)
+- Create [production-grade clusters](https://cloud.google.com/solutions/prep-kubernetes-engine-for-prod) and deploy all Kubernetes resources *via one command*
+- Destroy all cloud and Kubernetes resources *via one command* (to avoid wasting money in non-production environments)
 - Freely choose a cloud provider to host Kubernetes (only Google Cloud Platform as of 0.2)
 
 ## Built-in Terraform modules
@@ -30,12 +36,6 @@ The framework allows you to:
 | gke-cluster | Create a [production-grade](https://cloud.google.com/solutions/prep-kubernetes-engine-for-prod) Kubernetes cluster |
 | helm-tiller | Deploy Tiller into any namespace following [security best practices](https://github.com/kubernetes/helm/blob/master/docs/securing_installation.md) |
 | helm-release | Securely install a Helm chart (create a release) |
-
-## Examples
-
-Check out the project that is used to actively develop the framework:
-
-[@internal-ops-project](https://github.com/exekube/internal-ops-project)
 
 ## Roadmap
 
