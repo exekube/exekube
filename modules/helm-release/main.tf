@@ -52,10 +52,6 @@ resource "helm_release" "release" {
   timeout          = 500
   reuse            = true
   recreate_pods    = false
-
-  provisioner "local-exec" {
-    command = "${var.post_hook["command"]}"
-  }
 }
 
 # Parsed (interpolated) YAML values file
@@ -76,6 +72,18 @@ resource "null_resource" "pre_hook" {
 
   provisioner "local-exec" {
     command = "${var.pre_hook["command"]}"
+  }
+}
+
+# ------------------------------------------------------------------------------
+# Run a pre_hook via the null_resource provisioner
+# ------------------------------------------------------------------------------
+
+resource "null_resource" "post_hook" {
+  count = "${var.release_spec["enabled"]}"
+
+  provisioner "local-exec" {
+    command = "${var.post_hook["command"]}"
   }
 }
 
