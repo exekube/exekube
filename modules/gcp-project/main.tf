@@ -41,6 +41,8 @@ resource "google_project_service" "services" {
 # ------------------------------------------------------------------------------
 
 resource "google_compute_network" "network" {
+  depends_on = ["google_project_service.services"]
+
   name                    = "network"
   auto_create_subnetworks = false
 }
@@ -122,6 +124,8 @@ resource "google_compute_firewall" "allow_pods_internal" {
 }
 
 resource "null_resource" "delete_default_network" {
+  depends_on = ["google_project_service.services"]
+
   provisioner "local-exec" {
     command = <<EOF
 gcloud --quiet compute firewall-rules delete \
@@ -145,7 +149,8 @@ resource "null_resource" "add_audit_config" {
 # ------------------------------------------------------------------------------
 
 resource "google_compute_address" "ingress_controller_ip" {
-  count = "${var.create_static_ip_address ? 1 : 0}"
+  count      = "${var.create_static_ip_address ? 1 : 0}"
+  depends_on = ["google_project_service.services"]
 
   name         = "ingress-controller-ip"
   region       = "${var.static_ip_region}"
@@ -157,7 +162,8 @@ resource "google_compute_address" "ingress_controller_ip" {
 # ------------------------------------------------------------------------------
 
 resource "google_dns_managed_zone" "dns_zones" {
-  count = "${length(var.dns_zones) > 0 ? length(var.dns_zones) : 0}"
+  count      = "${length(var.dns_zones) > 0 ? length(var.dns_zones) : 0}"
+  depends_on = ["google_project_service.services"]
 
   name     = "${element(keys(var.dns_zones), count.index)}"
   dns_name = "${element(values(var.dns_zones), count.index)}"
