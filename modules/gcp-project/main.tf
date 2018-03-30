@@ -170,7 +170,7 @@ resource "google_dns_managed_zone" "dns_zones" {
 }
 
 resource "google_dns_record_set" "dns_records" {
-  count = "${length(var.dns_zones) > 0 && length(var.dns_records) > 0 ? length(var.dns_records) : 0}"
+  count = "${length(var.dns_zones) > 0 && length(var.dns_records) > 0 && var.create_static_ip_address ? length(var.dns_records) : 0}"
 
   type = "A"
   ttl  = 3600
