@@ -12,9 +12,13 @@ Exekube is a high-level framework for managing the whole lifecycle of Kubernetes
 
 ## Examples
 
-Check out the project that is used to actively develop the framework:
+Check out the three demo projects that use the framework:
 
-[@internal-ops-project](https://github.com/exekube/internal-ops-project)
+- [internal-ops-project](https://github.com/exekube/internal-ops-project): Deploy **private CI / CD tools** on Kubernetes
+
+- [demo-grpc-project](https://github.com/exekube/demo-grpc-project): Deploy a **gRPC server app and its REST client app** on Kubernetes
+
+- [demo-apps-project](https://github.com/exekube/demo-grpc-project): Deploy a number of **web apps** on Kubernetes
 
 ## Features
 
