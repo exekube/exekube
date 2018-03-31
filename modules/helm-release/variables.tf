@@ -36,6 +36,17 @@ variable "release_spec" {
 }
 
 # ------------------------------------------------------------------------------
+# Helm chart repo
+# ------------------------------------------------------------------------------
+
+variable "chart_repo" {
+  default = {
+    name = ""
+    url  = ""
+  }
+}
+
+# ------------------------------------------------------------------------------
 # Create a Kubernetes secret
 # ------------------------------------------------------------------------------
 
@@ -69,7 +80,7 @@ variable "pre_hook" {
   description = "Raw bash command to run before release creation"
 
   default = {
-    command = "echo hello from pre_hook"
+    command = "helm repo update"
   }
 }
 

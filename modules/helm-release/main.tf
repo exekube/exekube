@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+# TERRAFORM / PROVIDER CONFIG
+# ------------------------------------------------------------------------------
+
 terraform {
   backend "gcs" {}
 }
@@ -20,6 +24,21 @@ provider "helm" {
 }
 
 provider "kubernetes" {}
+
+# ------------------------------------------------------------------------------
+# ADD HELM REPO
+# ------------------------------------------------------------------------------
+
+resource "helm_repository" "helm_repo" {
+  count = "${var.release_spec["enabled"] && var.chart_repo["name"] != "" ? 1 : 0}"
+
+  name = "${var.chart_repo["name"]}"
+  url  = "${var.chart_repo["url"]}"
+
+  provisioner "local-exec" {
+    command = "helm repo update"
+  }
+}
 
 # ------------------------------------------------------------------------------
 # Helm release
