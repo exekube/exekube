@@ -32,9 +32,14 @@ resource "google_project_service" "services" {
 # Support for AuditConfigs is missing in terraform-provider-google
 # GitHub issue:
 # https://github.com/terraform-providers/terraform-provider-google/issues/936
+# We use the add-audit-config script for now
 # ------------------------------------------------------------------------------
 
-# ...
+resource "null_resource" "add_audit_config" {
+  provisioner "local-exec" {
+    command = "add-audit-config"
+  }
+}
 
 # ------------------------------------------------------------------------------
 # VPC NETWORK, SUBNETS, FIREWALL RULES
@@ -135,12 +140,6 @@ default-allow-internal \
 default-allow-icmp \
 && gcloud --quiet compute networks delete default
 EOF
-  }
-}
-
-resource "null_resource" "add_audit_config" {
-  provisioner "local-exec" {
-    command = "add-audit-config"
   }
 }
 
