@@ -14,11 +14,11 @@ Exekube is a high-level framework for managing the whole lifecycle of Kubernetes
 
 Check out the three demo projects that use the framework:
 
-- [internal-ops-project](https://github.com/exekube/internal-ops-project): Deploy **private CI / CD tools** on Kubernetes
+- [internal-ops-project](https://github.com/exekube/internal-ops-project): Deploy private CI tools onto Google Cloud Platform
 
-- [demo-grpc-project](https://github.com/exekube/demo-grpc-project): Deploy a **gRPC server app and its REST client app** on Kubernetes
+- [demo-grpc-project](https://github.com/exekube/demo-grpc-project): Deploy a gRPC server app and its REST client app onto Google Cloud Platform
 
-- [demo-apps-project](https://github.com/exekube/demo-grpc-project): Deploy a number of **web apps** on Kubernetes
+- [demo-apps-project](https://github.com/exekube/demo-grpc-project): Deploy a number of web apps onto Google Cloud Platform
 
 ## Features
 
@@ -55,12 +55,13 @@ The framework allows you to:
 - [x] Projects (dev, stg, prod) are initialized via `project-init` bash script
 - [x] Resources that don't cost anything are managed via `gcp-project` *persistent* Terraform module
 - [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket via `gcp-kms-secret-mgmt` *persistent* Terraform module
-- [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-tiller` module
-- [x] [@internal-ops-project](https://github.com/exekube/internal-ops-project) Add an example React app which uses ingress-gce & GCP L7 Load Balancer & CDN
+- [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-ititializer` module
+- [ ] [@demo-apps-project](https://github.com/exekube/demo-apps-project) Add an example React app which uses ingress-gce & GCP L7 Load Balancer & CDN
+- [x] [@demo-grpc-project](https://github.com/exekube/internal-ops-project) Add an example gRPC server / client project
 
 ### 0.3+ — future release
 
 - [ ] Replace kube-lego with cert-manager
-- [ ] Replace nginx-ingress (LoadBalancer service) with Istio
+- [ ] Add support for Istio
 - [ ] Move DNS-record management to `external-dns` Helm release, still use `gcp-project` for adding DNS zones
 - [ ] Use [sops](https://github.com/mozilla/sops) with cloud KMS to store (and diff!) secrets via git as an alternative to having them in a GCS Bucket
