@@ -18,9 +18,9 @@ provider "helm" {
   insecure   = false
   debug      = true
 
-  ca_certificate     = "${file("${var.secrets_dir}/${local.tls_dir}/helm-tiller/ca.cert.pem")}"
-  client_certificate = "${file("${var.secrets_dir}/${local.tls_dir}/helm-tiller/helm.cert.pem")}"
-  client_key         = "${file("${var.secrets_dir}/${local.tls_dir}/helm-tiller/helm.key.pem")}"
+  ca_certificate     = "${file("${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/ca.cert.pem")}"
+  client_certificate = "${file("${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/helm.cert.pem")}"
+  client_key         = "${file("${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/helm.key.pem")}"
 }
 
 provider "kubernetes" {}

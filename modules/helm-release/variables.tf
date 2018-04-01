@@ -3,15 +3,19 @@
 # ------------------------------------------------------------------------------
 
 # By default ca.cert.pem, helm.cert.pem, and helm.key.pem will be sourced from
-# ${secrets_dir}/${tiller_namespace}/helm-tiller/*.pem
+# ${secrets_dir}/${tiller_namespace}/_helm/*.pem
 variable "secrets_dir" {
   description = "The directory for storing secrets for the project"
 }
 
 # Set this if TLS assets are in directory other than ${tiller_namespace}
-# i.e. ${secrets_dir}/${custom_tls_dir}/helm-tiller/*.pem
+# i.e. ${secrets_dir}/${custom_tls_dir}/${helm_dir}/*.pem
 variable "custom_tls_dir" {
   default = ""
+}
+
+variable "helm_dir_name" {
+  default = "_helm"
 }
 
 # ------------------------------------------------------------------------------

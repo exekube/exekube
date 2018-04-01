@@ -78,20 +78,20 @@ resource "tls_self_signed_cert" "root" {
   allowed_uses = ["cert_signing"]
 
   subject {
-    common_name  = "helm-tiller-ca"
-    organization = "helm-tiller"
+    common_name  = "_helm-ca"
+    organization = "_helm"
   }
 }
 
 /*
 resource "local_file" "ca_key" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/helm-tiller/ca.key.pem"
+  filename = "${var.secrets_dir}/${local.tls_dir}/_helm/ca.key.pem"
   content  = "${tls_private_key.root.private_key_pem}"
 }
 */
 
 resource "local_file" "ca_cert" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/helm-tiller/ca.cert.pem"
+  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/ca.cert.pem"
   content  = "${tls_self_signed_cert.root.cert_pem}"
 }
 
@@ -138,12 +138,12 @@ resource "tls_locally_signed_cert" "tiller_server" {
 }
 
 resource "local_file" "tiller_key" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/helm-tiller/tiller.key.pem"
+  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/tiller.key.pem"
   content  = "${tls_private_key.tiller_server.private_key_pem}"
 }
 
 resource "local_file" "tiller_cert" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/helm-tiller/tiller.cert.pem"
+  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/tiller.cert.pem"
   content  = "${tls_locally_signed_cert.tiller_server.cert_pem}"
 }
 
@@ -164,7 +164,7 @@ resource "tls_cert_request" "helm_client" {
 
   subject {
     common_name  = "helm-client"
-    organization = "helm-tiller"
+    organization = "_helm"
   }
 }
 
@@ -183,11 +183,11 @@ resource "tls_locally_signed_cert" "helm_client" {
 }
 
 resource "local_file" "helm_key" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/helm-tiller/helm.key.pem"
+  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/helm.key.pem"
   content  = "${tls_private_key.helm_client.private_key_pem}"
 }
 
 resource "local_file" "helm_cert" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/helm-tiller/helm.cert.pem"
+  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/helm.cert.pem"
   content  = "${tls_locally_signed_cert.helm_client.cert_pem}"
 }
