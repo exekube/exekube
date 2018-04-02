@@ -14,7 +14,7 @@ Exekube is a high-level framework for managing the whole lifecycle of Kubernetes
 
 Check out the three demo projects that use the framework:
 
-- [internal-ops-project](https://github.com/exekube/internal-ops-project): Deploy private CI tools onto Google Cloud Platform
+- [demo-ci-project](https://github.com/exekube/demo-ci-project): Deploy private CI tools onto Google Cloud Platform
 
 - [demo-grpc-project](https://github.com/exekube/demo-grpc-project): Deploy a gRPC server app and its REST client app onto Google Cloud Platform
 
@@ -57,7 +57,7 @@ The framework allows you to:
 - [x] Secrets are stored, rotated, and distributed in a secure way. Encryption via Cloud KMS encryption keys, storage in a Cloud Storage bucket via `gcp-kms-secret-mgmt` *persistent* Terraform module
 - [x] Helm / Tiller are set up securely with support for multiple namespaces via the `helm-ititializer` module
 - [ ] [@demo-apps-project](https://github.com/exekube/demo-apps-project) Add an example React app which uses ingress-gce & GCP L7 Load Balancer & CDN
-- [x] [@demo-grpc-project](https://github.com/exekube/internal-ops-project) Add an example gRPC server / client project
+- [x] [@demo-grpc-project](https://github.com/exekube/demo-grpc-project) Add an example gRPC server / client project
 
 ### 0.3+ — future release
 
