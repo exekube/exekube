@@ -25,6 +25,7 @@ variable "project_services" {
     "cloudkms.googleapis.com",
     "dns.googleapis.com",
     "cloudresourcemanager.googleapis.com",
+    "iam.googleapis.com",
   ]
 }
 
