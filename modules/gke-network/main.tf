@@ -24,7 +24,7 @@ resource "google_project_service" "services" {
   service = "${element(var.project_services, count.index)}"
 
   provisioner "local-exec" {
-    command = "sleep 20"
+    command = "sleep 60"
   }
 }
 
