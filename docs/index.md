@@ -1,9 +1,9 @@
-# Exekube documentation
+# Exekube Documentation
 
-Exekube is an "Infrastructure as Code" modular framework for managing the whole lifecycle of Kubernetes-based projects. Exekube is built with Terraform, Terragrunt, and Helm as its developer interfaces.
+!!! success "Up to date"
+    This documentation is for the latest released version:
 
-!!! note
-    Documentation is for Exekube version **0.1.0**.
+    <span class="version-tag">0.3.0</span>
 
     Check all Exekube releases: <https://github.com/exekube/exekube/releases>
 
@@ -12,26 +12,33 @@ Exekube is an "Infrastructure as Code" modular framework for managing the whole 
 - [What is Exekube?](/introduction/what-is-exekube)
 - [How does Exekube compare to other software?](/introduction/exekube-vs-other)
 
-## Setup and Installation
+## Exekube in Practice
 
-- [Create an Exekube project on Google Cloud Platform](/setup/gcp-gke)
-- [Create an Exekube project on Amazon Web Services](/setup/aws-eks)
+- [Tutorial: Getting started with Exekube](/in-practice/getting-started)
+- [Guide: How Exekube projects are structured](/in-practice/directory-structure-guide)
 
-## Usage
+## Demo & Example Projects
 
-- [Guide to project directory structure and framework usage](/usage/directory-structure)
-- [Tutorial: deploy an application on Kubernetes with Exekube](/usage/deploy-app)
+- [demo-apps-project](/)
+- [demo-grpc-project](/)
+- [demo-ci-project](/)
 
 ## Reference
 
-- [gke-cluster module](/reference/gke-cluster)
-- [helm-release module](/reference/helm-release)
+- [gke-network module variables](/)
+- [gke-cluster module variables](/)
+- [helm-release module variables](/)
+- [helm-initializer module variables](/)
+- [gcp-secret-mgmt module variables](/)
 
 ## Miscellaneous
 
-- [Compare using Helm CLI and terraform-provider-helm](/misc/helm-cli-vs-terraform-provider-helm)
-- [How to configure a Helm release](/misc/configure-helm-release)
-- [Use HashiCorp Vault to manage secrets](/misc/vault-integration)
-- [Read the project's feature tracker](/misc/feature-tracker)
-- [Managing secrets in Exekube](/misc/secrets)
-- [Add audit config for KMS and secret store bucket](/misc/add-audit-config)
+- Incubator notes
+    - [Use HashiCorp Vault to manage secrets](/misc/vault-integration)
+    - [Use Istio for pod networking](/misc/istio)
+
+- Other notes
+    - [Compare using Helm CLI and terraform-provider-helm](/misc/helm-cli-vs-terraform-provider-helm)
+    - [How to configure a Helm release](/misc/configure-helm-release)
+    - [Managing secrets in Exekube](/misc/secrets)
+    - [Read the project's feature tracker](/misc/feature-tracker)
