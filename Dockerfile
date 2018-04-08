@@ -1,7 +1,8 @@
 FROM alpine:3.7
 
 ENV ALIYUN_VERSION 3.0.0
-ENV HELM_VERSION 2.7.2
+ENV HELM_VERSION 2.8.2
+ENV KUBECTL_VERSION 1.9.3
 ENV TERRAFORM_VERSION 0.11.5
 ENV TERRAGRUNT_VERSION 0.14.6
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.5.0
@@ -22,6 +23,11 @@ RUN apk --no-cache add \
         apache2-utils \
         jq \
         tzdata
+
+RUN curl -L -o kubectl \
+        https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
+        && chmod 0700 kubectl \
+        && mv kubectl /usr/bin
 
 # Alibaba Cloud CLI
 RUN curl -L -o aliyun.tgz \
