@@ -7,13 +7,13 @@ variable "secret_key" {
 }
 
 variable "vpc_cidr" {
-  description = "The cidr block used to launch a new VPC."
+  description = "The cidr block used to launch a new VPC"
   default     = "10.0.0.0/8"
 }
 
 variable "vswitch_cidr" {
-  description = "The cidr block used to launch a new VPC."
-  default     = "10.16.0.0/16"
+  description = "VSwitch CIDR (subnet for Kubernetes nodes)"
+  default     = "10.16.0.0/20"
 }
 
 variable "dns_zones" {
