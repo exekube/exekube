@@ -31,10 +31,32 @@ resource "alicloud_vswitch" "vswitch" {
   cidr_block = "${var.vswitch_cidr}"
 }
 
-resource "alicloud_security_group" "group" {
+resource "alicloud_security_group" "default" {
   name        = "k8s-security-group"
   vpc_id      = "${alicloud_vpc.network.id}"
   description = "Security group for the Kubernetes cluster"
+}
+
+resource "alicloud_security_group_rule" "allow_ssh" {
+  type              = "ingress"
+  ip_protocol       = "tcp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "22/22"
+  priority          = 1
+  security_group_id = "${alicloud_security_group.default.id}"
+  cidr_ip           = "0.0.0.0/0"
+}
+
+resource "alicloud_security_group_rule" "allow_icmp" {
+  type              = "ingress"
+  ip_protocol       = "icmp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "-1/-1"
+  priority          = 1
+  security_group_id = "${alicloud_security_group.default.id}"
+  cidr_ip           = "0.0.0.0/0"
 }
 
 # ------------------------------------------------------------------------------
@@ -42,6 +64,8 @@ resource "alicloud_security_group" "group" {
 # ------------------------------------------------------------------------------
 
 resource "alicloud_eip" "eip" {
+  count = "${var.create_eip}"
+
   # bandwidth            = "10"
   internet_charge_type = "PayByTraffic"
 }

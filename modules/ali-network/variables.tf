@@ -16,6 +16,10 @@ variable "vswitch_cidr" {
   default     = "10.16.0.0/20"
 }
 
+variable "create_eip" {
+  default = false
+}
+
 variable "dns_zones" {
   type = "list"
 
