@@ -1,13 +1,21 @@
+terraform {
+  # The configuration for this backend will be filled in by Terragrunt
+  backend "gcs" {}
+}
+
 provider "alicloud" {
-  access_key = ""
-  secret_key = ""
-  region     = ""
+  version    = ">= 1.9.1"
+  region     = "eu-central-1"
+  access_key = "${chomp(file("${var.access_key}"))}"
+  secret_key = "${chomp(file("${var.secret_key}"))}"
 }
 
 resource "alicloud_vpc" "network" {
   name       = "network"
-  cidr_block = ""
+  cidr_block = "${var.vpc_cidr}"
 }
+
+/*
 
 resource "alicloud_vswitch" "vswitch" {
   availability_zone = ""
@@ -36,3 +44,5 @@ resource "alicloud_dns_record" "record" {
   type        = "A"
   value       = ""
 }
+*/
+
