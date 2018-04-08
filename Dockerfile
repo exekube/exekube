@@ -20,7 +20,8 @@ RUN apk --no-cache add \
         tar \
         ca-certificates \
         apache2-utils \
-        jq
+        jq \
+        tzdata
 
 # Alibaba Cloud CLI
 RUN curl -L -o aliyun.tgz \
