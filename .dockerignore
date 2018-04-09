@@ -1,3 +1,4 @@
 *
+!dockerfiles/
+!cli/
 !modules/
-!docker-entrypoint.sh
