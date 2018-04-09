@@ -1,6 +1,16 @@
-version: "3.5"
+version: "3"
 
 services:
+  google:
+    image: exekube/exekube:0.3.0-google
+    build:
+      context: .
+      dockerfile: dockerfiles/google/Dockerfile
+  alicloud:
+    image: exekube/exekube:0.3.0-alicloud
+    build:
+      context: .
+      dockerfile: dockerfiles/alicloud/Dockerfile
   docs:
     image: squidfunk/mkdocs-material:latest
     volumes:
