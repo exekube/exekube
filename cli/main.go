@@ -96,12 +96,12 @@ func main() {
 }
 
 func runTerragruntCmd(c *cli.Context) error {
-	// If two args or more
+	// If two args or more, exit with error
 	if c.NArg() > 1 {
 		return fmt.Errorf("Too many arguments for \"%s\" command", c.Command.Name)
 	}
 
-	// If zero args
+	// If zero or one args, set to env var
 	dir := mustGetenv("TF_VAR_default_dir")
 
 	// Overwrite if exactly 1 arg
