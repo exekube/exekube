@@ -31,7 +31,10 @@ func main() {
 		cmd.Stdout = os.Stdout
 		cmd.Stdin = os.Stdin
 		cmd.Stderr = os.Stderr
-		cmd.Run()
+		err := cmd.Run()
+		if err != nil {
+			return err
+		}
 		return nil
 	}
 
