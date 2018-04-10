@@ -10,6 +10,7 @@ variable "secrets_dir" {
 
 # Set this if TLS assets are in directory other than ${tiller_namespace}
 # i.e. ${secrets_dir}/${custom_tls_dir}/${helm_dir}/*.pem
+# vs ${secrets_dir}/${tiller_namespace}/${helm_dir}/*.pem
 variable "custom_tls_dir" {
   default = ""
 }

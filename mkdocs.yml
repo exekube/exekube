@@ -1,19 +1,16 @@
 site_name: Exekube Docs
 repo_name: exekube/exekube
 repo_url: https://github.com/exekube/exekube
-edit_uri: ""
+edit_uri: https://github.com/exekube/exekube/pulls
 
 pages:
   - Overview: index.md
   - Introduction:
       - 'What is Exekube?': introduction/what-is-exekube.md
       - 'Exekube in comparison': introduction/exekube-vs-other.md
-  - Setup and Installation:
-      - 'On Google Cloud Platform': setup/gcp-gke.md
-      - 'On Amazon Web Services': setup/aws-eks.md
-  - Usage:
-      - 'Deploy an application': usage/deploy-app.md
-      - 'Guide to Exekube directory structure and framework usage': usage/directory-structure.md
+  - Exekube in Practice:
+      - 'Tutorial: Getting started with Exekube': in-practice/getting-started.md
+      - 'Guide: How Exekube projects are structured': in-practice/directory-structure-guide.md
   - Miscellaneous:
       - 'Compare using Helm CLI and terraform-provider-helm': misc/helm-cli-vs-terraform-provider-helm.md
       - 'Configure a Helm release': misc/configure-helm-release.md
@@ -31,7 +28,7 @@ copyright: 'Copyright &copy; 2018 Ilya Sotkov'
 
 docs_dir: 'docs'
 extra_css:
-  - 'css/extra.css'
+  - 'theme/extra.css'
 extra_javascript:
   - 'theme/assets/javascripts/application.js'
 markdown_extensions:

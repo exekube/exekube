@@ -24,7 +24,7 @@ resource "google_project_service" "services" {
   service = "${element(var.project_services, count.index)}"
 
   provisioner "local-exec" {
-    command = "sleep 20"
+    command = "sleep 60"
   }
 }
 
@@ -37,7 +37,7 @@ resource "google_project_service" "services" {
 
 resource "null_resource" "add_audit_config" {
   provisioner "local-exec" {
-    command = "add-audit-config"
+    command = "bash ${path.module}/scripts/add-audit-config"
   }
 }
 
