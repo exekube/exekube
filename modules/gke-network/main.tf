@@ -37,7 +37,7 @@ resource "google_project_service" "services" {
 
 resource "null_resource" "add_audit_config" {
   provisioner "local-exec" {
-    command = "add-audit-config"
+    command = "bash ${path.module}/scripts/add-audit-config"
   }
 }
 

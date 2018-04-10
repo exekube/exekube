@@ -1,4 +1,6 @@
-# First stage -- compiling Exekube CLI
+# ------------------------------------------------------------------------------
+# First stage: compiling Exekube CLI
+# ------------------------------------------------------------------------------
 FROM golang:1.9-alpine AS builder
 
 RUN apk add --no-cache \
@@ -15,7 +17,9 @@ ADD ./cli ./src/github.com/exekube/exekube/cli
 
 RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 
-# Second stage -- getting all runtime deps
+# ------------------------------------------------------------------------------
+# Second stage: getting all runtime deps
+# ------------------------------------------------------------------------------
 FROM alpine:3.7
 
 ENV CLOUD_SDK_VERSION 196.0.0
@@ -23,8 +27,6 @@ ENV HELM_VERSION 2.7.2
 ENV TERRAFORM_VERSION 0.11.5
 ENV TERRAGRUNT_VERSION 0.14.6
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.5.0
-
-ENV PATH /google-cloud-sdk/bin:/exekube-modules/scripts:$PATH
 
 RUN apk --no-cache add \
         curl \
@@ -41,6 +43,7 @@ RUN apk --no-cache add \
         tzdata \
         jq
 
+ENV PATH /google-cloud-sdk/bin:$PATH
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
         && tar xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
         && rm google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
@@ -82,5 +85,6 @@ RUN curl -L -o ./tph.tar.gz \
 
 COPY modules /exekube-modules/
 COPY --from=builder /build/bin/xk /usr/local/bin/
+ENV PATH /exekube-modules/gcp-project-init:/exekube-modules/gcp-secret-mgmt/scripts:$PATH
 
 ENTRYPOINT ["/usr/local/bin/xk"]
