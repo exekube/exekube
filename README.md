@@ -33,14 +33,15 @@ The framework allows you to:
 
 ## Built-in Terraform modules
 
-| Terraform module | Purpose |
-| --- | --- |
-| gcp-network | Set up networking, firewall rules, DNS for an enviroment |
-| gcp-secret-mgmt | Create encryption keys and storage buckets for securely managing secrets for an enviroment |
-| gke-cluster | Create a [production-grade](https://cloud.google.com/solutions/prep-kubernetes-engine-for-prod) Kubernetes cluster |
-| helm-initializer | Deploy Tiller into any namespace following [security best practices](https://github.com/kubernetes/helm/blob/master/docs/securing_installation.md) |
-| helm-release | Securely install a Helm chart (create a release) |
-| ali-network |
+| Terraform module | Platform | Purpose |
+| --- | --- | --- |
+| helm-initializer | Any (Kubernetes) | Deploy Tiller into any namespace following [security best practices](https://github.com/kubernetes/helm/blob/master/docs/securing_installation.md) |
+| helm-release | Any (Kubernetes) | Securely install a Helm chart (create a release) |
+| gke-network | Google Cloud | Set up networking, firewall rules, DNS for an enviroment |
+| gke-cluster | Google Cloud | Create a [production-grade](https://cloud.google.com/solutions/prep-kubernetes-engine-for-prod) Kubernetes cluster using Google Kubernetes Engine |
+| gcp-secret-mgmt | Google Cloud | Create encryption keys and storage buckets for securely managing secrets for an enviroment |
+| ali-network | Alibaba Cloud | [Experimental] Set up networking, firewall rules, DNS for an enviroment |
+| ali-cluster | Alibaba Cloud | [Experimental] Create a Kubernetes cluster using Alibaba Cloud Container Service for Kubernetes |
 
 ## Roadmap
 
