@@ -52,11 +52,10 @@ resource "google_container_cluster" "cluster" {
     }
   }
 
-  oauth_scopes = "${var.oauth_scopes}"
-
   node_config {
     machine_type = "${var.node_type}"
     disk_size_gb = 200
+    oauth_scopes = "${var.oauth_scopes}"
 
     labels {
       project = "${var.project_id}"

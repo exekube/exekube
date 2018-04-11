@@ -22,10 +22,10 @@ RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 # ------------------------------------------------------------------------------
 FROM alpine:3.7
 
-ENV CLOUD_SDK_VERSION 196.0.0
-ENV HELM_VERSION 2.7.2
-ENV TERRAFORM_VERSION 0.11.5
-ENV TERRAGRUNT_VERSION 0.14.6
+ENV CLOUD_SDK_VERSION 197.0.0
+ENV HELM_VERSION 2.8.2
+ENV TERRAFORM_VERSION 0.11.7
+ENV TERRAGRUNT_VERSION 0.14.7
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.5.0
 
 RUN apk --no-cache add \
