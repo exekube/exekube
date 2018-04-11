@@ -23,6 +23,7 @@ RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 FROM alpine:3.7
 
 ENV CLOUD_SDK_VERSION 197.0.0
+ENV KUBECTL_VERSION 1.9.6
 ENV HELM_VERSION 2.8.2
 ENV TERRAFORM_VERSION 0.11.7
 ENV TERRAGRUNT_VERSION 0.14.7
@@ -52,9 +53,14 @@ RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cl
         && gcloud config set component_manager/disable_update_check true \
         && gcloud config set metrics/environment github_docker_image \
         && gcloud --version \
-        && gcloud components install alpha beta kubectl \
+        && gcloud components install alpha beta \
         && gcloud components update \
         && gcloud config set component_manager/disable_update_check true
+
+RUN curl -L -o kubectl \
+        https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
+        && chmod 0700 kubectl \
+        && mv kubectl /usr/bin
 
 RUN curl -L -o helm.tar.gz \
         https://kubernetes-helm.storage.googleapis.com/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
