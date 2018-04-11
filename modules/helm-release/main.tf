@@ -187,7 +187,7 @@ EOF
 # ------------------------------------------------------------------------------
 
 resource "helm_repository" "private" {
-  depends_on = ["helm_release.release"]
+  depends_on = ["null_resource.post_hook"]
   count      = "${var.release_spec["enabled"] && var.release_spec["chart_name"] == "chartmuseum" ? 1 : 0}"
 
   name = "private"
