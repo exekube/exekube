@@ -32,7 +32,7 @@
     
     
       
-        <title>Project feature tracker - Exekube Docs</title>
+        <title>Security features - Exekube Docs</title>
       
     
     
@@ -74,7 +74,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#demo-exekube-project-demo-ci-project" tabindex="1" class="md-skip">
+      <a href="#improving-security-of-exekube-on-gcp" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -120,7 +120,7 @@
                 Exekube Docs
               </a>
               <a href="" class="md-header-nav__topic">
-                Project feature tracker
+                Security features
               </a>
             
           
@@ -481,129 +481,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Project feature tracker
-      </label>
-    
-    <a href="./" title="Project feature tracker" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../feature-tracker/" title="Project feature tracker" class="md-nav__link">
       Project feature tracker
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" title="Overview" class="md-nav__link">
-    Overview
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" title="Prerequisites" class="md-nav__link">
-    Prerequisites
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-clone-the-git-repository" title="Step 1: Clone the Git repository" class="md-nav__link">
-    Step 1: Clone the Git repository
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-configure-terraform-modules-for-an-environement" title="Step 2: Configure Terraform modules for an environement" class="md-nav__link">
-    Step 2: Configure Terraform modules for an environement
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#shared-variables" title="Shared variables" class="md-nav__link">
-    Shared variables
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#module-specific-variables" title="Module-specific variables" class="md-nav__link">
-    Module-specific variables
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-initialize-an-environment" title="Step 3: Initialize an environment" class="md-nav__link">
-    Step 3: Initialize an environment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-4-create-and-manage-networking-resources" title="Step 4: Create and manage networking resources" class="md-nav__link">
-    Step 4: Create and manage networking resources
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-5-create-and-manage-a-cluster-and-all-kubernetes-resources" title="Step 5: Create and manage a cluster and all Kubernetes resources" class="md-nav__link">
-    Step 5: Create and manage a cluster and all Kubernetes resources
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#making-upgrades" title="Making upgrades" class="md-nav__link">
-    Making upgrades
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clean-up" title="Clean up" class="md-nav__link">
-    Clean up
-  </a>
-  
-</li>
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -647,11 +529,80 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../security/" title="Security features" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Security features
+      </label>
+    
+    <a href="./" title="Security features" class="md-nav__link md-nav__link--active">
       Security features
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#levels-of-security" title="Levels of security" class="md-nav__link">
+    Levels of security
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#g-suite-and-user-accounts" title="G-Suite and User Accounts" class="md-nav__link">
+    G-Suite and User Accounts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-accounts" title="Service Accounts" class="md-nav__link">
+    Service Accounts
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-more-about-gcp-service-accounts" title="Read more about GCP service accounts" class="md-nav__link">
+    Read more about GCP service accounts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -741,44 +692,31 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" title="Overview" class="md-nav__link">
-    Overview
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" title="Prerequisites" class="md-nav__link">
-    Prerequisites
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-clone-the-git-repository" title="Step 1: Clone the Git repository" class="md-nav__link">
-    Step 1: Clone the Git repository
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-configure-terraform-modules-for-an-environement" title="Step 2: Configure Terraform modules for an environement" class="md-nav__link">
-    Step 2: Configure Terraform modules for an environement
+  <a href="#levels-of-security" title="Levels of security" class="md-nav__link">
+    Levels of security
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#shared-variables" title="Shared variables" class="md-nav__link">
-    Shared variables
+  <a href="#g-suite-and-user-accounts" title="G-Suite and User Accounts" class="md-nav__link">
+    G-Suite and User Accounts
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#module-specific-variables" title="Module-specific variables" class="md-nav__link">
-    Module-specific variables
+  <a href="#service-accounts" title="Service Accounts" class="md-nav__link">
+    Service Accounts
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-more-about-gcp-service-accounts" title="Read more about GCP service accounts" class="md-nav__link">
+    Read more about GCP service accounts
   </a>
   
 </li>
@@ -787,45 +725,9 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-initialize-an-environment" title="Step 3: Initialize an environment" class="md-nav__link">
-    Step 3: Initialize an environment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-4-create-and-manage-networking-resources" title="Step 4: Create and manage networking resources" class="md-nav__link">
-    Step 4: Create and manage networking resources
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-5-create-and-manage-a-cluster-and-all-kubernetes-resources" title="Step 5: Create and manage a cluster and all Kubernetes resources" class="md-nav__link">
-    Step 5: Create and manage a cluster and all Kubernetes resources
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#making-upgrades" title="Making upgrades" class="md-nav__link">
-    Making upgrades
-  </a>
-  
-</li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clean-up" title="Clean up" class="md-nav__link">
-    Clean up
-  </a>
   
 </li>
       
@@ -843,168 +745,23 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/exekube/exekube/pulls/misc/feature-tracker.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/exekube/exekube/pulls/misc/security.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="demo-exekube-project-demo-ci-project">Demo Exekube Project: demo-ci-project</h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is a work in progress</p>
-</div>
-<h2 id="overview">Overview</h2>
-<p>This project will allow you to deploy:</p>
+                <h1 id="improving-security-of-exekube-on-gcp">Improving security of Exekube on GCP</h1>
+<h2 id="levels-of-security">Levels of security</h2>
+<h3 id="g-suite-and-user-accounts">G-Suite and User Accounts</h3>
+<p>The first level of security is ultimately the level where we entrust the human users -- so two things are imporant:</p>
 <ul>
-<li>A Concourse server -- self-hosted CI / CD service (<a href="https://concourse-ci.org">https://concourse-ci.org</a>)</li>
-<li>A private Docker Registry (<a href="https://docs.docker.com/registry">https://docs.docker.com/registry</a>)</li>
-<li>A private ChartMuseum repository for hosting Helm charts (<a href="https://github.com/kubernetes-helm/chartmuseum">https://github.com/kubernetes-helm/chartmuseum</a>)</li>
+<li>Strong passwords -- either long 16+ character strings that are commited to human memory or a long random string stored in a password tool like 1Password or iCloud Keychain.</li>
+<li>2-factor authentication to leverage <em>something that the users must have</em> -- possession of their phone number -- as the security mechanism</li>
 </ul>
-<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="service-accounts">Service Accounts</h3>
+<h4 id="read-more-about-gcp-service-accounts">Read more about GCP service accounts</h4>
 <ul>
-<li>You'll need a Google Account with access to an <a href="https://cloud.google.com/resource-manager/docs/quickstart-organizations">Organization resource</a></li>
-<li>On your workstation, you'll need to have <a href="https://www.docker.com/community-edition">Docker Community Edition</a> installed</li>
+<li><a href="https://cloud.google.com/compute/docs/access/service-accounts">https://cloud.google.com/compute/docs/access/service-accounts</a></li>
+<li><a href="https://cloud.google.com/iam/docs/understanding-service-accounts">https://cloud.google.com/iam/docs/understanding-service-accounts</a></li>
 </ul>
-<h2 id="step-1-clone-the-git-repository">Step 1: Clone the Git repository</h2>
-<p>First, clone the repo of this demo project:</p>
-<div class="codehilite"><pre><span></span>git clone https://github.com/exekube/demo-ci-project
-<span class="nb">cd</span> demo-ci-project
-</pre></div>
-
-<p>Then, create an alias for your bash session:</p>
-<div class="codehilite"><pre><span></span><span class="nb">alias</span> <span class="nv">xk</span><span class="o">=</span><span class="s1">&#39;docker-compose run --rm exekube&#39;</span>
-</pre></div>
-
-<details class="question"><summary>Why is this necessary?</summary><p>Exekube is distributed in a Docker image to save us from managing dependencies like <code class="codehilite">gcloud</code>, <code class="codehilite">terraform</code>, <code class="codehilite">terragrunt</code>, or <code class="codehilite">kubectl</code> on our workstation.</p><p>To create a Docker container from the image, we use Docker Compose. Check the <code class="codehilite">docker-compose.yaml</code> file in the root of our repository to see how the image is used.</p><p>The alias for our bash session is used to purely save us from typing <code class="codehilite">docker-compose run --rm exekube</code> every time we want to interact with the repository.</p></details><h2 id="step-2-configure-terraform-modules-for-an-environement">Step 2: Configure Terraform modules for an environement</h2>
-<details class="question"><summary>What is an environment?</summary><p>We will usually deploy our project into several <em>environments</em>, such as dev, stg, test, prod, etc.  Each environment corresponds to a separate <em>GCP project</em> with a globally unique ID. This allows us to fully isolate environments from each other.</p></details><p>We will start with the <strong>dev</strong> environment for our project.</p>
-<p>Each environment consists of a number of configured Terraform modules, each with its unique <code class="codehilite">terraform.tfvars</code> file:</p>
-<div class="codehilite"><pre><span></span><span class="c1"># live/dev</span>
-.
-├── project
-│   └── terraform.tfvars
-├── kubernetes
-│   ├── cluster
-│   │   └── terraform.tfvars
-│   ├── default
-│   │   ├── _helm
-│   │   │   └── terraform.tfvars
-│   │   ├── chartmuseum
-│   │   │   ├── terraform.tfvars
-│   │   │   └── values.yaml
-│   │   ├── concourse
-│   │   │   ├── terraform.tfvars
-│   │   │   └── values.yaml
-│   │   └── docker-registry
-│   │       ├── terraform.tfvars
-│   │       └── values.yaml
-│   └── kube-system
-│       ├── _helm
-│       │   └── terraform.tfvars
-│       ├── cluster-admin
-│       │   ├── terraform.tfvars
-│       │   └── values.yaml
-│       ├── ingress-controller
-│       │   ├── terraform.tfvars
-│       │   └── values.yaml
-│       └── kube-lego
-│           ├── terraform.tfvars
-│           └── values.yaml
-...
-</pre></div>
-
-<p>But first, we will configure variables that will be used by multiple Terraform modules.</p>
-<h3 id="shared-variables">Shared variables</h3>
-<p>We can share variables between multiple modules by setting shell variables starting with <code class="codehilite">TF_VAR_</code>:</p>
-<div class="codehilite"><pre><span></span><span class="c1"># live/dev/.env</span>
-
-<span class="c1"># TF_VAR_project_id is used to create a GCP project for our environment</span>
-<span class="c1"># It&#39;s then used by modules to create resources for the environment</span>
-<span class="hll"><span class="nv">TF_VAR_project_id</span><span class="o">=</span>dev-demo-ci-296e23 <span class="c1"># MODIFY!!!</span>
-</span>
-<span class="c1"># TF_VAR_serviceaccount_key will be used to put the service account key</span>
-<span class="c1">#   upon the creation of the GCP project</span>
-<span class="c1"># It will then be used by modules to authenticate to GCP</span>
-<span class="nv">TF_VAR_serviceaccount_key</span><span class="o">=</span>/project/live/dev/secrets/kube-system/owner.json
-
-<span class="c1"># TF_VAR is the default directory for Terraform / Terragrunt</span>
-<span class="c1"># Used when we run `xk up` or `xk down` without an argument</span>
-<span class="nv">TF_VAR_default_dir</span><span class="o">=</span>/project/live/dev/kubernetes
-
-<span class="c1"># TF_VAR_secrets_dir is used by multiple modules to source secrets from</span>
-<span class="nv">TF_VAR_secrets_dir</span><span class="o">=</span>/project/live/dev/secrets
-
-<span class="c1"># Keyring is used by the gcp-kms-secret-mgmt module</span>
-<span class="c1"># Also by secrets-fetch and secrets-push scripts</span>
-<span class="c1"># The GCP KMS keyring name to use</span>
-<span class="nv">TF_VAR_keyring_name</span><span class="o">=</span>keyring
-</pre></div>
-
-<p>To get started with the demo project, you will only need to modify the highlighted line to set a unique ID for your GCP project.</p>
-<h3 id="module-specific-variables">Module-specific variables</h3>
-<p>The demo-ci-project consists of these modules (all are Exekube built-in modules).</p>
-<ul>
-<li>gcp-project</li>
-<li>gke-cluster</li>
-<li>helm-initializer (_helm)<ul>
-<li>kube-system namespace</li>
-<li>default namespace</li>
-</ul>
-</li>
-<li>helm-release<ul>
-<li>cluster-admin</li>
-<li>ingress-controller</li>
-<li>kube-lego</li>
-<li>concourse</li>
-<li>docker-registry</li>
-<li>chartmuseum</li>
-</ul>
-</li>
-</ul>
-<p>Below we highlighted some variables we want to set to make sure everything is functional:</p>
-<ol>
-<li>In <a href="../../">live/dev/project/terraform.tfvars</a>, set <code class="codehilite">dns_zones</code> and <code class="codehilite">dns_records</code> variables. These will automatically point to the static regional IP address that we create for our ingress-controller.</li>
-<li>In <a href="../../">live/dev/kubernetes/kube-system/cluster-admin/values.yaml</a>, make sure <code class="codehilite">projectAdmins</code> variable has <code class="codehilite">projectowner@&lt;YOUR-PROJECT-id&gt;.iam.gserviceaccount.com</code> in it.</li>
-<li>In <a href="../../">live/dev/kubernetes/kube-system/ingress-controller/values.yaml</a>, make sure the variable <code class="codehilite">service.loadBalancerIP</code> is set to the static IP address we'll get as an output from <code class="codehilite">gcp-project</code> module.</li>
-<li>In <a href="../../">live/dev/kubernetes/default/concourse/terraform.tfvars</a> set the <code class="codehilite">release_spec.domain_name</code> to a domain name from the <code class="codehilite">dns_records</code> variable in step 1.</li>
-<li>Create a Kubernetes secret for Concourse and put into live/dev/secrets/default/concourse/secrets.yaml. Read the stable/concourse instructions about how to create the secret. If you will use GitHub OAuth for authenticating to Concourse, set that up as well.</li>
-<li>Create basic-auth-username and basic-auth-password files for use with docker-registry and chartmuseum releases.</li>
-</ol>
-<h2 id="step-3-initialize-an-environment">Step 3: Initialize an environment</h2>
-<p>Once we've set all the variable for each Terraform module, we can create the GCP project for our environment:</p>
-<div class="codehilite"><pre><span></span><span class="nb">export</span> <span class="nv">ENV</span><span class="o">=</span>dev
-<span class="nb">export</span> <span class="nv">ORGANIZATION_ID</span><span class="o">=</span>&lt;YOUR-ORGANIZATION-ID&gt;
-<span class="nb">export</span> <span class="nv">BILLING_ID</span><span class="o">=</span>&lt;YOUR-BILLING-ID&gt;
-</pre></div>
-
-<div class="codehilite"><pre><span></span>xk project-init
-</pre></div>
-
-<details class="question"><summary>What will this script do?</summary><p>The script will:</p><ul><li>Create a GCP project with the <code class="codehilite">$TF_VAR_project_id</code> ID we specified earlier</li><li>Create a GCP Service Account for use with Terraform, give it project owner permissions, and download its JSON-encoded key to the path at <code class="codehilite">$TF_VAR_serviceaccount_key</code></li><li>Create a GCS bucket for Terraform remote state, named <code class="codehilite">$TF_VAR_project_id</code>-tfstate</li></ul><p>Read the source code of the script here: <a href="https://github.com/exekube/exekube/blob/master/modules/scripts/project-init">https://github.com/exekube/exekube/blob/master/modules/scripts/project-init</a></p></details><h2 id="step-4-create-and-manage-networking-resources">Step 4: Create and manage networking resources</h2>
-<p>Now that we have a GCP project set up for our environment, we will use Terraform and Terragrunt to manage all resources declaratively.</p>
-<p>Apply the gke-network module:</p>
-<div class="codehilite"><pre><span></span>xk up live/dev/infra/network
-</pre></div>
-
-<details class="question"><summary>What resources does this module create?</summary><ul><li>Enable GCP APIs for the project</li><li>Create a network and subnets for our Kubernetes cluster(s)</li><li>Create firewall rules</li><li>Create static IP addresses</li><li>DNS zones and records, etc.</li></ul><p>These resources cost very little compared to running GCE instances (GKE worker nodes), so we keep them created at all times for all (including non-production) environments.</p></details><h2 id="step-5-create-and-manage-a-cluster-and-all-kubernetes-resources">Step 5: Create and manage a cluster and all Kubernetes resources</h2>
-<p>We can now create the cluster (gke-cluster module) and create all Kubernetes resources (helm-release modules) via one command:</p>
-<div class="codehilite"><pre><span></span>xk up
-</pre></div>
-
-<h3 id="making-upgrades">Making upgrades</h3>
-<p>All configuration is declarative, so just modify any module's variables and run <code class="codehilite">xk up</code> again to upgrade the cluster's state.</p>
-<p>You can also create, upgrade, or destroy single modules or namespaces by specifying a path as an argument to <code class="codehilite">xk up</code> or <code class="codehilite">xk destroy</code>:</p>
-<div class="codehilite"><pre><span></span>xk up live/dev/kubernetes/kube-system/ingress-controller/
-xk down live/dev/kubernetes/kube-system/ingress-controller/
-
-xk up live/dev/kubernetes/team1
-xk down live/dev/kubernetes/team1
-</pre></div>
-
-<h2 id="clean-up">Clean up</h2>
-<p>To clean up, just run</p>
-<div class="codehilite"><pre><span></span>xk down
-</pre></div>
-
-<p>to destroy all Kubernetes (and Helm) resources and then destroy the cluster.</p>
-<p>These resources are highly ephemeral in non-production environments, meanining that you can <code class="codehilite">xk up</code> and <code class="codehilite">xk down</code> several times per day / per hour. GCE running instances are quite expensive (especially for more intensive workloads), so we want to only keep them running when needed.</p>
                 
                   
                 
