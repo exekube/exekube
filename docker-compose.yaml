@@ -6,6 +6,11 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/google/Dockerfile
+  google-istio:
+    image: exekube/exekube:0.3.0-google-istio
+    build:
+      context: .
+      dockerfile: dockerfiles/google-istio/Dockerfile
   alicloud:
     image: exekube/exekube:0.3.0-alicloud
     build:
