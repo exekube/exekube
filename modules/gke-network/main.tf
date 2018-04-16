@@ -1,7 +1,6 @@
 # ------------------------------------------------------------------------------
 # TERRAFORM / PROVIDER CONFIG
 # ------------------------------------------------------------------------------
-
 terraform {
   # The configuration for this backend will be filled in by Terragrunt
   backend "gcs" {}
@@ -37,7 +36,8 @@ resource "google_project_service" "services" {
 
 resource "null_resource" "add_audit_config" {
   provisioner "local-exec" {
-    command = "bash ${path.module}/scripts/add-audit-config"
+    command    = "bash ${path.module}/scripts/add-audit-config"
+    on_failure = "continue"
   }
 }
 
@@ -140,6 +140,8 @@ default-allow-internal \
 default-allow-icmp \
 && gcloud --quiet compute networks delete default
 EOF
+
+    on_failure = "continue"
   }
 }
 
