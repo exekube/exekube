@@ -78,14 +78,14 @@ resource "tls_self_signed_cert" "root" {
   allowed_uses = ["cert_signing"]
 
   subject {
-    common_name  = "_helm-ca"
-    organization = "_helm"
+    common_name  = "Helm CA"
+    organization = "Helm"
   }
 }
 
 /*
 resource "local_file" "ca_key" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/_helm/ca.key.pem"
+  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/ca.key.pem"
   content  = "${tls_private_key.root.private_key_pem}"
 }
 */
@@ -164,7 +164,7 @@ resource "tls_cert_request" "helm_client" {
 
   subject {
     common_name  = "helm-client"
-    organization = "_helm"
+    organization = "Helm"
   }
 }
 

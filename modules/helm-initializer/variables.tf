@@ -14,5 +14,5 @@ variable "custom_tls_dir" {
 }
 
 variable "helm_dir_name" {
-  default = "_helm"
+  default = "helm-tls"
 }
