@@ -45,8 +45,9 @@ data "template_file" "release_values" {
   template = "${file("${var.release_values}")}"
 
   vars {
-    domain_name      = "${var.domain_name}"
-    load_balancer_ip = "${var.load_balancer_ip}"
+    domain_name        = "${var.domain_name}"
+    load_balancer_ip   = "${var.load_balancer_ip}"
+    ingress_basic_auth = "${var.ingress_basic_auth["secret_name"]}"
   }
 }
 
@@ -64,5 +65,32 @@ resource "null_resource" "kubernetes_secrets" {
   provisioner "local-exec" {
     when    = "destroy"
     command = "kubectl delete -f ${element(var.kubernetes_secrets, count.index)}"
+  }
+}
+
+# ------------------------------------------------------------------------------
+# Create a Kubernetes secret for ingress basic authentication (htpasswd)
+# ------------------------------------------------------------------------------
+
+resource "null_resource" "ingress_basic_auth" {
+  count = "${var.disable_release || var.ingress_basic_auth["secret_name"] == "" ? 0 : 1}"
+
+  provisioner "local-exec" {
+    command = <<EOF
+kubectl --namespace ${var.release_namespace} \
+create secret generic \
+${var.ingress_basic_auth["secret_name"]} \
+--from-literal=auth=$(echo -n ${file("${var.ingress_basic_auth["password"]}")} \
+| htpasswd -i -n ${file("${var.ingress_basic_auth["username"]}")})
+EOF
+  }
+
+  provisioner "local-exec" {
+    when = "destroy"
+
+    command = <<EOF
+kubectl --namespace ${var.release_namespace} \
+delete secret ${var.ingress_basic_auth["secret_name"]}
+EOF
   }
 }

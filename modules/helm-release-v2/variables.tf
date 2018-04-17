@@ -62,3 +62,11 @@ variable "load_balancer_ip" {
   description = "Specify the IP of to use for LoadBalancer (used for ingress controllers)"
   default     = ""
 }
+
+variable "ingress_basic_auth" {
+  default = {
+    secret_name = ""
+    username    = ""
+    password    = ""
+  }
+}
