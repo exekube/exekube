@@ -48,6 +48,11 @@ variable "release_values" {
   default     = "values.yaml"
 }
 
+variable "kubernetes_secrets" {
+  description = "List paths to secrets to create before installing the chart"
+  default     = []
+}
+
 variable "domain_name" {
   description = "Specify the domain name to use for ingress (interpolated in values.yaml)"
   default     = ""

@@ -18,7 +18,8 @@ provider "helm" {
 # ------------------------------------------------------------------------------
 
 resource "helm_release" "release" {
-  count = "${var.disable_release ? 0 : 1}"
+  count      = "${var.disable_release ? 0 : 1}"
+  depends_on = ["null_resource.kubernetes_secrets"]
 
   repository = "${var.chart_repo}"
   chart      = "${var.chart_name}"
@@ -46,5 +47,22 @@ data "template_file" "release_values" {
   vars {
     domain_name      = "${var.domain_name}"
     load_balancer_ip = "${var.load_balancer_ip}"
+  }
+}
+
+# ------------------------------------------------------------------------------
+# Create a Kubernetes secret before installing the chart
+# ------------------------------------------------------------------------------
+
+resource "null_resource" "kubernetes_secrets" {
+  count = "${var.disable_release ? 0 : length(var.kubernetes_secrets)}"
+
+  provisioner "local-exec" {
+    command = "kubectl apply -f ${element(var.kubernetes_secrets, count.index)}"
+  }
+
+  provisioner "local-exec" {
+    when    = "destroy"
+    command = "kubectl delete -f ${element(var.kubernetes_secrets, count.index)}"
   }
 }
