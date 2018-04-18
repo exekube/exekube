@@ -28,20 +28,6 @@ resource "google_project_service" "services" {
 }
 
 # ------------------------------------------------------------------------------
-# Support for AuditConfigs is missing in terraform-provider-google
-# GitHub issue:
-# https://github.com/terraform-providers/terraform-provider-google/issues/936
-# We use the add-audit-config script for now
-# ------------------------------------------------------------------------------
-
-resource "null_resource" "add_audit_config" {
-  provisioner "local-exec" {
-    command    = "bash ${path.module}/scripts/add-audit-config"
-    on_failure = "continue"
-  }
-}
-
-# ------------------------------------------------------------------------------
 # VPC NETWORK, SUBNETS, FIREWALL RULES
 # ------------------------------------------------------------------------------
 
