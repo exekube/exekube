@@ -7,7 +7,7 @@ provider "local" {}
 // Use `helm template` then `kubectl apply -f` to install a remote chart
 resource "null_resource" "helm_template_release" {
   count      = "${var.disable_release ? 0 : 1}"
-  depends_on = ["null_resource.kubernetes_secrets"]
+  depends_on = ["null_resource.kubernetes_yaml"]
 
   triggers {
     values = "${data.template_file.release_values.rendered}"
@@ -58,16 +58,16 @@ resource "local_file" "interpolated_values" {
 # Create a Kubernetes secret before installing the chart
 # ------------------------------------------------------------------------------
 
-resource "null_resource" "kubernetes_secrets" {
-  count = "${var.disable_release ? 0 : length(var.kubernetes_secrets)}"
+resource "null_resource" "kubernetes_yaml" {
+  count = "${var.disable_release ? 0 : length(var.kubernetes_yaml)}"
 
   provisioner "local-exec" {
-    command = "kubectl apply -f ${element(var.kubernetes_secrets, count.index)}"
+    command = "kubectl apply -f ${element(var.kubernetes_yaml, count.index)}"
   }
 
   provisioner "local-exec" {
     when    = "destroy"
-    command = "kubectl delete -f ${element(var.kubernetes_secrets, count.index)}"
+    command = "kubectl delete -f ${element(var.kubernetes_yaml, count.index)}"
   }
 }
 
