@@ -1,99 +1,72 @@
 # ------------------------------------------------------------------------------
-# HELM TLS CONFIG
+# REQUIRED VARIABLES
 # ------------------------------------------------------------------------------
 
-# By default ca.cert.pem, helm.cert.pem, and helm.key.pem will be sourced from
-# ${secrets_dir}/${tiller_namespace}/_helm/*.pem
-variable "secrets_dir" {
-  description = "The directory for storing secrets for the project"
+variable "client_auth" {
+  description = "Path with helm.cert.pem, helm.key.pem, and ca.cert.pem"
 }
 
-# Set this if TLS assets are in directory other than ${tiller_namespace}
-# i.e. ${secrets_dir}/${custom_tls_dir}/${helm_dir}/*.pem
-# vs ${secrets_dir}/${tiller_namespace}/${helm_dir}/*.pem
-variable "custom_tls_dir" {
-  default = ""
+variable "release_name" {
+  description = "Name of your Helm release to create"
 }
 
-variable "helm_dir_name" {
-  default = "_helm"
+variable "chart_name" {
+  description = "Name or local path for chart to install"
 }
 
 # ------------------------------------------------------------------------------
-# Helm release specification
+# OPTIONAL VARIABLES
 # ------------------------------------------------------------------------------
 
-variable "release_spec" {
-  type = "map"
-
-  default = {
-    enabled          = false
-    tiller_namespace = "kube-system"
-    chart_repo       = ""
-    namespace        = "default"
-    chart_name       = ""
-    chart_version    = ""
-    release_name     = ""
-    release_values   = "values.yaml"
-
-    domain_name = ""
-  }
+variable "disable_release" {
+  description = "Do not create the release"
+  default     = false
 }
 
-# ------------------------------------------------------------------------------
-# Helm chart repo
-# ------------------------------------------------------------------------------
+variable "tiller_namespace" {
+  description = "Namespace of Tiller"
+  default     = "kube-system"
+}
+
+variable "release_namespace" {
+  description = "Namespace to install the release into"
+  default     = "default"
+}
 
 variable "chart_repo" {
-  default = {
-    name = ""
-    url  = ""
-  }
+  description = "Helm chart repo, URL or saved name"
+  default     = ""
 }
 
-# ------------------------------------------------------------------------------
-# Create a Kubernetes secret
-# ------------------------------------------------------------------------------
+variable "chart_version" {
+  description = "Version of chart to install"
+  default     = ""
+}
 
-variable "kubernetes_secrets" {
-  description = "A list of paths from $TF_VAR_secrets_dir to `kubectl apply`"
+variable "release_values" {
+  description = "Specify values in a YAML file, relative to module's path"
+  default     = "values.yaml"
+}
+
+variable "kubernetes_yaml" {
+  description = "List paths to secrets to create before installing the chart"
   default     = []
 }
 
-# ------------------------------------------------------------------------------
-# Create secret for ingress basic authenticaion
-# Two separate files instead of one YAML used to integrate
-# with docker-registry and chartmuseum charts
-# ------------------------------------------------------------------------------
+variable "domain_name" {
+  description = "Specify the domain name to use for ingress (interpolated in values.yaml)"
+  default     = ""
+}
+
+variable "load_balancer_ip" {
+  description = "Specify the IP of to use for LoadBalancer (used for ingress controllers)"
+  default     = ""
+}
 
 variable "ingress_basic_auth" {
-  type = "map"
-
   default = {
+    secret_name = ""
     username    = ""
     password    = ""
-    secret_name = ""
-  }
-}
-
-# ------------------------------------------------------------------------------
-# Pre-hook and post-hook, to be run before creation and after release creation
-# ------------------------------------------------------------------------------
-
-variable "pre_hook" {
-  type        = "map"
-  description = "Raw bash command to run before release creation"
-
-  default = {
-    command = "helm repo update"
-  }
-}
-
-variable "post_hook" {
-  type        = "map"
-  description = "Raw bash command to run after release creation"
-
-  default = {
-    command = "echo hello from post_hook"
   }
 }
