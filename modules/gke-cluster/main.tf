@@ -78,7 +78,11 @@ gcloud auth activate-service-account --key-file ${var.serviceaccount_key} \
 && gcloud container clusters get-credentials ${var.cluster_name} \
 --zone ${var.main_compute_zone} \
 --project ${var.project_id} \
-&& kubectl label ns kube-system name=kube-system
+&& kubectl label ns kube-system name=kube-system \
+&& kubectl create clusterrolebinding \
+creator-cluster-admin-binding \
+--clusterrole=cluster-admin \
+--user=$(gcloud info --format='value(config.account)')
 EOF
   }
 }
