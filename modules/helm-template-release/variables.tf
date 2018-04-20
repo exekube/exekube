@@ -6,10 +6,6 @@ variable "release_name" {
   description = "Name of your Helm release to create"
 }
 
-variable "chart_repo" {
-  description = "Name of chart repoisitory"
-}
-
 variable "chart_name" {
   description = "Name or local path for chart to install"
 }
@@ -22,9 +18,13 @@ variable "prevent_destroy" {
   default = false
 }
 
-variable "disable_release" {
-  description = "Do not create the release"
-  default     = false
+variable "istio_inject" {
+  default = false
+}
+
+variable "chart_repo" {
+  description = "Name of chart repoisitory"
+  default     = ""
 }
 
 variable "release_namespace" {
