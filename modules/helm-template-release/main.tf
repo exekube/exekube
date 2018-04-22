@@ -28,6 +28,11 @@ resource "local_file" "values_file" {
 resource "null_resource" "helm_fetch" {
   count = "${var.chart_repo == "" ? 0 : 1}"
 
+  triggers {
+    chart  = "${var.chart_version}"
+    values = "${data.template_file.release_values.rendered}"
+  }
+
   provisioner "local-exec" {
     command = <<EOF
 helm fetch --untar --version ${var.chart_version} \
@@ -109,8 +114,9 @@ resource "null_resource" "kubectl_delete" {
   count = "${var.prevent_destroy ? 0 : 1}"
 
   provisioner "local-exec" {
-    when    = "destroy"
-    command = "kubectl delete -f ${path.root}/release.yaml"
+    when       = "destroy"
+    on_failure = "continue"
+    command    = "kubectl delete -f ${path.root}/release.yaml"
   }
 }
 
