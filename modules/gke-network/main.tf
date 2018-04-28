@@ -1,17 +1,4 @@
 # ------------------------------------------------------------------------------
-# TERRAFORM / PROVIDER CONFIG
-# ------------------------------------------------------------------------------
-terraform {
-  # The configuration for this backend will be filled in by Terragrunt
-  backend "gcs" {}
-}
-
-provider "google" {
-  project     = "${var.project_id}"
-  credentials = "${var.serviceaccount_key}"
-}
-
-# ------------------------------------------------------------------------------
 # GOOGLE CLOUD PROJECT
 # ------------------------------------------------------------------------------
 
