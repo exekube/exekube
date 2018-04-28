@@ -37,14 +37,14 @@ variable "static_ip_region" {
 
 variable "dns_zones" {
   type        = "map"
-  description = "External DNS zones that will be used for this environment"
+  description = "Add DNS zones that will be used for this environment"
 
   # Example: {"prod-internal-zone" = "prod.example.com."}
   default = {}
 }
 
 variable "dns_records" {
-  description = "Create DNS records for our static IP address"
+  description = "Add DNS A-records pointing to our static IP address"
   type        = "map"
 
   # Example: {"prod-internal-zone" = "*.prod.example.com."}
