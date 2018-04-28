@@ -21,19 +21,23 @@ module "gke_network" {
 
   cluster_subnets = {
     # index = "region,nodes-subnet,pods-subnet,services-subnet"
-    "0" = "us-west1,10.16.0.0/20,10.17.0.0/16,10.18.0.0/16"
+    "0" = "europe-west1,10.16.0.0/20,10.17.0.0/16,10.18.0.0/16"
   }
 
   create_static_ip_address = true
   static_ip_region         = "europe-west1"
 
-  # Example: {"prod-internal-zone" = "prod.example.com."}
-  dns_zones = {}
+  dns_zones = {
+    "prod-internal-zone" = "prod.example.com."
+  }
 
-  # Example: {"prod-internal-zone" = "mydomain.prod.example.com."}
-  dns_records = {}
+  dns_records = {
+    "prod-internal-zone" = "mydomain.prod.example.com."
+  }
 }
 ```
+
+All module input variables and variable descriptions can be found in [variables.tf](https://github.com/exekube/exekube/blob/master/modules/gke-network/variables.tf).
 
 ## Resources created
 
