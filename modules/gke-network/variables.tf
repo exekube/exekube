@@ -1,22 +1,10 @@
 # ------------------------------------------------------------------------------
-# REQUIRED VARIABLES
-# ------------------------------------------------------------------------------
-
-variable "project_id" {
-  description = "Project where resources will be created"
-}
-
-variable "serviceaccount_key" {
-  description = "Service account key for the project"
-}
-
-# ------------------------------------------------------------------------------
 # OPTIONAL VARIABLES
 # ------------------------------------------------------------------------------
 
 variable "project_services" {
   type        = "list"
-  description = "The APIs to enable for the project"
+  description = "Google Cloud APIs to enable for the GCP project"
 
   default = [
     "compute.googleapis.com",
@@ -49,14 +37,15 @@ variable "static_ip_region" {
 
 variable "dns_zones" {
   type        = "map"
-  description = "External DNS zones that will be used for this environment"
+  description = "Add DNS zones that will be used for this environment"
 
   # Example: {"prod-internal-zone" = "prod.example.com."}
   default = {}
 }
 
 variable "dns_records" {
-  type = "map"
+  description = "Add DNS A-records pointing to our static IP address"
+  type        = "map"
 
   # Example: {"prod-internal-zone" = "*.prod.example.com."}
   default = {}
