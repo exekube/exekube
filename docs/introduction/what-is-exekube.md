@@ -10,10 +10,10 @@ The framework is distributed as a [Docker image on Docker Hub](https://hub.docke
 | --- | --- | --- |
 | Docker | --- | Local and cloud container runtime |
 | Docker Compose | --- | Local development enviroment manager |
-| Terraform | 0.11.5 | Declarative cloud infrastructure and automation manager |
-| Terragrunt | 0.14.6 | Terraform *live module* manager |
-| Kubernetes | 1.8.7 | Container orchestrator |
-| Helm | 2.7.2 | Kubernetes package (chart / release) manager |
+| Terraform | 0.11.7 | Declarative cloud infrastructure and automation manager |
+| Terragrunt | 0.14.7 | Terraform *live module* manager |
+| Kubernetes | 1.9.6 | Container orchestrator |
+| Helm | 2.8.2 | Kubernetes package (chart / release) manager |
 
 ## Infrastructure as Code
 

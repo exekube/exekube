@@ -25,14 +25,14 @@ Before we begin, ensure that:
 1a. Clone the repo of the demo project you chose:
 
 ```sh
-git clone https://github.com/exekube/demo-apps-project
-cd demo-apps-project
+git clone https://github.com/exekube/base-project
+cd base-project
 ```
 
 1b. Create an alias for your bash session:
 
 ```sh
-alias xk='docker-compose run --rm exekube'
+alias xk='docker-compose run --rm xk'
 ```
 
 ??? question "Why is this necessary?"
@@ -51,7 +51,7 @@ alias xk='docker-compose run --rm exekube'
 
     We will usually deploy our project into several *environments*, such as dev, stg, test, prod, etc.  Each environment corresponds to a separate *GCP project* with a globally unique ID. This allows us to fully isolate environments from each other.
 
-We will start with the *dev* environment for our project. After we are done with the dev environment, we can continue and create a *stg or prod* environment.
+We will start with the *dev* environment for our project.
 
 Configuration is where our demo projects differ, so instructions for configuring each can be found in its README:
 

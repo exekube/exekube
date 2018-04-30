@@ -3,7 +3,7 @@
 !!! success "Up to date"
     This documentation is for the latest released version:
 
-    <span class="version-tag">0.3.0</span>
+    <span class="version-tag">0.3.0 Preliminary</span>
 
     Check all Exekube releases: <https://github.com/exekube/exekube/releases>
 
@@ -17,19 +17,30 @@
 - [Tutorial: Getting started with Exekube](/in-practice/getting-started)
 - [Guide: How Exekube projects are structured](/in-practice/directory-structure-guide)
 
-## Demo & Example Projects
+## Example Projects
 
-- [demo-apps-project](/)
-- [demo-grpc-project](/)
-- [demo-ci-project](/)
+- Google Cloud Platform / GKE
+    - [github.com/exekube/demo-apps-project](/)
+    - [github.com/exekube/demo-grpc-project](/)
+    - [github.com/exekube/demo-ci-project](/)
+
+- Alibaba Cloud / Container Service for Kubernetes
+    - [github.com/exekube/demo-alicloud-project](/) (Experimental)
 
 ## Reference
 
-- [gke-network module variables](/)
-- [gke-cluster module variables](/)
-- [helm-release module variables](/)
-- [helm-initializer module variables](/)
-- [gcp-secret-mgmt module variables](/)
+- Kubernetes and Helm
+    - [helm-initializer module variables](/)
+    - [helm-release module variables](/)
+
+- Google Cloud Platform
+    - [gke-network module variables](/)
+    - [gke-cluster module variables](/)
+    - [gcp-secret-mgmt module variables](/)
+
+- Alibaba Cloud (Experimental)
+    - [ali-network modules variables](/)
+    - [ali-cluster modules variables](/)
 
 ## Miscellaneous
 
