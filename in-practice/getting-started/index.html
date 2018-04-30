@@ -827,12 +827,12 @@
 </ul>
 <h2 id="step-1-clone-the-git-repository">Step 1: Clone the Git repository</h2>
 <p>1a. Clone the repo of the demo project you chose:</p>
-<div class="codehilite"><pre><span></span>git clone https://github.com/exekube/demo-apps-project
-<span class="nb">cd</span> demo-apps-project
+<div class="codehilite"><pre><span></span>git clone https://github.com/exekube/base-project
+<span class="nb">cd</span> base-project
 </pre></div>
 
 <p>1b. Create an alias for your bash session:</p>
-<div class="codehilite"><pre><span></span><span class="nb">alias</span> <span class="nv">xk</span><span class="o">=</span><span class="s1">&#39;docker-compose run --rm exekube&#39;</span>
+<div class="codehilite"><pre><span></span><span class="nb">alias</span> <span class="nv">xk</span><span class="o">=</span><span class="s1">&#39;docker-compose run --rm xk&#39;</span>
 </pre></div>
 
 <details class="question"><summary>Why is this necessary?</summary><p>Exekube is distributed in a Docker image to save us from managing dependencies like <code class="codehilite">gcloud</code>, <code class="codehilite">terraform</code>, <code class="codehilite">terragrunt</code>, or <code class="codehilite">kubectl</code> on our workstation.</p><p>To create a Docker container from the image, we use Docker Compose. Check the <code class="codehilite">docker-compose.yaml</code> file in the root of our repository to see how the image is used.</p><p>The alias for our bash session is used to purely save us from typing <code class="codehilite">docker-compose run --rm exekube</code> every time we want to interact with the repository.</p></details><h2 id="step-2-configure-terraform-modules-for-dev-environement">Step 2: Configure Terraform modules for dev environement</h2>
