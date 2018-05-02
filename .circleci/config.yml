@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Lint Terraform modules
-          command: echo "TODO: Add Terraform linting to CircleCI"
+          command: echo "TODO Add Terraform linting to CircleCI"
 workflows:
   version: 2
   deploy:
