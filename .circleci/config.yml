@@ -1,3 +1,19 @@
+version: 2
+jobs:
+  tflint:
+    docker:
+      - image: wata727/tflint
+    steps:
+      - checkout
+      - run:
+          name: Lint Terraform modules
+          command: echo "TODO Add Terraform linting to CircleCI"
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - tflint
+
 # Try using this to check if docs/ folder has been affected:
 # https://gist.github.com/naesheim/18d0c0a58ee61f4674353a2f4cf71475
 #
@@ -7,13 +23,3 @@
 #
 # TODO: Deploy Docs to Github Pages when they change
 #
-version: 2
-jobs:
-  build:
-    docker:
-      - image: wata727/tflint
-    steps:
-      - checkout
-      - run:
-          name: Lint Terraform modules
-          command: echo 'TODO: Add Terraform linting to CircleCI'
