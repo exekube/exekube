@@ -1,12 +1,3 @@
-# Try using this to check if docs/ folder has been affected:
-# https://gist.github.com/naesheim/18d0c0a58ee61f4674353a2f4cf71475
-#
-# TODO: Add Terraform linting
-#
-# TODO: Explore Terratest (and other options) for testing applying modules
-#
-# TODO: Deploy Docs to Github Pages when they change
-#
 version: 2
 jobs:
   tflint:
@@ -22,3 +13,13 @@ workflows:
   deploy:
     jobs:
       - tflint
+
+# Try using this to check if docs/ folder has been affected:
+# https://gist.github.com/naesheim/18d0c0a58ee61f4674353a2f4cf71475
+#
+# TODO: Add Terraform linting
+#
+# TODO: Explore Terratest (and other options) for testing applying modules
+#
+# TODO: Deploy Docs to Github Pages when they change
+#
