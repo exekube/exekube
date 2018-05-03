@@ -46,4 +46,4 @@
 ## Miscellaneous
 
 - Incubator articles
-    - [Terraform / Terragrunt module hierarchy in Exekube projects](/misc/vault-integration)
+    - [Terraform / Terragrunt module hierarchy in Exekube projects](/misc/module-hierarchy)
