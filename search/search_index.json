@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Exekube Documentation\n\n\n\n\nUp to date\n\n\nThis documentation is for the latest released version:\n\n\n0.3.0\n (3 May 2018)\n\n\nCheck all Exekube releases: \nhttps://github.com/exekube/exekube/releases\n\n\n\n\nIntroduction\n\n\n\n\nWhat is Exekube?\n\n\nHow does Exekube compare to other software?\n\n\nHow does Exekube work? (architecture and terminology)\n\n\n\n\nIn Practice\n\n\n\n\nGet started with Exekube\n\n\nConfigure production-grade networking\n\n\nConfigure production-grade storage\n\n\n\n\nExample Projects\n\n\n\n\nexekube/base-project\n: A minimal Exekube project / starter / boilerplate\n\n\nexekube/demo-apps-project\n: Project with generic web applications (Ruby on Rails, React)\n\n\nexekube/demo-grpc-project\n: Project for using \nNetworkPolicy\n resources to secure namespaces for a gRPC server app and its REST client app\n\n\nexekube/demo-ci-project\n: Project for  private CI tools (Concourse, Docker Registry, ChartMuseum)\n\n\nexekube/demo-istio-project\n: Playground for getting to know the Istio mesh framework\n\n\n\n\nExekube Module Library Reference\n\n\n\n\n\n\nKubernetes and Helm\n\n\n\n\nhelm-initializer\n: Module for installing Tiller (with TLS) for a namespace\n\n\nhelm-release\n: Module for securely installing Helm charts\n\n\nhelm-template-release\n: Module for installing Helm charts without Tiller (uses \nhelm template\n and \nkubectl apply\n)\n\n\n\n\n\n\n\n\nGoogle Cloud Platform\n\n\n\n\ngke-network module\n: Module for creating a VPC and other networking cloud resources for GKE clusters\n\n\ngke-cluster module\n: Module for creating GKE clusters\n\n\ngcp-secret-mgmt module\n: Module for creating GCS buckets and KMS encryption keys for distributing project secrets\n\n\n\n\n\n\n\n\nAlibaba Cloud (Experimental)\n\n\n\n\nali-network module\n: Module for creating a VPC and other networking resources for Kubernetes clusters on Alibaba Cloud\n\n\nali-cluster module\n: Module for creating Kubernetes clusters on Alibaba Cloud\n\n\n\n\n\n\n\n\nMiscellaneous\n\n\n\n\nIncubator articles\n\n\nTerraform / Terragrunt module hierarchy in Exekube projects", 
+            "text": "Exekube Documentation\n\n\n\n\nUp to date\n\n\nThis documentation is for the latest released version:\n\n\n0.3.0\n (3 May 2018)\n\n\nCheck all Exekube releases: \nhttps://github.com/exekube/exekube/releases\n\n\n\n\nIntroduction\n\n\n\n\nWhat is Exekube?\n\n\nHow does Exekube compare to other software?\n\n\nHow does Exekube work? (architecture and terminology)\n\n\n\n\nIn Practice\n\n\n\n\nGet started with Exekube\n\n\nConfigure production-grade networking\n\n\nConfigure production-grade storage\n\n\n\n\nExample Projects\n\n\n\n\nexekube/base-project\n: A minimal Exekube project / starter / boilerplate\n\n\nexekube/demo-apps-project\n: Project with generic web applications (Ruby on Rails, React)\n\n\nexekube/demo-grpc-project\n: Project for using \nNetworkPolicy\n resources to secure namespaces for a gRPC server app and its REST client app\n\n\nexekube/demo-ci-project\n: Project for  private CI tools (Concourse, Docker Registry, ChartMuseum)\n\n\nexekube/demo-istio-project\n: Playground for getting to know the Istio mesh framework\n\n\n\n\nExekube Module Library Reference\n\n\n\n\n\n\nKubernetes and Helm\n\n\n\n\nhelm-initializer\n: Module for installing Tiller (with TLS) for a namespace\n\n\nhelm-release\n: Module for securely installing Helm charts\n\n\nhelm-template-release\n: Module for installing Helm charts without Tiller (uses \nhelm template\n and \nkubectl apply\n)\n\n\n\n\n\n\n\n\nGoogle Cloud Platform\n\n\n\n\ngke-network module\n: Module for creating a VPC and other networking cloud resources for GKE clusters\n\n\ngke-cluster module\n: Module for creating GKE clusters\n\n\ngcp-secret-mgmt module\n: Module for creating GCS buckets and KMS encryption keys for distributing project secrets\n\n\n\n\n\n\n\n\nAlibaba Cloud (Experimental)\n\n\n\n\nali-network module\n: Module for creating a VPC and other networking resources for Kubernetes clusters on Alibaba Cloud\n\n\nali-cluster module\n: Module for creating Kubernetes clusters on Alibaba Cloud", 
             "title": "Overview"
         }, 
         {
@@ -29,11 +29,6 @@
             "location": "/#exekube-module-library-reference", 
             "text": "Kubernetes and Helm   helm-initializer : Module for installing Tiller (with TLS) for a namespace  helm-release : Module for securely installing Helm charts  helm-template-release : Module for installing Helm charts without Tiller (uses  helm template  and  kubectl apply )     Google Cloud Platform   gke-network module : Module for creating a VPC and other networking cloud resources for GKE clusters  gke-cluster module : Module for creating GKE clusters  gcp-secret-mgmt module : Module for creating GCS buckets and KMS encryption keys for distributing project secrets     Alibaba Cloud (Experimental)   ali-network module : Module for creating a VPC and other networking resources for Kubernetes clusters on Alibaba Cloud  ali-cluster module : Module for creating Kubernetes clusters on Alibaba Cloud", 
             "title": "Exekube Module Library Reference"
-        }, 
-        {
-            "location": "/#miscellaneous", 
-            "text": "Incubator articles  Terraform / Terragrunt module hierarchy in Exekube projects", 
-            "title": "Miscellaneous"
         }, 
         {
             "location": "/introduction/what-is-exekube/", 
@@ -97,7 +92,7 @@
         }, 
         {
             "location": "/introduction/architecture/", 
-            "text": "Exploring Exekube's Architecture\n\n\n\n\nTip\n\n\nMake sure to get familiar with the directory structure of Exekube \nexample projects\n\n\n\n\nExekube and Exekube Module Library\n\n\nThe framework\n\n\nExekube is a framework, or a way of using certain tools in a certain way, following a certain directory structure. You can also call it a platform on top of Kubernetes, but you must keep in mind that it's doesn't have a GUI, instead preferring to configure things as declarative code (\nTerraform\n and \nYAML + Go templates\n) that can be commited to version control (e.g. Git).\n\n\nThe Terraform module library\n\n\nThe \nExekube Module Library\n is a library of global / external Terraform modules, similar to the \nModule Registry\n. These modules are open-source and can be used (extended / forked / modified) in whichever way you want and can be easily consumed this way:\n\n\nmodule\n \nmy_project_module\n \n{\n\n\n  source\n \n=\n \ngit::ssh://git@github.com/exekube//exekube/modules/helm-release?ref\n=\n0\n.\n3\n.\n0\n\n\n}\n\n\n\n\n\nPrinciples of the framework\n\n\n\n\nKeep typing on the command line to a minimum.\n\n\nKeep as much of your infrastructure / deployment configuration as declarative code following a familiar \nText editor + Git client\n workflow.\n\n\nUse open source GUIs for monitoring (getting, listing, viewing) resources, but do not use them to make any mutations (changes to real cloud resources).\n\n\n\n\nExekube projects and environments\n\n\nAn Exekube project is a software project that requires us to use cloud resources (network, storage, and compute resources) in multiple environments (dev, stg, prod, qa, etc.)\n\n\n\n\n\n\n\n\nExekube resource\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nProject\n\n\nA project is a collection of \nTerraform modules\n that will be deployed into an environment\n\n\n\n\n\n\nEnvironment\n\n\nAn environment a collection of live modules / Terragrunt modules / \nterraform.tfvars\n files in a directory structure\n\n\n\n\n\n\n\n\nModule hierarchy for an Exekube project\n\n\nRead about how Terraform modules can inherit from one another: \n/misc/module-hierarchy", 
+            "text": "Exploring Exekube's Architecture\n\n\n\n\nTip\n\n\nMake sure to get familiar with the directory structure of Exekube \nexample projects\n\n\n\n\nExekube and Exekube Module Library\n\n\nThe framework\n\n\nExekube is a framework, or a way of using certain tools in a certain way, following a certain directory structure. You can also call it a platform on top of Kubernetes, but you must keep in mind that it's doesn't have a GUI, instead preferring to configure things as declarative code (\nTerraform\n and \nYAML + Go templates\n) that can be commited to version control (e.g. Git).\n\n\nExekube module library\n\n\nExekube module library\n is a library of global / external Terraform modules, similar to the \nModule Registry\n. These modules are open-source and can be used (extended / forked / modified) in whichever way you want and can be easily consumed this way:\n\n\nmodule\n \nmy_project_module\n \n{\n\n\n  source\n \n=\n \ngit::ssh://git@github.com/exekube//exekube/modules/helm-release?ref\n=\n0\n.\n3\n.\n0\n\n\n}\n\n\n\n\n\nPrinciples of the framework\n\n\n\n\nKeep typing on the command line to a minimum.\n\n\nKeep as much of your infrastructure / deployment configuration as declarative code following a familiar \nText editor + Git client\n workflow.\n\n\nUse open source GUIs for monitoring (getting, listing, viewing) resources, but do not use them to make any mutations (changes to real cloud resources).\n\n\n\n\nExekube projects and environments\n\n\nAn Exekube project is a software project that requires us to use cloud resources (network, storage, and compute resources) in multiple environments (dev, stg, prod, qa, etc.)\n\n\n\n\n\n\n\n\nExekube resource\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nProject\n\n\nA project is a collection of \nTerraform modules\n that will be deployed into an environment\n\n\n\n\n\n\nEnvironment\n\n\nAn environment a collection of live modules / Terragrunt modules / \nterraform.tfvars\n files in a directory structure\n\n\n\n\n\n\n\n\nModule hierarchy for an Exekube project\n\n\n\n  \n\n\n\n\n\nExternal / Global modules\n\n\nThese are modules from an external (global) library (e.g. from the Module Registry or Exekube Module Library)\n\n\nProject-scoped modules\n\n\nProject-scoped modules are \nsame across different deployment environments\n of the same Exekube project.\n\n\nLive (environment-scoped) modules\n\n\nLive modules are applicable / executable modules, the modules that will be located in the \nlive\n directory and applied by Terraform. Exekube uses Terragrunt as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.\n\n\nLive modules are instances of generic modules configured for a specific deployment environment.\n\n\nProject-scoped modules are imported by \nlive modules\n (in \nterraform.tfvars\n files) using Terragrunt:\n\n\nterragrunt\n \n=\n \n{\n\n  \nterraform\n \n{\n\n\n    # Import a generic module from the local filesystem\n\n\n    source\n \n=\n \n/exekube-modules//gke-cluster\n\n  \n}\n\n\n  # ...\n\n\n}\n\n\n\nor like that:\n\nterragrunt\n \n=\n \n{\n\n  \nterraform\n \n{\n\n\n    # Import a generic module from a remote git repo\n\n\n    source\n \n=\n \ngit::git@github.com:foo/modules.git//app?ref\n=\nv\n0\n.\n0\n.\n3\n\n  \n}\n\n\n  # ...\n\n\n}\n\n\n\nLive modules are always \ndifferent across different environments\n.\n\n\nIf you run \nxk up\n, you are applying \nthe default directory with live modules\n, so it is equivalent of running \nxk up $TF_VAR_default_dir\n. Under the cover, \nxk up\n calls \nterragrunt apply-all\n.\n\n\nYou can also apply an individual live module by running \nxk up \nlive-module-path\n or groups of live modules by running \nxk up \ndirectory-structure-of-live-modules\n.", 
             "title": "Exekube's Architecture"
         }, 
         {
@@ -116,9 +111,9 @@
             "title": "The framework"
         }, 
         {
-            "location": "/introduction/architecture/#the-terraform-module-library", 
-            "text": "The  Exekube Module Library  is a library of global / external Terraform modules, similar to the  Module Registry . These modules are open-source and can be used (extended / forked / modified) in whichever way you want and can be easily consumed this way:  module   my_project_module   {    source   =   git::ssh://git@github.com/exekube//exekube/modules/helm-release?ref = 0 . 3 . 0  }", 
-            "title": "The Terraform module library"
+            "location": "/introduction/architecture/#exekube-module-library", 
+            "text": "Exekube module library  is a library of global / external Terraform modules, similar to the  Module Registry . These modules are open-source and can be used (extended / forked / modified) in whichever way you want and can be easily consumed this way:  module   my_project_module   {    source   =   git::ssh://git@github.com/exekube//exekube/modules/helm-release?ref = 0 . 3 . 0  }", 
+            "title": "Exekube module library"
         }, 
         {
             "location": "/introduction/architecture/#principles-of-the-framework", 
@@ -132,8 +127,23 @@
         }, 
         {
             "location": "/introduction/architecture/#module-hierarchy-for-an-exekube-project", 
-            "text": "Read about how Terraform modules can inherit from one another:  /misc/module-hierarchy", 
+            "text": "", 
             "title": "Module hierarchy for an Exekube project"
+        }, 
+        {
+            "location": "/introduction/architecture/#external-global-modules", 
+            "text": "These are modules from an external (global) library (e.g. from the Module Registry or Exekube Module Library)", 
+            "title": "External / Global modules"
+        }, 
+        {
+            "location": "/introduction/architecture/#project-scoped-modules", 
+            "text": "Project-scoped modules are  same across different deployment environments  of the same Exekube project.", 
+            "title": "Project-scoped modules"
+        }, 
+        {
+            "location": "/introduction/architecture/#live-environment-scoped-modules", 
+            "text": "Live modules are applicable / executable modules, the modules that will be located in the  live  directory and applied by Terraform. Exekube uses Terragrunt as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.  Live modules are instances of generic modules configured for a specific deployment environment.  Project-scoped modules are imported by  live modules  (in  terraform.tfvars  files) using Terragrunt:  terragrunt   =   { \n   terraform   {      # Import a generic module from the local filesystem      source   =   /exekube-modules//gke-cluster \n   }    # ...  }  \nor like that: terragrunt   =   { \n   terraform   {      # Import a generic module from a remote git repo      source   =   git::git@github.com:foo/modules.git//app?ref = v 0 . 0 . 3 \n   }    # ...  }  \nLive modules are always  different across different environments .  If you run  xk up , you are applying  the default directory with live modules , so it is equivalent of running  xk up $TF_VAR_default_dir . Under the cover,  xk up  calls  terragrunt apply-all .  You can also apply an individual live module by running  xk up  live-module-path  or groups of live modules by running  xk up  directory-structure-of-live-modules .", 
+            "title": "Live (environment-scoped) modules"
         }, 
         {
             "location": "/in-practice/getting-started/", 
@@ -254,31 +264,6 @@
             "location": "/in-practice/production-storage/#tutorial", 
             "text": "n/a", 
             "title": "Tutorial"
-        }, 
-        {
-            "location": "/misc/module-hierarchy/", 
-            "text": "Exekube Terraform module hierarchy / architecture\n\n\n\n  \n\n\n\n\n\nExternal / Global modules\n\n\nThese are modules from an external (global) library (e.g. from the Module Registry or Exekube Module Library)\n\n\nProject-scoped modules\n\n\nProject-scoped modules are \nsame across different deployment environments\n of the same Exekube project.\n\n\nLive (environment-scoped) modules\n\n\nLive modules are applicable / executable modules, the modules that will be located in the \nlive\n directory and applied by Terraform. Exekube uses Terragrunt as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.\n\n\nLive modules are instances of generic modules configured for a specific deployment environment.\n\n\nProject-scoped modules are imported by \nlive modules\n (in \nterraform.tfvars\n files) using Terragrunt:\n\n\nterragrunt\n \n=\n \n{\n\n  \nterraform\n \n{\n\n\n    # Import a generic module from the local filesystem\n\n\n    source\n \n=\n \n/exekube-modules//gke-cluster\n\n  \n}\n\n\n  # ...\n\n\n}\n\n\n\nor like that:\n\nterragrunt\n \n=\n \n{\n\n  \nterraform\n \n{\n\n\n    # Import a generic module from a remote git repo\n\n\n    source\n \n=\n \ngit::git@github.com:foo/modules.git//app?ref\n=\nv\n0\n.\n0\n.\n3\n\n  \n}\n\n\n  # ...\n\n\n}\n\n\n\nLive modules are always \ndifferent across different environments\n.\n\n\nIf you run \nxk up\n, you are applying \nthe default directory with live modules\n, so it is equivalent of running \nxk up $TF_VAR_default_dir\n. Under the cover, \nxk up\n calls \nterragrunt apply-all\n.\n\n\nYou can also apply an individual live module by running \nxk up \nlive-module-path\n or groups of live modules by running \nxk up \ndirectory-structure-of-live-modules\n.", 
-            "title": "Terraform / Terragrunt module hierarchy in Exekube projects"
-        }, 
-        {
-            "location": "/misc/module-hierarchy/#exekube-terraform-module-hierarchy-architecture", 
-            "text": "", 
-            "title": "Exekube Terraform module hierarchy / architecture"
-        }, 
-        {
-            "location": "/misc/module-hierarchy/#external-global-modules", 
-            "text": "These are modules from an external (global) library (e.g. from the Module Registry or Exekube Module Library)", 
-            "title": "External / Global modules"
-        }, 
-        {
-            "location": "/misc/module-hierarchy/#project-scoped-modules", 
-            "text": "Project-scoped modules are  same across different deployment environments  of the same Exekube project.", 
-            "title": "Project-scoped modules"
-        }, 
-        {
-            "location": "/misc/module-hierarchy/#live-environment-scoped-modules", 
-            "text": "Live modules are applicable / executable modules, the modules that will be located in the  live  directory and applied by Terraform. Exekube uses Terragrunt as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.  Live modules are instances of generic modules configured for a specific deployment environment.  Project-scoped modules are imported by  live modules  (in  terraform.tfvars  files) using Terragrunt:  terragrunt   =   { \n   terraform   {      # Import a generic module from the local filesystem      source   =   /exekube-modules//gke-cluster \n   }    # ...  }  \nor like that: terragrunt   =   { \n   terraform   {      # Import a generic module from a remote git repo      source   =   git::git@github.com:foo/modules.git//app?ref = v 0 . 0 . 3 \n   }    # ...  }  \nLive modules are always  different across different environments .  If you run  xk up , you are applying  the default directory with live modules , so it is equivalent of running  xk up $TF_VAR_default_dir . Under the cover,  xk up  calls  terragrunt apply-all .  You can also apply an individual live module by running  xk up  live-module-path  or groups of live modules by running  xk up  directory-structure-of-live-modules .", 
-            "title": "Live (environment-scoped) modules"
         }
     ]
 }

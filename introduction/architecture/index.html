@@ -241,19 +241,6 @@
   
 
       
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../misc/module-hierarchy/" title="Miscellaneous" class="md-tabs__link">
-          Miscellaneous
-        </a>
-      
-    </li>
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -404,8 +391,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-terraform-module-library" title="The Terraform module library" class="md-nav__link">
-    The Terraform module library
+  <a href="#exekube-module-library" title="Exekube module library" class="md-nav__link">
+    Exekube module library
   </a>
   
 </li>
@@ -433,6 +420,33 @@
   <a href="#module-hierarchy-for-an-exekube-project" title="Module hierarchy for an Exekube project" class="md-nav__link">
     Module hierarchy for an Exekube project
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-global-modules" title="External / Global modules" class="md-nav__link">
+    External / Global modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-scoped-modules" title="Project-scoped modules" class="md-nav__link">
+    Project-scoped modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-environment-scoped-modules" title="Live (environment-scoped) modules" class="md-nav__link">
+    Live (environment-scoped) modules
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -510,42 +524,6 @@
   </li>
 
     
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
-    <label class="md-nav__link" for="nav-4">
-      Miscellaneous
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        Miscellaneous
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/module-hierarchy/" title="Terraform / Terragrunt module hierarchy in Exekube projects" class="md-nav__link">
-      Terraform / Terragrunt module hierarchy in Exekube projects
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -582,8 +560,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-terraform-module-library" title="The Terraform module library" class="md-nav__link">
-    The Terraform module library
+  <a href="#exekube-module-library" title="Exekube module library" class="md-nav__link">
+    Exekube module library
   </a>
   
 </li>
@@ -612,6 +590,33 @@
     Module hierarchy for an Exekube project
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-global-modules" title="External / Global modules" class="md-nav__link">
+    External / Global modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-scoped-modules" title="Project-scoped modules" class="md-nav__link">
+    Project-scoped modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-environment-scoped-modules" title="Live (environment-scoped) modules" class="md-nav__link">
+    Live (environment-scoped) modules
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -639,8 +644,8 @@
 <h2 id="exekube-and-exekube-module-library">Exekube and Exekube Module Library</h2>
 <h3 id="the-framework">The framework</h3>
 <p>Exekube is a framework, or a way of using certain tools in a certain way, following a certain directory structure. You can also call it a platform on top of Kubernetes, but you must keep in mind that it's doesn't have a GUI, instead preferring to configure things as declarative code (<em>Terraform</em> and <em>YAML + Go templates</em>) that can be commited to version control (e.g. Git).</p>
-<h3 id="the-terraform-module-library">The Terraform module library</h3>
-<p>The <em>Exekube Module Library</em> is a library of global / external Terraform modules, similar to the <a href="https://registry.terraform.io/">Module Registry</a>. These modules are open-source and can be used (extended / forked / modified) in whichever way you want and can be easily consumed this way:</p>
+<h3 id="exekube-module-library">Exekube module library</h3>
+<p><em>Exekube module library</em> is a library of global / external Terraform modules, similar to the <a href="https://registry.terraform.io/">Module Registry</a>. These modules are open-source and can be used (extended / forked / modified) in whichever way you want and can be easily consumed this way:</p>
 <div class="codehilite"><pre><span></span><span class="kr">module</span> <span class="s">&quot;my_project_module&quot;</span> <span class=" -Punctuation">{</span>
 <span class="na">  source</span> <span class="o">=</span><span class="na"> &quot;git::ssh://git@github.com/exekube//exekube/modules/helm-release?ref</span><span class="o">=</span><span class="m">0</span><span class="p">.</span><span class="m">3</span><span class="p">.</span><span class="m">0</span><span class="err">&quot;</span>
 <span class=" -Punctuation">}</span>
@@ -673,7 +678,38 @@
 </tbody>
 </table>
 <h2 id="module-hierarchy-for-an-exekube-project">Module hierarchy for an Exekube project</h2>
-<p>Read about how Terraform modules can inherit from one another: <a href="../../misc/module-hierarchy">/misc/module-hierarchy</a></p>
+<p align="center">
+  <img src="/images/module-architecture.png" alt="Terrafomr module hierarchy in Exekube"/>
+</p>
+
+<h3 id="external-global-modules">External / Global modules</h3>
+<p>These are modules from an external (global) library (e.g. from the Module Registry or Exekube Module Library)</p>
+<h3 id="project-scoped-modules">Project-scoped modules</h3>
+<p>Project-scoped modules are <strong>same across different deployment environments</strong> of the same Exekube project.</p>
+<h3 id="live-environment-scoped-modules">Live (environment-scoped) modules</h3>
+<p>Live modules are applicable / executable modules, the modules that will be located in the <code class="codehilite">live</code> directory and applied by Terraform. Exekube uses Terragrunt as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.</p>
+<p>Live modules are instances of generic modules configured for a specific deployment environment.</p>
+<p>Project-scoped modules are imported by <em>live modules</em> (in <code class="codehilite">terraform.tfvars</code> files) using Terragrunt:</p>
+<p><div class="codehilite"><pre><span></span><span class="na">terragrunt</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+  <span class="err">terraform</span> <span class=" -Punctuation">{</span><span class="c1"></span>
+<span class="c1">    # Import a generic module from the local filesystem</span>
+<span class="na">    source</span> <span class="o">=</span> <span class="s2">&quot;/exekube-modules//gke-cluster&quot;</span>
+  <span class=" -Punctuation">}</span><span class="c1"></span>
+<span class="c1">  # ...</span>
+<span class=" -Punctuation">}</span>
+</pre></div>
+or like that:
+<div class="codehilite"><pre><span></span><span class="na">terragrunt</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+  <span class="err">terraform</span> <span class=" -Punctuation">{</span><span class="c1"></span>
+<span class="c1">    # Import a generic module from a remote git repo</span>
+<span class="na">    source</span> <span class="o">=</span><span class="na"> &quot;git::git@github.com:foo/modules.git//app?ref</span><span class="o">=</span><span class="err">v</span><span class="m">0</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">3</span><span class="err">&quot;</span>
+  <span class=" -Punctuation">}</span><span class="c1"></span>
+<span class="c1">  # ...</span>
+<span class=" -Punctuation">}</span>
+</pre></div>
+Live modules are always <em>different across different environments</em>.</p>
+<p>If you run <code class="codehilite">xk up</code>, you are applying <em>the default directory with live modules</em>, so it is equivalent of running <code class="codehilite">xk up $TF_VAR_default_dir</code>. Under the cover, <code class="codehilite">xk up</code> calls <code class="codehilite">terragrunt apply-all</code>.</p>
+<p>You can also apply an individual live module by running <code class="codehilite">xk up &lt;live-module-path&gt;</code> or groups of live modules by running <code class="codehilite">xk up &lt;directory-structure-of-live-modules&gt;</code>.</p>
                 
                   
                 

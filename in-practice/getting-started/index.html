@@ -241,19 +241,6 @@
   
 
       
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../misc/module-hierarchy/" title="Miscellaneous" class="md-tabs__link">
-          Miscellaneous
-        </a>
-      
-    </li>
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -545,42 +532,6 @@
   </li>
 
     
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
-    <label class="md-nav__link" for="nav-4">
-      Miscellaneous
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        Miscellaneous
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/module-hierarchy/" title="Terraform / Terragrunt module hierarchy in Exekube projects" class="md-nav__link">
-      Terraform / Terragrunt module hierarchy in Exekube projects
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -705,12 +656,12 @@
 <h2 id="what-well-build">What we'll build</h2>
 <p>In this tutorial, we'll walk through the steps of creating a new Exekube project with a Kubernetes cluster in it:</p>
 <p align="center">
-  <img src="/screenshot.png" alt="The Kubernetes Dashboard"/>
+  <img src="/images/screenshot.png" alt="The Kubernetes Dashboard"/>
 </p>
 
 <p>We'll then proceed to write code for a brand-new Helm chart (YAML + Go templates) and a Helm release (Terraform / HCL code) using the <a href="../../">helm-release module</a> from Exekube's <a href="../../">module library</a>:</p>
 <p align="center">
-  <img src="/nginx-app-screenshot.png" alt="The Nginx app release that uses a basic Helm chart"/>
+  <img src="/images/nginx-app-screenshot.png" alt="The Nginx app release that uses a basic Helm chart"/>
 </p>
 
 <h2 id="step-0-prerequisites">Step 0: Prerequisites</h2>
@@ -869,7 +820,7 @@ cp modules/myapp/nginx-app/values.yaml modules/myapp/
 </pre></div>
     Go to <a href="http://localhost:8001/api/v1/namespaces/default/services/myapp-nginx-app:80/proxy/">http://localhost:8001/api/v1/namespaces/default/services/myapp-nginx-app:80/proxy/</a></p>
 <p><p align="center">
-  <img src="/nginx-app-screenshot.png" alt="The Nginx app release that uses a basic Helm chart"/>
+  <img src="/images/nginx-app-screenshot.png" alt="The Nginx app release that uses a basic Helm chart"/>
 </p></p>
 </li>
 </ol>
