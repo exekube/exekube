@@ -37,7 +37,7 @@
             {% if config.site_name == page.title %}
               {{ config.site_name }}
             {% else %}
-              <a href="{{ config.site_url | default(nav.homepage.url, true) }}" class="md-header-nav__topic">
+              <a href="/" class="md-header-nav__topic">
                 {{ config.site_name }}
               </a>
               <a href="{{ canonical_url }}" class="md-header-nav__topic">

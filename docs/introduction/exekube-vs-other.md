@@ -3,9 +3,9 @@
 !!! warning
     This article is incomplete. Want to help? [Submit a pull request](https://github.com/ilyasotkov/exekube/pulls).
 
-## vs CLI tools / shell scripts
+## vs CLI tools
 
-### CLI tools / Exekube legacy imperative workflow
+### CLI tools
 
 Command line tools `kubectl` and `helm` are known to those who are familiar with Kubernetes. `gcloud` (part of Google Cloud SDK) is used for managing the Google Cloud Platform.
 
@@ -25,7 +25,7 @@ helm install --name custom-rails-app \
         charts/rails-app
 ```
 
-### Declarative workflow
+### Exekube's declarative workflow
 
 - `xk up`
 - `xk down`
