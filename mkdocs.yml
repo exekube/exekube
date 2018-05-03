@@ -13,8 +13,6 @@ pages:
       - 'Get started with Exekube': in-practice/getting-started.md
       - 'Configure production-grade networking': in-practice/production-networking.md
       - 'Configure production-grade storage': in-practice/production-storage.md
-  - Miscellaneous:
-      - 'Terraform / Terragrunt module hierarchy in Exekube projects': misc/module-hierarchy.md
 
 copyright: 'Copyright &copy; 2018 Ilya Sotkov'
 

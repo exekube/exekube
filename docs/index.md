@@ -42,8 +42,3 @@
 - Alibaba Cloud (Experimental)
     - [ali-network module](https://github.com/exekube/exekube/tree/master/modules/ali-network): Module for creating a VPC and other networking resources for Kubernetes clusters on Alibaba Cloud
     - [ali-cluster module](https://github.com/exekube/exekube/tree/master/modules/ali-cluster): Module for creating Kubernetes clusters on Alibaba Cloud
-
-## Miscellaneous
-
-- Incubator articles
-    - [Terraform / Terragrunt module hierarchy in Exekube projects](/misc/module-hierarchy)
