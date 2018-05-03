@@ -32,7 +32,7 @@ The framework is distributed as a [Docker image on Docker Hub](https://hub.docke
 | Kubernetes | 1.9.6 | Container orchestrator |
 | Helm | 2.8.2 | Kubernetes package (chart / release) manager |
 
-You can learn more about Exekube's architecture here: https://docs.exekube.com/intro/architecture
+You can learn more about Exekube's architecture here: https://docs.exekube.com/introduction/architecture
 
 ## Infrastructure as Code
 

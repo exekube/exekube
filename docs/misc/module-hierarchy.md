@@ -1,12 +1,12 @@
-# Terraform project modules and Terragrunt live modules
+# Project-scoped modules and live modules
 
 ## Project-scoped modules
 
 Project-scoped modules are normal Terraform modules, just like the ones you can find at <https://modules.terraform.io>.
 
-Generic modules are **same across different deployment environments** of the same Exekube project.
+Project-scoped modules are **same across different deployment environments** of the same Exekube project.
 
-Generic modules are imported by *live modules* (in `terraform.tfvars` files) using Terragrunt:
+Project-scoped modules are imported by *live modules* (in `terraform.tfvars` files) using Terragrunt:
 
 ```tf
 terragrunt = {
@@ -27,8 +27,6 @@ terragrunt = {
   # ...
 }
 ```
-
-Currently, Exekube ships with these built-in modules: <https://github.com/exekube/exekube/tree/master/modules>
 
 ## Live modules
 
