@@ -32,7 +32,7 @@
     
     
       
-        <title>Configure a Helm release - Exekube Docs</title>
+        <title>Exekube's Architecture - Exekube Docs</title>
       
     
     
@@ -74,7 +74,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#ruby-on-rails-app-example" tabindex="1" class="md-skip">
+      <a href="#exploring-exekubes-architecture" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -116,11 +116,11 @@
             data-md-component="title">
           
             
-              <a href="../.." class="md-header-nav__topic">
+              <a href="/" class="md-header-nav__topic">
                 Exekube Docs
               </a>
               <a href="" class="md-header-nav__topic">
-                Configure a Helm release
+                Exekube's Architecture
               </a>
             
           
@@ -220,7 +220,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../introduction/what-is-exekube/" title="Introduction" class="md-tabs__link">
+        <a href="../what-is-exekube/" title="Introduction" class="md-tabs__link md-tabs__link--active">
           Introduction
         </a>
       
@@ -233,8 +233,8 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../in-practice/getting-started/" title="Exekube in Practice" class="md-tabs__link">
-          Exekube in Practice
+        <a href="../../in-practice/getting-started/" title="In Practice" class="md-tabs__link">
+          In Practice
         </a>
       
     </li>
@@ -246,21 +246,8 @@
   
     <li class="md-tabs__item">
       
-        <a href="../helm-cli-vs-terraform-provider-helm/" title="Miscellaneous" class="md-tabs__link md-tabs__link--active">
+        <a href="../../misc/module-hierarchy/" title="Miscellaneous" class="md-tabs__link">
           Miscellaneous
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../reference/gke-cluster/" title="Reference" class="md-tabs__link">
-          Reference
         </a>
       
     </li>
@@ -328,10 +315,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Introduction
@@ -349,7 +338,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../introduction/what-is-exekube/" title="What is Exekube?" class="md-nav__link">
+    <a href="../what-is-exekube/" title="What is Exekube?" class="md-nav__link">
       What is Exekube?
     </a>
   </li>
@@ -361,94 +350,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../introduction/exekube-vs-other/" title="Exekube in comparison" class="md-nav__link">
+    <a href="../exekube-vs-other/" title="Exekube in comparison" class="md-nav__link">
       Exekube in comparison
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
-    
-    <label class="md-nav__link" for="nav-3">
-      Exekube in Practice
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        Exekube in Practice
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../in-practice/getting-started/" title="Tutorial: Getting started with Exekube" class="md-nav__link">
-      Tutorial: Getting started with Exekube
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../in-practice/directory-structure-guide/" title="Guide: How Exekube projects are structured" class="md-nav__link">
-      Guide: How Exekube projects are structured
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
-    
-    <label class="md-nav__link" for="nav-4">
-      Miscellaneous
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        Miscellaneous
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../helm-cli-vs-terraform-provider-helm/" title="Compare using Helm CLI and terraform-provider-helm" class="md-nav__link">
-      Compare using Helm CLI and terraform-provider-helm
     </a>
   </li>
 
@@ -467,21 +370,113 @@
       
     
     
-    <a href="./" title="Configure a Helm release" class="md-nav__link md-nav__link--active">
-      Configure a Helm release
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Exekube's Architecture
+      </label>
+    
+    <a href="./" title="Exekube's Architecture" class="md-nav__link md-nav__link--active">
+      Exekube's Architecture
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exekube-and-exekube-module-library" title="Exekube and Exekube Module Library" class="md-nav__link">
+    Exekube and Exekube Module Library
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-framework" title="The framework" class="md-nav__link">
+    The framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-terraform-module-library" title="The Terraform module library" class="md-nav__link">
+    The Terraform module library
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principles-of-the-framework" title="Principles of the framework" class="md-nav__link">
+    Principles of the framework
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exekube-projects-and-environments" title="Exekube projects and environments" class="md-nav__link">
+    Exekube projects and environments
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-hierarchy-for-an-exekube-project" title="Module hierarchy for an Exekube project" class="md-nav__link">
+    Module hierarchy for an Exekube project
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
         
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      In Practice
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        In Practice
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
           
           
           
 
 
   <li class="md-nav__item">
-    <a href="../vault-integration/" title="Use HashiCorp Vault to manage secrets" class="md-nav__link">
-      Use HashiCorp Vault to manage secrets
+    <a href="../../in-practice/getting-started/" title="Get started with Exekube" class="md-nav__link">
+      Get started with Exekube
     </a>
   </li>
 
@@ -492,8 +487,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../feature-tracker/" title="Project feature tracker" class="md-nav__link">
-      Project feature tracker
+    <a href="../../in-practice/production-networking/" title="Configure production-grade networking" class="md-nav__link">
+      Configure production-grade networking
     </a>
   </li>
 
@@ -504,56 +499,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../secrets/" title="Managing secrets in Exekube" class="md-nav__link">
-      Managing secrets in Exekube
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../add-audit-config/" title="Add audit config for KMS and secret store bucket" class="md-nav__link">
-      Add audit config for KMS and secret store bucket
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../api-design/" title="API Design" class="md-nav__link">
-      API Design
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../security/" title="Security features" class="md-nav__link">
-      Security features
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../concourse-ci/" title="Automated Concourse Pipelines" class="md-nav__link">
-      Automated Concourse Pipelines
+    <a href="../../in-practice/production-storage/" title="Configure production-grade storage" class="md-nav__link">
+      Configure production-grade storage
     </a>
   </li>
 
@@ -570,14 +517,14 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
-    <label class="md-nav__link" for="nav-5">
-      Reference
+    <label class="md-nav__link" for="nav-4">
+      Miscellaneous
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        Reference
+      <label class="md-nav__title" for="nav-4">
+        Miscellaneous
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -588,20 +535,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../reference/gke-cluster/" title="gke-cluster module" class="md-nav__link">
-      gke-cluster module
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../reference/helm-release/" title="helm-release module" class="md-nav__link">
-      helm-release module
+    <a href="../../misc/module-hierarchy/" title="Terraform / Terragrunt module hierarchy in Exekube projects" class="md-nav__link">
+      Terraform / Terragrunt module hierarchy in Exekube projects
     </a>
   </li>
 
@@ -628,6 +563,61 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exekube-and-exekube-module-library" title="Exekube and Exekube Module Library" class="md-nav__link">
+    Exekube and Exekube Module Library
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-framework" title="The framework" class="md-nav__link">
+    The framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-terraform-module-library" title="The Terraform module library" class="md-nav__link">
+    The Terraform module library
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principles-of-the-framework" title="Principles of the framework" class="md-nav__link">
+    Principles of the framework
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exekube-projects-and-environments" title="Exekube projects and environments" class="md-nav__link">
+    Exekube projects and environments
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-hierarchy-for-an-exekube-project" title="Module hierarchy for an Exekube project" class="md-nav__link">
+    Module hierarchy for an Exekube project
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -638,83 +628,52 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/exekube/exekube/pulls/misc/configure-helm-release.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/exekube/exekube/pulls/introduction/architecture.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="ruby-on-rails-app-example">Ruby on Rails app example</h1>
-<p><a href="https://github.com/ilyasotkov/exekube/tree/feature/vault/live/prod/kube/apps/rails-app">https://github.com/ilyasotkov/exekube/tree/feature/vault/live/prod/kube/apps/rails-app</a></p>
-<p>Here is a quick example of how you'd deploy a Rails application by configuring the Exekube built-in <a href="../../reference/helm-release">helm-release</a> module:</p>
-<div class="codehilite"><pre><span></span><span class="c1"># live/prod/releases/rails-app</span>
-tree .
-.
-├── terraform.tfvars
-└── values.yaml
-</pre></div>
-
-<div class="codehilite"><pre><span></span><span class="c1"># cat terraform.tfvars</span>
-
-<span class="c1"># Module metadata</span>
-
-<span class="na">terragrunt</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
-  <span class="err">terraform</span> <span class=" -Punctuation">{</span>
-<span class="na">    source</span> <span class="o">=</span> <span class="s2">&quot;/exekube-modules//helm-release&quot;</span>
-  <span class=" -Punctuation">}</span>
-
-  <span class="err">dependencies</span> <span class=" -Punctuation">{</span>
-<span class="na">    paths</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="s2">&quot;../../cluster&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;../ingress-controller&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;../kube-lego&quot;</span><span class="p">,</span>
-    <span class="p">]</span>
-  <span class=" -Punctuation">}</span>
-
-<span class="na">  include</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
-<span class="na">    path</span> <span class="o">=</span> <span class="s2">&quot;${find_in_parent_folders()}&quot;</span>
-  <span class=" -Punctuation">}</span>
-<span class=" -Punctuation">}</span><span class="c1"></span>
-
-<span class="c1"># Module configuration</span>
-<span class="c1"># ---</span>
-<span class="c1"># Module inputs and defaults:</span>
-<span class="c1"># https://github.com/exekube/exekube/blob/develop/modules/helm-release/inputs.tf</span>
-
-<span class="na">release_spec</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
-<span class="na">  enabled</span>      <span class="o">=</span> <span class="kt">true</span>
-<span class="na">  release_name</span> <span class="o">=</span> <span class="s2">&quot;rails-app&quot;</span>
-
-<span class="na">  chart_repo</span> <span class="o">=</span> <span class="s2">&quot;exekube&quot;</span>
-<span class="na">  chart_name</span> <span class="o">=</span> <span class="s2">&quot;rails-app&quot;</span>
-<span class="na">  chart_version</span>  <span class="o">=</span> <span class="s2">&quot;1.0.0&quot;</span>
-
-<span class="na">  domain_name</span> <span class="o">=</span> <span class="s2">&quot;my-app.YOURDOMAIN.COM&quot;</span>
+                <h1 id="exploring-exekubes-architecture">Exploring Exekube's Architecture</h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Make sure to get familiar with the directory structure of Exekube <a href="https://docs.exekube.com/introduction/what-is-exekube#examples">example projects</a></p>
+</div>
+<h2 id="exekube-and-exekube-module-library">Exekube and Exekube Module Library</h2>
+<h3 id="the-framework">The framework</h3>
+<p>Exekube is a framework, or a way of using certain tools in a certain way, following a certain directory structure. You can also call it a platform on top of Kubernetes, but you must keep in mind that it's doesn't have a GUI, instead preferring to configure things as declarative code (<em>Terraform</em> and <em>YAML + Go templates</em>) that can be commited to version control (e.g. Git).</p>
+<h3 id="the-terraform-module-library">The Terraform module library</h3>
+<p>The <em>Exekube Module Library</em> is a library of global / external Terraform modules, similar to the <a href="https://registry.terraform.io/">Module Registry</a>. These modules are open-source and can be used (extended / forked / modified) in whichever way you want and can be easily consumed this way:</p>
+<div class="codehilite"><pre><span></span><span class="kr">module</span> <span class="s">&quot;my_project_module&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  source</span> <span class="o">=</span><span class="na"> &quot;git::ssh://git@github.com/exekube//exekube/modules/helm-release?ref</span><span class="o">=</span><span class="m">0</span><span class="p">.</span><span class="m">3</span><span class="p">.</span><span class="m">0</span><span class="err">&quot;</span>
 <span class=" -Punctuation">}</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># cat values.yaml</span>
-
-<span class="c1"># Default values for ..</span>
-<span class="c1"># This is a YAML-formatted file.</span>
-<span class="c1"># Declare variables to be passed into your templates.</span>
-<span class="l l-Scalar l-Scalar-Plain">replicaCount</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
-<span class="c1"># nameOverride: rails</span>
-<span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">repository</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ilyasotkov/rails-react-boilerplate</span>
-  <span class="l l-Scalar l-Scalar-Plain">tag</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
-  <span class="l l-Scalar l-Scalar-Plain">pullPolicy</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Always</span>
-  <span class="c1"># pullSecret: registry-login-secret</span>
-<span class="l l-Scalar l-Scalar-Plain">ingress</span><span class="p p-Indicator">:</span>
-  <span class="c1"># If true, an Ingress Resource will be created</span>
-  <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="l l-Scalar l-Scalar-Plain">annotations</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">kubernetes.io/ingress.class</span><span class="p p-Indicator">:</span> <span class="s">&quot;nginx&quot;</span>
-    <span class="l l-Scalar l-Scalar-Plain">kubernetes.io/tls-acme</span><span class="p p-Indicator">:</span> <span class="s">&quot;true&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">hosts</span><span class="p p-Indicator">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">${domain_name}</span>
-  <span class="l l-Scalar l-Scalar-Plain">tls</span><span class="p p-Indicator">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">secretName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">${domain_name}-tls</span>
-      <span class="l l-Scalar l-Scalar-Plain">hosts</span><span class="p p-Indicator">:</span>
-        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">${domain_name}</span>
-</pre></div>
+<h2 id="principles-of-the-framework">Principles of the framework</h2>
+<ol>
+<li>Keep typing on the command line to a minimum.</li>
+<li>Keep as much of your infrastructure / deployment configuration as declarative code following a familiar <em>Text editor + Git client</em> workflow.</li>
+<li>Use open source GUIs for monitoring (getting, listing, viewing) resources, but do not use them to make any mutations (changes to real cloud resources).</li>
+</ol>
+<h2 id="exekube-projects-and-environments">Exekube projects and environments</h2>
+<p>An Exekube project is a software project that requires us to use cloud resources (network, storage, and compute resources) in multiple environments (dev, stg, prod, qa, etc.)</p>
+<table>
+<thead>
+<tr>
+<th>Exekube resource</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project</td>
+<td>A project is a collection of <em>Terraform modules</em> that will be deployed into an environment</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>An environment a collection of live modules / Terragrunt modules / <code class="codehilite">terraform.tfvars</code> files in a directory structure</td>
+</tr>
+</tbody>
+</table>
+<h2 id="module-hierarchy-for-an-exekube-project">Module hierarchy for an Exekube project</h2>
+<p>Read about how Terraform modules can inherit from one another: <a href="../../misc/module-hierarchy">/misc/module-hierarchy</a></p>
                 
                   
                 

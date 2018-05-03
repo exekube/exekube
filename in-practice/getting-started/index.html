@@ -32,7 +32,7 @@
     
     
       
-        <title>Tutorial: Getting started with Exekube - Exekube Docs</title>
+        <title>Get started with Exekube - Exekube Docs</title>
       
     
     
@@ -116,11 +116,11 @@
             data-md-component="title">
           
             
-              <a href="../.." class="md-header-nav__topic">
+              <a href="/" class="md-header-nav__topic">
                 Exekube Docs
               </a>
               <a href="" class="md-header-nav__topic">
-                Tutorial: Getting started with Exekube
+                Get started with Exekube
               </a>
             
           
@@ -233,8 +233,8 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" title="Exekube in Practice" class="md-tabs__link md-tabs__link--active">
-          Exekube in Practice
+        <a href="./" title="In Practice" class="md-tabs__link md-tabs__link--active">
+          In Practice
         </a>
       
     </li>
@@ -246,21 +246,8 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../misc/helm-cli-vs-terraform-provider-helm/" title="Miscellaneous" class="md-tabs__link">
+        <a href="../../misc/module-hierarchy/" title="Miscellaneous" class="md-tabs__link">
           Miscellaneous
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../reference/gke-cluster/" title="Reference" class="md-tabs__link">
-          Reference
         </a>
       
     </li>
@@ -367,6 +354,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/architecture/" title="Exekube's Architecture" class="md-nav__link">
+      Exekube's Architecture
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -384,11 +383,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
-      Exekube in Practice
+      In Practice
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
-        Exekube in Practice
+        In Practice
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -408,11 +407,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Tutorial: Getting started with Exekube
+        Get started with Exekube
       </label>
     
-    <a href="./" title="Tutorial: Getting started with Exekube" class="md-nav__link md-nav__link--active">
-      Tutorial: Getting started with Exekube
+    <a href="./" title="Get started with Exekube" class="md-nav__link md-nav__link--active">
+      Get started with Exekube
     </a>
     
       
@@ -447,8 +446,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-configure-terraform-modules-for-dev-environement" title="Step 2: Configure Terraform modules for dev environement" class="md-nav__link">
-    Step 2: Configure Terraform modules for dev environement
+  <a href="#step-2-configure-the-project-and-its-environments" title="Step 2: Configure the project and its environments" class="md-nav__link">
+    Step 2: Configure the project and its environments
   </a>
   
 </li>
@@ -472,6 +471,13 @@
     Step 5: Create and manage a cluster and all Kubernetes resources
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-optional-deploy-an-nginx-app" title="Step 6: (Optional) Deploy an nginx app" class="md-nav__link">
+    Step 6: (Optional) Deploy an nginx app
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
@@ -488,8 +494,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#clean-up" title="Clean up" class="md-nav__link">
-    Clean up
+  <a href="#step-7-clean-up" title="Step 7: Clean up" class="md-nav__link">
+    Step 7: Clean up
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" title="What's next?" class="md-nav__link">
+    What's next?
   </a>
   
 </li>
@@ -509,8 +522,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../directory-structure-guide/" title="Guide: How Exekube projects are structured" class="md-nav__link">
-      Guide: How Exekube projects are structured
+    <a href="../production-networking/" title="Configure production-grade networking" class="md-nav__link">
+      Configure production-grade networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../production-storage/" title="Configure production-grade storage" class="md-nav__link">
+      Configure production-grade storage
     </a>
   </li>
 
@@ -545,152 +570,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../misc/helm-cli-vs-terraform-provider-helm/" title="Compare using Helm CLI and terraform-provider-helm" class="md-nav__link">
-      Compare using Helm CLI and terraform-provider-helm
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/configure-helm-release/" title="Configure a Helm release" class="md-nav__link">
-      Configure a Helm release
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/vault-integration/" title="Use HashiCorp Vault to manage secrets" class="md-nav__link">
-      Use HashiCorp Vault to manage secrets
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/feature-tracker/" title="Project feature tracker" class="md-nav__link">
-      Project feature tracker
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/secrets/" title="Managing secrets in Exekube" class="md-nav__link">
-      Managing secrets in Exekube
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/add-audit-config/" title="Add audit config for KMS and secret store bucket" class="md-nav__link">
-      Add audit config for KMS and secret store bucket
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/api-design/" title="API Design" class="md-nav__link">
-      API Design
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/security/" title="Security features" class="md-nav__link">
-      Security features
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/concourse-ci/" title="Automated Concourse Pipelines" class="md-nav__link">
-      Automated Concourse Pipelines
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
-    
-    <label class="md-nav__link" for="nav-5">
-      Reference
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        Reference
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../reference/gke-cluster/" title="gke-cluster module" class="md-nav__link">
-      gke-cluster module
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../reference/helm-release/" title="helm-release module" class="md-nav__link">
-      helm-release module
+    <a href="../../misc/module-hierarchy/" title="Terraform / Terragrunt module hierarchy in Exekube projects" class="md-nav__link">
+      Terraform / Terragrunt module hierarchy in Exekube projects
     </a>
   </li>
 
@@ -742,8 +623,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-configure-terraform-modules-for-dev-environement" title="Step 2: Configure Terraform modules for dev environement" class="md-nav__link">
-    Step 2: Configure Terraform modules for dev environement
+  <a href="#step-2-configure-the-project-and-its-environments" title="Step 2: Configure the project and its environments" class="md-nav__link">
+    Step 2: Configure the project and its environments
   </a>
   
 </li>
@@ -767,6 +648,13 @@
     Step 5: Create and manage a cluster and all Kubernetes resources
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-optional-deploy-an-nginx-app" title="Step 6: (Optional) Deploy an nginx app" class="md-nav__link">
+    Step 6: (Optional) Deploy an nginx app
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
@@ -783,8 +671,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#clean-up" title="Clean up" class="md-nav__link">
-    Clean up
+  <a href="#step-7-clean-up" title="Step 7: Clean up" class="md-nav__link">
+    Step 7: Clean up
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" title="What's next?" class="md-nav__link">
+    What's next?
   </a>
   
 </li>
@@ -807,18 +702,17 @@
                 
                 
                 <h1 id="getting-started-with-exekube">Getting started with Exekube</h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is a work in progress</p>
-</div>
 <h2 id="what-well-build">What we'll build</h2>
-<p>We have three demo projects for you to try out Exekube (sorted by degree of difficullty):</p>
-<ul>
-<li><a href="../../">demo-apps-project</a></li>
-<li><a href="../../">demo-grpc-project</a></li>
-<li><a href="../../">demo-ci-project</a></li>
-</ul>
-<p>Once you've made your choice, grab the link of the repository.</p>
+<p>In this tutorial, we'll walk through the steps of creating a new Exekube project with a Kubernetes cluster in it:</p>
+<p align="center">
+  <img src="/screenshot.png" alt="The Kubernetes Dashboard"/>
+</p>
+
+<p>We'll then proceed to write code for a brand-new Helm chart (YAML + Go templates) and a Helm release (Terraform / HCL code) using the <a href="../../">helm-release module</a> from Exekube's <a href="../../">module library</a>:</p>
+<p align="center">
+  <img src="/nginx-app-screenshot.png" alt="The Nginx app release that uses a basic Helm chart"/>
+</p>
+
 <h2 id="step-0-prerequisites">Step 0: Prerequisites</h2>
 <p>Before we begin, ensure that:</p>
 <ul>
@@ -826,86 +720,211 @@
 <li>On your workstation, you have <a href="https://www.docker.com/community-edition">Docker Community Edition</a> installed</li>
 </ul>
 <h2 id="step-1-clone-the-git-repository">Step 1: Clone the Git repository</h2>
-<p>1a. Clone the repo of the demo project you chose:</p>
+<ol>
+<li>Clone the Git repo of the <a href="https://github.com/exekube/base-project">base-project</a>:</li>
+</ol>
 <div class="codehilite"><pre><span></span>git clone https://github.com/exekube/base-project
 <span class="nb">cd</span> base-project
 </pre></div>
 
-<p>1b. Create an alias for your bash session:</p>
+<ol>
+<li>Create an alias for your shell session:</li>
+</ol>
 <div class="codehilite"><pre><span></span><span class="nb">alias</span> <span class="nv">xk</span><span class="o">=</span><span class="s1">&#39;docker-compose run --rm xk&#39;</span>
 </pre></div>
 
-<details class="question"><summary>Why is this necessary?</summary><p>Exekube is distributed in a Docker image to save us from managing dependencies like <code class="codehilite">gcloud</code>, <code class="codehilite">terraform</code>, <code class="codehilite">terragrunt</code>, or <code class="codehilite">kubectl</code> on our workstation.</p><p>To create a Docker container from the image, we use Docker Compose. Check the <code class="codehilite">docker-compose.yaml</code> file in the root of our repository to see how the image is used.</p><p>The alias for our bash session is used to purely save us from typing <code class="codehilite">docker-compose run --rm exekube</code> every time we want to interact with the repository.</p></details><h2 id="step-2-configure-terraform-modules-for-dev-environement">Step 2: Configure Terraform modules for dev environement</h2>
-<details class="question"><summary>What is an environment?</summary><p>1 environment == 1 GCP project</p><p>We will usually deploy our project into several <em>environments</em>, such as dev, stg, test, prod, etc.  Each environment corresponds to a separate <em>GCP project</em> with a globally unique ID. This allows us to fully isolate environments from each other.</p></details><p>We will start with the <em>dev</em> environment for our project.</p>
-<p>Configuration is where our demo projects differ, so instructions for configuring each can be found in its README:</p>
-<ul>
-<li><a href="../../">github.com/exekube/demo-apps-project</a></li>
-<li><a href="../../">github.com/exekube/demo-grpc-project</a></li>
-<li><a href="../../">github.com/exekube/demo-ci-project</a></li>
-</ul>
-<p>After you follow the README to configure the <em>dev</em> environment for your demo project, we can move on to step 3.</p>
+<details class="question"><summary>Why is this necessary?</summary><p>Exekube is distributed in a Docker image to save us from managing dependencies like <code class="codehilite">gcloud</code>, <code class="codehilite">terraform</code>, <code class="codehilite">terragrunt</code>, or <code class="codehilite">kubectl</code> on our workstation.</p><p>To create a Docker container from the image, we use Docker Compose. Check the <code class="codehilite">docker-compose.yaml</code> file in the root of our repository to see how the image is used.</p><p>The alias for our bash session is used to purely save us from typing <code class="codehilite">docker-compose run --rm exekube</code> every time we want to interact with the repository.</p></details><h2 id="step-2-configure-the-project-and-its-environments">Step 2: Configure the project and its environments</h2>
+<details class="question"><summary>What is an environment?</summary><p>We will usually deploy our project into several <em>environments</em>, such as dev, stg, test, prod, etc.  Each environment corresponds to a separate <em>GCP project</em> with a globally unique ID. This allows us to fully isolate environments from each other.</p><p>Read more about GCP projects here: <a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects">https://cloud.google.com/resource-manager/docs/creating-managing-projects</a></p></details><p>Set the <em>GCP project name base</em> in <code class="codehilite">docker-compose.yaml</code>:</p>
+<div class="codehilite"><pre><span></span>services:
+  xk:
+    image: exekube/exekube:0.3.0-google
+    working_dir: /project
+    environment:
+      # ...
+<span class="gd">-     TF_VAR_project_id: ${ENV}-demo-apps-296e23</span>
+<span class="gi">+     TF_VAR_project_id: ${ENV}-my-project-09345g</span>
+</pre></div>
+
 <h2 id="step-3-initialize-dev-environment">Step 3: Initialize dev environment</h2>
 <p>Once we've set all the variables for each Terraform module, we can create the GCP project for our environment.</p>
-<p>3a. Set shell variables:</p>
+<ol>
+<li>
+<p>Set shell variables:</p>
 <div class="codehilite"><pre><span></span><span class="nb">export</span> <span class="nv">ENV</span><span class="o">=</span>dev
 <span class="nb">export</span> <span class="nv">ORGANIZATION_ID</span><span class="o">=</span>&lt;YOUR-ORGANIZATION-ID&gt;
 <span class="nb">export</span> <span class="nv">BILLING_ID</span><span class="o">=</span>&lt;YOUR-BILLING-ID&gt;
 </pre></div>
 
-<p>3b. Log yourself into the Google Cloud Platform:</p>
+</li>
+<li>
+<p>Log yourself into the Google Cloud Platform (follow on-screen instructions):</p>
 <div class="codehilite"><pre><span></span>xk gcloud auth login
 </pre></div>
 
-<p>3c. Run the <code class="codehilite">project-init</code> script:</p>
-<div class="codehilite"><pre><span></span>xk project-init
+</li>
+<li>
+<p>Run the <code class="codehilite">gcp-project-init</code> script:</p>
+<div class="codehilite"><pre><span></span>xk gcp-project-init
 </pre></div>
 
-<details class="question"><summary>What will this script do?</summary><p>The script will:</p><ul><li>Create a GCP project with the <code class="codehilite">$TF_VAR_project_id</code> ID we specified earlier</li><li>Create a GCP Service Account for use with Terraform, give it project owner permissions, and download its JSON-encoded key to the path at <code class="codehilite">$TF_VAR_serviceaccount_key</code></li><li>Create a GCS bucket for Terraform remote state, named <code class="codehilite">$TF_VAR_project_id</code>-tfstate</li></ul><p>Read the source code of the script here: <a href="https://github.com/exekube/exekube/blob/master/modules/scripts/project-init">https://github.com/exekube/exekube/blob/master/modules/scripts/project-init</a></p></details><h2 id="step-4-create-and-manage-cloud-infrastructure">Step 4: Create and manage cloud infrastructure</h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Now that we have a GCP project set up for our environment, we will use Terraform and Terragrunt to manage all resources declaratively.</p>
-</div>
-<p>Apply all infrastructure modules:</p>
+</li>
+</ol>
+<details class="question"><summary>What will this script do?</summary><p>The script will:</p><ul><li>Create a GCP project with the <code class="codehilite">$TF_VAR_project_id</code> ID we specified earlier</li><li>Create a GCP Service Account for use with Terraform, give it project owner permissions, and download its JSON-encoded key to the path at <code class="codehilite">$TF_VAR_serviceaccount_key</code></li><li>Create a GCS bucket for Terraform remote state, named <code class="codehilite">$TF_VAR_project_id</code>-tfstate</li></ul><p>Read the source code of the script here: <a href="https://github.com/exekube/exekube/blob/master/modules/gcp-project-init/gcp-project-init">https://github.com/exekube/exekube/blob/master/modules/gcp-project-init/gcp-project-init</a></p></details><h2 id="step-4-create-and-manage-cloud-infrastructure">Step 4: Create and manage cloud infrastructure</h2>
+<p>Now that we have an empty GCP project set up for our environment, we will use Terraform and Terragrunt to manage all resources in it. Let's use the <code class="codehilite">gke-network</code> to create a VPC for our GKE cluster:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># Recursively looks for terraform.tfvars files in the subdirectories</span>
 <span class="c1">#   of the specified path</span>
 <span class="c1"># Imports and applies Terraform modules</span>
 xk up live/dev/infra
 </pre></div>
 
-<p>Terraform modules in <code class="codehilite">infra</code> are "persistent", meaning that once we've created an environment, we can keep them in the "always created" state. Reasons for not cleaning them up for non-production environments:</p>
+<p>Terraform modules in <code class="codehilite">live/&lt;ENV&gt;/infra</code> are "persistent", meaning that once we've created an environment, we can keep them in the "always created" state. Reasons for not cleaning them up for non-production environments:</p>
 <ul>
 <li>Networking services (VPN, DNS) often don't cost anything on cloud platforms</li>
 <li>DNS records don't handle rapid changes well. It's more practical to have static IP addresses and DNS records</li>
 </ul>
-<details class="question"><summary>What resources do modules in infra create?</summary><ul><li>Enable GCP APIs for the project</li><li>Create a network and subnets for our Kubernetes cluster(s)</li><li>Create firewall rules</li><li>Create static IP addresses</li><li>DNS zones and records, etc.</li></ul><p>These resources cost very little compared to running GCE instances (GKE worker nodes), so we keep them created at all times for all (including non-production) environments.</p></details><h2 id="step-5-create-and-manage-a-cluster-and-all-kubernetes-resources">Step 5: Create and manage a cluster and all Kubernetes resources</h2>
+<h2 id="step-5-create-and-manage-a-cluster-and-all-kubernetes-resources">Step 5: Create and manage a cluster and all Kubernetes resources</h2>
 <p>We can now create the cluster (gke-cluster module) and create all Kubernetes resources (helm-release modules) via one command:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># Since we don&#39;t specify path as an argument, it will use $TF_VAR_default_dir</span>
 xk up
 </pre></div>
 
+<h2 id="step-6-optional-deploy-an-nginx-app">Step 6: (Optional) Deploy an nginx app</h2>
+<p>Let's add a basic Terraform module and a Helm chart to deploy <em>myapp</em>, an nginx app, into our Kubernetes cluster:</p>
+<ol>
+<li>
+<p>First, let's create the project module:
+    <div class="codehilite"><pre><span></span>mkdir modules/myapp
+cat &lt;&lt;<span class="s1">&#39;EOF&#39;</span> &gt; modules/myapp/main.tf
+</pre></div>
+    <div class="codehilite"><pre><span></span><span class="c1"># modules/myapp/main.tf</span>
+<span class="err">terraform</span> <span class=" -Punctuation">{</span>
+  <span class="err">backend</span> <span class="s2">&quot;gcs&quot;</span> <span class=" -Punctuation">{}</span>
+<span class=" -Punctuation">}</span>
+
+<span class="kr">variable</span> <span class="s">&quot;secrets_dir&quot;</span> <span class=" -Punctuation">{}</span>
+
+<span class="kr">module</span> <span class="s">&quot;myapp&quot;</span> <span class=" -Punctuation">{</span>
+<span class="na">  source</span>           <span class="o">=</span> <span class="s2">&quot;/exekube-modules/helm-release&quot;</span>
+<span class="na">  tiller_namespace</span> <span class="o">=</span> <span class="s2">&quot;kube-system&quot;</span>
+<span class="na">  client_auth</span>      <span class="o">=</span> <span class="s2">&quot;${var.secrets_dir}/kube-system/helm-tls&quot;</span>
+
+<span class="na">  release_name</span>      <span class="o">=</span> <span class="s2">&quot;myapp&quot;</span>
+<span class="na">  release_namespace</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+
+<span class="na">  chart_name</span> <span class="o">=</span> <span class="s2">&quot;nginx-app/&quot;</span>
+<span class=" -Punctuation">}</span>
+</pre></div>
+    <div class="codehilite"><pre><span></span>EOF
+</pre></div></p>
+</li>
+<li>
+<p>Next, we will create a local Helm chart and release values for it:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Create a brand-new Helm chart</span>
+xk helm create nginx-app
+
+<span class="c1"># Move the chart into modules/myapp</span>
+mv nginx-app modules/myapp/
+
+<span class="c1"># Create values.yaml for myapp Helm release</span>
+cp modules/myapp/nginx-app/values.yaml modules/myapp/
+</pre></div>
+
+</li>
+<li>
+<p>Add the module into live/dev environment:
+    <div class="codehilite"><pre><span></span>mkdir -p live/dev/k8s/default/myapp
+</pre></div>
+    <div class="codehilite"><pre><span></span>cat &lt;&lt;<span class="s1">&#39;EOF&#39;</span> &gt; live/dev/k8s/default/myapp/terraform.tfvars
+</pre></div>
+    <div class="codehilite"><pre><span></span><span class="c1"># ↓ Module metadata</span>
+<span class="na">terragrunt</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+  <span class="err">terraform</span> <span class=" -Punctuation">{</span>
+<span class="na">    source</span> <span class="o">=</span> <span class="s2">&quot;/project/modules//myapp&quot;</span>
+  <span class=" -Punctuation">}</span>
+
+  <span class="err">dependencies</span> <span class=" -Punctuation">{</span>
+<span class="na">    paths</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="s2">&quot;../../kube-system/helm-initializer&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+  <span class=" -Punctuation">}</span>
+
+<span class="na">  include</span> <span class="o">=</span> <span class=" -Punctuation">{</span>
+<span class="na">    path</span> <span class="o">=</span> <span class="s2">&quot;${find_in_parent_folders()}&quot;</span>
+  <span class=" -Punctuation">}</span>
+<span class=" -Punctuation">}</span><span class="c1"></span>
+
+<span class="c1"># ↓ Module configuration (empty means all default)</span>
+</pre></div>
+    <div class="codehilite"><pre><span></span>EOF
+</pre></div></p>
+</li>
+<li>
+<p>Update your cluster:
+    <div class="codehilite"><pre><span></span>xk up
+</pre></div></p>
+</li>
+<li>
+<p>Create a TLS tunnel (<code class="codehilite">kubectl proxy</code>) to our <code class="codehilite"><span class="n">localhost</span><span class="o">:</span><span class="mi">8001</span></code>:
+    <div class="codehilite"><pre><span></span>docker-compose up -d
+</pre></div>
+    Go to <a href="http://localhost:8001/api/v1/namespaces/default/services/myapp-nginx-app:80/proxy/">http://localhost:8001/api/v1/namespaces/default/services/myapp-nginx-app:80/proxy/</a></p>
+<p><p align="center">
+  <img src="/nginx-app-screenshot.png" alt="The Nginx app release that uses a basic Helm chart"/>
+</p></p>
+</li>
+</ol>
 <h3 id="making-upgrades">Making upgrades</h3>
 <p>All configuration is declarative, so just modify any module's variables and run <code class="codehilite">xk up</code> again to upgrade the cluster's state.</p>
 <p>You can also create, upgrade, or destroy single modules or namespaces by specifying a path as an argument to <code class="codehilite">xk up</code> or <code class="codehilite">xk destroy</code>:</p>
-<div class="codehilite"><pre><span></span><span class="c1"># Apply only one module</span>
-xk up live/dev/kubernetes/kube-system/ingress-controller/
+<div class="codehilite"><pre><span></span><span class="c1"># Use bash completion 👍</span>
+<span class="c1">#</span>
+<span class="c1"># Apply only one module</span>
+xk up live/dev/k8s/default/myapp/
 <span class="c1"># Destroy only one module</span>
-xk down live/dev/kubernetes/kube-system/ingress-controller/
+xk down live/dev/k8s/default/myapp/
 
-<span class="c1"># Apply all modules in team1 directory</span>
-xk up live/dev/kubernetes/team1
-<span class="c1"># Destroy all modules in team1 directory</span>
-xk down live/dev/kubernetes/team1
+<span class="c1"># Apply all modules in default directory</span>
+xk up live/dev/k8s/default/
+<span class="c1"># Destroy all modules in default directory</span>
+xk down live/dev/k8s/default/
 </pre></div>
 
-<h2 id="clean-up">Clean up</h2>
-<p>When you are done with your dev environment, run this command to destroy the GKE cluster and all Kubernetes / Helm resources:</p>
-<div class="codehilite"><pre><span></span><span class="c1"># Again, since we don&#39;t specify path as an argument, it will</span>
+<h2 id="step-7-clean-up">Step 7: Clean up</h2>
+<ol>
+<li>
+<p>When you are done with your dev environment, run this command to destroy the GKE cluster and all Kubernetes / Helm resources (the important parts):
+    <div class="codehilite"><pre><span></span><span class="c1"># Again, since we don&#39;t specify path as an argument, it will</span>
 <span class="c1">#   use $TF_VAR_default_dir</span>
 xk down
+</pre></div></p>
+<p>These resources are highly ephemeral in non-production environments, meanining that you can <code class="codehilite">xk up</code> and <code class="codehilite">xk down</code> several times per day / per hour. Google Compute Engine (GCE) running instances (Kubernetes worker nodes) are quite expensive (especially for more intensive workloads), so we want to only keep them running when needed.</p>
+</li>
+<li>
+<p>Clean up networking resources (⚠️ not recommended)
+    <div class="codehilite"><pre><span></span>xk down live/dev/infra
 </pre></div>
-
-<p>to destroy all Kubernetes (and Helm) resources and then destroy the cluster.</p>
-<p>These resources are highly ephemeral in non-production environments, meanining that you can <code class="codehilite">xk up</code> and <code class="codehilite">xk down</code> several times per day / per hour. GCE running instances are quite expensive (especially for more intensive workloads), so we want to only keep them running when needed.</p>
+    These resources (except reserving a static IP address) are free on Google Cloud Platform, so we recommend you keep them always created.</p>
+</li>
+<li>
+<p>Clean up the GCP project (⚠️ not recommended)</p>
+<p>There's no automation for destroying a GCP project and starting over. Billing-enabled projects are subject to strict quotas if you are using the Google Cloud Platform free trial, so we recommend to purge projects (delete resources manually) instead deleting the project itself.</p>
+</li>
+</ol>
+<h2 id="whats-next">What's next?</h2>
+<ul>
+<li>
+<p>Configure production-grade networking: <a href="http://docs.exekube.com/in-practice/production-networking/">http://docs.exekube.com/in-practice/production-networking/</a></p>
+</li>
+<li>
+<p>Configure production-grade storage: <a href="http://docs.exekube.com/in-practice/production-storage/">http://docs.exekube.com/in-practice/production-storage/</a></p>
+</li>
+<li>
+<p>Check out <a href="../../">this pull request on GitHub</a> to see how to deploy the Guestbook app from <a href="../../">kubernetes/examples</a></p>
+</li>
+<li>
+<p>Take a look at Exekube example projects: <a href="https://docs.exekube.com/introduction/what-is-exekube#examples">https://docs.exekube.com/introduction/what-is-exekube#examples</a></p>
+</li>
+</ul>
                 
                   
                 

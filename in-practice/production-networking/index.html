@@ -32,7 +32,7 @@
     
     
       
-        <title>Guide: How Exekube projects are structured - Exekube Docs</title>
+        <title>Configure production-grade networking - Exekube Docs</title>
       
     
     
@@ -74,7 +74,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#project-directory-structure" tabindex="1" class="md-skip">
+      <a href="#configure-production-grade-networking" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -116,11 +116,11 @@
             data-md-component="title">
           
             
-              <a href="../.." class="md-header-nav__topic">
+              <a href="/" class="md-header-nav__topic">
                 Exekube Docs
               </a>
               <a href="" class="md-header-nav__topic">
-                Guide: How Exekube projects are structured
+                Configure production-grade networking
               </a>
             
           
@@ -233,8 +233,8 @@
   
     <li class="md-tabs__item">
       
-        <a href="../getting-started/" title="Exekube in Practice" class="md-tabs__link md-tabs__link--active">
-          Exekube in Practice
+        <a href="../getting-started/" title="In Practice" class="md-tabs__link md-tabs__link--active">
+          In Practice
         </a>
       
     </li>
@@ -246,21 +246,8 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../misc/helm-cli-vs-terraform-provider-helm/" title="Miscellaneous" class="md-tabs__link">
+        <a href="../../misc/module-hierarchy/" title="Miscellaneous" class="md-tabs__link">
           Miscellaneous
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../reference/gke-cluster/" title="Reference" class="md-tabs__link">
-          Reference
         </a>
       
     </li>
@@ -367,6 +354,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/architecture/" title="Exekube's Architecture" class="md-nav__link">
+      Exekube's Architecture
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -384,11 +383,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
-      Exekube in Practice
+      In Practice
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
-        Exekube in Practice
+        In Practice
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -399,8 +398,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../getting-started/" title="Tutorial: Getting started with Exekube" class="md-nav__link">
-      Tutorial: Getting started with Exekube
+    <a href="../getting-started/" title="Get started with Exekube" class="md-nav__link">
+      Get started with Exekube
     </a>
   </li>
 
@@ -419,10 +418,70 @@
       
     
     
-    <a href="./" title="Guide: How Exekube projects are structured" class="md-nav__link md-nav__link--active">
-      Guide: How Exekube projects are structured
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Configure production-grade networking
+      </label>
+    
+    <a href="./" title="Configure production-grade networking" class="md-nav__link md-nav__link--active">
+      Configure production-grade networking
     </a>
     
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose-securely-expose-a-public-service-application" title="Purpose: securely expose a public service / application" class="md-nav__link">
+    Purpose: securely expose a public service / application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources-well-add-to-base-project" title="Resources we'll add to base-project" class="md-nav__link">
+    Resources we'll add to base-project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tutorial" title="Tutorial" class="md-nav__link">
+    Tutorial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-projects" title="Example projects" class="md-nav__link">
+    Example projects
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../production-storage/" title="Configure production-grade storage" class="md-nav__link">
+      Configure production-grade storage
+    </a>
   </li>
 
         
@@ -456,152 +515,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../misc/helm-cli-vs-terraform-provider-helm/" title="Compare using Helm CLI and terraform-provider-helm" class="md-nav__link">
-      Compare using Helm CLI and terraform-provider-helm
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/configure-helm-release/" title="Configure a Helm release" class="md-nav__link">
-      Configure a Helm release
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/vault-integration/" title="Use HashiCorp Vault to manage secrets" class="md-nav__link">
-      Use HashiCorp Vault to manage secrets
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/feature-tracker/" title="Project feature tracker" class="md-nav__link">
-      Project feature tracker
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/secrets/" title="Managing secrets in Exekube" class="md-nav__link">
-      Managing secrets in Exekube
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/add-audit-config/" title="Add audit config for KMS and secret store bucket" class="md-nav__link">
-      Add audit config for KMS and secret store bucket
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/api-design/" title="API Design" class="md-nav__link">
-      API Design
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/security/" title="Security features" class="md-nav__link">
-      Security features
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../misc/concourse-ci/" title="Automated Concourse Pipelines" class="md-nav__link">
-      Automated Concourse Pipelines
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
-    
-    <label class="md-nav__link" for="nav-5">
-      Reference
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        Reference
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../reference/gke-cluster/" title="gke-cluster module" class="md-nav__link">
-      gke-cluster module
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../reference/helm-release/" title="helm-release module" class="md-nav__link">
-      helm-release module
+    <a href="../../misc/module-hierarchy/" title="Terraform / Terragrunt module hierarchy in Exekube projects" class="md-nav__link">
+      Terraform / Terragrunt module hierarchy in Exekube projects
     </a>
   </li>
 
@@ -628,6 +543,41 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose-securely-expose-a-public-service-application" title="Purpose: securely expose a public service / application" class="md-nav__link">
+    Purpose: securely expose a public service / application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources-well-add-to-base-project" title="Resources we'll add to base-project" class="md-nav__link">
+    Resources we'll add to base-project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tutorial" title="Tutorial" class="md-nav__link">
+    Tutorial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-projects" title="Example projects" class="md-nav__link">
+    Example projects
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -638,68 +588,46 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/exekube/exekube/pulls/in-practice/directory-structure-guide.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/exekube/exekube/pulls/in-practice/production-networking.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="project-directory-structure">Project directory structure</h1>
-<p>The <code class="codehilite">live</code> directory contains configuration for every environment (dev, stg, prod) for this product.</p>
-<div class="codehilite"><pre><span></span>├── live/
-│   ├── dev/
-│   ├── stg/
-│   ├── prod/
-│   ├── .env <span class="c1"># Common TF_VARs -- variables shared by multiple modules</span>
-│   └── terraform.tfvars <span class="c1"># Terraform / Terragrunt config for modules (e.g. remote state config)</span>
-</pre></div>
-
-<p>Every environment (dev, stg, test, prod, etc.) directory is further broken down into directories that contain resources (cloud resources) of these categories:</p>
-<div class="codehilite"><pre><span></span>live/
-├── dev/
-│   ├── project/
-│   ├── kubernetes/
-│   ├── secrets/
-│   ├── .env
-│   └── ci.yaml
-├── stg/
-│   ├── project/
-│   ├── kubernetes/
-│   ├── secrets/
-│   ├── .env
-│   └── ci.yaml
-├── prod/
-│   ...
-</pre></div>
-
-<p>Explore the directory structure (<a href="https://github.com/exekube/demo-ci-project/tree/master/live/dev">https://github.com/exekube/demo-ci-project/tree/master/live/dev</a>) and use this table for reference:</p>
-<table>
-<thead>
-<tr>
-<th>Configuration types for every environment</th>
-<th>What's in there?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="codehilite">project</code></td>
-<td>☁️ Google Cloud resources, e.g. project settings, network, subnets, firewall rules, DNS</td>
-</tr>
-<tr>
-<td><code class="codehilite">kubernetes</code></td>
-<td>☸️ GKE cluster configuration, Kubernetes API resources and Helm release configuration</td>
-</tr>
-<tr>
-<td><code class="codehilite">secrets</code></td>
-<td>🔐 Secrets specific to this environment, stored and distributed in GCS (Cloud Storage) buckets and encrypted by Google Cloud KMS encryption keys</td>
-</tr>
-<tr>
-<td><code class="codehilite"><span class="na">.env</span></code></td>
-<td>🔩 Environment-specific variables common to several modules</td>
-</tr>
-<tr>
-<td><code class="codehilite">ci.yaml</code></td>
-<td>✈️ Concourse pipeline <a href="https://github.com/concourse/concourse-pipeline-resource#dynamic">manifest for CI pipelines</a></td>
-</tr>
-</tbody>
-</table>
+                <h1 id="configure-production-grade-networking">Configure production-grade networking</h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This article is incomplete</p>
+</div>
+<h2 id="purpose-securely-expose-a-public-service-application">Purpose: securely expose a public service / application</h2>
+<p>At the end of the <a href="https://docs.exekube.com/in-practice/getting-started">Getting started with Exekube</a> tutorial , we used <code class="codehilite">kubectl proxy</code> to access our services in the cluster. It is indeed the preferred method for private services, but what if we want to expose a web application or web API to the public?</p>
+<h2 id="resources-well-add-to-base-project">Resources we'll add to base-project</h2>
+<p>In order to set up secure discoverability for our public services, we'll do the following:</p>
+<ul>
+<li>Create a static IP address</li>
+<li>Set up a custom DNS zone</li>
+<li>Create DNS A-records that will point to the static IP address</li>
+<li>Add a Kubernetes ingress controller as the gateway to our public services</li>
+<li>Create <em>cert-manager</em> Issuer and Certificate resources to enable TLS-encrypted communication with clients</li>
+<li>Add <code class="codehilite"><span class="n">kind</span><span class="o">:</span> <span class="n">Ingress</span></code> resources for each of our public services</li>
+</ul>
+<h2 id="tutorial">Tutorial</h2>
+<p>There's no tutorial yet. See these modules in example projects below:</p>
+<ul>
+<li>gke-network</li>
+<li>cert-manager</li>
+<li>nginx-ingress</li>
+</ul>
+<p>Don't forget to configure</p>
+<ul>
+<li>Project modules in the <code class="codehilite"><span class="n">modules</span>/<span class="s">&lt;module-name&gt;</span></code> directory</li>
+<li>Live modules in <code class="codehilite">live/&lt;env&gt;</code> directory</li>
+</ul>
+<h2 id="example-projects">Example projects</h2>
+<p>These Exekube example projects have services that are exposed publicly:</p>
+<ul>
+<li><a href="https://github.com/exekube/demo-apps-project">exekube/demo-apps-project</a>: Project with generic web applications (Ruby on Rails, React)</li>
+<li><a href="https://github.com/exekube/demo-grpc-project">exekube/demo-grpc-project</a>: Project for using <code class="codehilite">NetworkPolicy</code> resources to secure namespaces for a gRPC server app and its REST client app</li>
+<li><a href="https://github.com/exekube/demo-ci-project">exekube/demo-ci-project</a>: Project for  private CI tools (Concourse, Docker Registry, ChartMuseum)</li>
+<li><a href="https://github.com/exekube/demo-istio-project">exekube/demo-istio-project</a>: Playground for getting to know the Istio mesh framework</li>
+</ul>
                 
                   
                 

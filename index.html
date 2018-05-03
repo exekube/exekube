@@ -116,7 +116,7 @@
             data-md-component="title">
           
             
-              <a href="." class="md-header-nav__topic">
+              <a href="/" class="md-header-nav__topic">
                 Exekube Docs
               </a>
               <a href="" class="md-header-nav__topic">
@@ -231,8 +231,8 @@
   
     <li class="md-tabs__item">
       
-        <a href="in-practice/getting-started/" title="Exekube in Practice" class="md-tabs__link">
-          Exekube in Practice
+        <a href="in-practice/getting-started/" title="In Practice" class="md-tabs__link">
+          In Practice
         </a>
       
     </li>
@@ -244,21 +244,8 @@
   
     <li class="md-tabs__item">
       
-        <a href="misc/helm-cli-vs-terraform-provider-helm/" title="Miscellaneous" class="md-tabs__link">
+        <a href="misc/module-hierarchy/" title="Miscellaneous" class="md-tabs__link">
           Miscellaneous
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="reference/gke-cluster/" title="Reference" class="md-tabs__link">
-          Reference
         </a>
       
     </li>
@@ -350,8 +337,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exekube-in-practice" title="Exekube in Practice" class="md-nav__link">
-    Exekube in Practice
+  <a href="#in-practice" title="In Practice" class="md-nav__link">
+    In Practice
   </a>
   
 </li>
@@ -364,8 +351,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reference" title="Reference" class="md-nav__link">
-    Reference
+  <a href="#exekube-module-library-reference" title="Exekube Module Library Reference" class="md-nav__link">
+    Exekube Module Library Reference
   </a>
   
 </li>
@@ -429,6 +416,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="introduction/architecture/" title="Exekube's Architecture" class="md-nav__link">
+      Exekube's Architecture
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -444,11 +443,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
-      Exekube in Practice
+      In Practice
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
-        Exekube in Practice
+        In Practice
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -459,8 +458,8 @@
 
 
   <li class="md-nav__item">
-    <a href="in-practice/getting-started/" title="Tutorial: Getting started with Exekube" class="md-nav__link">
-      Tutorial: Getting started with Exekube
+    <a href="in-practice/getting-started/" title="Get started with Exekube" class="md-nav__link">
+      Get started with Exekube
     </a>
   </li>
 
@@ -471,8 +470,20 @@
 
 
   <li class="md-nav__item">
-    <a href="in-practice/directory-structure-guide/" title="Guide: How Exekube projects are structured" class="md-nav__link">
-      Guide: How Exekube projects are structured
+    <a href="in-practice/production-networking/" title="Configure production-grade networking" class="md-nav__link">
+      Configure production-grade networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="in-practice/production-storage/" title="Configure production-grade storage" class="md-nav__link">
+      Configure production-grade storage
     </a>
   </li>
 
@@ -507,152 +518,8 @@
 
 
   <li class="md-nav__item">
-    <a href="misc/helm-cli-vs-terraform-provider-helm/" title="Compare using Helm CLI and terraform-provider-helm" class="md-nav__link">
-      Compare using Helm CLI and terraform-provider-helm
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="misc/configure-helm-release/" title="Configure a Helm release" class="md-nav__link">
-      Configure a Helm release
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="misc/vault-integration/" title="Use HashiCorp Vault to manage secrets" class="md-nav__link">
-      Use HashiCorp Vault to manage secrets
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="misc/feature-tracker/" title="Project feature tracker" class="md-nav__link">
-      Project feature tracker
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="misc/secrets/" title="Managing secrets in Exekube" class="md-nav__link">
-      Managing secrets in Exekube
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="misc/add-audit-config/" title="Add audit config for KMS and secret store bucket" class="md-nav__link">
-      Add audit config for KMS and secret store bucket
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="misc/api-design/" title="API Design" class="md-nav__link">
-      API Design
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="misc/security/" title="Security features" class="md-nav__link">
-      Security features
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="misc/concourse-ci/" title="Automated Concourse Pipelines" class="md-nav__link">
-      Automated Concourse Pipelines
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
-    
-    <label class="md-nav__link" for="nav-5">
-      Reference
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        Reference
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="reference/gke-cluster/" title="gke-cluster module" class="md-nav__link">
-      gke-cluster module
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="reference/helm-release/" title="helm-release module" class="md-nav__link">
-      helm-release module
+    <a href="misc/module-hierarchy/" title="Terraform / Terragrunt module hierarchy in Exekube projects" class="md-nav__link">
+      Terraform / Terragrunt module hierarchy in Exekube projects
     </a>
   </li>
 
@@ -690,8 +557,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exekube-in-practice" title="Exekube in Practice" class="md-nav__link">
-    Exekube in Practice
+  <a href="#in-practice" title="In Practice" class="md-nav__link">
+    In Practice
   </a>
   
 </li>
@@ -704,8 +571,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reference" title="Reference" class="md-nav__link">
-    Reference
+  <a href="#exekube-module-library-reference" title="Exekube Module Library Reference" class="md-nav__link">
+    Exekube Module Library Reference
   </a>
   
 </li>
@@ -738,77 +605,59 @@
 <div class="admonition success">
 <p class="admonition-title">Up to date</p>
 <p>This documentation is for the latest released version:</p>
-<p><span class="version-tag">0.3.0 Preliminary</span></p>
+<p><span class="version-tag">0.3.0</span> (3 May 2018)</p>
 <p>Check all Exekube releases: <a href="https://github.com/exekube/exekube/releases">https://github.com/exekube/exekube/releases</a></p>
 </div>
 <h2 id="introduction">Introduction</h2>
 <ul>
 <li><a href="./introduction/what-is-exekube">What is Exekube?</a></li>
 <li><a href="./introduction/exekube-vs-other">How does Exekube compare to other software?</a></li>
+<li><a href="./introduction/architecture">How does Exekube work? (architecture and terminology)</a></li>
 </ul>
-<h2 id="exekube-in-practice">Exekube in Practice</h2>
+<h2 id="in-practice">In Practice</h2>
 <ul>
-<li><a href="./in-practice/getting-started">Tutorial: Getting started with Exekube</a></li>
-<li><a href="./in-practice/directory-structure-guide">Guide: How Exekube projects are structured</a></li>
+<li><a href="./in-practice/getting-started">Get started with Exekube</a></li>
+<li><a href="./in-practice/production-networking">Configure production-grade networking</a></li>
+<li><a href="./in-practice/production-storage">Configure production-grade storage</a></li>
 </ul>
 <h2 id="example-projects">Example Projects</h2>
 <ul>
-<li>
-<p>Google Cloud Platform / GKE</p>
-<ul>
-<li><a href="./">github.com/exekube/demo-apps-project</a></li>
-<li><a href="./">github.com/exekube/demo-grpc-project</a></li>
-<li><a href="./">github.com/exekube/demo-ci-project</a></li>
+<li><a href="https://github.com/exekube/base-project">exekube/base-project</a>: A minimal Exekube project / starter / boilerplate</li>
+<li><a href="https://github.com/exekube/demo-apps-project">exekube/demo-apps-project</a>: Project with generic web applications (Ruby on Rails, React)</li>
+<li><a href="https://github.com/exekube/demo-grpc-project">exekube/demo-grpc-project</a>: Project for using <code class="codehilite">NetworkPolicy</code> resources to secure namespaces for a gRPC server app and its REST client app</li>
+<li><a href="https://github.com/exekube/demo-ci-project">exekube/demo-ci-project</a>: Project for  private CI tools (Concourse, Docker Registry, ChartMuseum)</li>
+<li><a href="https://github.com/exekube/demo-istio-project">exekube/demo-istio-project</a>: Playground for getting to know the Istio mesh framework</li>
 </ul>
-</li>
-<li>
-<p>Alibaba Cloud / Container Service for Kubernetes</p>
-<ul>
-<li><a href="./">github.com/exekube/demo-alicloud-project</a> (Experimental)</li>
-</ul>
-</li>
-</ul>
-<h2 id="reference">Reference</h2>
+<h2 id="exekube-module-library-reference">Exekube Module Library Reference</h2>
 <ul>
 <li>
 <p>Kubernetes and Helm</p>
 <ul>
-<li><a href="./">helm-initializer module variables</a></li>
-<li><a href="./">helm-release module variables</a></li>
+<li><a href="https://github.com/exekube/exekube/tree/master/modules/helm-initializer">helm-initializer</a>: Module for installing Tiller (with TLS) for a namespace</li>
+<li><a href="https://github.com/exekube/exekube/tree/master/modules/helm-release">helm-release</a>: Module for securely installing Helm charts</li>
+<li><a href="https://github.com/exekube/exekube/tree/master/modules/helm-template-release">helm-template-release</a>: Module for installing Helm charts without Tiller (uses <code class="codehilite">helm template</code> and <code class="codehilite">kubectl apply</code>)</li>
 </ul>
 </li>
 <li>
 <p>Google Cloud Platform</p>
 <ul>
-<li><a href="./">gke-network module variables</a></li>
-<li><a href="./">gke-cluster module variables</a></li>
-<li><a href="./">gcp-secret-mgmt module variables</a></li>
+<li><a href="https://github.com/exekube/exekube/tree/master/modules/gke-network">gke-network module</a>: Module for creating a VPC and other networking cloud resources for GKE clusters</li>
+<li><a href="https://github.com/exekube/exekube/tree/master/modules/gke-cluster">gke-cluster module</a>: Module for creating GKE clusters</li>
+<li><a href="https://github.com/exekube/exekube/tree/master/modules/gcp-secret-mgmt">gcp-secret-mgmt module</a>: Module for creating GCS buckets and KMS encryption keys for distributing project secrets</li>
 </ul>
 </li>
 <li>
 <p>Alibaba Cloud (Experimental)</p>
 <ul>
-<li><a href="./">ali-network modules variables</a></li>
-<li><a href="./">ali-cluster modules variables</a></li>
+<li><a href="https://github.com/exekube/exekube/tree/master/modules/ali-network">ali-network module</a>: Module for creating a VPC and other networking resources for Kubernetes clusters on Alibaba Cloud</li>
+<li><a href="https://github.com/exekube/exekube/tree/master/modules/ali-cluster">ali-cluster module</a>: Module for creating Kubernetes clusters on Alibaba Cloud</li>
 </ul>
 </li>
 </ul>
 <h2 id="miscellaneous">Miscellaneous</h2>
 <ul>
-<li>
-<p>Incubator notes</p>
-<ul>
-<li><a href="./misc/vault-integration">Use HashiCorp Vault to manage secrets</a></li>
-<li><a href="./misc/istio">Use Istio for pod networking</a></li>
-</ul>
-</li>
-<li>
-<p>Other notes</p>
-<ul>
-<li><a href="./misc/helm-cli-vs-terraform-provider-helm">Compare using Helm CLI and terraform-provider-helm</a></li>
-<li><a href="./misc/configure-helm-release">How to configure a Helm release</a></li>
-<li><a href="./misc/secrets">Managing secrets in Exekube</a></li>
-<li><a href="./misc/feature-tracker">Read the project's feature tracker</a></li>
+<li>Incubator articles<ul>
+<li><a href="./misc/module-hierarchy">Terraform / Terragrunt module hierarchy in Exekube projects</a></li>
 </ul>
 </li>
 </ul>
