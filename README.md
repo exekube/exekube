@@ -12,7 +12,7 @@ You can find the latest Exekube documentation at <https://docs.exekube.com>.
 
 The Exekube project is divided across a few GitHub repositories:
 
-- [exekube/exekube](/). This is the main repository that you are currently looking at. Its divided into the following subdirectories:
+- [exekube/exekube](https://github.com/exekube/exekube). This is the main repository that you are currently looking at. Its divided into the following subdirectories:
 
     - [modules](https://github.com/exekube/exekube/tree/master/modules). Exekube's Terraform module library (third-party [Module Registry](/))
     - [cli](https://github.com/exekube/exekube/tree/master/cli). Exekube's CLI (written in Go) for commands like `xk up`, `xk down`, etc.

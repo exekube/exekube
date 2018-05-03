@@ -5,13 +5,13 @@
 In this tutorial, we'll walk through the steps of creating a new Exekube project with a Kubernetes cluster in it:
 
 <p align="center">
-  <img src="/screenshot.png" alt="The Kubernetes Dashboard"/>
+  <img src="/images/screenshot.png" alt="The Kubernetes Dashboard"/>
 </p>
 
 We'll then proceed to write code for a brand-new Helm chart (YAML + Go templates) and a Helm release (Terraform / HCL code) using the [helm-release module](/) from Exekube's [module library](/):
 
 <p align="center">
-  <img src="/nginx-app-screenshot.png" alt="The Nginx app release that uses a basic Helm chart"/>
+  <img src="/images/nginx-app-screenshot.png" alt="The Nginx app release that uses a basic Helm chart"/>
 </p>
 
 ## Step 0: Prerequisites
@@ -212,7 +212,7 @@ Let's add a basic Terraform module and a Helm chart to deploy *myapp*, an nginx 
     Go to <http://localhost:8001/api/v1/namespaces/default/services/myapp-nginx-app:80/proxy/>
 
     <p align="center">
-      <img src="/nginx-app-screenshot.png" alt="The Nginx app release that uses a basic Helm chart"/>
+      <img src="/images/nginx-app-screenshot.png" alt="The Nginx app release that uses a basic Helm chart"/>
     </p>
 
 ### Making upgrades
