@@ -106,12 +106,12 @@ resource "null_resource" "delete_default_network" {
 
   provisioner "local-exec" {
     command = <<EOF
-gcloud --quiet compute firewall-rules delete \
+gcloud --project $TF_VAR_project_id --quiet compute firewall-rules delete \
 default-allow-ssh \
 default-allow-rdp \
 default-allow-internal \
 default-allow-icmp \
-&& gcloud --quiet compute networks delete default
+&& gcloud --quiet --project $TF_VAR_project_id compute networks delete default
 EOF
 
     on_failure = "continue"
