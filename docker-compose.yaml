@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-  # Build Exekube images and tags locally
-  # Usage `docker-compose build google`
+  # Build Exekube images and tag them
+  # Usage: `docker-compose build <service-name>`
   google:
     image: exekube/exekube:0.3.0-google
     build:
@@ -20,6 +20,7 @@ services:
       dockerfile: dockerfiles/alicloud/Dockerfile
 
   # Start local mkdocs server for writing Exekube documentation
+  # Usage: `docker-compose up docs`
   docs:
     image: squidfunk/mkdocs-material:latest
     volumes:

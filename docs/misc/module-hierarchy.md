@@ -1,12 +1,12 @@
-# Terraform generic modules and Terragrunt live modules
+# Terraform project modules and Terragrunt live modules
 
-## Generic modules
+## Project-scoped modules
 
-Generic modules are normal Terraform modules, just like the ones you can find at <https://modules.terraform.io>.
+Project-scoped modules are normal Terraform modules, just like the ones you can find at <https://modules.terraform.io>.
 
-Generic modules are **same across different deployment environments**.
+Generic modules are **same across different deployment environments** of the same Exekube project.
 
-Generic modules are imported by *live modules* via Terragrunt like that:
+Generic modules are imported by *live modules* (in `terraform.tfvars` files) using Terragrunt:
 
 ```tf
 terragrunt = {
@@ -28,15 +28,13 @@ terragrunt = {
 }
 ```
 
-Currently, Exekube ships with these built-in modules:
-
-- Link: <https://github.com/exekube/exekube/tree/master/modules>
+Currently, Exekube ships with these built-in modules: <https://github.com/exekube/exekube/tree/master/modules>
 
 ## Live modules
 
 Live modules are applicable / executable modules, the modules that will be located in the `live` directory and applied by Terraform. Exekube uses Terragrunt as a wrapper around Terraform to to reduce boilerplate code for live modules and manage multiple live modules at once.
 
-Live modules are instances of generic modules configured for a specific deployment environment. Live modules are always **different across different deployment environments**.
+Live modules are instances of generic modules configured for a specific deployment environment. Live modules are always **different across different environments**.
 
 If you run `xk up`, you are applying **all live modules**, so it is equivalent of running `xk up $TF_VAR_default_dir`. Under the cover, `xk up` calls `terragrunt apply-all`.
 
