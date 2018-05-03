@@ -36,16 +36,11 @@ An Exekube project is a software project that requires us to use cloud resources
 
 ## Module hierarchy for an Exekube project
 
-*TODO Draw module hierarchy flowchart*
 
-```txt
-Module from an external (global) library (e.g. from the Module Registry or exekube-modules)
+1. Module from an external (global) library (e.g. from the Module Registry or exekube-modules)
+2. Project-specific module (it uses Terraform `module {}` to import an external / global module and can extend it using `resource {}` blocks)
+3. Live module (`live/**/terraform.tfvars`: project-specific module imported and configured for an environment using Terragrunt)
 
-↓
-
-Project-specific module (it uses `module { source = "" }` to import an external module and can extend it using `resource {}` blocks)
-
-↓
-
-Live module (live/**/terraform.tfvars: project-specific module imported and configured for an environment using Terragrunt)
-```
+<p align="center">
+  <img src="/module-architecture.png" alt="Terrafomr module hierarchy in Exekube"/>
+</p>
