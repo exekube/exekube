@@ -100,8 +100,7 @@ resource "null_resource" "kubectl_apply" {
 
   provisioner "local-exec" {
     command = <<EOF
-kubectl --namespace ${var.release_namespace} \
-apply -f \
+kubectl apply -f \
 ${path.root}/${var.istio_inject ? "release-injected" : "release"}.yaml
 EOF
   }
@@ -117,10 +116,7 @@ resource "null_resource" "kubectl_delete" {
   provisioner "local-exec" {
     when       = "destroy"
     on_failure = "continue"
-    command    = <<EOF
-kubectl --namespace ${var.release_namespace} \
-delete -f ${path.root}/release.yaml
-EOF
+    command    = "kubectl delete -f ${path.root}/release.yaml"
   }
 }
 
@@ -132,18 +128,12 @@ resource "null_resource" "kubernetes_yaml" {
   count = "${length(var.kubernetes_yaml)}"
 
   provisioner "local-exec" {
-    command = <<EOF
-kubectl --namespace ${var.release_namespace} \
-apply -f ${element(var.kubernetes_yaml, count.index)}
-EOF
+    command = "kubectl apply -f ${element(var.kubernetes_yaml, count.index)}"
   }
 
   provisioner "local-exec" {
     when    = "destroy"
-    command = <<EOF
-kubectl --namespace ${var.release_namespace} \
-delete -f ${element(var.kubernetes_yaml, count.index)}
-EOF
+    command = "kubectl delete -f ${element(var.kubernetes_yaml, count.index)}"
   }
 }
 
