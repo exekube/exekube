@@ -1,6 +1,6 @@
 # Exekube
 
-[![CircleCI](https://circleci.com/gh/exekube/exekube.svg?style=shield)](https://circleci.com/gh/exekube/exekube) [![Docker Automated build](https://img.shields.io/badge/hub.docker.com-automated-blue.svg?style=flat)](https://hub.docker.com/r/exekube/exekube/) [![Go Report Card](https://goreportcard.com/badge/github.com/exekube/exekube)](https://goreportcard.com/report/github.com/exekube/exekube)
+[![CircleCI](https://circleci.com/gh/exekube/exekube.svg?style=svg)](https://circleci.com/gh/exekube/exekube) [![Docker Automated build](https://img.shields.io/badge/hub.docker.com-automated-blue.svg?style=flat)](https://hub.docker.com/r/exekube/exekube/) [![Go Report Card](https://goreportcard.com/badge/github.com/exekube/exekube)](https://goreportcard.com/report/github.com/exekube/exekube)
 
 Exekube is a framework (platform) for managing the whole lifecycle of Kubernetes-based projects as declarative code. It takes the modular "Infrastructure as Code" approach to automate the management of both cloud infrastructure and Kubernetes resources using popular open-source tools, [Terraform](https://terraform.io) and [Helm](https://helm.sh).
 
