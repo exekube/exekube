@@ -1,20 +1,4 @@
 # ------------------------------------------------------------------------------
-# TERRAFORM / PROVIDER CONFIG
-# ------------------------------------------------------------------------------
-
-terraform {
-  # The configuration for this backend will be filled in by Terragrunt
-  backend "gcs" {}
-}
-
-provider "alicloud" {
-  version    = ">= 1.9.1"
-  region     = "eu-central-1"
-  access_key = "${chomp(file("${var.access_key}"))}"
-  secret_key = "${chomp(file("${var.secret_key}"))}"
-}
-
-# ------------------------------------------------------------------------------
 # VPC NETWORK, VSWITCHES, SECURITY GROUPS
 # ------------------------------------------------------------------------------
 
