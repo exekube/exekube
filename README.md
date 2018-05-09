@@ -17,17 +17,17 @@ The Exekube project is divided across a few GitHub repositories:
     - [modules](https://github.com/exekube/exekube/tree/master/modules). Exekube's Terraform module library (third-party [Module Registry](/))
     - [cli](https://github.com/exekube/exekube/tree/master/cli). Exekube's CLI (written in Go) for commands like `xk up`, `xk down`, etc.
     - [dockerfiles](https://github.com/exekube/exekube/tree/master/dockerfiles). Exekube's Dockerfiles (`exekube/exekube:<version>-<tag>`)
-    - [docs](https://github.com/exekube/exekube/tree/master/docs) Documentation source for https://docs.exekube.com (MkDocs / Material theme / Markdown)
+    - [docs](https://github.com/exekube/exekube/tree/master/docs). Documentation source for https://docs.exekube.com (MkDocs / Material theme / Markdown)
 
 - [exekube/charts](https://github.com/exekube/charts). This Git repository hosts Exekube's Helm chart repository you can add with `helm repo add exekube https://exekube.github.io/charts`
 
 ### Example projects
 
-- [exekube/base-project](https://github.com/exekube/base-project): A minimal Exekube project on Google Cloud Platform / GKE
-- [exekube/demo-apps-project](https://github.com/exekube/demo-grpc-project): Deploy web applications (Ruby on Rails, React) onto Google Cloud Platform / GKE
-- [exekube/demo-ci-project](https://github.com/exekube/demo-ci-project): Deploy private CI tools (Concourse, Docker Registry, ChartMuseum) onto Google Cloud Platform / GKE
-- [exekube/demo-grpc-project](https://github.com/exekube/demo-grpc-project): Deploy a hello-world gRPC server app and its REST client app onto Google Cloud Platform / GKE
-- [exekube/demo-istio-project](https://github.com/exekube/demo-istio-project): Get started with the Istio mesh framework on GKE
+- [exekube/base-project](https://github.com/exekube/base-project). A minimal Exekube project on Google Cloud Platform / GKE
+- [exekube/demo-apps-project](https://github.com/exekube/demo-grpc-project). Deploy web applications (Ruby on Rails, React) onto Google Cloud Platform / GKE
+- [exekube/demo-ci-project](https://github.com/exekube/demo-ci-project). Deploy private CI tools (Concourse, Docker Registry, ChartMuseum) onto Google Cloud Platform / GKE
+- [exekube/demo-grpc-project](https://github.com/exekube/demo-grpc-project). Deploy a hello-world gRPC server app and its REST client app onto Google Cloud Platform / GKE
+- [exekube/demo-istio-project](https://github.com/exekube/demo-istio-project). Get started with the Istio mesh framework on GKE
 
 ## Getting started
 
