@@ -1,6 +1,6 @@
 provider "local" {}
 
-# INTERPOLATE -> (FETCH) -> TEMPLATE -> INJECT -> APPLY
+# INTERPOLATE VALUES -> (FETCH) -> TEMPLATE -> APPLY
 
 # ------------------------------------------------------------------------------
 # INTERPOLATE VALUES
@@ -61,28 +61,6 @@ EOF
 }
 
 # ------------------------------------------------------------------------------
-# INJECT ISTIO ENVOY SIDECARS INTO WORKLOADS
-# ------------------------------------------------------------------------------
-
-resource "null_resource" "istio_inject" {
-  count      = "${var.istio_inject ? 1 : 0}"
-  depends_on = ["null_resource.helm_template"]
-
-  triggers {
-    chart  = "${var.chart_version}"
-    values = "${data.template_file.release_values.rendered}"
-  }
-
-  provisioner "local-exec" {
-    command = <<EOF
-istioctl kube-inject \
---filename ${path.root}/release.yaml \
---output ${path.root}/release-injected.yaml
-EOF
-  }
-}
-
-# ------------------------------------------------------------------------------
 # APPLY THE FINAL MANIFEST
 # ------------------------------------------------------------------------------
 
@@ -90,7 +68,6 @@ resource "null_resource" "kubectl_apply" {
   depends_on = [
     "null_resource.kubernetes_yaml",
     "null_resource.helm_template",
-    "null_resource.istio_inject",
   ]
 
   triggers {
@@ -99,10 +76,7 @@ resource "null_resource" "kubectl_apply" {
   }
 
   provisioner "local-exec" {
-    command = <<EOF
-kubectl apply -f \
-${path.root}/${var.istio_inject ? "release-injected" : "release"}.yaml
-EOF
+    command = "kubectl apply -f ${path.root}/release.yaml"
   }
 }
 
