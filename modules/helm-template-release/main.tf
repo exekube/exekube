@@ -10,6 +10,7 @@ data "template_file" "release_values" {
   template = "${file("${var.release_values}")}"
 
   vars {
+    project_id         = "${var.project_id}"
     domain_name        = "${var.domain_name}"
     load_balancer_ip   = "${var.load_balancer_ip}"
     ingress_basic_auth = "${var.ingress_basic_auth["secret_name"]}"
