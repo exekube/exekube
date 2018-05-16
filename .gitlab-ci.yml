@@ -10,4 +10,4 @@ build:
 push:
   stage: push
   script:
-    - docker push gpii/exekube:0.3.0-google
+    - docker push gpii/exekube:0.3.1-google
