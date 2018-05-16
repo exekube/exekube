@@ -1,25 +1,26 @@
 version: "3"
 
 services:
-  # Build Exekube images and tags locally
-  # Usage `docker-compose build google`
+  # Build Exekube images and tag them
+  # Usage: `docker-compose build <service-name>`
   google:
-    image: gpii/exekube:0.3.0-google
+    image: gpii/exekube:0.3.1-google
     build:
       context: .
       dockerfile: dockerfiles/google/Dockerfile
   google-istio:
-    image: exekube/exekube:0.3.0-google-istio
+    image: exekube/exekube:0.3.1-google-istio
     build:
       context: .
       dockerfile: dockerfiles/google-istio/Dockerfile
   alicloud:
-    image: exekube/exekube:0.3.0-alicloud
+    image: exekube/exekube:0.3.1-alicloud
     build:
       context: .
       dockerfile: dockerfiles/alicloud/Dockerfile
 
   # Start local mkdocs server for writing Exekube documentation
+  # Usage: `docker-compose up docs`
   docs:
     image: squidfunk/mkdocs-material:latest
     volumes:

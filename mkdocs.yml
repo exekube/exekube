@@ -6,23 +6,13 @@ edit_uri: https://github.com/exekube/exekube/pulls
 pages:
   - Overview: index.md
   - Introduction:
-      - 'What is Exekube?': introduction/what-is-exekube.md
-      - 'Exekube in comparison': introduction/exekube-vs-other.md
-  - Exekube in Practice:
-      - 'Tutorial: Getting started with Exekube': in-practice/getting-started.md
-      - 'Guide: How Exekube projects are structured': in-practice/directory-structure-guide.md
-  - Miscellaneous:
-      - 'Compare using Helm CLI and terraform-provider-helm': misc/helm-cli-vs-terraform-provider-helm.md
-      - 'Configure a Helm release': misc/configure-helm-release.md
-      - 'Use HashiCorp Vault to manage secrets': misc/vault-integration.md
-      - 'Project feature tracker': misc/feature-tracker.md
-      - 'Managing secrets in Exekube': misc/secrets.md
-      - 'Add audit config for KMS and secret store bucket': misc/add-audit-config.md
-      - 'API Design': misc/api-design.md
-      - 'Security features': misc/security.md
-  - Reference:
-      - 'gke-cluster module': reference/gke-cluster.md
-      - 'helm-release module': reference/helm-release.md
+      - What is Exekube?: introduction/what-is-exekube.md
+      - Exekube in comparison: introduction/exekube-vs-other.md
+      - Exekube's Architecture: introduction/architecture.md
+  - In Practice:
+      - 'Get started with Exekube': in-practice/getting-started.md
+      - 'Configure production-grade networking': in-practice/production-networking.md
+      - 'Configure production-grade storage': in-practice/production-storage.md
 
 copyright: 'Copyright &copy; 2018 Ilya Sotkov'
 

@@ -28,6 +28,10 @@ variable "tiller_namespace" {
   default     = "kube-system"
 }
 
+variable "project_id" {
+  default = ""
+}
+
 variable "release_namespace" {
   description = "Namespace to install the release into"
   default     = "default"

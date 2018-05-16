@@ -42,6 +42,10 @@ variable "release_values" {
   default     = "values.yaml"
 }
 
+variable "project_id" {
+  default = ""
+}
+
 variable "kubernetes_yaml" {
   description = "List paths to secrets to create before installing the chart"
   default     = []

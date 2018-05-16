@@ -1,6 +1,6 @@
 provider "local" {}
 
-# INTERPOLATE -> (FETCH) -> TEMPLATE -> INJECT -> APPLY
+# INTERPOLATE VALUES -> (FETCH) -> TEMPLATE -> APPLY
 
 # ------------------------------------------------------------------------------
 # INTERPOLATE VALUES
@@ -10,6 +10,7 @@ data "template_file" "release_values" {
   template = "${file("${var.release_values}")}"
 
   vars {
+    project_id         = "${var.project_id}"
     domain_name        = "${var.domain_name}"
     load_balancer_ip   = "${var.load_balancer_ip}"
     ingress_basic_auth = "${var.ingress_basic_auth["secret_name"]}"
@@ -61,28 +62,6 @@ EOF
 }
 
 # ------------------------------------------------------------------------------
-# INJECT ISTIO ENVOY SIDECARS INTO WORKLOADS
-# ------------------------------------------------------------------------------
-
-resource "null_resource" "istio_inject" {
-  count      = "${var.istio_inject ? 1 : 0}"
-  depends_on = ["null_resource.helm_template"]
-
-  triggers {
-    chart  = "${var.chart_version}"
-    values = "${data.template_file.release_values.rendered}"
-  }
-
-  provisioner "local-exec" {
-    command = <<EOF
-istioctl kube-inject \
---filename ${path.root}/release.yaml \
---output ${path.root}/release-injected.yaml
-EOF
-  }
-}
-
-# ------------------------------------------------------------------------------
 # APPLY THE FINAL MANIFEST
 # ------------------------------------------------------------------------------
 
@@ -90,7 +69,6 @@ resource "null_resource" "kubectl_apply" {
   depends_on = [
     "null_resource.kubernetes_yaml",
     "null_resource.helm_template",
-    "null_resource.istio_inject",
   ]
 
   triggers {
@@ -99,11 +77,7 @@ resource "null_resource" "kubectl_apply" {
   }
 
   provisioner "local-exec" {
-    command = <<EOF
-kubectl --namespace ${var.release_namespace} \
-apply -f \
-${path.root}/${var.istio_inject ? "release-injected" : "release"}.yaml
-EOF
+    command = "kubectl apply -f ${path.root}/release.yaml"
   }
 }
 
@@ -117,10 +91,7 @@ resource "null_resource" "kubectl_delete" {
   provisioner "local-exec" {
     when       = "destroy"
     on_failure = "continue"
-    command    = <<EOF
-kubectl --namespace ${var.release_namespace} \
-delete -f ${path.root}/release.yaml
-EOF
+    command    = "kubectl delete -f ${path.root}/release.yaml"
   }
 }
 
@@ -132,18 +103,12 @@ resource "null_resource" "kubernetes_yaml" {
   count = "${length(var.kubernetes_yaml)}"
 
   provisioner "local-exec" {
-    command = <<EOF
-kubectl --namespace ${var.release_namespace} \
-apply -f ${element(var.kubernetes_yaml, count.index)}
-EOF
+    command = "kubectl apply -f ${element(var.kubernetes_yaml, count.index)}"
   }
 
   provisioner "local-exec" {
     when    = "destroy"
-    command = <<EOF
-kubectl --namespace ${var.release_namespace} \
-delete -f ${element(var.kubernetes_yaml, count.index)}
-EOF
+    command = "kubectl delete -f ${element(var.kubernetes_yaml, count.index)}"
   }
 }
 

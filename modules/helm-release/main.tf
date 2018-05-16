@@ -45,6 +45,7 @@ data "template_file" "release_values" {
   template = "${file("${format("%s/%s", path.root, var.release_values)}")}"
 
   vars {
+    project_id         = "${var.project_id}"
     domain_name        = "${var.domain_name}"
     load_balancer_ip   = "${var.load_balancer_ip}"
     ingress_basic_auth = "${var.ingress_basic_auth["secret_name"]}"
@@ -59,12 +60,19 @@ resource "null_resource" "kubernetes_yaml" {
   count = "${var.disable_release ? 0 : length(var.kubernetes_yaml)}"
 
   provisioner "local-exec" {
-    command = "kubectl apply -f ${path.root}/${element(var.kubernetes_yaml, count.index)}"
+    command = <<EOF
+kubectl --namespace ${var.release_namespace} \
+apply -f ${element(var.kubernetes_yaml, count.index)}
+EOF
   }
 
   provisioner "local-exec" {
-    when    = "destroy"
-    command = "kubectl delete -f ${path.root}/${element(var.kubernetes_yaml, count.index)}"
+    when = "destroy"
+
+    command = <<EOF
+kubectl --namespace ${var.release_namespace} \
+delete -f ${element(var.kubernetes_yaml, count.index)}
+EOF
   }
 }
 

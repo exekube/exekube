@@ -1,19 +1,7 @@
-terraform {
-  # The configuration for this backend will be filled in by Terragrunt
-  backend "gcs" {}
-}
-
-provider "alicloud" {
-  version    = ">= 1.9.1"
-  region     = "eu-central-1"
-  access_key = "${chomp(file("${var.access_key}"))}"
-  secret_key = "${chomp(file("${var.secret_key}"))}"
-}
-
 resource "alicloud_cs_kubernetes" "k8s_cluster" {
   name_prefix = "k8s-cluster"
 
-  new_nat_gateway = true
+  new_nat_gateway = "${var.new_nat_gateway}"
   vswitch_id      = "${var.vswitch_id}"
   is_outdated     = false
 
