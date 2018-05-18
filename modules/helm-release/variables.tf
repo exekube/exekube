@@ -48,8 +48,13 @@ variable "chart_version" {
 }
 
 variable "release_values" {
-  description = "Specify values in a YAML file, relative to module's path"
+  description = "Specify path to release values, relative to module's path"
   default     = "values.yaml"
+}
+
+variable "extra_values" {
+  description = "Specify list of paths to release values, relative to module's path"
+  default     = ""
 }
 
 variable "kubernetes_yaml" {
