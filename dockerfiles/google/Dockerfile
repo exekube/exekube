@@ -28,7 +28,6 @@ ENV HELM_VERSION 2.9.1
 ENV TERRAFORM_VERSION 0.11.7
 ENV TERRAGRUNT_VERSION 0.14.10
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.5.1
-ENV ARK_VERSION 0.8.1
 
 RUN apk --no-cache add \
         curl \
@@ -89,13 +88,6 @@ RUN curl -L -o ./tph.tar.gz \
         && chmod 0700 terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
-
-RUN curl -L -o ./ark.tar.gz \
-        https://github.com/heptio/ark/releases/download/v${ARK_VERSION}/ark-v${ARK_VERSION}-linux-amd64.tar.gz \
-        && tar -xvzf ark.tar.gz \
-        && rm -rf ark.tar.gz \
-        && chmod 0700 ark \
-        && mv ark /usr/bin
 
 COPY modules /exekube-modules/
 COPY --from=builder /build/bin/xk /usr/local/bin/
