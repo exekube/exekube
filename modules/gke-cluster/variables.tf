@@ -30,6 +30,10 @@ variable "additional_zones" {
   default = []
 }
 
+variable "enable_kubernetes_alpha" {
+  default = "false"
+}
+
 variable "oauth_scopes" {
   type = "list"
 
