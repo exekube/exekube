@@ -30,6 +30,7 @@ resource "helm_release" "release" {
 
   values = [
     "${data.template_file.release_values.rendered}",
+    "${var.extra_values == "" ? "" : file(coalesce(var.extra_values,"/dev/null"))}",
   ]
 
   force_update     = false
