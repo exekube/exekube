@@ -30,6 +30,10 @@ variable "additional_zones" {
   default = []
 }
 
+variable "enable_kubernetes_alpha" {
+  default = "false"
+}
+
 variable "oauth_scopes" {
   type = "list"
 
@@ -45,10 +49,14 @@ variable "node_type" {
   default = "n1-standard-2"
 }
 
+variable "node_image_type" {
+  default = "cos"
+}
+
 variable "initial_node_count" {
   default = 2
 }
 
 variable "kubernetes_version" {
-  default = "1.9.6-gke.1"
+  default = "1.9.7-gke.1"
 }
