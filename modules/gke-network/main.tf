@@ -5,7 +5,7 @@
 resource "google_project_service" "services" {
   count = "${length(var.project_services)}"
 
-  disable_on_destroy = false
+  disable_on_destroy = true
 
   service = "${element(var.project_services, count.index)}"
 
