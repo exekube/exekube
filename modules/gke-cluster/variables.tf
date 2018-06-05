@@ -50,7 +50,7 @@ variable "node_type" {
 }
 
 variable "node_image_type" {
-  default = "cos"
+  default = "COS"
 }
 
 variable "initial_node_count" {
