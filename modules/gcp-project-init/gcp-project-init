@@ -63,6 +63,9 @@ echo -e "${C_BLUE}Creating service account key...${NC}"
 gcloud iam service-accounts keys create $TF_VAR_serviceaccount_key \
 --iam-account $SA_NAME@$TF_VAR_project_id.iam.gserviceaccount.com
 
+echo -e "${C_BLUE}Enabling serviceusage API...${NC}"
+gcloud services enable serviceusage.googleapis.com
+
 TFSTATE_BUCKET=$TF_VAR_project_id-tfstate
 echo -e "${C_BLUE}Creating bucket for Terraform remote state...${NC}"
 gsutil mb gs://$TFSTATE_BUCKET
