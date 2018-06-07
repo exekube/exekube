@@ -43,7 +43,6 @@ All module input variables and variable descriptions can be found in [variables.
 
 By default:
 
-- [`google_project_service`](https://www.terraform.io/docs/providers/google/r/google_project_service.html).`services`
 - [`google_compute_network`](https://www.terraform.io/docs/providers/google/r/compute_network.html).`network`
 - [`google_compute_subnetwork`](https://www.terraform.io/docs/providers/google/r/compute_subnetwork.html).`subnets`
 - [`google_compute_firewall`](https://www.terraform.io/docs/providers/google/r/compute_firewall.html).`allow_nodes_internal`
