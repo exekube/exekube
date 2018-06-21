@@ -1,26 +1,8 @@
 # ------------------------------------------------------------------------------
-# GOOGLE CLOUD PROJECT
-# ------------------------------------------------------------------------------
-
-resource "google_project_service" "services" {
-  count = "${length(var.project_services)}"
-
-  disable_on_destroy = false
-
-  service = "${element(var.project_services, count.index)}"
-
-  provisioner "local-exec" {
-    command = "sleep 60"
-  }
-}
-
-# ------------------------------------------------------------------------------
 # VPC NETWORK, SUBNETS, FIREWALL RULES
 # ------------------------------------------------------------------------------
 
 resource "google_compute_network" "network" {
-  depends_on = ["google_project_service.services"]
-
   name                    = "network"
   auto_create_subnetworks = false
 }
@@ -102,8 +84,6 @@ resource "google_compute_firewall" "allow_pods_internal" {
 }
 
 resource "null_resource" "delete_default_network" {
-  depends_on = ["google_project_service.services"]
-
   provisioner "local-exec" {
     command = <<EOF
 gcloud --project $TF_VAR_project_id --quiet compute firewall-rules delete \
@@ -123,8 +103,7 @@ EOF
 # ------------------------------------------------------------------------------
 
 resource "google_compute_address" "ingress_controller_ip" {
-  count      = "${var.create_static_ip_address ? 1 : 0}"
-  depends_on = ["google_project_service.services"]
+  count = "${var.create_static_ip_address ? 1 : 0}"
 
   name         = "ingress-controller-ip"
   region       = "${var.static_ip_region}"
@@ -136,8 +115,7 @@ resource "google_compute_address" "ingress_controller_ip" {
 # ------------------------------------------------------------------------------
 
 resource "google_dns_managed_zone" "dns_zones" {
-  count      = "${length(var.dns_zones) > 0 ? length(var.dns_zones) : 0}"
-  depends_on = ["google_project_service.services"]
+  count = "${length(var.dns_zones) > 0 ? length(var.dns_zones) : 0}"
 
   name     = "${element(keys(var.dns_zones), count.index)}"
   dns_name = "${element(values(var.dns_zones), count.index)}"
