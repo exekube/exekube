@@ -2,21 +2,6 @@
 # OPTIONAL VARIABLES
 # ------------------------------------------------------------------------------
 
-variable "project_services" {
-  type        = "list"
-  description = "Google Cloud APIs to enable for the GCP project"
-
-  default = [
-    "compute.googleapis.com",
-    "container.googleapis.com",
-    "containerregistry.googleapis.com",
-    "cloudkms.googleapis.com",
-    "dns.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "iam.googleapis.com",
-  ]
-}
-
 variable "cluster_subnets" {
   type        = "map"
   description = "A map of index to a comma separated list of `region,nodes-subnet,pods-subnet,services-subnet` string."
