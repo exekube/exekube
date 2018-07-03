@@ -43,7 +43,7 @@ resource "helm_release" "release" {
 
 # Parsed (interpolated) YAML values file
 data "template_file" "release_values" {
-  template = "${file("${format("%s/%s", path.root, var.release_values)}")}"
+  template = "${file("${var.release_values}")}"
 
   vars {
     project_id         = "${var.project_id}"
