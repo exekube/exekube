@@ -1,30 +1,10 @@
-# ------------------------------------------------------------------------------
-# GOOGLE CLOUD PROJECT
-# ------------------------------------------------------------------------------
-
-resource "google_project_service" "services" {
-  count = "${length(var.project_services)}"
-
-  disable_on_destroy = false
-
-  service = "${element(var.project_services, count.index)}"
-
-  provisioner "local-exec" {
-    command = "sleep 60"
-  }
-}
-
-# ------------------------------------------------------------------------------
-# VPC NETWORK, SUBNETS, FIREWALL RULES
-# ------------------------------------------------------------------------------
-
+# Create the VPC / network for our GKE cluster
 resource "google_compute_network" "network" {
-  depends_on = ["google_project_service.services"]
-
   name                    = "network"
   auto_create_subnetworks = false
 }
 
+# Create subnets for nodes, pods, and services
 resource "google_compute_subnetwork" "subnets" {
   count = "${length(var.cluster_subnets)}"
 
@@ -46,6 +26,7 @@ resource "google_compute_subnetwork" "subnets" {
   ]
 }
 
+# Firewall rules for GKE nodes
 resource "google_compute_firewall" "allow_nodes_internal" {
   name        = "allow-nodes-internal"
   description = "Allow traffic between nodes"
@@ -71,6 +52,7 @@ resource "google_compute_firewall" "allow_nodes_internal" {
   }
 }
 
+# Firewall rules for GKE pods
 resource "google_compute_firewall" "allow_pods_internal" {
   name     = "allow-pods-internal"
   network  = "${google_compute_network.network.name}"
@@ -101,9 +83,8 @@ resource "google_compute_firewall" "allow_pods_internal" {
   }
 }
 
+# Discard the default network as we don't need it
 resource "null_resource" "delete_default_network" {
-  depends_on = ["google_project_service.services"]
-
   provisioner "local-exec" {
     command = <<EOF
 gcloud --project $TF_VAR_project_id --quiet compute firewall-rules delete \
@@ -118,31 +99,24 @@ EOF
   }
 }
 
-# ------------------------------------------------------------------------------
-# EXTERNAL IP ADDRESS
-# ------------------------------------------------------------------------------
-
+# Optionally create an external IP address to use with an ingress controller
 resource "google_compute_address" "ingress_controller_ip" {
-  count      = "${var.create_static_ip_address ? 1 : 0}"
-  depends_on = ["google_project_service.services"]
+  count = "${var.create_static_ip_address ? 1 : 0}"
 
   name         = "ingress-controller-ip"
   region       = "${var.static_ip_region}"
   address_type = "EXTERNAL"
 }
 
-# ------------------------------------------------------------------------------
-# DNS ZONES AND RECORDS
-# ------------------------------------------------------------------------------
-
+# Create DNS zones (can be used for ingress)
 resource "google_dns_managed_zone" "dns_zones" {
-  count      = "${length(var.dns_zones) > 0 ? length(var.dns_zones) : 0}"
-  depends_on = ["google_project_service.services"]
+  count = "${length(var.dns_zones) > 0 ? length(var.dns_zones) : 0}"
 
   name     = "${element(keys(var.dns_zones), count.index)}"
   dns_name = "${element(values(var.dns_zones), count.index)}"
 }
 
+# Point DNS records to the IP address (ingress controller IP address)
 resource "google_dns_record_set" "dns_records" {
   depends_on = ["google_dns_managed_zone.dns_zones"]
   count      = "${length(var.dns_zones) > 0 && length(var.dns_records) > 0 && var.create_static_ip_address ? length(var.dns_records) : 0}"
