@@ -22,8 +22,8 @@ RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 # ------------------------------------------------------------------------------
 FROM alpine:3.7
 
-ENV CLOUD_SDK_VERSION 201.0.0
-ENV KUBECTL_VERSION 1.9.6
+ENV CLOUD_SDK_VERSION 208.0.2
+ENV KUBECTL_VERSION 1.10.5
 ENV HELM_VERSION 2.9.1
 ENV TERRAFORM_VERSION 0.11.7
 ENV TERRAGRUNT_VERSION 0.14.10
