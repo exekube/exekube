@@ -16,3 +16,7 @@ variable "custom_tls_dir" {
 variable "helm_dir_name" {
   default = "helm-tls"
 }
+
+variable "tiller_wait_period" {
+  default = "40"
+}
