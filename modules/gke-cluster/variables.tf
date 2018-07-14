@@ -23,7 +23,7 @@ variable "network_name" {
 }
 
 variable "main_compute_zone" {
-  default = "europe-west1-d"
+  default = "europe-north1-a"
 }
 
 variable "additional_zones" {
@@ -58,5 +58,5 @@ variable "initial_node_count" {
 }
 
 variable "kubernetes_version" {
-  default = "1.9.7-gke.1"
+  default = "1.10.5-gke.0"
 }
