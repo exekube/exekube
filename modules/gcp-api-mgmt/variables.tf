@@ -1,4 +1,16 @@
 # ------------------------------------------------------------------------------
+# REQUIRED VARIABLES
+# ------------------------------------------------------------------------------
+
+variable "project_id" {
+  description = "Project where resources will be created"
+}
+
+variable "serviceaccount_key" {
+  description = "Service account key for the project"
+}
+
+# ------------------------------------------------------------------------------
 # OPTIONAL VARIABLES
 # ------------------------------------------------------------------------------
 
