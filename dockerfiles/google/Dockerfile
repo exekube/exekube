@@ -42,7 +42,10 @@ RUN apk --no-cache add \
         ca-certificates \
         apache2-utils \
         tzdata \
-        jq
+        jq \
+        ruby
+
+RUN gem install --no-ri --no-rdoc rake
 
 ENV PATH /google-cloud-sdk/bin:$PATH
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
