@@ -53,6 +53,12 @@ resource "google_container_cluster" "cluster" {
     }
   }
 
+  maintenance_policy {
+    daily_maintenance_window {
+      start_time = "03:00"
+    }
+  }
+
   node_config {
     machine_type = "${var.node_type}"
     disk_size_gb = 200
