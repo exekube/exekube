@@ -22,7 +22,9 @@ RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 # ------------------------------------------------------------------------------
 FROM alpine:3.7
 
-ENV CLOUD_SDK_VERSION 208.0.2
+ENV AWS_CLI_VERSION 1.15.41
+ENV S3CMD_VERSION 2.0.1
+ENV HEPTIO_AUTHENTICATOR_AWS_VERSION 0.3.0
 ENV KUBECTL_VERSION 1.10.5
 ENV HELM_VERSION 2.9.1
 ENV TERRAFORM_VERSION 0.11.7
@@ -33,6 +35,7 @@ RUN apk --no-cache add \
         curl \
         python \
         py-crcmod \
+        py-pip \
         bash \
         libc6-compat \
         openssh-client \
@@ -42,29 +45,22 @@ RUN apk --no-cache add \
         ca-certificates \
         apache2-utils \
         tzdata \
-        jq \
-        ruby \
-        ruby-json
+        jq
 
-RUN gem install --no-ri --no-rdoc rake
-
-ENV PATH /google-cloud-sdk/bin:$PATH
-RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
-        && tar xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
-        && rm google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
-        && ln -s /lib /lib64 \
-        && gcloud config set core/disable_usage_reporting true \
-        && gcloud config set component_manager/disable_update_check true \
-        && gcloud config set metrics/environment github_docker_image \
-        && gcloud --version \
-        && gcloud components install alpha beta \
-        && gcloud components update \
-        && gcloud config set component_manager/disable_update_check true
+RUN pip install --upgrade \
+        awscli==${AWS_CLI_VERSION} \
+        s3cmd==${S3CMD_VERSION} \
+        python-magic
 
 RUN curl -L -o kubectl \
         https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
         && chmod 0700 kubectl \
         && mv kubectl /usr/bin
+
+RUN curl -L -o heptio-authenticator-aws \
+        https://github.com/heptio/aws-iam-authenticator/releases/download/v${HEPTIO_AUTHENTICATOR_AWS_VERSION}/heptio-authenticator-aws_${HEPTIO_AUTHENTICATOR_AWS_VERSION}_linux_amd64 \
+        && chmod 0700 heptio-authenticator-aws \
+        && mv heptio-authenticator-aws /usr/bin
 
 RUN curl -L -o helm.tar.gz \
         https://kubernetes-helm.storage.googleapis.com/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
