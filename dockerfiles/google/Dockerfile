@@ -43,7 +43,8 @@ RUN apk --no-cache add \
         apache2-utils \
         tzdata \
         jq \
-        ruby
+        ruby \
+        ruby-json
 
 RUN gem install --no-ri --no-rdoc rake
 
