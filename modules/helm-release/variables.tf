@@ -47,6 +47,11 @@ variable "chart_version" {
   default     = ""
 }
 
+variable "release_values_rendered" {
+  description = "Provide rendered template with release values"
+  default     = ""
+}
+
 variable "release_values" {
   description = "Specify path to release values, relative to module's path"
   default     = "values.yaml"
