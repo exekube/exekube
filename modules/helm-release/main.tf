@@ -29,6 +29,7 @@ resource "helm_release" "release" {
   namespace = "${var.release_namespace}"
 
   values = [
+    "${var.release_values_rendered}",
     "${data.template_file.release_values.rendered}",
     "${var.extra_values == "" ? "" : file(coalesce(var.extra_values,"/dev/null"))}",
   ]
@@ -43,7 +44,7 @@ resource "helm_release" "release" {
 
 # Parsed (interpolated) YAML values file
 data "template_file" "release_values" {
-  template = "${file("${var.release_values}")}"
+  template = "${var.release_values == "" ? "" : file(coalesce(var.release_values,"/dev/null"))}"
 
   vars {
     project_id         = "${var.project_id}"
