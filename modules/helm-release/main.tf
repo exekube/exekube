@@ -2,15 +2,31 @@
 # PROVIDER
 # ------------------------------------------------------------------------------
 
+data "external" "client_auth" {
+  program = [
+    "sh", "-c",
+    <<EOF
+      ca_cert=$(cat ${var.client_auth}/ca.cert.pem 2>/dev/null | awk '$1=$1' ORS='  \n')
+      helm_cert=$(cat ${var.client_auth}/helm.cert.pem 2>/dev/null | awk '$1=$1' ORS='  \n')
+      helm_key=$(cat ${var.client_auth}/helm.key.pem 2>/dev/null | awk '$1=$1' ORS='  \n')
+      jq -n \
+        --arg ca_cert "$ca_cert" \
+        --arg helm_cert "$helm_cert" \
+        --arg helm_key "$helm_key" \
+        '{"ca_cert":$ca_cert,"helm_cert":$helm_cert,"helm_key":$helm_key}'
+    EOF
+  ]
+}
+
 provider "helm" {
   namespace  = "${var.tiller_namespace}"
   enable_tls = true
   insecure   = false
   debug      = true
 
-  ca_certificate     = "${file("${var.client_auth}/ca.cert.pem")}"
-  client_certificate = "${file("${var.client_auth}/helm.cert.pem")}"
-  client_key         = "${file("${var.client_auth}/helm.key.pem")}"
+  ca_certificate     = "${data.external.client_auth.result.ca_cert}"
+  client_certificate = "${data.external.client_auth.result.helm_cert}"
+  client_key         = "${data.external.client_auth.result.helm_key}"
 }
 
 # ------------------------------------------------------------------------------
