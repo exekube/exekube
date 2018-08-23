@@ -2,15 +2,35 @@
 # PROVIDER
 # ------------------------------------------------------------------------------
 
+# Following code loads Helm certificates from files into Terraform data object.
+# In case there are no certificate files, data will be populated with empty values
+# so provider configuration can still be successful.
+# This helps to achieve idempotence for destroy operation.
+data "external" "client_auth" {
+  program = [
+    "sh", "-c",
+    <<EOF
+      ca_cert=$(cat ${var.client_auth}/ca.cert.pem 2>/dev/null)
+      helm_cert=$(cat ${var.client_auth}/helm.cert.pem 2>/dev/null)
+      helm_key=$(cat ${var.client_auth}/helm.key.pem 2>/dev/null)
+      jq -n \
+        --arg ca_cert "$ca_cert" \
+        --arg helm_cert "$helm_cert" \
+        --arg helm_key "$helm_key" \
+        '{"ca_cert":$ca_cert,"helm_cert":$helm_cert,"helm_key":$helm_key}'
+    EOF
+  ]
+}
+
 provider "helm" {
   namespace  = "${var.tiller_namespace}"
   enable_tls = true
   insecure   = false
   debug      = true
 
-  ca_certificate     = "${file("${var.client_auth}/ca.cert.pem")}"
-  client_certificate = "${file("${var.client_auth}/helm.cert.pem")}"
-  client_key         = "${file("${var.client_auth}/helm.key.pem")}"
+  ca_certificate     = "${data.external.client_auth.result.ca_cert}"
+  client_certificate = "${data.external.client_auth.result.helm_cert}"
+  client_key         = "${data.external.client_auth.result.helm_key}"
 }
 
 # ------------------------------------------------------------------------------
