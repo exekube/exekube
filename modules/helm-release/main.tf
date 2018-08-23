@@ -2,6 +2,10 @@
 # PROVIDER
 # ------------------------------------------------------------------------------
 
+# Following code loads Helm certificates from files into Terraform data object.
+# In case there are no certificate files, data will be populated with empty values
+# so provider configuration can still be successful.
+# This helps to achieve idempotence for destroy operation.
 data "external" "client_auth" {
   program = [
     "sh", "-c",
