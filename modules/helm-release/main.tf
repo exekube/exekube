@@ -6,9 +6,9 @@ data "external" "client_auth" {
   program = [
     "sh", "-c",
     <<EOF
-      ca_cert=$(cat ${var.client_auth}/ca.cert.pem 2>/dev/null | awk '$1=$1' ORS='  \n')
-      helm_cert=$(cat ${var.client_auth}/helm.cert.pem 2>/dev/null | awk '$1=$1' ORS='  \n')
-      helm_key=$(cat ${var.client_auth}/helm.key.pem 2>/dev/null | awk '$1=$1' ORS='  \n')
+      ca_cert=$(cat ${var.client_auth}/ca.cert.pem 2>/dev/null)
+      helm_cert=$(cat ${var.client_auth}/helm.cert.pem 2>/dev/null)
+      helm_key=$(cat ${var.client_auth}/helm.key.pem 2>/dev/null)
       jq -n \
         --arg ca_cert "$ca_cert" \
         --arg helm_cert "$helm_cert" \
