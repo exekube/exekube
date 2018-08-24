@@ -60,3 +60,11 @@ variable "initial_node_count" {
 variable "kubernetes_version" {
   default = "1.10.5-gke.0"
 }
+
+variable "monitoring_service" {
+  default = "monitoring.googleapis.com"
+}
+
+variable "logging_service" {
+  default = "logging.googleapis.com"
+}
