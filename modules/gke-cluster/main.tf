@@ -54,7 +54,7 @@ resource "google_container_cluster" "cluster" {
   }
 
   monitoring_service = "${var.monitoring_service}"
-  logging_service = "${var.logging_service}"
+  logging_service    = "${var.logging_service}"
 
   maintenance_policy {
     daily_maintenance_window {
