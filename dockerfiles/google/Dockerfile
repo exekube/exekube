@@ -93,6 +93,15 @@ RUN curl -L -o ./tph.tar.gz \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
 
+COPY terraform-plugins /terraform-plugins/
+
+RUN cd /terraform-plugins \
+    && terraform init \
+    && find /terraform-plugins \
+    && cp /terraform-plugins/.terraform/plugins/linux_amd64/terraform-provider* /root/.terraform.d/plugins/ \
+    && cd \
+    && rm -fr /terraform-plugins
+
 COPY modules /exekube-modules/
 COPY --from=builder /build/bin/xk /usr/local/bin/
 ENV PATH /exekube-modules/gcp-project-init:/exekube-modules/gcp-secret-mgmt/scripts:$PATH
