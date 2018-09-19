@@ -17,7 +17,7 @@ provider "google" {
 # ------------------------------------------------------------------------------
 
 resource "google_logging_project_exclusion" "my-exclusion" {
-  name        = "${var.exclusion_name}"
-  description = "${var.exclusion_description}"
-  filter      = "${var.exclusion_filter}"
+  count  = "${length(var.exclusions)}"
+  name   = "${element(keys(var.exclusions), count.index)}"
+  filter = "${element(values(var.exclusions), count.index)}"
 }

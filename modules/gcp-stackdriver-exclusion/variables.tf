@@ -10,14 +10,14 @@ variable "serviceaccount_key" {
   description = "Service account key for the project"
 }
 
-variable "exclusion_name" {
-  description = "Name of Stackdriver exclusion rule"
-}
+# ------------------------------------------------------------------------------
+# OPTIONAL VARIABLES
+# ------------------------------------------------------------------------------
 
-variable "exclusion_description" {
-  description = "Description of Stackdriver exclusion rule"
-}
+variable "exclusions" {
+  type = "map"
+  description = "Map of Stackdriver exclusion rules where keys are names of rules and values are filters implementing those rules"
 
-variable "exclusion_filter" {
-  description = "Stackdriver filter defining what will be excluded"
+  # Example: {"drop-all-foos" = "textPayload:\"foo\"}
+  default = {}
 }
