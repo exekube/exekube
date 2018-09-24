@@ -97,4 +97,10 @@ creator-cluster-admin-binding \
 && helm init --client-only
 EOF
   }
+
+  timeouts {
+    create = "${var.create_timeout}"
+    update = "${var.update_timeout}"
+    delete = "${var.delete_timeout}"
+  }
 }
