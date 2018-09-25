@@ -18,6 +18,6 @@ variable "exclusions" {
   type = "map"
   description = "Map of Stackdriver exclusion rules where keys are names of rules and values are filters implementing those rules"
 
-  # Example: {"drop-all-foos" = "textPayload:\"foo\"}
+  # Example: {"exclude-all-foo" = "logName=\"projects/__var.project_id__/logs/foo\"}
   default = {}
 }
