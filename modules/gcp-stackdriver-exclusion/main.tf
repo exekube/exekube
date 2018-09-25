@@ -17,8 +17,9 @@ provider "google" {
 # ------------------------------------------------------------------------------
 
 resource "google_logging_project_exclusion" "my-exclusion" {
-  count  = "${length(var.exclusions)}"
-  name   = "${element(keys(var.exclusions), count.index)}"
+  count = "${length(var.exclusions)}"
+  name  = "${element(keys(var.exclusions), count.index)}"
+
   # logName is a common thing to filter on. Per
   # https://cloud.google.com/logging/docs/view/advanced-filters#minimize_global_and_substring_searches,
   # it is best to match on an exact string. Doing so requires knowing
