@@ -49,6 +49,6 @@ resource "google_project_iam_binding" "exported-logs-writer" {
   role = "roles/storage.objectCreator"
 
   members = [
-    "${google_logging_project_sink.my-export.writer_identity}",
+    "${google_logging_project_sink.my-export.*.writer_identity}",
   ]
 }
