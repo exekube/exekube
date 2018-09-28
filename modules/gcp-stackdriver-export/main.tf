@@ -17,7 +17,24 @@ provider "google" {
 # ------------------------------------------------------------------------------
 
 resource "google_storage_bucket" "exported-logs" {
-  name = "${var.project_id}-exported-logs"
+  name          = "${var.project_id}-exported-logs"
+  force_destroy = true
+  storage_class = "REGIONAL"
+  location      = "us-central1"
+
+  versioning {
+    enabled = true
+  }
+
+  lifecycle_rule {
+    action {
+      type = "Delete"
+    }
+
+    condition {
+      age = "${365 * 2}"
+    }
+  }
 }
 
 resource "google_logging_project_sink" "my-export" {
