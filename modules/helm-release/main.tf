@@ -23,10 +23,11 @@ data "external" "client_auth" {
 }
 
 provider "helm" {
-  namespace  = "${var.tiller_namespace}"
-  enable_tls = true
-  insecure   = false
-  debug      = true
+  namespace      = "${var.tiller_namespace}"
+  enable_tls     = true
+  insecure       = false
+  debug          = true
+  install_tiller = false
 
   ca_certificate     = "${data.external.client_auth.result.ca_cert}"
   client_certificate = "${data.external.client_auth.result.helm_cert}"
