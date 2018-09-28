@@ -8,7 +8,8 @@
 # This helps to achieve idempotence for destroy operation.
 data "external" "client_auth" {
   program = [
-    "sh", "-c",
+    "sh",
+    "-c",
     <<EOF
       ca_cert=$(cat ${var.client_auth}/ca.cert.pem 2>/dev/null)
       helm_cert=$(cat ${var.client_auth}/helm.cert.pem 2>/dev/null)
@@ -19,6 +20,7 @@ data "external" "client_auth" {
         --arg helm_key "$helm_key" \
         '{"ca_cert":$ca_cert,"helm_cert":$helm_cert,"helm_key":$helm_key}'
     EOF
+    ,
   ]
 }
 
