@@ -83,6 +83,15 @@ resource "google_container_cluster" "cluster" {
     create_before_destroy = true
   }
 
+  master_auth {
+    username = "${var.master_auth_username}"
+    password = "${var.master_auth_password}"
+
+    client_certificate_config {
+      issue_client_certificate = "${var.issue_client_certificate}"
+    }
+  }
+
   provisioner "local-exec" {
     command = <<EOF
 gcloud auth activate-service-account --key-file ${var.serviceaccount_key} \
