@@ -26,7 +26,18 @@ data "template_file" "tiller_rbac" {
   }
 }
 
+data "external" "tiller_status" {
+  program = [
+    "bash",
+    "-c",
+    "REPLICAS=$$(kubectl get deploy tiller-deploy -n ${var.tiller_namespace} -o jsonpath='{.status.readyReplicas}'); jq -n --arg replicas \"$$REPLICAS\" '{readyReplicas:$$replicas}'"]
+}
+
 resource "null_resource" "install_tiller" {
+  triggers {
+    tiller_ready_replicas = "${data.external.tiller_status.result.readyReplicas}"
+  }
+
   provisioner "local-exec" {
     command = <<EOF
 echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f - \
