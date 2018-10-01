@@ -65,7 +65,8 @@ helm reset --force \
 --tls --tls-verify \
 --tls-ca-cert=${local_file.ca_cert.filename} \
 --tls-cert=${local_file.helm_cert.filename} \
---tls-key=${local_file.helm_key.filename}
+--tls-key=${local_file.helm_key.filename} \
+--tiller-connection-timeout 30
 EOF
   }
 }
