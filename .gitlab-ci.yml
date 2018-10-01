@@ -1,0 +1,13 @@
+stages:
+  - build
+  - push
+
+build:
+  stage: build
+  script:
+    - docker-compose build google
+
+push:
+  stage: push
+  script:
+    - docker push gpii/exekube:0.4.0-google

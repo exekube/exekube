@@ -2,3 +2,4 @@
 !dockerfiles/
 !cli/
 !modules/
+!terraform-plugins/

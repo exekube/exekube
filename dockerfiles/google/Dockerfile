@@ -42,7 +42,11 @@ RUN apk --no-cache add \
         ca-certificates \
         apache2-utils \
         tzdata \
-        jq
+        jq \
+        ruby \
+        ruby-json
+
+RUN gem install --no-ri --no-rdoc rake
 
 ENV PATH /google-cloud-sdk/bin:$PATH
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
@@ -88,6 +92,15 @@ RUN curl -L -o ./tph.tar.gz \
         && chmod 0700 terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
+
+COPY terraform-plugins /terraform-plugins/
+
+RUN cd /terraform-plugins \
+    && terraform init \
+    && find /terraform-plugins \
+    && cp /terraform-plugins/.terraform/plugins/linux_amd64/terraform-provider* /root/.terraform.d/plugins/ \
+    && cd \
+    && rm -fr /terraform-plugins
 
 COPY modules /exekube-modules/
 COPY --from=builder /build/bin/xk /usr/local/bin/

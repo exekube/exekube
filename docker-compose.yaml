@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: dockerfiles/aws/Dockerfile
   google:
-    image: exekube/exekube:0.4.0-google
+    image: gpii/exekube:0.4.0-google
     build:
       context: .
       dockerfile: dockerfiles/google/Dockerfile
