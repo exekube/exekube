@@ -19,8 +19,8 @@ provider "google" {
 resource "google_storage_bucket" "exported-logs" {
   name          = "${var.project_id}-exported-logs"
   force_destroy = true
-  storage_class = "REGIONAL"
-  location      = "us-central1"
+  storage_class = "${var.exported_logs_storage_class}"
+  location      = "${var.exported_logs_storage_region}"
 
   versioning {
     enabled = true
@@ -32,7 +32,7 @@ resource "google_storage_bucket" "exported-logs" {
     }
 
     condition {
-      age = "${365 * 2}"
+      age = "${var.exported_logs_expire_after}"
     }
   }
 }

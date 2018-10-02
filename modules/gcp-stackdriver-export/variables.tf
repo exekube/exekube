@@ -21,3 +21,15 @@ variable "exports" {
   # Example: {"exclude-all-foo" = "logName=\"projects/__var.project_id__/logs/foo\"}
   default = {}
 }
+
+variable "exported_logs_storage_class" {
+  default = "REGIONAL"
+}
+
+variable "exported_logs_storage_region" {
+  default = "europe-north1-a"
+}
+
+variable "exported_logs_expire_after" {
+  default = "14"
+}
