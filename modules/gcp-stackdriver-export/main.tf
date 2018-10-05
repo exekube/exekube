@@ -35,6 +35,10 @@ resource "google_storage_bucket" "exported-logs" {
       age = "${var.exported_logs_expire_after}"
     }
   }
+
+  encryption {
+    default_kms_key_name = "${var.exported_logs_encryption_key}"
+  }
 }
 
 resource "google_logging_project_sink" "my-export" {

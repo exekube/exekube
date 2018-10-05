@@ -1,7 +1,6 @@
 # ------------------------------------------------------------------------------
 # REQUIRED VARIABLES
 # ------------------------------------------------------------------------------
-
 variable "project_id" {
   description = "Project where resources will be created"
 }
@@ -32,4 +31,9 @@ variable "exported_logs_storage_region" {
 
 variable "exported_logs_expire_after" {
   default = "14"
+}
+
+variable "exported_logs_encryption_key" {
+  description = "Name of a KMS key to use (e.g. projects/my-project/locations/global/keyRings/keyring/cryptoKeys/gcp-stackdriver-export). Empty string means use Google's default encryption."
+  default     = ""
 }
