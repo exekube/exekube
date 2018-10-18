@@ -21,16 +21,24 @@ variable "exports" {
   default = {}
 }
 
+variable "exported_logs_force_destroy" {
+  description = "If 'true', the exported logs bucket will be destroyed on 'terragrunt destroy' or (NOTE!) on certain kinds of reconfiguration, e.g. changing storage class from REGIONAL to NEARLINE. Use caution when setting to 'true'."
+  default     = "false"
+}
+
 variable "exported_logs_storage_class" {
-  default = "REGIONAL"
+  description = "Storage class for bucket containing exported logs."
+  default     = "REGIONAL"
 }
 
 variable "exported_logs_storage_region" {
-  default = "europe-north1-a"
+  description = "Region for bucket containing exported logs."
+  default     = "europe-north1-a"
 }
 
 variable "exported_logs_expire_after" {
-  default = "14"
+  description = "Exported logs are deleted from the bucket after this many days."
+  default     = "14"
 }
 
 variable "exported_logs_encryption_key" {
