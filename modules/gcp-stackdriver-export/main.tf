@@ -142,5 +142,5 @@ resource "google_kms_crypto_key_iam_binding" "exported-logs-writer-custom-encryp
   crypto_key_id = "${var.exported_logs_encryption_key}"
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
 
-  members       = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
+  members = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
 }
