@@ -32,7 +32,7 @@ data "template_file" "tiller_rbac" {
 # This introduces undesired behavior that tiller will be deployed twice,
 # as the trigger mechanism is not based on the state, but rather on the change
 # of the state. So:
-# - 1st run: resource does not exist, the trigger is evaluated to "" (empty)
+# - 1st run: resource does not exist, the trigger is evaluated to random number
 #   -> resource is created
 # - 2nd run: resource does exist, but the trigger changed to "1" -> resource
 #   is recreated
@@ -44,7 +44,8 @@ data "external" "tiller_status" {
   program = [
     "bash",
     "-c",
-    "REPLICAS=$$(kubectl get deploy tiller-deploy -n ${var.tiller_namespace} -o jsonpath='{.status.readyReplicas}'); jq -n --arg replicas \"$$REPLICAS\" '{readyReplicas:$$replicas}'"]
+    "REPLICAS=$$(kubectl get deploy tiller-deploy -n ${var.tiller_namespace} -o jsonpath='{.status.readyReplicas}'); [ \"$$REPLICAS\" != \"1\" ] && REPLICAS=\"$$RANDOM\"; jq -n --arg replicas \"$$REPLICAS\" '{readyReplicas:$$replicas}'",
+  ]
 }
 
 resource "null_resource" "install_tiller" {
