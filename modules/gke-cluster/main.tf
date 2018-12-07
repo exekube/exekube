@@ -7,7 +7,15 @@ terraform {
   backend "gcs" {}
 }
 
+# Keep non-beta provider to be backward compatible
 provider "google" {
+  project     = "${var.project_id}"
+  credentials = "${var.serviceaccount_key}"
+}
+
+# Beta features will be available only in beta provider from 2.0
+# https://www.terraform.io/docs/providers/google/provider_versions.html
+provider "google-beta" {
   project     = "${var.project_id}"
   credentials = "${var.serviceaccount_key}"
 }
@@ -19,6 +27,7 @@ provider "google" {
 resource "google_container_cluster" "cluster" {
   name = "${var.cluster_name}"
   zone = "${var.main_compute_zone}"
+  provider = "google-beta"
 
   additional_zones = "${var.additional_zones}"
 
