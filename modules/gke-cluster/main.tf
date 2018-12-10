@@ -25,8 +25,10 @@ provider "google-beta" {
 # ------------------------------------------------------------------------------
 
 # Check that only one of region and main_compute_zone is set
+# This is to get a reasonable error message out of Terraform, however weird it
+# might look like
 resource "null_resource" "region_or_zone" {
-  count                                                         = "${var.region == "" || var.main_compute_zone == "" ? 0 : 1}"
+  count                                                         = "${var.region != "" && var.main_compute_zone != "" ? 1 : 0}"
   "ERROR: Only one of region and main_compute_zone may be set." = true
 }
 
