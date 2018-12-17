@@ -1,5 +1,5 @@
 # First stage -- compiling Exekube CLI
-FROM golang:1.9-alpine AS builder
+FROM golang:1.11.2-alpine3.8 AS builder
 
 RUN apk add --no-cache \
         git
@@ -16,7 +16,7 @@ ADD ./cli ./src/github.com/exekube/exekube/cli
 RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 
 # Second stage -- getting all runtime deps
-FROM alpine:3.7
+FROM alpine:3.8
 
 ENV ALIYUN_VERSION 3.0.0
 ENV HELM_VERSION 2.8.2

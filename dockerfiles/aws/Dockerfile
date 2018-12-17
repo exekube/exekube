@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # First stage: compiling Exekube CLI
 # ------------------------------------------------------------------------------
-FROM golang:1.9-alpine AS builder
+FROM golang:1.11.2-alpine3.8 AS builder
 
 RUN apk add --no-cache \
         git
@@ -20,7 +20,7 @@ RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 # ------------------------------------------------------------------------------
 # Second stage: getting all runtime deps
 # ------------------------------------------------------------------------------
-FROM alpine:3.7
+FROM alpine:3.8
 
 ENV AWS_CLI_VERSION 1.15.41
 ENV S3CMD_VERSION 2.0.1
