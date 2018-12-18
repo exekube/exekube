@@ -30,7 +30,7 @@ ENV HELM_VERSION 2.12.0
 ENV TERRAFORM_VERSION 0.11.10
 ENV TERRAGRUNT_VERSION 0.17.3
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.6.2
-# Terragrun tcache directory
+# Terragrunt cache directory
 ENV TERRAGRUNT_DOWNLOAD /tmp/.terragrunt-cache
 
 RUN apk --no-cache add \
