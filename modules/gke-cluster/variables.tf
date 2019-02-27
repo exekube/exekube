@@ -37,7 +37,11 @@ variable "additional_zones" {
 }
 
 variable "enable_kubernetes_alpha" {
-  default = "false"
+  default = false
+}
+
+variable "enable_binary_authorization" {
+  default = false
 }
 
 variable "oauth_scopes" {
