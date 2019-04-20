@@ -55,34 +55,56 @@ resource "null_resource" "install_tiller" {
 
   provisioner "local-exec" {
     command = <<EOF
-echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f - \
-&& helm init \
---tiller-namespace ${var.tiller_namespace} \
---service-account tiller \
---tiller-tls \
---tiller-tls-verify \
---tls-ca-cert=${local_file.ca_cert.filename} \
---tiller-tls-cert=${local_file.tiller_cert.filename} \
---tiller-tls-key=${local_file.tiller_key.filename} \
---override 'spec.template.spec.containers[0].command'='{/tiller,--storage=secret}' \
-&& sleep ${var.tiller_wait_period} \
-&& helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com \
-&& helm repo update
-EOF
+      echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f - \
+      && helm init \
+        --tiller-namespace ${var.tiller_namespace} \
+        --service-account tiller \
+        --tiller-tls \
+        --tiller-tls-verify \
+        --tls-ca-cert=${local_file.ca_cert.filename} \
+        --tiller-tls-cert=${local_file.tiller_cert.filename} \
+        --tiller-tls-key=${local_file.tiller_key.filename} \
+        --override 'spec.template.spec.containers[0].command'='{/tiller,--storage=secret}'
+      RETRIES=10
+      RETRY_COUNT=1
+      TILLER_READY="false"
+      while [ "$TILLER_READY" != "true" ]; do
+        echo "[Try $RETRY_COUNT of $RETRIES] Waiting for Tiller..."
+        helm version \
+          --tls --tls-verify \
+          --tls-ca-cert=${local_file.ca_cert.filename} \
+          --tls-cert=${local_file.helm_cert.filename} \
+          --tls-key=${local_file.helm_key.filename} \
+          --tiller-connection-timeout ${var.tiller_connection_timeout} > /dev/null 2> /dev/null
+        if [ "$?" == "0" ]; then
+          TILLER_READY="true"
+        fi
+        if [ "$RETRY_COUNT" == "$RETRIES" ] && [ "$TILLER_READY" != "true" ]; then
+          echo "Retry limit reached, giving up!"
+          exit 1
+        fi
+        if [ "$TILLER_READY" != "true" ]; then
+          sleep 10
+        fi
+        RETRY_COUNT=$(($RETRY_COUNT+1))
+      done
+      helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com \
+      && helm repo update
+    EOF
   }
 
   provisioner "local-exec" {
     when = "destroy"
 
     command = <<EOF
-helm reset --force \
---tiller-namespace ${var.tiller_namespace} \
---tls --tls-verify \
---tls-ca-cert=${local_file.ca_cert.filename} \
---tls-cert=${local_file.helm_cert.filename} \
---tls-key=${local_file.helm_key.filename} \
---tiller-connection-timeout ${var.tiller_connection_timeout}
-EOF
+      helm reset --force \
+        --tiller-namespace ${var.tiller_namespace} \
+        --tls --tls-verify \
+        --tls-ca-cert=${local_file.ca_cert.filename} \
+        --tls-cert=${local_file.helm_cert.filename} \
+        --tls-key=${local_file.helm_key.filename} \
+        --tiller-connection-timeout ${var.tiller_connection_timeout}
+    EOF
   }
 }
 
