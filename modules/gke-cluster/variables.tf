@@ -68,3 +68,8 @@ variable "monitoring_service" {
 variable "logging_service" {
   default = "logging.googleapis.com"
 }
+
+variable "dashboard_disabled" {
+  default = false
+  description = "Disable Kubernetes Dashboard"
+}
