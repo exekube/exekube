@@ -64,7 +64,7 @@ variable "initial_node_count" {
 }
 
 variable "kubernetes_version" {
-  default = "1.10.5-gke.0"
+  default = "1.12.7-gke.7"
 }
 
 variable "monitoring_service" {
@@ -89,7 +89,7 @@ variable "issue_client_certificate" {
   default     = true
   description = "Whether client certificate authorization is enabled"
 }
-  
+
 variable "create_timeout" {
   default = "30m"
 }
@@ -103,6 +103,6 @@ variable "delete_timeout" {
 }
 
 variable "dashboard_disabled" {
-  default = false
+  default     = false
   description = "Disable Kubernetes Dashboard"
 }
