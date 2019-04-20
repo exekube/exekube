@@ -27,7 +27,7 @@ ENV KUBECTL_VERSION 1.10.5
 ENV HELM_VERSION 2.9.1
 ENV TERRAFORM_VERSION 0.11.7
 ENV TERRAGRUNT_VERSION 0.14.10
-ENV TERRAFORM_PROVIDER_HELM_VERSION 0.5.1
+ENV TERRAFORM_PROVIDER_HELM_VERSION 0.6.0
 
 RUN apk --no-cache add \
         curl \
@@ -88,6 +88,15 @@ RUN curl -L -o ./tph.tar.gz \
         && chmod 0700 terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
+
+COPY terraform-plugins /terraform-plugins/
+
+RUN cd /terraform-plugins \
+    && terraform init \
+    && find /terraform-plugins \
+    && cp /terraform-plugins/.terraform/plugins/linux_amd64/terraform-provider* /root/.terraform.d/plugins/ \
+    && cd \
+    && rm -fr /terraform-plugins
 
 COPY modules /exekube-modules/
 COPY --from=builder /build/bin/xk /usr/local/bin/

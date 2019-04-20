@@ -16,3 +16,8 @@ variable "custom_tls_dir" {
 variable "helm_dir_name" {
   default = "helm-tls"
 }
+
+variable "tiller_connection_timeout" {
+  default     = "30"
+  description = "How long will Helm wait to establish a connection to tiller"
+}
