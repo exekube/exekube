@@ -55,7 +55,8 @@ RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cl
         && gcloud --version \
         && gcloud components install alpha beta \
         && gcloud components update \
-        && gcloud config set component_manager/disable_update_check true
+        && gcloud config set component_manager/disable_update_check true \
+        && rm -rf /google-cloud-sdk/.install/.backup
 
 RUN curl -L -o kubectl \
         https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
