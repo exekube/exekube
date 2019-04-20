@@ -57,7 +57,7 @@ resource "helm_release" "release" {
     "${var.extra_values == "" ? "" : file(coalesce(var.extra_values,"/dev/null"))}",
   ]
 
-  force_update     = false
+  force_update     = "${var.force_update}"
   devel            = true
   disable_webhooks = false
   timeout          = 500
