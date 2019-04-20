@@ -41,7 +41,7 @@ resource "google_container_cluster" "cluster" {
     }
 
     kubernetes_dashboard {
-      disabled = false
+      disabled = "${var.dashboard_disabled}"
     }
 
     http_load_balancing {

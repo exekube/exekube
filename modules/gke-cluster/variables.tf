@@ -80,3 +80,8 @@ variable "update_timeout" {
 variable "delete_timeout" {
   default = "10m"
 }
+
+variable "dashboard_disabled" {
+  default = false
+  description = "Disable Kubernetes Dashboard"
+}
