@@ -26,36 +26,85 @@ data "template_file" "tiller_rbac" {
   }
 }
 
+# tiller_status is introduced as a way to to make sure helm is reinstalled if
+# the cluster is recreated and/or tiller is broken or not present
+#
+# This introduces undesired behavior that tiller will be deployed twice,
+# as the trigger mechanism is not based on the state, but rather on the change
+# of the state. So:
+# - 1st run: resource does not exist, the trigger is evaluated to random number
+#   -> resource is created
+# - 2nd run: resource does exist, but the trigger changed to "1" -> resource
+#   is recreated
+# - 3rd and subsequent runs: resource does exist, trigger stays "1" -> no
+#   changes unless the tiller is deleted or stops working, if that happens
+#   the trigger changes and cycle described above will repeat once more
+
+data "external" "tiller_status" {
+  program = [
+    "bash",
+    "-c",
+    "REPLICAS=$$(kubectl get deploy tiller-deploy -n ${var.tiller_namespace} -o jsonpath='{.status.readyReplicas}'); [ \"$$REPLICAS\" != \"1\" ] && REPLICAS=\"$$RANDOM\"; jq -n --arg replicas \"$$REPLICAS\" '{readyReplicas:$$replicas}'",
+  ]
+}
+
 resource "null_resource" "install_tiller" {
+  triggers {
+    tiller_ready_replicas = "${data.external.tiller_status.result.readyReplicas}"
+  }
+
   provisioner "local-exec" {
     command = <<EOF
-echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f - \
-&& helm init \
---tiller-namespace ${var.tiller_namespace} \
---service-account tiller \
---tiller-tls \
---tiller-tls-verify \
---tls-ca-cert=${local_file.ca_cert.filename} \
---tiller-tls-cert=${local_file.tiller_cert.filename} \
---tiller-tls-key=${local_file.tiller_key.filename} \
---override 'spec.template.spec.containers[0].command'='{/tiller,--storage=secret}' \
-&& sleep ${var.tiller_wait_period} \
-&& helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com \
-&& helm repo update
-EOF
+      echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f - \
+      && helm init \
+        --tiller-namespace ${var.tiller_namespace} \
+        --service-account tiller \
+        --tiller-tls \
+        --tiller-tls-verify \
+        --tls-ca-cert=${local_file.ca_cert.filename} \
+        --tiller-tls-cert=${local_file.tiller_cert.filename} \
+        --tiller-tls-key=${local_file.tiller_key.filename} \
+        --override 'spec.template.spec.containers[0].command'='{/tiller,--storage=secret}'
+      RETRIES=10
+      RETRY_COUNT=1
+      TILLER_READY="false"
+      while [ "$TILLER_READY" != "true" ]; do
+        echo "[Try $RETRY_COUNT of $RETRIES] Waiting for Tiller..."
+        helm version \
+          --tls --tls-verify \
+          --tls-ca-cert=${local_file.ca_cert.filename} \
+          --tls-cert=${local_file.helm_cert.filename} \
+          --tls-key=${local_file.helm_key.filename} \
+          --tiller-connection-timeout ${var.tiller_connection_timeout} > /dev/null 2> /dev/null
+        if [ "$?" == "0" ]; then
+          TILLER_READY="true"
+        fi
+        if [ "$RETRY_COUNT" == "$RETRIES" ] && [ "$TILLER_READY" != "true" ]; then
+          echo "Retry limit reached, giving up!"
+          exit 1
+        fi
+        if [ "$TILLER_READY" != "true" ]; then
+          sleep 10
+        fi
+        RETRY_COUNT=$(($RETRY_COUNT+1))
+      done
+      helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com \
+      && helm repo update
+    EOF
   }
 
   provisioner "local-exec" {
     when = "destroy"
 
     command = <<EOF
-helm reset --force \
---tiller-namespace ${var.tiller_namespace} \
---tls --tls-verify \
---tls-ca-cert=${local_file.ca_cert.filename} \
---tls-cert=${local_file.helm_cert.filename} \
---tls-key=${local_file.helm_key.filename}
-EOF
+      helm reset --force \
+        --tiller-namespace ${var.tiller_namespace} \
+        --tls --tls-verify \
+        --tls-ca-cert=${local_file.ca_cert.filename} \
+        --tls-cert=${local_file.helm_cert.filename} \
+        --tls-key=${local_file.helm_key.filename} \
+        --tiller-connection-timeout ${var.tiller_connection_timeout}
+    EOF
   }
 }
 

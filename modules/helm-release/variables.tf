@@ -84,3 +84,8 @@ variable "ingress_basic_auth" {
     password    = ""
   }
 }
+
+variable "force_update" {
+  description = "Force resource update through delete/recreate if needed"
+  default     = false
+}

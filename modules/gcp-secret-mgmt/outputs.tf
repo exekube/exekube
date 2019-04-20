@@ -3,7 +3,7 @@ output "storage_buckets" {
 }
 
 output "encryption_keys" {
-  value = ["${google_kms_crypto_key.encryption_keys.*.id}"]
+  value = "${zipmap(var.encryption_keys, google_kms_crypto_key.encryption_keys.*.id)}"
 }
 
 output "keyring_id" {
