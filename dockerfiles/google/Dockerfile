@@ -89,6 +89,12 @@ RUN curl -L -o ./tph.tar.gz \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
 
+ENV HELMFILE_VERSION 0.54.2
+RUN curl -L -o helmfile \
+        https://github.com/roboll/helmfile/releases/download/v${HELMFILE_VERSION}/helmfile_linux_amd64 \
+        && chmod 0700 helmfile \
+        && mv helmfile /usr/bin
+
 COPY terraform-plugins /terraform-plugins/
 
 RUN cd /terraform-plugins \
