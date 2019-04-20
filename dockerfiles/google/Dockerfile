@@ -67,7 +67,7 @@ RUN curl -L -o helm.tar.gz \
         && chmod 0700 linux-amd64/helm \
         && mv linux-amd64/helm /usr/bin
 
-ENV TERRAFORM_VERSION 0.11.8
+ENV TERRAFORM_VERSION 0.11.12
 RUN curl -o ./terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
         && unzip terraform.zip \
         && mv terraform /usr/bin \

@@ -2,7 +2,7 @@ provider "local" {}
 
 resource "null_resource" "helmfile_sync" {
   triggers {
-    release_timestamp = "${timestamp()}"
+    helmfile_checksum = "${filesha512("${path.root}/${var.helmfile_path}")}"
   }
 
   provisioner "local-exec" {
