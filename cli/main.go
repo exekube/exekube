@@ -15,7 +15,7 @@ func main() {
 	cli.AppHelpTemplate = appHelpTemplate
 	cli.CommandHelpTemplate = commandHelpTemplate
 	app.Name = "Exekube"
-	app.Version = "0.4.0"
+	app.Version = "0.5.0"
 	app.Usage = "Manage the whole lifecycle of Kubernetes-based projects as declarative code"
 	app.Authors = []cli.Author{
 		cli.Author{

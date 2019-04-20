@@ -3,21 +3,16 @@ version: "3"
 services:
   # Build Exekube images and tag them
   # Usage: `docker-compose build <service-name>`
+  google:
+    image: exekube/exekube:0.5.0-google
+    build:
+      context: .
+      dockerfile: dockerfiles/google/Dockerfile
   aws:
     image: exekube/exekube:0.4.0-aws
     build:
       context: .
       dockerfile: dockerfiles/aws/Dockerfile
-  google:
-    image: exekube/exekube:0.4.0-google
-    build:
-      context: .
-      dockerfile: dockerfiles/google/Dockerfile
-  google-istio:
-    image: exekube/exekube:0.4.0-google-istio
-    build:
-      context: .
-      dockerfile: dockerfiles/google-istio/Dockerfile
   alicloud:
     image: exekube/exekube:0.4.0-alicloud
     build:
