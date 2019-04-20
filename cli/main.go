@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"strings"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
@@ -16,7 +15,7 @@ func main() {
 	cli.AppHelpTemplate = appHelpTemplate
 	cli.CommandHelpTemplate = commandHelpTemplate
 	app.Name = "Exekube"
-	app.Version = "0.3.0"
+	app.Version = "0.4.0"
 	app.Usage = "Manage the whole lifecycle of Kubernetes-based projects as declarative code"
 	app.Authors = []cli.Author{
 		cli.Author{
@@ -40,8 +39,20 @@ func main() {
 
 	app.Commands = []cli.Command{
 		{
-			Name:    "up",
-			Aliases: []string{"apply"},
+			Name:    "apply",
+			Aliases: []string{},
+			Usage:   "Apply a module in a path",
+			Action: func(c *cli.Context) error {
+				err := runTerragruntCmd(c)
+				if err != nil {
+					return err
+				}
+				return nil
+			},
+		},
+		{
+			Name:    "apply-all",
+			Aliases: []string{"up"},
 			Usage:   "Apply all modules in a path",
 			Action: func(c *cli.Context) error {
 				err := runTerragruntCmd(c)
@@ -52,8 +63,20 @@ func main() {
 			},
 		},
 		{
-			Name:    "down",
-			Aliases: []string{"destroy"},
+			Name:    "destroy",
+			Aliases: []string{},
+			Usage:   "Destroy a module in a path",
+			Action: func(c *cli.Context) error {
+				err := runTerragruntCmd(c)
+				if err != nil {
+					return err
+				}
+				return nil
+			},
+		},
+		{
+			Name:    "destroy-all",
+			Aliases: []string{"down"},
 			Usage:   "Destroy all modules in a path (forces count of all resources to zero)",
 			Action: func(c *cli.Context) error {
 				err := runTerragruntCmd(c)
@@ -66,6 +89,18 @@ func main() {
 		{
 			Name:    "plan",
 			Aliases: []string{},
+			Usage:   "Plan a module in a path",
+			Action: func(c *cli.Context) error {
+				err := runTerragruntCmd(c)
+				if err != nil {
+					return err
+				}
+				return nil
+			},
+		},
+		{
+			Name:    "plan-all",
+			Aliases: []string{},
 			Usage:   "Plan all modules in a path",
 			Action: func(c *cli.Context) error {
 				err := runTerragruntCmd(c)
@@ -77,6 +112,18 @@ func main() {
 		},
 		{
 			Name:    "output",
+			Aliases: []string{},
+			Usage:   "Show output variables for a module in a path",
+			Action: func(c *cli.Context) error {
+				err := runTerragruntCmd(c)
+				if err != nil {
+					return err
+				}
+				return nil
+			},
+		},
+		{
+			Name:    "output-all",
 			Aliases: []string{},
 			Usage:   "Show output variables for all modules in a path",
 			Action: func(c *cli.Context) error {
@@ -109,19 +156,17 @@ func runTerragruntCmd(c *cli.Context) error {
 		dir = c.Args().First()
 	}
 
-	action := c.Command.Name
+	terragruntAction := c.Command.Name
 
 	if c.Command.Name == "up" {
-		action = "apply"
+		terragruntAction = "apply-all"
 	}
 
 	if c.Command.Name == "down" {
-		action = "destroy"
+		terragruntAction = "destroy-all"
 	}
 
-	terragruntCmd := strings.Join([]string{action, "-all"}, "")
-
-	cmd := exec.Command("terragrunt", terragruntCmd)
+	cmd := exec.Command("terragrunt", terragruntAction)
 	cmd.Dir = dir
 	cmd.Stdout = os.Stdout
 	cmd.Stdin = os.Stdin
