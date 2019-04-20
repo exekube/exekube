@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # First stage: compiling Exekube CLI
 # ------------------------------------------------------------------------------
-FROM golang:1.9-alpine AS builder
+FROM golang:1.12-alpine AS builder
 
 RUN apk add --no-cache \
         git
@@ -22,13 +22,6 @@ RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 # ------------------------------------------------------------------------------
 FROM alpine:3.7
 
-ENV CLOUD_SDK_VERSION 208.0.2
-ENV KUBECTL_VERSION 1.10.5
-ENV HELM_VERSION 2.9.1
-ENV TERRAFORM_VERSION 0.11.7
-ENV TERRAGRUNT_VERSION 0.14.10
-ENV TERRAFORM_PROVIDER_HELM_VERSION 0.6.0
-
 RUN apk --no-cache add \
         curl \
         python \
@@ -42,8 +35,10 @@ RUN apk --no-cache add \
         ca-certificates \
         apache2-utils \
         tzdata \
-        jq
+        jq \
+        gnupg
 
+ENV CLOUD_SDK_VERSION 242.0.0
 ENV PATH /google-cloud-sdk/bin:$PATH
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
         && tar xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
@@ -58,34 +53,38 @@ RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cl
         && gcloud config set component_manager/disable_update_check true \
         && rm -rf /google-cloud-sdk/.install/.backup
 
+ENV KUBECTL_VERSION 1.13.4
 RUN curl -L -o kubectl \
         https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
         && chmod 0700 kubectl \
         && mv kubectl /usr/bin
 
+ENV HELM_VERSION 2.13.1
 RUN curl -L -o helm.tar.gz \
-        https://kubernetes-helm.storage.googleapis.com/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
+        https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
         && tar -xvzf helm.tar.gz \
         && rm -rf helm.tar.gz \
         && chmod 0700 linux-amd64/helm \
         && mv linux-amd64/helm /usr/bin
 
+ENV TERRAFORM_VERSION 0.11.8
 RUN curl -o ./terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
         && unzip terraform.zip \
         && mv terraform /usr/bin \
         && rm -rf terraform.zip
 
+ENV TERRAGRUNT_VERSION 0.18.3
 RUN curl -L -o ./terragrunt \
         https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 \
         && chmod 0700 terragrunt \
         && mv terragrunt /usr/bin
 
+ENV TERRAFORM_PROVIDER_HELM_VERSION 0.7.0
 RUN curl -L -o ./tph.tar.gz \
-        https://github.com/mcuadros/terraform-provider-helm/releases/download/v${TERRAFORM_PROVIDER_HELM_VERSION}/terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION}_linux_amd64.tar.gz \
+        https://github.com/gpii-ops/terraform-provider-helm/releases/download/v${TERRAFORM_PROVIDER_HELM_VERSION}/terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION}_linux_amd64.tar.gz \
         && tar -xvzf tph.tar.gz \
         && rm -rf tph.tar.gz \
         && cd terraform-provider-helm_linux_amd64 \
-        && mv terraform-provider-helm terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
         && chmod 0700 terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
