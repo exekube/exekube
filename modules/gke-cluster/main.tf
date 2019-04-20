@@ -79,9 +79,6 @@ resource "google_container_cluster" "cluster" {
     provider = "CALICO"
   }
 
-  lifecycle {
-    create_before_destroy = true
-  }
 
   provisioner "local-exec" {
     command = <<EOF

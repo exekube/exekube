@@ -26,7 +26,33 @@ data "template_file" "tiller_rbac" {
   }
 }
 
+# tiller_status is introduced as a way to to make sure helm is reinstalled if
+# the cluster is recreated and/or tiller is broken or not present
+#
+# This introduces undesired behavior that tiller will be deployed twice,
+# as the trigger mechanism is not based on the state, but rather on the change
+# of the state. So:
+# - 1st run: resource does not exist, the trigger is evaluated to random number
+#   -> resource is created
+# - 2nd run: resource does exist, but the trigger changed to "1" -> resource
+#   is recreated
+# - 3rd and subsequent runs: resource does exist, trigger stays "1" -> no
+#   changes unless the tiller is deleted or stops working, if that happens
+#   the trigger changes and cycle described above will repeat once more
+
+data "external" "tiller_status" {
+  program = [
+    "bash",
+    "-c",
+    "REPLICAS=$$(kubectl get deploy tiller-deploy -n ${var.tiller_namespace} -o jsonpath='{.status.readyReplicas}'); [ \"$$REPLICAS\" != \"1\" ] && REPLICAS=\"$$RANDOM\"; jq -n --arg replicas \"$$REPLICAS\" '{readyReplicas:$$replicas}'",
+  ]
+}
+
 resource "null_resource" "install_tiller" {
+  triggers {
+    tiller_ready_replicas = "${data.external.tiller_status.result.readyReplicas}"
+  }
+
   provisioner "local-exec" {
     command = <<EOF
 echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f - \
@@ -54,7 +80,8 @@ helm reset --force \
 --tls --tls-verify \
 --tls-ca-cert=${local_file.ca_cert.filename} \
 --tls-cert=${local_file.helm_cert.filename} \
---tls-key=${local_file.helm_key.filename}
+--tls-key=${local_file.helm_key.filename} \
+--tiller-connection-timeout ${var.tiller_connection_timeout}
 EOF
   }
 }
