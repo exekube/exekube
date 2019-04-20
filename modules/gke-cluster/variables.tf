@@ -23,7 +23,13 @@ variable "network_name" {
 }
 
 variable "main_compute_zone" {
-  default = "europe-north1-a"
+  description = "Master zone (only one of region and main_compute_zone may be set)"
+  default     = ""
+}
+
+variable "region" {
+  description = "Cluster region (only one of region and main_compute_zone may be set)"
+  default     = ""
 }
 
 variable "additional_zones" {
