@@ -69,6 +69,18 @@ variable "logging_service" {
   default = "logging.googleapis.com"
 }
 
+variable "create_timeout" {
+  default = "30m"
+}
+
+variable "update_timeout" {
+  default = "10m"
+}
+
+variable "delete_timeout" {
+  default = "10m"
+}
+
 variable "dashboard_disabled" {
   default = false
   description = "Disable Kubernetes Dashboard"
