@@ -67,7 +67,7 @@ RUN curl -L -o helm.tar.gz \
         && chmod 0700 linux-amd64/helm \
         && mv linux-amd64/helm /usr/bin
 
-ENV TERRAFORM_VERSION 0.11.8
+ENV TERRAFORM_VERSION 0.11.12
 RUN curl -o ./terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
         && unzip terraform.zip \
         && mv terraform /usr/bin \
@@ -88,6 +88,12 @@ RUN curl -L -o ./tph.tar.gz \
         && chmod 0700 terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
+
+ENV HELMFILE_VERSION 0.54.2
+RUN curl -L -o helmfile \
+        https://github.com/roboll/helmfile/releases/download/v${HELMFILE_VERSION}/helmfile_linux_amd64 \
+        && chmod 0700 helmfile \
+        && mv helmfile /usr/bin
 
 COPY terraform-plugins /terraform-plugins/
 
