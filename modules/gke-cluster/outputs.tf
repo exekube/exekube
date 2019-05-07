@@ -4,5 +4,5 @@
 #
 # 'endpoint' is an arbitrarily-chosen attribute; its value is not used.
 output "stub_output_for_dependency" {
-  value = "${google_container_cluster.cluster.endpoint}"
+  value = "${element(concat(google_container_cluster.cluster.*.endpoint, google_container_cluster.cluster-regional.*.endpoint), 0)}"
 }
