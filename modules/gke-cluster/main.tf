@@ -40,13 +40,14 @@ resource "google_container_cluster" "cluster" {
 
   additional_zones = "${var.additional_zones}"
 
-  initial_node_count      = "${var.initial_node_count}"
-  node_version            = "${var.kubernetes_version}"
-  min_master_version      = "${var.kubernetes_version}"
-  enable_kubernetes_alpha = "${var.enable_kubernetes_alpha}"
-  enable_legacy_abac      = "false"
-  network                 = "${var.network_name}"
-  subnetwork              = "nodes"
+  initial_node_count          = "${var.initial_node_count}"
+  node_version                = "${var.kubernetes_version}"
+  min_master_version          = "${var.kubernetes_version}"
+  enable_kubernetes_alpha     = "${var.enable_kubernetes_alpha}"
+  enable_binary_authorization = "${var.enable_binary_authorization}"
+  enable_legacy_abac          = false
+  network                     = "${var.network_name}"
+  subnetwork                  = "nodes"
 
   ip_allocation_policy {
     cluster_secondary_range_name  = "pods"
@@ -97,7 +98,6 @@ resource "google_container_cluster" "cluster" {
     provider = "CALICO"
   }
 
-
   provisioner "local-exec" {
     command = <<EOF
 gcloud auth activate-service-account --key-file ${var.serviceaccount_key} \
@@ -128,13 +128,14 @@ resource "google_container_cluster" "cluster-regional" {
 
   additional_zones = "${var.additional_zones}"
 
-  initial_node_count      = "${var.initial_node_count}"
-  node_version            = "${var.kubernetes_version}"
-  min_master_version      = "${var.kubernetes_version}"
-  enable_kubernetes_alpha = "${var.enable_kubernetes_alpha}"
-  enable_legacy_abac      = "false"
-  network                 = "${var.network_name}"
-  subnetwork              = "nodes"
+  initial_node_count          = "${var.initial_node_count}"
+  node_version                = "${var.kubernetes_version}"
+  min_master_version          = "${var.kubernetes_version}"
+  enable_kubernetes_alpha     = "${var.enable_kubernetes_alpha}"
+  enable_binary_authorization = "${var.enable_binary_authorization}"
+  enable_legacy_abac          = false
+  network                     = "${var.network_name}"
+  subnetwork                  = "nodes"
 
   ip_allocation_policy {
     cluster_secondary_range_name  = "pods"
