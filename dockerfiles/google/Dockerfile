@@ -59,7 +59,7 @@ RUN curl -L -o kubectl \
         && chmod 0700 kubectl \
         && mv kubectl /usr/bin
 
-ENV HELM_VERSION 2.14.0
+ENV HELM_VERSION 2.13.1
 RUN curl -L -o helm.tar.gz \
         https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
         && tar -xvzf helm.tar.gz \
