@@ -95,6 +95,14 @@ RUN curl -L -o helmfile \
         && chmod 0700 helmfile \
         && mv helmfile /usr/bin
 
+ENV ISTIOCTL_VERSION 1.0.6
+RUN curl -L -o istio.tar.gz \
+        https://github.com/istio/istio/releases/download/${ISTIOCTL_VERSION}/istio-${ISTIOCTL_VERSION}-linux.tar.gz \
+        && tar -xzvf istio.tar.gz \
+        && chmod 0700 istio-${ISTIOCTL_VERSION}/bin/istioctl \
+        && mv istio-${ISTIOCTL_VERSION}/bin/istioctl /usr/bin \
+        && rm -rf istio.tar.gz istio-${ISTIOCTL_VERSION}
+
 COPY terraform-plugins /terraform-plugins/
 
 RUN cd /terraform-plugins \
