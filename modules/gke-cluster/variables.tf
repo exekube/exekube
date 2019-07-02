@@ -110,3 +110,8 @@ variable "dashboard_disabled" {
   default     = false
   description = "Disable Kubernetes Dashboard"
 }
+
+variable "http_load_balancing_disabled" {
+  default     = false
+  description = "Disable GKE HTTP (L7) load balancing controller addon"
+}
