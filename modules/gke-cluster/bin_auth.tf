@@ -28,8 +28,8 @@ resource "google_binary_authorization_policy" "policy" {
   # To specify multiple patterns, we must specify multilple
   # `admission_whitelist_patterns` blocks.
   #
-  # The first set of patterns provide some slots for module users to specify
-  # their custom patterns. It would be nice to use something like
+  # This set of patterns provide some slots for module users to specify their
+  # custom patterns. It would be nice to use something like
   # https://www.terraform.io/docs/configuration/expressions.html#dynamic-blocks
   # but they are not available in Terraform 0.11 :(.
 
@@ -58,8 +58,33 @@ resource "google_binary_authorization_policy" "policy" {
     name_pattern = "${var.binary_authorization_admission_whitelist_pattern_7}"
   }
 
-  # The next set of patterns cover Google-provided system images. It would be
-  # nice to use the `globalPolicyEvaluationMode` field in the API
+  # This set of patterns is for Helm.
+
+  admission_whitelist_patterns {
+    name_pattern = "gcr.io/kubernetes-helm/*"
+  }
+
+  # This set of patterns covers "system" images that are included in neither
+  # of Google's provided lists (short or full; see below).
+
+  admission_whitelist_patterns {
+    name_pattern = "gcr.io/gke-release/istio/*"
+  }
+  admission_whitelist_patterns {
+    name_pattern = "gcr.io/istio-release/*"
+  }
+  admission_whitelist_patterns {
+    name_pattern = "gcr.io/projectcalico-org/*"
+  }
+  admission_whitelist_patterns {
+    name_pattern = "k8s.gcr.io/fluentd-gcp-scaler:*"
+  }
+  admission_whitelist_patterns {
+    name_pattern = "quay.io/prometheus/prometheus*"
+  }
+
+  # This set of patterns covers Google-provided system images. It would be nice
+  # to use the `globalPolicyEvaluationMode` field in the API
   # (https://cloud.google.com/binary-authorization/docs/reference/rest/v1/Policy)
   # but the google provider doesn't support it :(.
   #
