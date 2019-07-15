@@ -1,7 +1,10 @@
 # Since we sometimes use ADCs, and since the binaryauthorization API does not
 # allow ADCs, we need a dedicated SA to manage binary auth. See GPII-3860.
+#
+# We can't use 'count' to only include this sometimes because the
+# 'google-beta.bin-auth' provider requires this resource (and provider blocks
+# do not support 'count').
 data "google_service_account_access_token" "bin-auth" {
-  count    = "${var.enable_binary_authorization ? 1 : 0}"
   provider = "google-beta"
 
   target_service_account = "gke-cluster-bin-auth@${var.project_id}.iam.gserviceaccount.com"
