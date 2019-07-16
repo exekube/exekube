@@ -4,7 +4,7 @@ services:
   # Build Exekube images and tag them
   # Usage: `docker-compose build <service-name>`
   google:
-    image: exekube/exekube:0.7.0-google
+    image: exekube/exekube:0.8.0-google
     build:
       context: .
       dockerfile: dockerfiles/google/Dockerfile
