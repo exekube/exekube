@@ -35,30 +35,32 @@ resource "google_binary_authorization_policy" "policy" {
   # custom patterns. It would be nice to use something like
   # https://www.terraform.io/docs/configuration/expressions.html#dynamic-blocks
   # but they are not available in Terraform 0.11 :(.
+  #
+  # Patterns cannot be empty, so we'll use a placeholder value that satisfies Google's API.
 
   admission_whitelist_patterns {
-    name_pattern = "${var.binary_authorization_admission_whitelist_pattern_0}"
+    name_pattern = "${length(var.binary_authorization_admission_whitelist_patterns) > 0 ? element(var.binary_authorization_admission_whitelist_patterns, 0) : "PLACE.HOLDER/PATTERN"}"
   }
   admission_whitelist_patterns {
-    name_pattern = "${var.binary_authorization_admission_whitelist_pattern_1}"
+    name_pattern = "${length(var.binary_authorization_admission_whitelist_patterns) > 1 ? element(var.binary_authorization_admission_whitelist_patterns, 1) : "PLACE.HOLDER/PATTERN"}"
   }
   admission_whitelist_patterns {
-    name_pattern = "${var.binary_authorization_admission_whitelist_pattern_2}"
+    name_pattern = "${length(var.binary_authorization_admission_whitelist_patterns) > 2 ? element(var.binary_authorization_admission_whitelist_patterns, 2) : "PLACE.HOLDER/PATTERN"}"
   }
   admission_whitelist_patterns {
-    name_pattern = "${var.binary_authorization_admission_whitelist_pattern_3}"
+    name_pattern = "${length(var.binary_authorization_admission_whitelist_patterns) > 3 ? element(var.binary_authorization_admission_whitelist_patterns, 3) : "PLACE.HOLDER/PATTERN"}"
   }
   admission_whitelist_patterns {
-    name_pattern = "${var.binary_authorization_admission_whitelist_pattern_4}"
+    name_pattern = "${length(var.binary_authorization_admission_whitelist_patterns) > 4 ? element(var.binary_authorization_admission_whitelist_patterns, 4) : "PLACE.HOLDER/PATTERN"}"
   }
   admission_whitelist_patterns {
-    name_pattern = "${var.binary_authorization_admission_whitelist_pattern_5}"
+    name_pattern = "${length(var.binary_authorization_admission_whitelist_patterns) > 5 ? element(var.binary_authorization_admission_whitelist_patterns, 5) : "PLACE.HOLDER/PATTERN"}"
   }
   admission_whitelist_patterns {
-    name_pattern = "${var.binary_authorization_admission_whitelist_pattern_6}"
+    name_pattern = "${length(var.binary_authorization_admission_whitelist_patterns) > 6 ? element(var.binary_authorization_admission_whitelist_patterns, 6) : "PLACE.HOLDER/PATTERN"}"
   }
   admission_whitelist_patterns {
-    name_pattern = "${var.binary_authorization_admission_whitelist_pattern_7}"
+    name_pattern = "${length(var.binary_authorization_admission_whitelist_patterns) > 7 ? element(var.binary_authorization_admission_whitelist_patterns, 7) : "PLACE.HOLDER/PATTERN"}"
   }
 
   # This set of patterns is for Helm.
@@ -109,4 +111,9 @@ resource "google_binary_authorization_policy" "policy" {
   admission_whitelist_patterns {
     name_pattern = "gcr.io/stackdriver-agents/*"
   }
+}
+
+resource "null_resource" "check_length_binary_authorization_admission_whitelist_patterns" {
+  count                                                                               = "${length(var.binary_authorization_admission_whitelist_patterns) > 8 ? 1 : 0}"
+  "ERROR: binary_authorization_admission_whitelist_patterns can only have 8 elements" = true
 }
