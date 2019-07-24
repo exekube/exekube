@@ -38,7 +38,7 @@ RUN apk --no-cache add \
         jq \
         gnupg
 
-ENV CLOUD_SDK_VERSION 242.0.0
+ENV CLOUD_SDK_VERSION 247.0.0
 ENV PATH /google-cloud-sdk/bin:$PATH
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
         && tar xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
@@ -67,27 +67,17 @@ RUN curl -L -o helm.tar.gz \
         && chmod 0700 linux-amd64/helm \
         && mv linux-amd64/helm /usr/bin
 
-ENV TERRAFORM_VERSION 0.11.12
+ENV TERRAFORM_VERSION 0.11.14
 RUN curl -o ./terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
         && unzip terraform.zip \
         && mv terraform /usr/bin \
         && rm -rf terraform.zip
 
-ENV TERRAGRUNT_VERSION 0.18.3
+ENV TERRAGRUNT_VERSION 0.18.6
 RUN curl -L -o ./terragrunt \
         https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 \
         && chmod 0700 terragrunt \
         && mv terragrunt /usr/bin
-
-ENV TERRAFORM_PROVIDER_HELM_VERSION 0.7.0
-RUN curl -L -o ./tph.tar.gz \
-        https://github.com/gpii-ops/terraform-provider-helm/releases/download/v${TERRAFORM_PROVIDER_HELM_VERSION}/terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION}_linux_amd64.tar.gz \
-        && tar -xvzf tph.tar.gz \
-        && rm -rf tph.tar.gz \
-        && cd terraform-provider-helm_linux_amd64 \
-        && chmod 0700 terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
-        && mkdir -p /root/.terraform.d/plugins/ \
-        && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
 
 ENV HELMFILE_VERSION 0.54.2
 RUN curl -L -o helmfile \
@@ -95,11 +85,20 @@ RUN curl -L -o helmfile \
         && chmod 0700 helmfile \
         && mv helmfile /usr/bin
 
+ENV ISTIOCTL_VERSION 1.0.6
+RUN curl -L -o istio.tar.gz \
+        https://github.com/istio/istio/releases/download/${ISTIOCTL_VERSION}/istio-${ISTIOCTL_VERSION}-linux.tar.gz \
+        && tar -xzvf istio.tar.gz \
+        && chmod 0700 istio-${ISTIOCTL_VERSION}/bin/istioctl \
+        && mv istio-${ISTIOCTL_VERSION}/bin/istioctl /usr/bin \
+        && rm -rf istio.tar.gz istio-${ISTIOCTL_VERSION}
+
 COPY terraform-plugins /terraform-plugins/
 
 RUN cd /terraform-plugins \
     && terraform init \
     && find /terraform-plugins \
+    && mkdir -p /root/.terraform.d/plugins \
     && cp /terraform-plugins/.terraform/plugins/linux_amd64/terraform-provider* /root/.terraform.d/plugins/ \
     && cd \
     && rm -fr /terraform-plugins
