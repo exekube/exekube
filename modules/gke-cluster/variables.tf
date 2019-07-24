@@ -63,6 +63,21 @@ variable "node_image_type" {
   default = "COS"
 }
 
+variable "binary_authorization_evaluation_mode" {
+  default = "ALWAYS_ALLOW"
+}
+
+variable "binary_authorization_admission_whitelist_patterns" {
+  # This list cannot be empty because:
+  #
+  # Error: module.gke_cluster.google_binary_authorization_policy.policy: 1 error occurred:
+  #   * module.gke_cluster.google_binary_authorization_policy.policy: element: element() may not be used with an empty list in:
+  #   ${length(var.binary_authorization_admission_whitelist_patterns) > 0 ? element(var.binary_authorization_admission_whitelist_patterns, 0) : "PLACE.HOLDER/PATTERN"}
+  #
+  # So, use a placeholder value that satisfies Google's API.
+  default = ["PLACE.HOLDER/PATTERN"]
+}
+
 variable "initial_node_count" {
   default = 2
 }
