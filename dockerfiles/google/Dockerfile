@@ -53,7 +53,7 @@ RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cl
         && gcloud config set component_manager/disable_update_check true \
         && rm -rf /google-cloud-sdk/.install/.backup
 
-ENV KUBECTL_VERSION 1.12.8
+ENV KUBECTL_VERSION 1.13.8
 RUN curl -L -o kubectl \
         https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
         && chmod 0700 kubectl \
