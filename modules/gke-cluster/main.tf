@@ -64,7 +64,7 @@ resource "google_container_cluster" "cluster" {
     }
 
     http_load_balancing {
-      disabled = false
+      disabled = "${var.http_load_balancing_disabled}"
     }
 
     network_policy_config {
