@@ -108,8 +108,7 @@ gcloud auth activate-service-account --key-file ${var.serviceaccount_key} \
 && kubectl create clusterrolebinding \
 creator-cluster-admin-binding \
 --clusterrole=cluster-admin \
---user=$(gcloud info --format='value(config.account)') \
-&& helm init --client-only
+--user=$(gcloud info --format='value(config.account)')
 EOF
   }
 
@@ -214,8 +213,7 @@ gcloud auth activate-service-account --key-file ${var.serviceaccount_key} \
 && kubectl create clusterrolebinding \
 creator-cluster-admin-binding \
 --clusterrole=cluster-admin \
---user=$(gcloud info --format='value(config.account)') \
-&& helm init --client-only
+--user=$(gcloud info --format='value(config.account)')
 EOF
   }
 
