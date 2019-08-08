@@ -85,6 +85,8 @@ resource "google_compute_firewall" "allow_pods_internal" {
 
 # Discard the default network as we don't need it
 resource "null_resource" "delete_default_network" {
+  count = "${var.delete_default_network ? 1 : 0}"
+
   provisioner "local-exec" {
     command = <<EOF
 gcloud --project $TF_VAR_project_id --quiet compute firewall-rules delete \
