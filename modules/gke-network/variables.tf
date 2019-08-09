@@ -16,6 +16,10 @@ variable "create_static_ip_address" {
   default = true
 }
 
+variable "delete_default_network" {
+  default = true
+}
+
 variable "static_ip_region" {
   default = "europe-north1"
 }

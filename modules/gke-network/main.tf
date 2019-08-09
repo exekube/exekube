@@ -26,65 +26,10 @@ resource "google_compute_subnetwork" "subnets" {
   ]
 }
 
-# Firewall rules for GKE nodes
-resource "google_compute_firewall" "allow_nodes_internal" {
-  name        = "allow-nodes-internal"
-  description = "Allow traffic between nodes"
-
-  network  = "${google_compute_network.network.self_link}"
-  priority = "65534"
-
-  direction     = "INGRESS"
-  source_ranges = ["${google_compute_subnetwork.subnets.*.ip_cidr_range}"]
-
-  allow {
-    protocol = "icmp"
-  }
-
-  allow {
-    protocol = "tcp"
-    ports    = ["0-65535"]
-  }
-
-  allow {
-    protocol = "udp"
-    ports    = ["0-65535"]
-  }
-}
-
-# Firewall rules for GKE pods
-resource "google_compute_firewall" "allow_pods_internal" {
-  name     = "allow-pods-internal"
-  network  = "${google_compute_network.network.name}"
-  priority = "1000"
-
-  description = "Allow traffic between pods and services"
-
-  # services and pods ranges
-  direction = "INGRESS"
-
-  source_ranges = [
-    "${google_compute_subnetwork.subnets.*.secondary_ip_range.0.ip_cidr_range}",
-    "${google_compute_subnetwork.subnets.*.secondary_ip_range.1.ip_cidr_range}",
-  ]
-
-  allow {
-    protocol = "icmp"
-  }
-
-  allow {
-    protocol = "tcp"
-    ports    = ["0-65535"]
-  }
-
-  allow {
-    protocol = "udp"
-    ports    = ["0-65535"]
-  }
-}
-
 # Discard the default network as we don't need it
 resource "null_resource" "delete_default_network" {
+  count = "${var.delete_default_network ? 1 : 0}"
+
   provisioner "local-exec" {
     command = <<EOF
 gcloud --project $TF_VAR_project_id --quiet compute firewall-rules delete \
