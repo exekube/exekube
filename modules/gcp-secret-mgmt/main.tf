@@ -57,6 +57,10 @@ resource "google_storage_bucket" "gcs_buckets" {
   storage_class = "REGIONAL"
   location      = "${var.storage_location}"
   force_destroy = true
+
+  versioning = {
+    enabled = "${var.bucket_versioning_enabled}"
+  }
 }
 
 # ------------------------------------------------------------------------------

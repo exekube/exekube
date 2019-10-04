@@ -24,6 +24,10 @@ variable "storage_location" {
 
 variable "encryption_keys" {
   description = "Names of encryption keys to create (a storage bucket will also be created for each)"
-
   default = []
+}
+
+variable "bucket_versioning_enabled" {
+  description = "Set this to true to enable versioning for GS bucket that stores encrypted secrets"
+	default     = false
 }
